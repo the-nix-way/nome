@@ -10,6 +10,6 @@ in {
   home = {
     inherit homeDirectory packages stateVersion;
   };
-  
+
   nix = import ./nix.nix { nix = nixPkg; };
 }
