@@ -13,7 +13,10 @@
         inherit (pkgs) mkShell;
       in {
         devShells = {
-          default = mkShell { buildInputs = nome.lib.dev.tools.go; };
+          default = mkShell {
+            buildInputs = with nome.lib.dev.tools;
+              go ++ node ++ protobuf ++ rust;
+          };
         };
       });
 }
