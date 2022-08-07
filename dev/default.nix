@@ -14,6 +14,13 @@ in {
 
     protobuf = with pkgs; [ buf protobuf ];
 
-    rust = [ rustVersion ] ++ (with pkgs; [ cargo-audit cargo-deny cargo-cross openssl pkg-config rust-analyzer ]);
+    rust = [ rustVersion ] ++ (with pkgs; [
+      cargo-audit
+      cargo-deny
+      cargo-cross
+      openssl
+      pkg-config
+      rust-analyzer
+    ]);
   };
 }
