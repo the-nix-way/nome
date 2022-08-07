@@ -30,8 +30,8 @@
       # Inheritance helpers
       inherit (home-manager.lib) homeManagerConfiguration;
 
-      # Special version of Nixpkgs with Rust overlay applied
-      rustPkgs = import nixpkgs { overlays = [ (import rust-overlay) ]; };
+      # Special version of Nixpkgs with overlays applied
+      libPkgs = import nixpkgs { overlays = [ (import rust-overlay) ]; };
     in {
       homeConfigurations.${username} = homeManagerConfiguration {
         inherit pkgs;
@@ -40,6 +40,13 @@
           [ (import ./home { inherit homeDirectory pkgs system username; }) ];
       };
 
-      lib = { dev = import ./dev { pkgs = rustPkgs; }; };
+      lib = { dev = import ./dev { pkgs = libPkgs; }; };
+
+      templates = {
+        default = {
+          path = ./template;
+          description = "Project starter template";
+        };
+      };
     };
 }
