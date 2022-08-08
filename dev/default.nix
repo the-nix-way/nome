@@ -19,6 +19,7 @@ in {
       cargo-cross
       cargo-deny
       cargo-expand
+      cargo-fuzz
       openssl
       pkg-config
       rust-analyzer
