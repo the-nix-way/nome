@@ -16,8 +16,9 @@ in {
 
     rust = [ rustVersion ] ++ (with pkgs; [
       cargo-audit
-      cargo-deny
       cargo-cross
+      cargo-deny
+      cargo-expand
       openssl
       pkg-config
       rust-analyzer
