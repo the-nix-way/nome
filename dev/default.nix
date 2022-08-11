@@ -20,6 +20,7 @@ in {
       cargo-deny
       cargo-expand
       cargo-fuzz
+      cargo-outdated
       openssl
       pkg-config
       rust-analyzer

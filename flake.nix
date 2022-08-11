@@ -45,6 +45,8 @@
 
       lib = { dev = import ./dev { pkgs = libPkgs; }; };
 
+      overlays = import ./overlays;
+
       templates = {
         default = {
           path = ./template;
