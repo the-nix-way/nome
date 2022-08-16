@@ -20,6 +20,4 @@
       inherit nodejs;
     };
   };
-
-  rust = self: super: { };
 }

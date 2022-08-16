@@ -27,7 +27,7 @@
           xdg = { configHome = homeDirectory; };
         };
         overlays = [ (rust-overlay) ]
-          ++ (with (import ./overlays); [ go node rust ]);
+          ++ (with self.overlays; [ go node ]);
       };
 
       # Inheritance helpers
