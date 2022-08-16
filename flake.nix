@@ -19,6 +19,8 @@
       username = "lucperkins";
       homeDirectory = (import ./lib).getHomeDirectory username;
 
+      overlays = import ./overlays;
+
       # System-specific Nixpkgs
       pkgs = import nixpkgs {
         inherit system;
@@ -26,8 +28,7 @@
           allowUnfree = true;
           xdg = { configHome = homeDirectory; };
         };
-        overlays = [ (rust-overlay) ]
-          ++ (with self.overlays; [ ]);
+        overlays = [ (rust-overlay) ] ++ (with overlays; [ go node ]);
       };
 
       # Inheritance helpers
@@ -47,8 +48,6 @@
       };
 
       nixpkgs = pkgs;
-
-      overlays = import ./overlays;
 
       templates = {
         default = {
