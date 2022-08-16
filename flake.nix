@@ -2,14 +2,15 @@
   description = "My Nix world";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs";
+    flake-utils.url = "github:numtide/flake-utils";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixpkgs.url = "github:NixOS/nixpkgs";
   };
 
-  outputs = { self, home-manager, nixpkgs }:
+  outputs = { flake-utils, home-manager, nixpkgs }:
     let
       # Constants
       homeDirectory = "/Users/${username}";
@@ -38,7 +39,9 @@
           [ (import ./home { inherit homeDirectory pkgs system username; }) ];
       };
 
-      lib = import ./lib { inherit pkgs; };
+      lib = import ./lib { inherit pkgs; inherit (flake-utils.lib) eachDefaultSystem; };
+
+      nixpkgs = pkgs;
 
       overlays = import ./overlays;
 

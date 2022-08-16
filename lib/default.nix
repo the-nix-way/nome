@@ -1,11 +1,11 @@
-{ pkgs }:
+{ eachDefaultSystem, pkgs }:
 
 let
   inherit (pkgs.lib) optionals;
   inherit (pkgs.stdenv) isDarwin isLinux;
 in
 {
-  dev = import ./dev { inherit pkgs; };
+  dev = import ./dev { inherit eachDefaultSystem pkgs; };
 
   # Helper functions
   funcs = {
