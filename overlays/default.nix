@@ -11,7 +11,7 @@
 
   # Overlays for dev environments
   go = self: super: {
-    go = super.go_1_19;
+    go = super.go_1_18;
   };
 
   node = self: super: rec {
