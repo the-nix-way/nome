@@ -13,10 +13,10 @@
   outputs = { self, flake-utils, home-manager, nixpkgs }:
     let
       # Constants
-      homeDirectory = "/Users/${username}";
       stateVersion = "22.11";
       system = "aarch64-darwin";
       username = "lucperkins";
+      homeDirectory = (import ./lib).getHomeDirectory username;
 
       # System-specific Nixpkgs
       pkgs = import nixpkgs {
