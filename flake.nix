@@ -38,7 +38,7 @@
           [ (import ./home { inherit homeDirectory pkgs system username; }) ];
       };
 
-      lib = import ./lib { inherit pkgs; rustOverlay = rust-overlay.overlays.default; };
+      lib = import ./lib { inherit pkgs; rustInitialOverlay = rust-overlay.overlays.default; };
 
       overlays = import ./overlays;
 
