@@ -1,7 +1,7 @@
 { eachDefaultSystem, pkgs }:
 
 let
-  lib = import ../;
+  lib = import ./..;
   inherit (lib.funcs) darwinOnly linuxOnly;
 in
 {
