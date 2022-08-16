@@ -5,7 +5,7 @@ let
   inherit (pkgs.stdenv) isDarwin isLinux;
 in
 {
-  dev = import ./dev { inherit eachDefaultSystem pkgs; lib = callPackage ./.; };
+  dev = import ./dev { inherit eachDefaultSystem pkgs; lib = pkgs.callPackage ./.; };
 
   # Helper functions
   funcs = {
