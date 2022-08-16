@@ -28,7 +28,7 @@
           allowUnfree = true;
           xdg = { configHome = homeDirectory; };
         };
-        overlays = [ (rust-overlay) ] ++ (with overlays; [ go node ]);
+        overlays = [ (rust-overlay) ];
       };
 
       # Inheritance helpers

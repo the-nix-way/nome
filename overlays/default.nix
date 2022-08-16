@@ -14,10 +14,14 @@
     go = super.go_1_19;
   };
 
-  node = self: super: rec {
-    nodejs = super.nodejs-18_x;
-    yarn = super.yarn.override {
+  node = self: super:
+    let
+      nodejs = super.nodejs-18_x;
+    in
+    {
       inherit nodejs;
+      yarn = super.yarn.override {
+        inherit nodejs;
+      };
     };
-  };
 }
