@@ -29,12 +29,6 @@
 
       # Inheritance helpers
       inherit (home-manager.lib) homeManagerConfiguration;
-
-      # Special version of Nixpkgs with overlays applied
-      libPkgs = import nixpkgs {
-        inherit system;
-        overlays = [ (import rust-overlay) ];
-      };
     in
     {
       homeConfigurations.${username} = homeManagerConfiguration {
@@ -44,7 +38,7 @@
           [ (import ./home { inherit homeDirectory pkgs system username; }) ];
       };
 
-      lib = import ./dev { pkgs = libPkgs; };
+      lib = import ./lib { inherit pkgs rust-overlay; };
 
       overlays = import ./overlays;
 

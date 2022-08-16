@@ -5,13 +5,16 @@ let
   inherit (pkgs.stdenv) isDarwin isLinux;
 in
 {
-  dev = {
+  dev = import ./dev { inherit pkgs; };
+
+  # Helper functions
+  funcs = {
     # Add to list only if on a specific system type
     darwinOnly = ls: optionals isDarwin ls;
     linuxOnly = ls: optionals isLinux ls;
 
     # Infer home directory based on system
-    homeDirectory = username:
+    getHomeDirectory = username:
       if optionals isDarwin then "/Users/${username}" else "/home/${username}";
   };
 }
