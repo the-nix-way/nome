@@ -1,5 +1,9 @@
 { eachDefaultSystem, pkgs }:
 
+let
+  lib = import ../;
+  inherit (lib.funcs) darwinOnly linuxOnly;
+in
 {
   mkEnv = tools:
     eachDefaultSystem (system:
@@ -15,6 +19,10 @@
       });
 
   tools = {
+    elixir = with pkgs; [ elixir ]
+      ++ darwinOnly ((with pkgs; [ terminal-notifier ]) ++ (with pkgs.darwin.apple_sdk.frameworks; [ CoreFoundation CoreServices ]))
+      ++ linuxOnly (with pkgs; [ inotify-tools libnotify ]);
+
     go = with pkgs;
       [ go gotools ];
 
