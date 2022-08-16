@@ -1,4 +1,4 @@
-{ pkgs, rust-overlay }:
+{ pkgs, rustInitialOverlay }:
 
 let
   goOverlay = self: super: {
@@ -14,7 +14,7 @@ let
     rust = rust-bin.stable.latest.default;
   };
 
-  overlays = [ (rust-overlay) goOverlay nodeOverlay rustOverlay ];
+  overlays = [ rustInitialOverlay goOverlay nodeOverlay rustOverlay ];
 
   pkgsCustom = import pkgs { inherit overlays; };
 in
