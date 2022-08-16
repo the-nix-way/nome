@@ -35,7 +35,8 @@
         inherit system;
         overlays = [ (import rust-overlay) ];
       };
-    in {
+    in
+    {
       homeConfigurations.${username} = homeManagerConfiguration {
         inherit pkgs;
 
@@ -43,7 +44,7 @@
           [ (import ./home { inherit homeDirectory pkgs system username; }) ];
       };
 
-      lib = { dev = import ./dev { pkgs = libPkgs; }; };
+      lib = import ./dev { pkgs = libPkgs; };
 
       overlays = import ./overlays;
 
