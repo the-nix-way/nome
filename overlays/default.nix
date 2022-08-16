@@ -22,6 +22,6 @@
   };
 
   rust = self: super: {
-    rust = super.pkgs.rust-bin.beta.latest.default;
+    devRust = super.pkgs.rust-bin.beta.latest.default;
   };
 }

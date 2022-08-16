@@ -23,7 +23,7 @@
     protobuf = with pkgs; [ buf protobuf ];
 
     rust = with pkgs; [
-      rust
+      devRust
       cargo-audit
       cargo-cross
       cargo-deny
