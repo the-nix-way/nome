@@ -14,10 +14,14 @@
         };
       });
 
-  tools = {
-    elixir = with pkgs; [ elixir ]
-      ++ darwinOnly ((with pkgs; [ terminal-notifier ]) ++ (with pkgs.darwin.apple_sdk.frameworks; [ CoreFoundation CoreServices ]))
-      ++ linuxOnly (with pkgs; [ inotify-tools libnotify ]);
+  toolchains = {
+    elixir =
+      let
+        darwinDeps = darwinOnly ((with pkgs; [ terminal-notifier ])
+          ++ (with pkgs.darwin.apple_sdk.frameworks; [ CoreFoundation CoreServices ]));
+        linuxDeps = with pkgs; [ inotify-tools libnotify ];
+      in
+      with pkgs; [ elixir ] ++ darwinDeps ++ linuxDeps;
 
     go = with pkgs;
       [ go gotools ];
