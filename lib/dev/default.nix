@@ -11,7 +11,7 @@ let
   };
 
   rustOverlay = self: super: {
-    rust = rust-bin.stable.latest.default;
+    rust = super.rust-bin.stable.latest.default;
   };
 
   overlays = [ rustInitialOverlay goOverlay nodeOverlay rustOverlay ];
