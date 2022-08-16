@@ -59,11 +59,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1660667722,
-        "narHash": "sha256-xfaTLFGkzGOgB2jn+xl2zv0YqxC/ScZiDs61MF1IR+o=",
+        "lastModified": 1660667779,
+        "narHash": "sha256-et0JRtSlulR6zeNuMKMJ2NwNl/MG6WfMh+xAc+yMZNY=",
         "owner": "the-nix-way",
         "repo": "nome",
-        "rev": "9f9ce3f72e95895d4ecfd9da9e078d1bea2eaee1",
+        "rev": "70b47f741d866280a57631fcc9d6500cc7508fc8",
         "type": "github"
       },
       "original": {
