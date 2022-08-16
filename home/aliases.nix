@@ -1,7 +1,12 @@
 { homeDirectory }:
 
 {
+  # General
   "," = "comma";
+
+  # Direnv helpers
+  da = "direnv allow";
+  dr = "direnv reload";
 
   ## Nix stuff. Inspired by: https://alexfedoseev.com/blog/post/nix-time.
 
