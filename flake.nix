@@ -8,9 +8,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixpkgs.url = "github:NixOS/nixpkgs";
+    rust-overlay.url = "github:oxalica/rust-overlay";
   };
 
-  outputs = { self, flake-utils, home-manager, nixpkgs }:
+  outputs = { self, flake-utils, home-manager, nixpkgs, rust-overlay }:
     let
       # Constants
       stateVersion = "22.11";
@@ -25,7 +26,8 @@
           allowUnfree = true;
           xdg = { configHome = homeDirectory; };
         };
-        overlays = with (import ./overlays); [ go node ];
+        overlays = [ (rust-overlay) ]
+          ++ (with (import ./overlays); [ go node rust ]);
       };
 
       # Inheritance helpers
@@ -39,7 +41,10 @@
           [ (import ./home { inherit homeDirectory pkgs system username; }) ];
       };
 
-      lib = import ./lib { inherit pkgs; inherit (flake-utils.lib) eachDefaultSystem; };
+      lib = import ./lib {
+        inherit pkgs;
+        inherit (flake-utils.lib) eachDefaultSystem;
+      };
 
       nixpkgs = pkgs;
 

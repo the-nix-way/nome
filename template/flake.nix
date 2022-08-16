@@ -6,5 +6,5 @@
   };
 
   outputs = { self, nome, ... }:
-    nome.lib.dev.mkEnv (with nome.lib.dev.tools; go ++ node ++ protobuf);
+    nome.lib.dev.mkEnv (with nome.lib.dev.tools; go ++ node ++ protobuf ++ rust);
 }
