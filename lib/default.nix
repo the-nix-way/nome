@@ -4,8 +4,8 @@ let
   inherit (pkgs.lib) optionals;
   inherit (pkgs.stdenv) isDarwin isLinux;
 in
-{
-  dev = import ./dev { inherit eachDefaultSystem pkgs; lib = pkgs.callPackage ./.; };
+rec {
+  dev = import ./dev { inherit eachDefaultSystem pkgs; inherit (funcs) darwinOnly linuxOnly; };
 
   # Helper functions
   funcs = {

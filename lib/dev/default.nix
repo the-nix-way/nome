@@ -1,8 +1,5 @@
-{ eachDefaultSystem, lib, pkgs }:
+{ eachDefaultSystem, darwinOnly, linuxOnly, pkgs }:
 
-let
-  inherit (lib.funcs) darwinOnly linuxOnly;
-in
 {
   mkEnv = tools:
     eachDefaultSystem (system:
