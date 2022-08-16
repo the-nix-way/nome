@@ -16,7 +16,7 @@ let
 
   overlays = [ rustInitialOverlay goOverlay nodeOverlay rustOverlay ];
 
-  pkgsCustom = import pkgs { inherit overlays; };
+  pkgsCustom = pkgs.override { inherit overlays; };
 in
 {
   tools = {
