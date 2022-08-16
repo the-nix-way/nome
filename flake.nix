@@ -10,7 +10,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs";
   };
 
-  outputs = { flake-utils, home-manager, nixpkgs }:
+  outputs = { self, flake-utils, home-manager, nixpkgs }:
     let
       # Constants
       homeDirectory = "/Users/${username}";
