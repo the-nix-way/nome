@@ -19,7 +19,7 @@
       let
         darwinDeps = darwinOnly ((with pkgs; [ terminal-notifier ])
           ++ (with pkgs.darwin.apple_sdk.frameworks; [ CoreFoundation CoreServices ]));
-        linuxDeps = with pkgs; [ inotify-tools libnotify ];
+        linuxDeps = linuxOnly (with pkgs; [ inotify-tools libnotify ]);
       in
       with pkgs; [ elixir ] ++ darwinDeps ++ linuxDeps;
 
