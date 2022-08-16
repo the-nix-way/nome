@@ -28,7 +28,7 @@
           allowUnfree = true;
           xdg = { configHome = homeDirectory; };
         };
-        overlays = [ (rust-overlay) ];
+        overlays = [ (import rust-overlay) ] ++ (with overlays; [ go node rust ]);
       };
 
       # Inheritance helpers
@@ -46,8 +46,6 @@
         inherit pkgs;
         inherit (flake-utils.lib) eachDefaultSystem;
       };
-
-      nixpkgs = pkgs;
 
       templates = {
         default = {

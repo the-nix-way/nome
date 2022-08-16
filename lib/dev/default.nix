@@ -1,9 +1,5 @@
 { eachDefaultSystem, pkgs }:
 
-let
-  # Here, pkgs has the rust-overlay applied
-  localRust = pkgs.rust-bin.beta.latest.default;
-in
 {
   mkEnv = tools:
     eachDefaultSystem (system:
@@ -26,7 +22,8 @@ in
 
     protobuf = with pkgs; [ buf protobuf ];
 
-    rust = [ localRust ] ++ (with pkgs; [
+    rust = with pkgs; [
+      rust
       cargo-audit
       cargo-cross
       cargo-deny
@@ -36,6 +33,6 @@ in
       openssl
       pkg-config
       rust-analyzer
-    ]);
+    ];
   };
 }
