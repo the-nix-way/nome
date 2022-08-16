@@ -11,11 +11,12 @@
       let
         pkgs = import nixpkgs { inherit system; };
         inherit (pkgs) mkShell;
-      in {
+      in
+      {
         devShells = {
           default = mkShell {
             buildInputs = with nome.lib.dev.tools;
-              go ++ node ++ protobuf ++ rust;
+              go ++ node ++ protobuf;
           };
         };
       });

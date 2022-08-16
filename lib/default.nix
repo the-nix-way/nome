@@ -1,11 +1,11 @@
-{ pkgs, rustInitialOverlay }:
+{ pkgs }:
 
 let
   inherit (pkgs.lib) optionals;
   inherit (pkgs.stdenv) isDarwin isLinux;
 in
 {
-  dev = import ./dev { inherit pkgs rustInitialOverlay; };
+  dev = import ./dev { inherit pkgs; };
 
   # Helper functions
   funcs = {

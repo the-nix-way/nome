@@ -7,10 +7,9 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    rust-overlay.url = "github:oxalica/rust-overlay";
   };
 
-  outputs = { self, home-manager, nixpkgs, rust-overlay }:
+  outputs = { self, home-manager, nixpkgs }:
     let
       # Constants
       homeDirectory = "/Users/${username}";
@@ -25,6 +24,7 @@
           allowUnfree = true;
           xdg = { configHome = homeDirectory; };
         };
+        overlays = with (import ./overlays); [ go node ];
       };
 
       # Inheritance helpers
@@ -38,7 +38,7 @@
           [ (import ./home { inherit homeDirectory pkgs system username; }) ];
       };
 
-      lib = import ./lib { inherit pkgs; rustInitialOverlay = rust-overlay.overlays.default; };
+      lib = import ./lib { inherit pkgs; };
 
       overlays = import ./overlays;
 
