@@ -1,4 +1,4 @@
-{ homeDirectory }:
+{ homeDirectory, substituteAll }:
 
 {
   enable = true;

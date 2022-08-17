@@ -102,5 +102,8 @@
   vscode = import ./vscode.nix { inherit pkgs; };
 
   # My fav shell
-  zsh = import ./zsh.nix { inherit homeDirectory; };
+  zsh = import ./zsh.nix {
+    inherit homeDirectory;
+    inherit (pkgs) substituteAll;
+  };
 }
