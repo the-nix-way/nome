@@ -5,7 +5,7 @@
 , username
 }:
 
-{
+rec {
   # Fonts config
   fonts = { fontconfig = { enable = true; }; };
 
