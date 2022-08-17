@@ -1,7 +1,10 @@
 { homeDirectory, pkgs }:
 
 let
-  bin = import ./bin.nix { inherit (pkgs) writeScriptBin; };
+  bin = import ./bin.nix {
+    inherit (pkgs) writeScriptBin;
+    inherit (pkgs.lib) fakeHash;
+  };
 
   buildTools = with pkgs; [
     bazelisk

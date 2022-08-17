@@ -46,6 +46,8 @@ This brings a number of toolchains that I use into the Nix shell. In any given p
 3. Run `direnv allow` to activate the shell environment.
 
 In cases where this template doesn't provide enough granularity, I create a `flake.nix` from scratch. Over time, however, I hope to add personal templates that get me ever closer to not needing to hand-craft my Nix logic.
+
+An important side effect of building tools to provide project-specific environments is that I've begun to slowly phase out global executables in favor of project-specific ones. Some tools do truly need to be globally available, such as Git, jq, curl, and wget, but others don't. Tools like Go, cargo, mix (Elixir), and Node.js are _all_ project specific.
 ## Nix helper functions
 
 * `getHomeDirectory {username}`
