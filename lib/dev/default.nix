@@ -1,7 +1,7 @@
 { eachDefaultSystem, darwinOnly, linuxOnly, pkgs }:
 
 {
-  mkEnv = { toolchains, extras = [] }:
+  mkEnv = { toolchains, extras ? [ ] }:
     eachDefaultSystem (system:
       let
         inherit (pkgs) mkShell;
