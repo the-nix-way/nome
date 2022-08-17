@@ -6,6 +6,7 @@
     , extras ? [ ]
     , shellHook ? ""
     }:
+
     eachDefaultSystem (system:
     let
       inherit (pkgs) mkShell;
