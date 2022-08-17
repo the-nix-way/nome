@@ -17,9 +17,7 @@
       stateVersion = "22.11";
       system = "aarch64-darwin";
       username = "lucperkins";
-      homeDirectory = (import ./lib).getHomeDirectory username;
-
-      overlays = import ./overlays;
+      homeDirectory = self.lib.getHomeDirectory username;
 
       # System-specific Nixpkgs
       pkgs = import nixpkgs {
@@ -28,10 +26,11 @@
           allowUnfree = true;
           xdg = { configHome = homeDirectory; };
         };
-        overlays = [ (import rust-overlay) ] ++ (with overlays; [ go node rust ]);
+        overlays = [ (import rust-overlay) ] ++ (with self.overlays; [ go node rust ]);
       };
 
       # Inheritance helpers
+      inherit (flake-utils.lib) eachDefaultSystem;
       inherit (home-manager.lib) homeManagerConfiguration;
     in
     {
@@ -43,9 +42,10 @@
       };
 
       lib = import ./lib {
-        inherit pkgs;
-        inherit (flake-utils.lib) eachDefaultSystem;
+        inherit eachDefaultSystem pkgs;
       };
+
+      overlays = import ./overlays;
 
       templates = {
         default = {

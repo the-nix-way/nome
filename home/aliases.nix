@@ -3,6 +3,12 @@
 {
   # General
   "," = "comma";
+  cat = "bat";
+  conf = "code ~/.config/nixpkgs";
+  dc = "docker compose";
+  diff = "diff --color=auto";
+  grep = "grep --color=auto";
+  szsh = "source ~/.zshrc";
 
   # Direnv helpers
   da = "direnv allow";
@@ -16,4 +22,5 @@
 
   # Run Nix garbage collection
   xgc = "nix-env --delete-generations old && nix-store --gc";
+  nfu = "nix flake update";
 }

@@ -1,0 +1,44 @@
+{
+  "debug.javascript.unmapMissingSources": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true,
+    "source.fixAll.eslint": true
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.detectIndentation": false,
+  "editor.formatOnPaste": false,
+  "editor.formatOnSave": true,
+  "editor.insertSpaces": true,
+  "editor.tabSize": 2,
+  "emmet.showExpandedAbbreviation": "never",
+  "emmet.showSuggestionsAsSnippets": false,
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "prettier.singleQuote": false,
+  "sort-imports.default-sort-style": "module",
+  "sort-imports.languages": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "terminal.integrated.fontFamily": "FiraCode",
+  "workbench.colorTheme": "Night Owl",
+  "workbench.iconTheme": "material-icon-theme",
+  "[cue]": {
+    "editor.defaultFormatter": "jallen7usa.vscode-cue-fmt"
+  },
+  "[markdown]": {
+    "editor.formatOnSave": false
+  },
+  "[nix]": {
+    "editor.defaultFormatter": "brettm12345.nixfmt-vscode"
+  },
+  "[toml]": {
+    "editor.defaultFormatter": "tomasfe.even-better-toml"
+  }
+}
