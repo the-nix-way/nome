@@ -9,7 +9,7 @@
       {
         devShells = {
           default = mkShell {
-            buildInputs = tools ++ extras;
+            buildInputs = toolchains ++ extras;
           };
         };
       });
