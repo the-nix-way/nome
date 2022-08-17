@@ -39,11 +39,13 @@ This is an alias for `nix flake init --template github:the-nix-way/nome`, which 
 }
 ```
 
-This brings a number of toolchains that I use into the Nix shell. In any given project I'm likely to only use one toolchain, so I remove the ones I don't need. So this series of actions gets me precisely what I need on _all_ my local projects:
+This brings a number of toolchains that I use into the Nix shell. In any given project I'm likely to only use one toolchain, so I remove the ones I don't need. So this series of actions gets me precisely what I need on most of my local projects:
 
 1. Run `proj`.
 2. Edit the `flake.nix` to remove any toolchains I won't need.
 3. Run `direnv allow` to activate the shell environment.
+
+In cases where this template doesn't provide enough granularity, I create a `flake.nix` from scratch. Over time, however, I hope to add personal templates that get me ever closer to not needing to hand-craft my Nix logic.
 ## Nix helper functions
 
 * `getHomeDirectory {username}`
