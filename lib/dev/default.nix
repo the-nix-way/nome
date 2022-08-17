@@ -24,7 +24,7 @@
       with pkgs; [ elixir ] ++ darwinDeps ++ linuxDeps;
 
     go = with pkgs;
-      [ go gotools ];
+      [ go go2nix gotools ];
 
     node = with pkgs; [ nodejs yarn ] ++ (with pkgs.nodePackages; [ pnpm ]);
 
