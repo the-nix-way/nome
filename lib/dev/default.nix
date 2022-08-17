@@ -1,7 +1,7 @@
 { eachDefaultSystem, darwinOnly, linuxOnly, pkgs }:
 
 {
-  mkEnv = tools:
+  mkEnv = { toolchains, extras = [] }:
     eachDefaultSystem (system:
       let
         inherit (pkgs) mkShell;
@@ -9,7 +9,7 @@
       {
         devShells = {
           default = mkShell {
-            buildInputs = tools;
+            buildInputs = tools ++ extras;
           };
         };
       });
