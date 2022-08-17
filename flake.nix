@@ -51,7 +51,7 @@
         default = proj;
 
         proj = {
-          path = ./template;
+          path = ./template/proj;
           description = "Project starter template";
         };
       };
