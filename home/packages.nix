@@ -60,10 +60,8 @@ let
   misc = with pkgs; [
     comma
     coreutils
-    elixir
     findutils
     gleam
-    gotools
     htmltest
     hugo
     keybase
@@ -93,8 +91,6 @@ let
 
   nixTools = with pkgs; [ cachix lorri nixfmt vulnix ];
 
-  nodeTools = [ nodejs-16_x yarn ] ++ (with nodePackages; [ pnpm ]);
-
   pythonTools = with pkgs; [ python39 ] ++ (with pkgs.python39Packages; [ httpie pip virtualenv ]);
 
   rubyTools = with pkgs; [
@@ -102,15 +98,7 @@ let
   ];
 
   rustTools = with pkgs; [
-    cargo-deny
-    cargo-edit
-    cargo-make
-    cargo-outdated
-    cargo-profiler
-    cargo-udeps
     cargo-web
-    rust-analyzer
-    rustup
     sqlx-cli
   ];
 
@@ -144,7 +132,6 @@ bin
 ++ macTools
 ++ misc
 ++ nixTools
-++ nodeTools
 ++ pythonTools
 ++ rustTools
 ++ virtualizationTools

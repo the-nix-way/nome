@@ -35,9 +35,12 @@
       cargo-audit
       cargo-cross
       cargo-deny
+      cargo-edit
       cargo-expand
       cargo-fuzz
+      cargo-make
       cargo-outdated
+      cargo-profiler
       openssl
       pkg-config
       rust-analyzer

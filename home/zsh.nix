@@ -5,9 +5,6 @@
   enableAutosuggestions = true;
   enableCompletion = true;
   autocd = false;
-  initExtra = builtins.readFile ./scripts/init.sh (substituteAll {
-    src = ./scripts/init.sh;
-    home = homeDirectory;
-  });
+  initExtra = (builtins.readFile ./scripts/init.sh);
   shellAliases = import ./aliases.nix { inherit homeDirectory; };
 }

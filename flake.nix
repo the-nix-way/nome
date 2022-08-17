@@ -47,8 +47,10 @@
 
       overlays = import ./overlays;
 
-      templates = {
-        default = {
+      templates = rec {
+        default = proj;
+
+        proj = {
           path = ./template;
           description = "Project starter template";
         };

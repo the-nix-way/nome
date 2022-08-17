@@ -49,12 +49,7 @@
   # But of course
   git = import ./git.nix { inherit pkgs; };
 
-  # Golang
-  go = {
-    enable = true;
-    package = pkgs.go_1_18;
-  };
-
+  # GPG config
   gpg.enable = true;
 
   # Configure HM itself

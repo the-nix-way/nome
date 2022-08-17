@@ -17,10 +17,33 @@ nix build "github:the-nix-way/nome#homeConfigurations.lucperkins.activationPacka
 
 ## Creating new development environments
 
+I have a helper command that I run pretty much any time I start a new project:
+
 ```shell
 proj
 ```
 
+This is an alias for `nix flake init --template github:the-nix-way/nome`, which copies the contents of [`template`](./template/) into the current directory. That includes this `flake.nix`:
+
+```nix
+{
+  description = "Local dev environment";
+
+  inputs = {
+    nome.url = "github:the-nix-way/nome";
+  };
+
+  outputs = { self, nome, ... }:
+    nome.lib.dev.mkEnv
+      (with nome.lib.dev.toolchains; elixir ++ go ++ node ++ protobuf ++ rust);
+}
+```
+
+This brings a number of toolchains that I use into the Nix shell. In any given project I'm likely to only use one toolchain, so I remove the ones I don't need. So this series of actions gets me precisely what I need on _all_ my local projects:
+
+1. Run `proj`.
+2. Edit the `flake.nix` to remove any toolchains I won't need.
+3. Run `direnv allow` to activate the shell environment.
 ## Nix helper functions
 
 * `getHomeDirectory {username}`

@@ -16,9 +16,9 @@
 
   ## Nix stuff. Inspired by: https://alexfedoseev.com/blog/post/nix-time.
 
-  # Reload the Home Manager configuration
+  # Reload the Home Manager configuration (after git push)
   xx =
-    "home-manager switch --flake ${homeDirectory}/.config/nixpkgs && source ${homeDirectory}/.zshrc";
+    "home-manager switch --flake github:the-nix-way/nome && source ${homeDirectory}/.zshrc";
 
   # Run Nix garbage collection
   xgc = "nix-env --delete-generations old && nix-store --gc";
