@@ -99,7 +99,7 @@
   tmux = import ./tmux.nix;
 
   # My most-used editor
-  vscode = import./vscode.nix { inherit pkgs; };
+  vscode = import ./vscode.nix { inherit pkgs; };
 
   # My fav shell
   zsh = import ./zsh.nix { inherit homeDirectory; };
