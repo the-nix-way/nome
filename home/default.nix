@@ -14,7 +14,7 @@ in
   fonts = { fontconfig = { enable = true; }; };
 
   # Basic Home Manager config
-  home = { inherit homeDirectory packages stateVersion; };
+  home = { inherit homeDirectory packages stateVersion username; };
 
   # Configure Nix itself (using an unstable version)
   nix = import ./nix.nix { nix = pkgs.nixUnstable; };
