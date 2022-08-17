@@ -14,3 +14,15 @@ What I run to active my Home Manager configuration:
 nix build "github:the-nix-way/nome#homeConfigurations.lucperkins.activationPackage"
 ./result/activate
 ```
+
+## Creating new development environments
+
+```shell
+proj
+```
+
+## Nix helper functions
+
+* `getHomeDirectory {username}`
+* `darwinOnly`
+* `linuxOnly`

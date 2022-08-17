@@ -36,7 +36,7 @@
   gh = {
     enable = true;
     settings = {
-      inherit editor;
+      editor = "vim";
       git_protocol = "ssh";
       prompt = "enabled";
       aliases = {
