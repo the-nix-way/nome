@@ -5,7 +5,11 @@
 , username
 }:
 
-rec {
+let
+  # The packages to load into the PATH
+  packages = import ./packages.nix { inherit homeDirectory pkgs; };
+in
+{
   # Fonts config
   fonts = { fontconfig = { enable = true; }; };
 
@@ -17,9 +21,6 @@ rec {
 
   # Nixpkgs config
   nixpkgs = import ./nixpkgs;
-
-  # The packages to load into the PATH
-  packages = import ./packages.nix { inherit homeDirectory pkgs; };
 
   # Configurations for programs directly supported by Home Manager
   programs = import ./programs.nix { inherit homeDirectory pkgs; };
