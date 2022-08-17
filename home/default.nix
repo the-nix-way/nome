@@ -20,7 +20,7 @@ in
   nix = import ./nix.nix { nix = pkgs.nixUnstable; };
 
   # Nixpkgs config
-  nixpkgs = import ./nixpkgs;
+  nixpkgs = import ./nixpkgs.nix;
 
   # Configurations for programs directly supported by Home Manager
   programs = import ./programs.nix { inherit homeDirectory pkgs; };
