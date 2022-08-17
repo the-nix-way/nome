@@ -38,7 +38,7 @@
         inherit pkgs;
 
         modules =
-          [ (import ./home { inherit homeDirectory pkgs system username; }) ];
+          [ (import ./home { inherit homeDirectory pkgs stateVersion system username; }) ];
       };
 
       lib = import ./lib {
