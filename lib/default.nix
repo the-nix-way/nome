@@ -15,6 +15,6 @@ rec {
 
     # Infer home directory based on system
     getHomeDirectory = username:
-      if optionals isDarwin then "/Users/${username}" else "/home/${username}";
+      if isDarwin then "/Users/${username}" else "/home/${username}";
   };
 }
