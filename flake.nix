@@ -17,7 +17,7 @@
       stateVersion = "22.11";
       system = "aarch64-darwin";
       username = "lucperkins";
-      homeDirectory = self.lib.getHomeDirectory username;
+      homeDirectory = self.lib.funcs.getHomeDirectory username;
 
       # System-specific Nixpkgs
       pkgs = import nixpkgs {
