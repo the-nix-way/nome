@@ -39,10 +39,7 @@
       editor = "vim";
       git_protocol = "ssh";
       prompt = "enabled";
-      aliases = {
-        pvw = "pr view --web";
-        rvw = "repo view --web";
-      };
+      aliases = (import ./aliases.nix).githubCli;
     };
   };
 
