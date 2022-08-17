@@ -1,18 +1,23 @@
 { eachDefaultSystem, darwinOnly, linuxOnly, pkgs }:
 
 {
-  mkEnv = { toolchains, extras ? [ ] }:
+  mkEnv =
+    { toolchains
+    , extras ? [ ]
+    , shellHook ? ""
+    }:
     eachDefaultSystem (system:
-      let
-        inherit (pkgs) mkShell;
-      in
-      {
-        devShells = {
-          default = mkShell {
-            buildInputs = toolchains ++ extras;
-          };
+    let
+      inherit (pkgs) mkShell;
+    in
+    {
+      devShells = {
+        default = mkShell {
+          buildInputs = toolchains ++ extras;
+          inherit shellHook;
         };
-      });
+      };
+    });
 
   toolchains = {
     elixir =
