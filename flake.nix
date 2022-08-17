@@ -47,6 +47,8 @@
 
       overlays = import ./overlays;
 
+      inherit pkgs;
+
       templates = rec {
         default = proj;
 
