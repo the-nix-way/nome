@@ -1,5 +1,7 @@
 # Nome
 
+[![built with nix](https://builtwithnix.org/badge.svg)](https://builtwithnix.org)
+
 Nome is my **N**ix h**ome**. It encapsulates a range of Nix goodies that I use to declutter and bring order to my entire laptop environment, including:
 
 * My [Home Manager][hm] configuration
