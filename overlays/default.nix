@@ -1,7 +1,7 @@
 {
-  buildGoLinux = self: super: {
-    buildGoModule = super.buildGoModule.override {
-      go = super.go // {
+  buildGoLinux = final: prev: {
+    buildGoModule = prev.buildGoModule.override {
+      go = prev.go // {
         CGO_ENABLED = 0;
         GOOS = "linux";
         GOARCH = "arm64";
@@ -10,18 +10,18 @@
   };
 
   # Overlays for dev environments
-  go = self: super: {
-    go = super.go_1_18;
+  go = final: prev: {
+    go = prev.go_1_18;
   };
 
-  node = self: super: rec {
-    nodejs = super.nodejs-18_x;
-    yarn = super.yarn.override {
+  node = final: prev: rec {
+    nodejs = prev.nodejs-18_x;
+    yarn = prev.yarn.override {
       inherit nodejs;
     };
   };
 
-  rust = self: super: {
-    devRust = super.pkgs.rust-bin.beta.latest.default;
+  rust = final: prev: {
+    devRust = prev.pkgs.rust-bin.beta.latest.default;
   };
 }
