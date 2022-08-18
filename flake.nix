@@ -57,5 +57,16 @@
           description = "Project starter template";
         };
       };
-    };
+    } // eachDefaultSystem (system: {
+      devShells.default =
+        let
+          pkgs = import nixpkgs { inherit system; };
+          format = pkgs.writeScriptBin "format" ''
+            ${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt **/*.nix
+          '';
+        in
+        pkgs.mkShell {
+          buildInputs = [ format ];
+        };
+    });
 }
