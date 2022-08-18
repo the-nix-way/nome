@@ -56,11 +56,10 @@ As you can see, the only input in this flake is `nome` itself, which provides ev
 In cases where this template doesn't provide enough granularity, I create a `flake.nix` from scratch or use a template from my [`dev-templates`][dev-templates] project, which provides Nix flake templates for a wide variety of languages and platforms. Over time, however, I hope to add personal templates that get me ever closer to not needing to hand-craft my Nix logic or use external templates.
 
 An important side effect of building tools to provide project-specific environments is that I've begun to slowly phase out global executables in favor of project-specific ones. Some tools do need to be globally available, such as Git, jq, curl, and wget, but others don't. Tools like Go, cargo, mix (Elixir), and Node.js should _all_ be project specific, and so I've phased them all out of my global environment.
-## Nix helper functions
 
-* `getHomeDirectory {username}`
-* `darwinOnly`
-* `linuxOnly`
+## Scope
+
+I should make it clear that this project is a personal project and not necessarily intended as a blueprint or a reproducible template. I do hope that you find some inspiration in it, but don't necessarily interpret what you see here as best practices. It's just an evolving project that I find quite useful and it's meant above all to show what Nix is capable of.
 
 [dev-templates]: https://github.com/the-nix-way/dev-templates
 [flakes]: https://nixos.wiki/wiki/Flakes
