@@ -6,8 +6,8 @@
   };
 
   outputs = { self, nome, ... }:
-    nome.lib.dev.mkEnv {
-      toolchains = with nome.lib.dev.toolchains; elixir ++ go ++ node ++ protobuf ++ rust;
+    nome.lib.mkEnv {
+      toolchains = with nome.lib.toolchains; elixir ++ go ++ node ++ protobuf ++ rust;
       extras = with nome.pkgs; [ jq ];
       shellHook = ''
         echo "Welcome to this Nix-provided project env!"

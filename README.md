@@ -34,8 +34,8 @@ This is an alias for `nix flake init --template github:the-nix-way/nome`, which 
   };
 
   outputs = { self, nome, ... }:
-    nome.lib.dev.mkEnv
-      (with nome.lib.dev.toolchains; elixir ++ go ++ node ++ protobuf ++ rust);
+    nome.lib.mkEnv
+      (with nome.lib.toolchains; elixir ++ go ++ node ++ protobuf ++ rust);
 }
 ```
 
