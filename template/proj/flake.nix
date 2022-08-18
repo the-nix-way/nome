@@ -1,9 +1,7 @@
 {
   description = "Local dev environment";
 
-  inputs = {
-    nome.url = "github:the-nix-way/nome";
-  };
+  inputs = { nome.url = "github:the-nix-way/nome"; };
 
   outputs = { self, nome, ... }:
     nome.lib.mkEnv {
