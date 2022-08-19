@@ -14,17 +14,12 @@ in rec {
 
   # Make a custom dev environment
   mkEnv = { toolchains ? [ ], extras ? [ ], shellHook ? "" }:
-
-    eachDefaultSystem (system:
-      let inherit (pkgs) mkShell;
-      in {
-        devShells = {
-          default = mkShell {
-            buildInputs = toolchains ++ extras;
-            inherit shellHook;
-          };
-        };
-      });
+    eachDefaultSystem (system: {
+      devShells.default = pkgs.mkShell {
+        buildInputs = toolchains ++ extras;
+        inherit shellHook;
+      };
+    });
 
   # The toolchains that I commonly use
   toolchains = {
