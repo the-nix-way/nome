@@ -91,11 +91,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1660832777,
-        "narHash": "sha256-vii5xO6Ctp0XV0xFlXPX2UZ0pWSA6wWmTtcg9RLgJ8Q=",
+        "lastModified": 1660905847,
+        "narHash": "sha256-SQQHp1KqTnZwg+D+rzQ8FTs7sAJkY4+74W2g/HfW+y4=",
         "owner": "the-nix-way",
         "repo": "nome",
-        "rev": "e350bd9ed904d2504c2f443d06b06aa49188e0e8",
+        "rev": "90b18ae6e818801ed04964f31bacb7292c052bde",
         "type": "github"
       },
       "original": {
