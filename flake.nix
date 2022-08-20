@@ -58,7 +58,7 @@
         };
       };
     } // eachDefaultSystem (system: {
-      devShells.default =
+      devShell =
         let
           pkgs = import nixpkgs { inherit system; };
           format = pkgs.writeScriptBin "format" ''

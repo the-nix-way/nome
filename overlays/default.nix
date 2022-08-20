@@ -24,7 +24,7 @@
   rust = final: prev: {
     rustToolchain =
       let
-        rust = super.rust-bin;
+        rust = prev.rust-bin;
       in
       if builtins.pathExists ./rust-toolchain.toml then
         rust.fromRustupToolchainFile ./rust-toolchain.toml
