@@ -41,6 +41,11 @@
           [ (import ./home { inherit homeDirectory pkgs stateVersion system username; }) ];
       };
 
+      nixosConfigurations.${username} = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [ ./nixos/configuration.nix ];
+      };
+
       lib = import ./lib {
         inherit eachDefaultSystem pkgs;
       };
