@@ -44,6 +44,7 @@
     extraGroups = [ "wheel" ];
     packages = with pkgs; [
       starship
+      vim
       zsh
     ];
   };

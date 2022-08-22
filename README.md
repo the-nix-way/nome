@@ -59,6 +59,12 @@ In cases where this template doesn't provide enough granularity, I create a `fla
 
 An important side effect of building tools to provide project-specific environments is that I've begun to slowly phase out global executables in favor of project-specific ones. Some tools do need to be globally available, such as Git, jq, curl, and wget, but others don't. Tools like Go, cargo, mix (Elixir), and Node.js should _all_ be project specific, and so I've phased them all out of my global environment.
 
+## Applying my NixOS configuration
+
+```shell
+nixos-rebuild switch --flake "github:the-nix-way/nome#lucperkins"
+```
+
 ## Scope
 
 I should make it clear that this project is a personal project and not necessarily intended as a blueprint or a reproducible template. I do hope that you find some inspiration in it, but don't necessarily interpret what you see here as best practices. It's just an evolving project that I find quite useful and it's meant above all to show what Nix is capable of.
