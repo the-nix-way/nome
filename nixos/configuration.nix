@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -16,8 +16,10 @@
       keep-outputs = true
       keep-derivations = true
     '';
-    binaryCaches = [ ];
-    binaryCachePublicKeys = [ ];
+    settings = {
+      substituters = [ ];
+      trusted-public-keys = [ ];
+    };
   };
 
   nixpkgs = {
