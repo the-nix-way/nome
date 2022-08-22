@@ -42,7 +42,10 @@
   users.users.lucperkins = {
     isNormalUser = true;
     extraGroups = [ "wheel" ];
-    packages = with pkgs; [ ];
+    packages = with pkgs; [
+      starship
+      zsh
+    ];
   };
 
   services = {
