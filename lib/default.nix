@@ -3,7 +3,8 @@
 let
   inherit (pkgs.lib) optionals;
   inherit (pkgs.stdenv) isDarwin isLinux;
-in rec {
+in
+rec {
   # Add to list only if on a specific system type
   darwinOnly = ls: optionals isDarwin ls;
   linuxOnly = ls: optionals isLinux ls;
