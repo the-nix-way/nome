@@ -41,17 +41,21 @@
           [ (import ./home { inherit homeDirectory pkgs stateVersion system username; }) ];
       };
 
-      nixosConfigurations = {
-        x86_64-linux = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
+      nixosConfigurations =
+        let
           modules = [ ./nixos/configuration.nix ];
-        };
+        in
+        {
+          x86_64-linux = nixpkgs.lib.nixosSystem {
+            system = "x86_64-linux";
+            inherit modules;
+          };
 
-        aarch64-linux = nixpkgs.lib.nixosSystem {
-          system = "aarch64-linux";
-          modules = [ ./nixos/configuration.nix ];
+          aarch64-linux = nixpkgs.lib.nixosSystem {
+            system = "aarch64-linux";
+            inherit modules;
+          };
         };
-      };
 
       lib = import ./lib {
         inherit eachDefaultSystem pkgs;
@@ -68,6 +72,13 @@
           path = ./template/proj;
           description = "Project starter template";
         };
+
+        editorconfig = {
+          path = ./template/editorconfig;
+          description = "Default .editorconfig file";
+        };
+
+        ec = editorconfig;
       };
     } // eachDefaultSystem (system: {
       devShell =
