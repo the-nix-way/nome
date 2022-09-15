@@ -2,16 +2,20 @@
   description = "My Nix world";
 
   inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs";
+    darwin = {
+      url = "github:lnl7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     flake-utils.url = "github:numtide/flake-utils";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixpkgs.url = "github:NixOS/nixpkgs";
     rust-overlay.url = "github:oxalica/rust-overlay";
   };
 
-  outputs = { self, flake-utils, home-manager, nixpkgs, rust-overlay }:
+  outputs = { self, nixpkgs, darwin, flake-utils, home-manager, rust-overlay }:
     let
       # Constants
       stateVersion = "22.11";
@@ -34,6 +38,11 @@
       inherit (home-manager.lib) homeManagerConfiguration;
     in
     {
+      darwinConfigurations.${username} = darwin.lib.darwinSystem {
+        inherit system;
+        modules = [ (import ./nix-darwin) ];
+      };
+
       homeConfigurations.${username} = homeManagerConfiguration {
         inherit pkgs;
 
@@ -80,16 +89,39 @@
 
         ec = editorconfig;
       };
-    } // eachDefaultSystem (system: {
-      devShell =
-        let
-          pkgs = import nixpkgs { inherit system; };
-          format = pkgs.writeScriptBin "format" ''
-            ${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt **/*.nix
-          '';
-        in
-        pkgs.mkShell {
-          buildInputs = [ format ];
+    } // eachDefaultSystem (system:
+      let
+        pkgs = import nixpkgs { inherit system; };
+      in
+      {
+        devShells.default =
+          let
+            format = pkgs.writeScriptBin "format" ''
+              ${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt **/*.nix
+            '';
+          in
+          pkgs.mkShell {
+            buildInputs = [ format ];
+          };
+
+        packages.default = pkgs.dockerTools.buildImage {
+          name = "nix-flakes";
+          tag = "latest";
+          fromImage = pkgs.dockerTools.pullImage {
+            imageName = "nixos/nix";
+            finalImageName = "nix";
+            finalImageTag = "2.12.0pre20220901_4823067";
+            imageDigest = "sha256:82da5bfe03f16bb1bc627af74e76b213fa237565c1dcd0b8d8ef1204d0960a59";
+            sha256 = "sha256-sMdYw2HtUM5r5PP+gW1xsZts+POvND6UffKvvaxcv4M=";
+          };
+
+          config = {
+            WorkingDir = "/app";
+
+            Env = [
+              "NIXPKGS_ALLOW_UNFREE=1"
+            ];
+          };
         };
-    });
+      });
 }
