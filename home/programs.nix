@@ -39,12 +39,12 @@
       editor = "vim";
       git_protocol = "ssh";
       prompt = "enabled";
-      aliases = (import ./aliases.nix).githubCli;
+      aliases = (import ./aliases.nix { inherit homeDirectory; }).githubCli;
     };
   };
 
   # But of course
-  git = import ./git.nix { inherit pkgs; };
+  git = import ./git.nix { inherit homeDirectory pkgs; };
 
   # GPG config
   gpg.enable = true;

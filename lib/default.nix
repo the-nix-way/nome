@@ -1,4 +1,6 @@
-{ eachDefaultSystem, pkgs }:
+{ eachDefaultSystem
+, pkgs
+}:
 
 let
   inherit (pkgs.lib) optionals;

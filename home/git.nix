@@ -1,4 +1,6 @@
-{ pkgs }:
+{ homeDirectory
+, pkgs
+}:
 
 {
   enable = true;
@@ -22,7 +24,7 @@
     ".vscode/"
     "npm-debug.log"
   ];
-  aliases = (import ./aliases.nix).git;
+  aliases = (import ./aliases.nix { inherit homeDirectory; }).git;
 
   extraConfig = {
     core = {

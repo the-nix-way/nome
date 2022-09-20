@@ -1,4 +1,7 @@
-{ fakeHash, homeDirectory, writeScriptBin }:
+{ fakeHash
+, homeDirectory
+, writeScriptBin
+}:
 
 let
   checkForArg = num: msg: ''
