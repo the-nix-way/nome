@@ -21,7 +21,7 @@ in
   '')
   (writeScriptBin "crate-hash" ''
     ${checkForArg1 "no package name provided"}
-    ${checkForArg1 "no package version provided"}
+    ${checkForArg2 "no package version provided"}
 
     nix-prefetch-url --type sha256 --unpackttps://crates.io/api/v1/crates/$1/$2/download
   '')
