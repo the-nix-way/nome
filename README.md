@@ -7,6 +7,7 @@ Nome is my **N**ix h**ome**. It encapsulates a range of Nix goodies that I use t
 * My [Home Manager][hm] configuration
 * Shell aliases and helper scripts
 * Nix functions and overlays that I can apply to my personal projects
+* [NixOS](#applying-my-nixos-configuration)
 
 ## Home Manager configuration
 
@@ -59,10 +60,12 @@ In cases where this template doesn't provide enough granularity, I create a `fla
 
 An important side effect of building tools to provide project-specific environments is that I've begun to slowly phase out global executables in favor of project-specific ones. Some tools do need to be globally available, such as Git, jq, curl, and wget, but others don't. Tools like Go, cargo, mix (Elixir), and Node.js should _all_ be project specific, and so I've phased them all out of my global environment.
 
-## Applying my NixOS configuration
+## NixOS configuration
+
+My Nome flake also exports a [NixOS](./nixos/) configuration that I use for experimentation. To apply that config on any NixOS machine:
 
 ```shell
-nixos-rebuild switch --flake "github:the-nix-way/nome#lucperkins"
+nixos-rebuild switch --flake "github:the-nix-way"
 ```
 
 ## Scope

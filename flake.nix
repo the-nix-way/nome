@@ -53,15 +53,12 @@
       nixosConfigurations =
         let
           modules = [ ./nixos/configuration.nix ];
-        in
+        in rec
         {
+          default = x86_64-linux;
+
           x86_64-linux = nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
-            inherit modules;
-          };
-
-          aarch64-linux = nixpkgs.lib.nixosSystem {
-            system = "aarch64-linux";
             inherit modules;
           };
         };
@@ -71,8 +68,6 @@
       };
 
       overlays = import ./overlays;
-
-      inherit pkgs;
 
       templates = rec {
         default = proj;
