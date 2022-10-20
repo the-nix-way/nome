@@ -35,7 +35,6 @@
 
       # Inheritance helpers
       inherit (flake-utils.lib) eachDefaultSystem;
-      inherit (home-manager.lib) homeManagerConfiguration;
     in
     {
       darwinConfigurations.${username} = darwin.lib.darwinSystem {
@@ -43,17 +42,23 @@
         modules = [ (import ./nix-darwin) ];
       };
 
-      homeConfigurations.${username} = homeManagerConfiguration {
-        inherit pkgs;
+      homeConfigurations = {
+        default = "${username}";
 
-        modules =
-          [ (import ./home { inherit homeDirectory pkgs stateVersion system username; }) ];
+        "${username}" = home-manager.lib.homeManagerConfiguration
+          {
+            inherit pkgs;
+
+            modules =
+              [ (import ./home { inherit homeDirectory pkgs stateVersion system username; }) ];
+          };
       };
 
       nixosConfigurations =
         let
           modules = [ ./nixos/configuration.nix ];
-        in rec
+        in
+        rec
         {
           default = x86_64-linux;
 
