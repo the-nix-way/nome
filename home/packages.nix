@@ -116,7 +116,7 @@ let
     binaryen
     wabt
     wapm-cli
-    wasm3
+    #broken wasm3
     wasm-bindgen-cli
     wasm-pack
     wasm-text-gen
