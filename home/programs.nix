@@ -52,7 +52,6 @@
   # Configure HM itself
   home-manager = {
     enable = true;
-    path = "...";
   };
 
   # JSON parsing on the CLI

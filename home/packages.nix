@@ -89,6 +89,8 @@ let
     tree
     treefmt
     vale
+    vector
+    watchexec
     wget
     youtube-dl
     yt-dlp

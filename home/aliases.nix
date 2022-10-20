@@ -39,11 +39,18 @@
     grep = "grep --color=auto";
     npm = "pnpm";
     szsh = "source ~/.zshrc";
+    tf = "terraform";
+    tg = "terragrunt";
     zj = "zellij";
+
+    # kubectl
+    k = "kubectl";
+    kx = "kubectx";
 
     # Direnv helpers
     da = "direnv allow";
     dr = "direnv reload";
+    dk = "direnv revoke";
 
     ## Nix stuff. Inspired by: https://alexfedoseev.com/blog/post/nix-time.
 
@@ -53,6 +60,9 @@
 
     # Run Nix garbage collection
     xgc = "nix-env --delete-generations old && nix-store --gc";
+
+    # Nix flake helpers
+    nfs = "nix flake show";
     nfu = "nix flake update";
   };
 }
