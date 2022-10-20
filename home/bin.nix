@@ -60,4 +60,10 @@ in
 
     nix-env --file '<nixpkgs>' --query --available --attr-path -A $1
   '')
+
+  (writeScriptBin "px" ''
+    ${checkForArg1 "no system specified"}
+
+    nix eval nixpkgs#pkgsCross.$1.stdenv.hostPlatform.config
+  '')
 ]
