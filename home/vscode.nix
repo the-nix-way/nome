@@ -202,6 +202,6 @@ in
   ];
   #keybindings = [];
   userSettings =
-    builtins.fromJSON (builtins.readFile ../config/vscode-settings.json);
+    builtins.fromJSON (builtins.readFile ./config/vscode-settings.json);
   userTasks = { };
 }
