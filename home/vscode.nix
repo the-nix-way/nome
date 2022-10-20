@@ -3,7 +3,6 @@
 let
   inherit (pkgs.vscode-utils) buildVscodeMarketplaceExtension;
 
-  # Helper function to cut down on boilerplate
   extension = { publisher, name, version, sha256 }:
     buildVscodeMarketplaceExtension {
       mktplcRef = { inherit name publisher sha256 version; };
@@ -11,7 +10,6 @@ let
 in
 {
   enable = true;
-  package = pkgs.vscode;
   extensions = with pkgs.vscode-extensions; [
     # Provided by Nixpkgs
     bbenoist.nix
@@ -19,7 +17,6 @@ in
     dbaeumer.vscode-eslint
     dhall.dhall-lang
     donjayamanne.githistory
-    eamodio.gitlens
     elmtooling.elm-ls-vscode
     esbenp.prettier-vscode
     formulahendry.auto-close-tag
@@ -33,7 +30,55 @@ in
     tamasfe.even-better-toml
     yzhang.markdown-all-in-one
 
-    # Not in Nixpkgs
+    # Specified here
+    (extension {
+      publisher = "kumar-harsh";
+      name = "graphql-for-vscode";
+      version = "1.15.3";
+      sha256 = "sha256-0Al+69quQXPdFBMsSDWXjITJiux+OQSzQ7i/pgnlm/Q=";
+    })
+    (extension {
+      publisher = "normanstypczynskipublisher";
+      name = "gqlformatter";
+      version = "1.1.1";
+      sha256 = "sha256-7Bb9SS+NFJRBYg1pAWOUzbPJLqik8LB7x4JCuefixZ4=";
+    })
+    (extension {
+      publisher = "jq-syntax-highlighting";
+      name = "jq-syntax-highlighting";
+      version = "0.0.2";
+      sha256 = "sha256-Bwq+aZuDmzjHw+ZnIWlL4aGz6UnqxaKm5WUko0yuIWE=";
+    })
+    (extension {
+      publisher = "csstools";
+      name = "postcss";
+      version = "1.0.9";
+      sha256 = "sha256-5pGDKme46uT1/35WkTGL3n8ecc7wUBkHVId9VpT7c2U=";
+    })
+    (extension {
+      publisher = "HashiCorp";
+      name = "HCL";
+      version = "0.2.1";
+      sha256 = "sha256-5dBLDJ7Wgv7p3DY0klqxtgo2/ckAHoMOm8G1mDOlzZc=";
+    })
+    (extension {
+      publisher = "HashiCorp";
+      name = "terraform";
+      version = "2.23.0";
+      sha256 = "sha256-3v2hEf/cEd7NiXfk7eJbmmdyiQJ7bWl9TuaN+y5k+e0=";
+    })
+    (extension {
+      publisher = "vstirbu";
+      name = "vscode-mermaid-preview";
+      version = "1.6.3";
+      sha256 = "sha256-rFYXFxzqtk2fUPbpijlQBbRdtW7bkAOxthUTzAkaYBk=";
+    })
+    (extension {
+      publisher = "astro-build";
+      name = "astro-vscode";
+      version = "0.22.0";
+      sha256 = "sha256-w2fs1CSDXd9xo2d7PDnUgnXGn1hXc4159oBR67hN8qY=";
+    })
     (extension {
       publisher = "dzhavat";
       name = "bracket-pair-toggler";
@@ -75,6 +120,12 @@ in
       name = "vscode-cue-fmt";
       version = "0.1.1";
       sha256 = "sha256-juOcZgSfhM1BnyVQPleP86rbuRt0peGIr2aDh7WmNQk=";
+    })
+    (extension {
+      publisher = "B4dM4n";
+      name = "nixpkgs-fmt";
+      version = "0.0.1";
+      sha256 = "sha256-vz2kU36B1xkLci2QwLpl/SBEhfSWltIDJ1r7SorHcr8=";
     })
     (extension {
       publisher = "nickgo";
@@ -149,7 +200,8 @@ in
       sha256 = "sha256-v15KuD3eYFCsrworCJ1SZAMkyZKztAwWKmfwmbirleI=";
     })
   ];
-
+  #keybindings = [];
   userSettings =
-    builtins.fromJSON (builtins.readFile ./config/vscode-settings.json);
+    builtins.fromJSON (builtins.readFile ../config/vscode-settings.json);
+  userTasks = { };
 }
