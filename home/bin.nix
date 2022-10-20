@@ -74,4 +74,10 @@ in
 
     nix flake init --template github:the-nix-way/dev-templates#$1
   '')
+
+  (writeScriptBin "cleanup" ''
+    docker system prune -af
+    docker volume prune -f
+    docker image prune -af
+  '')
 ]
