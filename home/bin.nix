@@ -1,9 +1,11 @@
-{ fakeHash
-, homeDirectory
-, writeScriptBin
+{ homeDirectory
+, pkgs
 }:
 
 let
+  inherit (pkgs) writeScriptBin;
+  inherit (pkgs.lib) fakeHash;
+
   checkForArg = num: msg: ''
     if [ -z "$''${num}" ]; then
       echo "${msg}"
@@ -65,5 +67,11 @@ in
     ${checkForArg1 "no system specified"}
 
     nix eval nixpkgs#pkgsCross.$1.stdenv.hostPlatform.config
+  '')
+
+  (writeScriptBin "dvt" ''
+    ${checkForArg1 "no template specified"}
+
+    nix flake init --template github:the-nix-way/dev-templates#$1
   '')
 ]

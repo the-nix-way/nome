@@ -4,9 +4,7 @@
 
 let
   bin = import ./bin.nix {
-    inherit homeDirectory;
-    inherit (pkgs) writeScriptBin;
-    inherit (pkgs.lib) fakeHash;
+    inherit homeDirectory pkgs;
   };
 
   buildTools = with pkgs; [
@@ -97,7 +95,7 @@ let
     zstd
   ];
 
-  nixTools = with pkgs; [ cachix lorri nixfmt vulnix ];
+  nixTools = with pkgs; [ cachix lorri nixfmt nixpkgs-fmt vulnix ];
 
   pythonTools = with pkgs; [ python39 ] ++ (with pkgs.python39Packages; [ httpie pip virtualenv ]);
 
