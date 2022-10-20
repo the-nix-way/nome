@@ -1,4 +1,36 @@
 {
+  "[cue]": {
+    "editor.defaultFormatter": "jallen7usa.vscode-cue-fmt"
+  },
+  "[markdown]": {
+    "editor.formatOnSave": false
+  },
+  "[nix]": {
+    "editor.defaultFormatter": "B4dM4n.nixpkgs-fmt"
+  },
+  "[rust]": {
+    "editor.defaultFormatter": "rust-lang.rust-analyzer"
+  },
+  "[terraform]": {
+    "editor.defaultFormatter": "hashicorp.terraform",
+    "editor.formatOnSave": false,
+    "editor.codeActionsOnSave": {
+      "source.formatAll.terraform": true
+    }
+  },
+  "[terraform-vars]": {
+    "editor.defaultFormatter": "hashicorp.terraform",
+    "editor.formatOnSave": false,
+    "editor.codeActionsOnSave": {
+      "source.formatAll.terraform": true
+    }
+  },
+  "[toml]": {
+    "editor.defaultFormatter": "tamasfe.even-better-toml"
+  },
+  "[txt]": {
+    "editor.formatOnSave": false
+  },
   "debug.javascript.unmapMissingSources": true,
   "editor.codeActionsOnSave": {
     "source.fixAll": true,
@@ -6,9 +38,12 @@
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.detectIndentation": false,
+  "editor.fontFamily": "Fira Code",
+  "editor.fontLigatures": true,
   "editor.formatOnPaste": false,
   "editor.formatOnSave": true,
   "editor.insertSpaces": true,
+  "editor.rulers": [80, 100],
   "editor.tabSize": 2,
   "emmet.showExpandedAbbreviation": "never",
   "emmet.showSuggestionsAsSnippets": false,
@@ -19,6 +54,11 @@
     "typescriptreact"
   ],
   "prettier.singleQuote": false,
+  "search.exclude": {
+    "**/.direnv": true,
+    "**/.git": true,
+    "**/node_modules": true
+  },
   "sort-imports.default-sort-style": "module",
   "sort-imports.languages": [
     "javascript",
@@ -26,19 +66,8 @@
     "typescript",
     "typescriptreact"
   ],
-  "terminal.integrated.fontFamily": "FiraCode",
+  "terminal.integrated.fontFamily": "monospace",
+  "terraform.experimentalFeatures.validateOnSave": true,
   "workbench.colorTheme": "Night Owl",
-  "workbench.iconTheme": "material-icon-theme",
-  "[cue]": {
-    "editor.defaultFormatter": "jallen7usa.vscode-cue-fmt"
-  },
-  "[markdown]": {
-    "editor.formatOnSave": false
-  },
-  "[nix]": {
-    "editor.defaultFormatter": "brettm12345.nixfmt-vscode"
-  },
-  "[toml]": {
-    "editor.defaultFormatter": "tomasfe.even-better-toml"
-  }
+  "workbench.iconTheme": "material-icon-theme"
 }
