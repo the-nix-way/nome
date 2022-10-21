@@ -78,12 +78,12 @@
         default = proj;
 
         proj = {
-          path = ./template/proj;
+          path = ./templates/proj;
           description = "Project starter template";
         };
 
         editorconfig = {
-          path = ./template/editorconfig;
+          path = ./templates/editorconfig;
           description = "Default .editorconfig file";
         };
 
