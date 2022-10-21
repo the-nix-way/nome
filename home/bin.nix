@@ -80,4 +80,10 @@ in
     docker volume prune -f
     docker image prune -af
   '')
+
+  (writeScriptBin "dvs" ''
+    ${checkForArg1 "no template specified"}
+
+    nix flake init --template github:the-nix-way/nome#$1
+  '')
 ]

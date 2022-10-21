@@ -81,6 +81,13 @@
           path = ./templates/proj;
           description = "Project starter template";
         };
+
+        editorconfig = {
+          path = ./templates/editorconfig;
+          description = "editorconfig file template";
+        };
+
+        ec = editorconfig;
       };
     } // eachDefaultSystem (system:
       let
