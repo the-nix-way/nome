@@ -86,4 +86,8 @@ in
 
     nix flake init --template github:the-nix-way/nome#$1
   '')
+
+  (writeScriptBin "cfg" ''
+    code ${homeDirectory}/the-nix-way/nome
+  '')
 ]

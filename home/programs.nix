@@ -18,6 +18,13 @@
     enableZshIntegration = true;
 
     nix-direnv.enable = true;
+
+    stdlib = ''
+      use_riff() {
+        watch_file Cargo.toml Cargo.lock
+        eval "$(riff print-dev-env)"
+      }
+    '';
   };
 
   # Replacement for ls
