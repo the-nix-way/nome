@@ -72,6 +72,7 @@ let
     libiconv
     litestream
     ncurses
+    nodejs-16_x
     open-policy-agent
     openssl
     pikchr
