@@ -73,6 +73,7 @@ let
     litestream
     ncurses
     nodejs-16_x
+    nodePackages.pnpm
     open-policy-agent
     openssl
     pikchr
