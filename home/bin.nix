@@ -39,7 +39,7 @@ in
   (writeScriptBin "has" ''
     ${checkForArg1 "no search term specified"}
 
-    (cd ~/nixpkgs && git grep $1)
+    (cd ~/nx/nixpkgs && git grep $1)
   '')
   (writeScriptBin "proj" ''
     nix flake init --template github:the-nix-way/nome
