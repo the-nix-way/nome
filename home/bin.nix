@@ -16,26 +16,41 @@ let
   checkForArg1 = msg: checkForArg 1 msg;
   checkForArg2 = msg: checkForArg 2 msg;
   checkForArg3 = msg: checkForArg 3 msg;
+
+  prefix = ''
+    set -o errexit
+    set -o nounset
+    set -o pipefail
+    if [[ "''${TRACE-0}" == "1" ]]; then
+        set -o xtrace
+    fi
+  '';
 in
 [
   (writeScriptBin "build-push" ''
+    ${prefix}
     ${checkForArg1 "no build attribute specified"}
 
     nix-build '<nixpkgs>' -A $1 | cachix push lucperkins-dev && rm result
   '')
   (writeScriptBin "crate-hash" ''
+    ${prefix}
     ${checkForArg1 "no package name provided"}
     ${checkForArg2 "no package version provided"}
 
     nix-prefetch-url --type sha256 --unpack https://crates.io/api/v1/crates/$1/$2/download
   '')
   (writeScriptBin "fakeHash" ''
+    ${prefix}
     echo "${fakeHash}" | pbcopy
   '')
   (writeScriptBin "hasher" ''
+    ${prefix}
+    ${checkForArg1 "no string provided"}
     nix-hash --type sha256 --flat --base32 <(echo $1) | cut -c 1-32
   '')
   (writeScriptBin "git-hash" ''
+    ${prefix}
     ${checkForArg1 "no owner specified"}
     ${checkForArg2 "no repo specified"}
     ${checkForArg3 "no revision specified"}
@@ -43,59 +58,71 @@ in
     nix-prefetch-url --type sha256 --unpack https://github.com/$1/$2/archive/$3.tar.gz
   '')
   (writeScriptBin "has" ''
+    ${prefix}
     ${checkForArg1 "no search term specified"}
 
     (cd ~/nx/nixpkgs && git grep $1)
   '')
   (writeScriptBin "proj" ''
+    ${prefix}
     nix flake init --template github:the-nix-way/nome
   '')
   (writeScriptBin "wo" ''
+    ${prefix}
     ${checkForArg1 "no executable specified"}
 
     readlink $(which $1)
   '')
   (writeScriptBin "xr" ''
+    ${prefix}
     ${checkForArg1 "no executable specified"}
 
     nix run nixpkgs#$1 -- $2
   '')
   (writeScriptBin "xs" ''
+    ${prefix}
     ${checkForArg1 "no attribute specified"}
 
     nix-env --query --available --attr-path $1
   '')
   (writeScriptBin "xsp" ''
+    ${prefix}
     ${checkForArg1 "no attribute specified"}
 
     nix-env --file '<nixpkgs>' --query --available --attr-path -A $1
   '')
 
   (writeScriptBin "px" ''
+    ${prefix}
     ${checkForArg1 "no system specified"}
 
     nix eval nixpkgs#pkgsCross.$1.stdenv.hostPlatform.config
   '')
 
   (writeScriptBin "dvt" ''
+    ${prefix}
     ${checkForArg1 "no template specified"}
 
     nix flake init --template github:the-nix-way/dev-templates#$1
   '')
 
   (writeScriptBin "cleanup" ''
+    ${prefix}
+
     docker system prune -af
     docker volume prune -f
     docker image prune -af
   '')
 
   (writeScriptBin "dvs" ''
+    ${prefix}
     ${checkForArg1 "no template specified"}
 
     nix flake init --template github:the-nix-way/nome#$1
   '')
 
   (writeScriptBin "cfg" ''
+    ${prefix}
     code ${homeDirectory}/the-nix-way/nome
   '')
 ]
