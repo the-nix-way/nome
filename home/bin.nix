@@ -6,19 +6,21 @@ let
   inherit (pkgs) writeScriptBin;
   inherit (pkgs.lib) fakeHash;
 
-  checkForArg = num: msg: ''
-    if [ -z "$''${num}" ]; then
+  checkForArg = pos: msg: ''
+    if [ -z "$''${pos}" ]; then
       echo "${msg}"
       exit 1
     fi
   '';
 
   checkForArg1 = msg: checkForArg 1 msg;
-
   checkForArg2 = msg: checkForArg 2 msg;
+  checkForArg3 = msg: checkForArg 3 msg;
 in
 [
   (writeScriptBin "build-push" ''
+    ${checkForArg1 "no build attribute specified"}
+
     nix-build '<nixpkgs>' -A $1 | cachix push lucperkins-dev && rm result
   '')
   (writeScriptBin "crate-hash" ''
@@ -34,6 +36,10 @@ in
     nix-hash --type sha256 --flat --base32 <(echo $1) | cut -c 1-32
   '')
   (writeScriptBin "git-hash" ''
+    ${checkForArg1 "no owner specified"}
+    ${checkForArg2 "no repo specified"}
+    ${checkForArg3 "no revision specified"}
+
     nix-prefetch-url --type sha256 --unpack https://github.com/$1/$2/archive/$3.tar.gz
   '')
   (writeScriptBin "has" ''
@@ -45,6 +51,8 @@ in
     nix flake init --template github:the-nix-way/nome
   '')
   (writeScriptBin "wo" ''
+    ${checkForArg1 "no executable specified"}
+
     readlink $(which $1)
   '')
   (writeScriptBin "xr" ''
