@@ -27,7 +27,7 @@ in
     ${checkForArg1 "no package name provided"}
     ${checkForArg2 "no package version provided"}
 
-    nix-prefetch-url --type sha256 --unpackttps://crates.io/api/v1/crates/$1/$2/download
+    nix-prefetch-url --type sha256 --unpack https://crates.io/api/v1/crates/$1/$2/download
   '')
   (writeScriptBin "fakeHash" ''
     echo "${fakeHash}" | pbcopy
