@@ -22,7 +22,7 @@ let
     set -o nounset
     set -o pipefail
     if [[ "''${TRACE-0}" == "1" ]]; then
-        set -o xtrace
+      set -o xtrace
     fi
   '';
 

@@ -57,7 +57,8 @@
   "search.exclude": {
     "**/.direnv": true,
     "**/.git": true,
-    "**/node_modules": true
+    "**/node_modules": true,
+    "*.lock": true
   },
   "sort-imports.default-sort-style": "module",
   "sort-imports.languages": [
