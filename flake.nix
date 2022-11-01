@@ -24,10 +24,6 @@
       username = "lucperkins";
       homeDirectory = self.lib.getHomeDirectory username;
 
-      riffOverlay = self: super: {
-        riff = riffPkg.packages.${system}.riff;
-      };
-
       # System-specific Nixpkgs
       pkgs = import nixpkgs {
         inherit system;
@@ -38,7 +34,7 @@
         overlays = [
           (import rust-overlay)
           (self: super: {
-            riff = riffPkg.packages.${system}.default;
+            riff = riffPkg.packages.${system}.riff;
           })
         ] ++ (with self.overlays; [ go node rust ]);
       };
