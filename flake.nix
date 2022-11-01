@@ -25,7 +25,7 @@
       homeDirectory = self.lib.getHomeDirectory username;
 
       riffOverlay = self: super: {
-        riff = riffPkg.packages.${system}.default;
+        riff = riffPkg.packages.${system}.riff;
       };
 
       # System-specific Nixpkgs
