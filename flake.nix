@@ -13,15 +13,20 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     rust-overlay.url = "github:oxalica/rust-overlay";
+    riffPkg.url = "github:DeterminateSystems/riff";
   };
 
-  outputs = { self, nixpkgs, darwin, flake-utils, home-manager, rust-overlay }:
+  outputs = { self, nixpkgs, darwin, flake-utils, home-manager, rust-overlay, riffPkg }:
     let
       # Constants
       stateVersion = "22.11";
       system = "aarch64-darwin";
       username = "lucperkins";
       homeDirectory = self.lib.getHomeDirectory username;
+
+      riffOverlay = self: super: {
+        riff = riffPkg.packages.${system}.default;
+      };
 
       # System-specific Nixpkgs
       pkgs = import nixpkgs {
@@ -30,7 +35,12 @@
           allowUnfree = true;
           xdg = { configHome = homeDirectory; };
         };
-        overlays = [ (import rust-overlay) ] ++ (with self.overlays; [ go node rust ]);
+        overlays = [
+          (import rust-overlay)
+          (self: super: {
+            riff = riffPkg.packages.${system}.default;
+          })
+        ] ++ (with self.overlays; [ go node rust ]);
       };
 
       # Inheritance helpers

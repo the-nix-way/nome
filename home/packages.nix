@@ -80,6 +80,7 @@ let
     pinentry_mac
     pkg-config
     reattach-to-user-namespace # for tmux
+    riff
     rustup
     skopeo
     sqlite
