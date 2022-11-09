@@ -2,14 +2,14 @@
   "[cue]": {
     "editor.defaultFormatter": "jallen7usa.vscode-cue-fmt"
   },
-  "[markdown]": {
-    "editor.formatOnSave": false
-  },
   "[nix]": {
     "editor.defaultFormatter": "B4dM4n.nixpkgs-fmt"
   },
   "[rust]": {
     "editor.defaultFormatter": "rust-lang.rust-analyzer"
+  },
+  "[svelte]": {
+    "editor.defaultFormatter": "svelte.svelte-vscode"
   },
   "[terraform]": {
     "editor.defaultFormatter": "hashicorp.terraform",
@@ -33,7 +33,6 @@
   },
   "debug.javascript.unmapMissingSources": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll": true,
     "source.fixAll.eslint": true
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
@@ -47,7 +46,12 @@
   "editor.tabSize": 2,
   "emmet.showExpandedAbbreviation": "never",
   "emmet.showSuggestionsAsSnippets": false,
+  "eslint.options": {
+    "extensions": [".js", ".jsx", ".md", ".mdx", ".ts", ".tsx"]
+  },
   "eslint.validate": [
+    "markdown",
+    "mdx",
     "javascript",
     "javascriptreact",
     "typescript",

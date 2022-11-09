@@ -26,12 +26,19 @@ in
     octref.vetur
     redhat.vscode-yaml
     rust-lang.rust-analyzer
-    silvenon.mdx
     tamasfe.even-better-toml
     yzhang.markdown-all-in-one
     svelte.svelte-vscode
 
     # Specified here
+    (extension {
+      publisher = "unifiedjs";
+      name = "vscode-mdx";
+      version = "1.0.3";
+      sha256 = "sha256-RxMQ7S+at2pKAnyEMSU3C3sDnDBWrRF2BuxCrfE1e+I=";
+    })
+
+
     (extension {
       publisher = "kumar-harsh";
       name = "graphql-for-vscode";
