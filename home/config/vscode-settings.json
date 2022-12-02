@@ -2,6 +2,9 @@
   "[cue]": {
     "editor.defaultFormatter": "jallen7usa.vscode-cue-fmt"
   },
+  "[mdx}": {
+    "editor.formatOnSave": false
+  },
   "[nix]": {
     "editor.defaultFormatter": "B4dM4n.nixpkgs-fmt"
   },
@@ -32,9 +35,6 @@
     "editor.formatOnSave": false
   },
   "debug.javascript.unmapMissingSources": true,
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
-  },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.detectIndentation": false,
   "editor.fontFamily": "Fira Code",
@@ -72,7 +72,6 @@
     "typescriptreact"
   ],
   "terminal.integrated.fontFamily": "monospace",
-  "terraform.experimentalFeatures.validateOnSave": true,
-  "workbench.colorTheme": "Night Owl",
+  "workbench.colorTheme": "Moonlight",
   "workbench.iconTheme": "material-icon-theme"
 }

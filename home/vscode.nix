@@ -28,17 +28,48 @@ in
     rust-lang.rust-analyzer
     tamasfe.even-better-toml
     yzhang.markdown-all-in-one
-    svelte.svelte-vscode
 
     # Specified here
+    (extension {
+      publisher = "svelte";
+      name = "svelte-vscode";
+      version = "106.3.0";
+      sha256 = "sha256-xe1Ad24r2Ks85WAfaD5em8KGwaQ5h6i5qkUouU6lmtc=";
+    })
+
+    (extension {
+      publisher = "atomiks";
+      name = "moonlight";
+      version = "0.10.6";
+      sha256 = "sha256-2Du/2rLWZUMo746rVWnngj0f0/H/94bt3rF+G+3Ipqw=";
+    })
+
+    (extension {
+      publisher = "voorjaar";
+      name = "windicss-intellisense";
+      version = "0.23.5";
+      sha256 = "sha256-i+1DdEPw0Aaq4E/3avcD0clvaWrhzhlTLrenWUYtgsY=";
+    })
+
+    (extension {
+      publisher = "allanoricil";
+      name = "nuxt-vscode-extension";
+      version = "0.0.21";
+      sha256 = "sha256-mXoEj1ZaW8eUktZhH2KzMLBL2dCk5z1H26/5RxkWHFc=";
+    })
+
+    (extension {
+      publisher = "Vue";
+      name = "volar";
+      version = "1.0.9";
+      sha256 = "sha256-Zp5zSSqhIt8NxrUX8bVSuiUvbwhht2NhQF76GECZ8KI=";
+    })
     (extension {
       publisher = "unifiedjs";
       name = "vscode-mdx";
       version = "1.0.3";
       sha256 = "sha256-RxMQ7S+at2pKAnyEMSU3C3sDnDBWrRF2BuxCrfE1e+I=";
     })
-
-
     (extension {
       publisher = "kumar-harsh";
       name = "graphql-for-vscode";
@@ -84,7 +115,7 @@ in
     (extension {
       publisher = "astro-build";
       name = "astro-vscode";
-      version = "0.22.0";
+      version = "0.29.1";
       sha256 = "sha256-w2fs1CSDXd9xo2d7PDnUgnXGn1hXc4159oBR67hN8qY=";
     })
     (extension {

@@ -7,6 +7,10 @@ let
     inherit homeDirectory pkgs;
   };
 
+  local = import ./local.nix {
+    inherit pkgs;
+  };
+
   buildTools = with pkgs; [
     bazelisk
     buf
@@ -60,6 +64,11 @@ let
     Security
   ];
 
+  jsTools = with pkgs.nodePackages; [
+    pnpm
+    yarn
+  ];
+
   # I'll categorize these later :)
   misc = with pkgs; [
     comma
@@ -73,7 +82,6 @@ let
     litestream
     ncurses
     nodejs-16_x
-    nodePackages.pnpm
     open-policy-agent
     openssl
     pikchr
@@ -81,7 +89,6 @@ let
     pkg-config
     reattach-to-user-namespace # for tmux
     riff
-    rustup
     skopeo
     sqlite
     statix
@@ -96,12 +103,13 @@ let
     wget
     youtube-dl
     yt-dlp
+    zola
     zstd
   ];
 
   nixTools = with pkgs; [ cachix lorri nixfmt nixpkgs-fmt vulnix ];
 
-  pythonTools = with pkgs; [ python39 ] ++ (with pkgs.python39Packages; [ httpie pip virtualenv ]);
+  pythonTools = with pkgs; [ python39 ] ++ (with pkgs.python39Packages; [ httpie mkdocs pip virtualenv ]);
 
   rubyTools = with pkgs; [
     rbenv
@@ -109,6 +117,8 @@ let
 
   rustTools = with pkgs; [
     cargo-web
+    rust-analyzer # For VS Code
+    rustup
     sqlx-cli
   ];
 
@@ -132,6 +142,7 @@ let
   broken = with pkgs; [ deno materialize wasmer ];
 in
 bin
+++ local
 ++ buildTools
 ++ configTools
 ++ databaseTools
@@ -140,6 +151,7 @@ bin
 ++ gitTools
 ++ kubernetesTools
 ++ macTools
+++ jsTools
 ++ misc
 ++ nixTools
 ++ pythonTools
