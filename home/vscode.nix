@@ -31,9 +31,16 @@ in
 
     # Specified here
     (extension {
+      publisher = "antfu";
+      name = "unocss";
+      version = "0.47.5";
+      sha256 = "sha256-t+Z5EOpAtD5mxKdmumBt20JkOLJkViqcDxPlkzs0oeE=";
+    })
+
+    (extension {
       publisher = "svelte";
       name = "svelte-vscode";
-      version = "106.3.0";
+      version = "106.3.2";
       sha256 = "sha256-xe1Ad24r2Ks85WAfaD5em8KGwaQ5h6i5qkUouU6lmtc=";
     })
 
@@ -58,12 +65,6 @@ in
       sha256 = "sha256-mXoEj1ZaW8eUktZhH2KzMLBL2dCk5z1H26/5RxkWHFc=";
     })
 
-    (extension {
-      publisher = "Vue";
-      name = "volar";
-      version = "1.0.9";
-      sha256 = "sha256-Zp5zSSqhIt8NxrUX8bVSuiUvbwhht2NhQF76GECZ8KI=";
-    })
     (extension {
       publisher = "unifiedjs";
       name = "vscode-mdx";
@@ -116,7 +117,7 @@ in
       publisher = "astro-build";
       name = "astro-vscode";
       version = "0.29.1";
-      sha256 = "sha256-w2fs1CSDXd9xo2d7PDnUgnXGn1hXc4159oBR67hN8qY=";
+      sha256 = "sha256-fMeEeYCZuORhZRds0A8HjHPncK0+SQbV0+f/zU5AIg4=";
     })
     (extension {
       publisher = "dzhavat";
