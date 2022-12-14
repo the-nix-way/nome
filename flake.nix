@@ -101,9 +101,14 @@
             format = pkgs.writeScriptBin "format" ''
               ${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt **/*.nix
             '';
+
+            reload = pkgs.writeScriptBin "reload" ''
+              ${pkgs.nix}/bin/nix build .#homeConfigurations.${username}.activationPackage
+              ./result/activate
+            '';
           in
           pkgs.mkShell {
-            buildInputs = [ format ];
+            buildInputs = [ format reload ];
           };
 
         packages.default = pkgs.dockerTools.buildImage {

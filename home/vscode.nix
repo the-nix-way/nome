@@ -1,6 +1,10 @@
 { pkgs }:
 
 let
+  font = "FiraCode Nerd Font Mono";
+  colorTheme = "Moonlight";
+  iconTheme = "material-icon-theme";
+
   inherit (pkgs.vscode-utils) buildVscodeMarketplaceExtension;
 
   extension = { publisher, name, version, sha256 }:
@@ -29,42 +33,45 @@ in
     tamasfe.even-better-toml
     yzhang.markdown-all-in-one
 
-    # Specified here
+    (extension {
+      publisher = "
+    sebsojeda ";
+      name = "
+    vscode-svx ";
+      version = " 1.0 .0 ";
+      sha256 = "
+    sha256-5YLeTJrkQsJSjYMmZMDJ0sVvvbhuQCdr2hhHIROb094=";
+    })
     (extension {
       publisher = "antfu";
       name = "unocss";
-      version = "0.47.5";
+      version = "0.47.6";
       sha256 = "sha256-t+Z5EOpAtD5mxKdmumBt20JkOLJkViqcDxPlkzs0oeE=";
     })
-
     (extension {
       publisher = "svelte";
       name = "svelte-vscode";
       version = "106.3.2";
       sha256 = "sha256-xe1Ad24r2Ks85WAfaD5em8KGwaQ5h6i5qkUouU6lmtc=";
     })
-
     (extension {
       publisher = "atomiks";
       name = "moonlight";
       version = "0.10.6";
       sha256 = "sha256-2Du/2rLWZUMo746rVWnngj0f0/H/94bt3rF+G+3Ipqw=";
     })
-
     (extension {
       publisher = "voorjaar";
       name = "windicss-intellisense";
       version = "0.23.5";
       sha256 = "sha256-i+1DdEPw0Aaq4E/3avcD0clvaWrhzhlTLrenWUYtgsY=";
     })
-
     (extension {
       publisher = "allanoricil";
       name = "nuxt-vscode-extension";
       version = "0.0.21";
       sha256 = "sha256-mXoEj1ZaW8eUktZhH2KzMLBL2dCk5z1H26/5RxkWHFc=";
     })
-
     (extension {
       publisher = "unifiedjs";
       name = "vscode-mdx";
@@ -241,7 +248,84 @@ in
     })
   ];
   #keybindings = [];
-  userSettings =
-    builtins.fromJSON (builtins.readFile ./config/vscode-settings.json);
+
+  userSettings = {
+    "[cue]" = {
+      "editor.defaultFormatter" = "jallen7usa.vscode-cue-fmt";
+    };
+    "[mdx}" = {
+      "editor.formatOnSave" = false;
+    };
+    "[nix]" = {
+      "editor.defaultFormatter" = "B4dM4n.nixpkgs-fmt";
+    };
+    "[rust]" = {
+      "editor.defaultFormatter" = "rust-lang.rust-analyzer";
+    };
+    "[svelte]" = {
+      "editor.defaultFormatter" = "svelte.svelte-vscode";
+    };
+    "[terraform]" = {
+      "editor.defaultFormatter" = "hashicorp.terraform";
+      "editor.formatOnSave" = false;
+      "editor.codeActionsOnSave" = {
+        "source.formatAll.terraform" = true;
+      };
+    };
+    "[terraform-vars]" = {
+      "editor.defaultFormatter" = "hashicorp.terraform";
+      "editor.formatOnSave" = false;
+      "editor.codeActionsOnSave" = {
+        "source.formatAll.terraform" = true;
+      };
+    };
+    "[toml]" = {
+      "editor.defaultFormatter" = "tamasfe.even-better-toml";
+    };
+    "[txt]" = {
+      "editor.formatOnSave" = false;
+    };
+    "debug.javascript.unmapMissingSources" = true;
+    "editor.defaultFormatter" = "esbenp.prettier-vscode";
+    "editor.detectIndentation" = false;
+    "editor.fontFamily" = font;
+    "editor.fontLigatures" = true;
+    "editor.formatOnPaste" = false;
+    "editor.formatOnSave" = true;
+    "editor.insertSpaces" = true;
+    "editor.rulers" = [ 80 100 ];
+    "editor.tabSize" = 2;
+    "emmet.showExpandedAbbreviation" = "never";
+    "emmet.showSuggestionsAsSnippets" = false;
+    "eslint.options" = {
+      "extensions" = [ ".js" ".jsx" ".md" ".mdx" ".ts" ".tsx" ".vue" ];
+    };
+    "eslint.validate" = [
+      "markdown"
+      "mdx"
+      "javascript"
+      "javascriptreact"
+      "typescript"
+      "typescriptreact"
+      "vue"
+    ];
+    "search.exclude" = {
+      "**/.direnv" = true;
+      "**/.git" = true;
+      "**/node_modules" = true;
+      "*.lock" = true;
+    };
+    "sort-imports.default-sort-style" = "module";
+    "sort-imports.languages" = [
+      "javascript"
+      "javascriptreact"
+      "typescript"
+      "typescriptreact"
+    ];
+    "terminal.integrated.fontFamily" = font;
+    "workbench.colorTheme" = colorTheme;
+    "workbench.iconTheme" = iconTheme;
+  };
   userTasks = { };
 }
+

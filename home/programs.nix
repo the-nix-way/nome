@@ -70,6 +70,11 @@
     enableZshIntegration = true;
   };
 
+  # Kitty terminal emulator
+  kitty = {
+    enable = true;
+  };
+
   # For Git rebases and such
   neovim = import ./neovim.nix {
     inherit (pkgs) vimPlugins;
