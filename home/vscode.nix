@@ -34,13 +34,10 @@ in
     yzhang.markdown-all-in-one
 
     (extension {
-      publisher = "
-    sebsojeda ";
-      name = "
-    vscode-svx ";
-      version = " 1.0 .0 ";
-      sha256 = "
-    sha256-5YLeTJrkQsJSjYMmZMDJ0sVvvbhuQCdr2hhHIROb094=";
+      publisher = "sebsojeda";
+      name = "vscode-svx";
+      version = " 1.0.0";
+      sha256 = "sha256-5YLeTJrkQsJSjYMmZMDJ0sVvvbhuQCdr2hhHIROb094=";
     })
     (extension {
       publisher = "antfu";
