@@ -34,6 +34,12 @@ in
     yzhang.markdown-all-in-one
 
     (extension {
+      publisher = "stordahl";
+      name = "sveltekit-snippets";
+      version = "1.2.0";
+      sha256 = "sha256-hl5ZC2y5umdbUXbufnM+dn2O5cyfgOZwE1AsrKUsOyU=";
+    })
+    (extension {
       publisher = "sebsojeda";
       name = "vscode-svx";
       version = " 1.0.0";
