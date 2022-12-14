@@ -1,8 +1,9 @@
 { pkgs }:
 
 let
-  font = "FiraCode Nerd Font Mono";
-  colorTheme = "Moonlight";
+  font = "CascadiaCode";
+  terminalFont = "FiraCode Nerd Font Mono";
+  colorTheme = "GitHub Dark Dimmed";
   iconTheme = "material-icon-theme";
 
   inherit (pkgs.vscode-utils) buildVscodeMarketplaceExtension;
@@ -33,6 +34,48 @@ in
     tamasfe.even-better-toml
     yzhang.markdown-all-in-one
 
+    (extension {
+      publisher = "GitHub";
+      name = "github-vscode-theme";
+      version = "6.3.2";
+      sha256 = "sha256-CbFZsoRiiwSWL7zJdnBcfrxuhE7E9Au2AlQjqYXW+Nc=";
+    })
+    (extension {
+      publisher = "enkia";
+      name = "tokyo-night";
+      version = "0.9.4";
+      sha256 = "sha256-pKokB6446SR6LsTHyJtQ+FEA07A0W9UAI+byqtGeMGw=";
+    })
+    (extension {
+      publisher = "astro-build";
+      name = "houston";
+      version = "0.0.5";
+      sha256 = "sha256-IZ7xrHeLtqQREHBakRXsSPfWJWI03H1o1gfcS+IoVYw=";
+    })
+    (extension {
+      publisher = "ekelley";
+      name = "midnight-synth";
+      version = "2.1.1";
+      sha256 = "sha256-rMdGPSiAFnL8X6UcovPMIwvXs0rSTaxWKJdaYXAaVJc=";
+    })
+    (extension {
+      publisher = "wesbos";
+      name = "theme-cobalt2";
+      version = "2.3.0";
+      sha256 = "sha256-GOLETJuBi4aiikR4nfj2BFAF91oZTlTjc4waYnIR9yk=";
+    })
+    (extension {
+      publisher = "ahmadawais";
+      name = "shades-of-purple";
+      version = "7.1.5";
+      sha256 = "sha256-FdMCmSMB3HOrqBt111kCrqFLT0VnymEfmWiuSR/buvc=";
+    })
+    (extension {
+      publisher = "codestackr";
+      name = "codestackr-theme";
+      version = "0.0.9";
+      sha256 = "sha256-nA79yJiBtHJ75DIe6FntGagbRoan8WlXdLG/c1vtMBs=";
+    })
     (extension {
       publisher = "stordahl";
       name = "sveltekit-snippets";
@@ -325,7 +368,7 @@ in
       "typescript"
       "typescriptreact"
     ];
-    "terminal.integrated.fontFamily" = font;
+    "terminal.integrated.fontFamily" = terminalFont;
     "workbench.colorTheme" = colorTheme;
     "workbench.iconTheme" = iconTheme;
   };
