@@ -32,6 +32,10 @@ let
   '';
 in
 [
+  (script "docker-clean" ''
+    docker system prune -a --volumes
+  '')
+
   (script "build-push" ''
     ${checkForArg1 "no build attribute specified"}
 

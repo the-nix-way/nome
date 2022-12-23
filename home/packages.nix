@@ -40,7 +40,7 @@ let
   ];
 
   fonts = with pkgs.nerdfonts;
-    [ (override { fonts = [ "CascadiaCode" "FiraCode" "JetBrainsMono" ]; }) ];
+    [ (override { fonts = [ "CascadiaCode" "DankMono" "FiraCode" "JetBrainsMono" ]; }) ];
 
   gitTools = with pkgs.gitAndTools;
     [ diff-so-fancy git-codeowners gitflow ]

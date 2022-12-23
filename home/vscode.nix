@@ -35,6 +35,18 @@ in
     yzhang.markdown-all-in-one
 
     (extension {
+      publisher = "pivaszbs";
+      name = "svelte-autoimport";
+      version = "1.0.4";
+      sha256 = "sha256-MqxZYKxmbuXKQkgSZFhPVts1h6l7/sxYo/cqMirRKpE=";
+    })
+    (extension {
+      publisher = "Vue";
+      name = "volar";
+      version = "1.0.13";
+      sha256 = "sha256-rWEV8Reevg2QcTynSiN/0ZeHLMo61qakqVhJTKAFpp4=";
+    })
+    (extension {
       publisher = "GitHub";
       name = "github-vscode-theme";
       version = "6.3.2";
@@ -330,6 +342,9 @@ in
     };
     "[txt]" = {
       "editor.formatOnSave" = false;
+    };
+    "[vue]" = {
+      "editor.defaultFormatter" = "Vue.volar";
     };
     "debug.javascript.unmapMissingSources" = true;
     "editor.defaultFormatter" = "esbenp.prettier-vscode";
