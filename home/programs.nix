@@ -64,12 +64,6 @@
   # JSON parsing on the CLI
   jq.enable = true;
 
-  # make replacement
-  just = {
-    enable = true;
-    enableZshIntegration = true;
-  };
-
   # Kitty terminal emulator
   kitty = {
     enable = true;

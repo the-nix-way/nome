@@ -35,6 +35,12 @@ in
     yzhang.markdown-all-in-one
 
     (extension {
+      publisher = "xoronic";
+      name = "pestfile";
+      version = "0.3.0";
+      sha256 = "sha256-6F2lxHbXJ3+YVLooLJ4/rttCxPoDEUoI/jS6voyJfBA=";
+    })
+    (extension {
       publisher = "pivaszbs";
       name = "svelte-autoimport";
       version = "1.0.4";
@@ -311,7 +317,7 @@ in
     "[cue]" = {
       "editor.defaultFormatter" = "jallen7usa.vscode-cue-fmt";
     };
-    "[mdx}" = {
+    "[mdx]" = {
       "editor.formatOnSave" = false;
     };
     "[nix]" = {

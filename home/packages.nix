@@ -40,7 +40,7 @@ let
   ];
 
   fonts = with pkgs.nerdfonts;
-    [ (override { fonts = [ "CascadiaCode" "DankMono" "FiraCode" "JetBrainsMono" ]; }) ];
+    [ (override { fonts = [ "CascadiaCode" "FiraCode" "JetBrainsMono" ]; }) ];
 
   gitTools = with pkgs.gitAndTools;
     [ diff-so-fancy git-codeowners gitflow ]
@@ -77,6 +77,7 @@ let
     gleam
     htmltest
     hugo
+    just
     keybase
     libiconv
     litestream
@@ -115,6 +116,7 @@ let
   ];
 
   rustTools = with pkgs; [
+    cargo-watch
     cargo-web
     rust-analyzer # For VS Code
     rustup
