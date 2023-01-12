@@ -100,17 +100,17 @@ in
       version = "1.2.0";
       sha256 = "sha256-hl5ZC2y5umdbUXbufnM+dn2O5cyfgOZwE1AsrKUsOyU=";
     })
-    (extension {
-      publisher = "sebsojeda";
-      name = "vscode-svx";
-      version = " 1.0.0";
-      sha256 = "sha256-5YLeTJrkQsJSjYMmZMDJ0sVvvbhuQCdr2hhHIROb094=";
-    })
+    #(extension {
+    #  publisher = "sebsojeda";
+    #  name = "vscode-svx";
+    #  version = " 1.0.0";
+    #  sha256 = "sha256-5YLeTJrkQsJSjYMmZMDJ0sVvvbhuQCdr2hhHIROb094=";
+    #})
     (extension {
       publisher = "antfu";
       name = "unocss";
       version = "0.47.6";
-      sha256 = "sha256-t+Z5EOpAtD5mxKdmumBt20JkOLJkViqcDxPlkzs0oeE=";
+      sha256 = "sha256-Rgk3SIKBzDoo5rJAXWFZuwMtAEMZViollYVjEYvyLbA=";
     })
     (extension {
       publisher = "svelte";
@@ -148,12 +148,12 @@ in
       version = "1.15.3";
       sha256 = "sha256-0Al+69quQXPdFBMsSDWXjITJiux+OQSzQ7i/pgnlm/Q=";
     })
-    (extension {
-      publisher = "normanstypczynskipublisher";
-      name = "gqlformatter";
-      version = "1.1.1";
-      sha256 = "sha256-7Bb9SS+NFJRBYg1pAWOUzbPJLqik8LB7x4JCuefixZ4=";
-    })
+    #(extension {
+    #  publisher = "normanstypczynskipublisher";
+    #  name = "gqlformatter";
+    #  version = "1.1.1";
+    #  sha256 = "sha256-7Bb9SS+NFJRBYg1pAWOUzbPJLqik8LB7x4JCuefixZ4=";
+    #})
     (extension {
       publisher = "jq-syntax-highlighting";
       name = "jq-syntax-highlighting";
