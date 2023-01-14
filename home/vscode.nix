@@ -35,6 +35,18 @@ in
     yzhang.markdown-all-in-one
 
     (extension {
+      publisher = "justusadam";
+      name = "language-haskell";
+      version = "3.6.0";
+      sha256 = "sha256-rZXRzPmu7IYmyRWANtpJp3wp0r/RwB7eGHEJa7hBvoQ=";
+    })
+    (extension {
+      publisher = "haskell";
+      name = "haskell";
+      version = "2.2.2";
+      sha256 = "sha256-zWdIVdz+kZg7KZQ7LeBCB4aB9wg8dUbkWfzGlM0Fq7Q=";
+    })
+    (extension {
       publisher = "xoronic";
       name = "pestfile";
       version = "0.3.0";
