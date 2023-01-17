@@ -35,6 +35,12 @@ in
     yzhang.markdown-all-in-one
 
     (extension {
+      publisher = "moalamri";
+      name = "inline-fold";
+      version = "0.1.10";
+      sha256 = "sha256-HTqlY790lS+L6yWfDV27VhLNHu4TMzwVNiP8cNzDTjM=";
+    })
+    (extension {
       publisher = "justusadam";
       name = "language-haskell";
       version = "3.6.0";
@@ -387,6 +393,15 @@ in
       "typescript"
       "typescriptreact"
       "vue"
+    ];
+    "inlineFold.supportedLanguages" = [
+      "javascript"
+      "javascriptreact"
+      "svelte"
+      "typescript"
+      "typescriptreact"
+      "vue"
+      "vue-html"
     ];
     "search.exclude" = {
       "**/.direnv" = true;
