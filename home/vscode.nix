@@ -83,12 +83,6 @@ in
       sha256 = "sha256-pKokB6446SR6LsTHyJtQ+FEA07A0W9UAI+byqtGeMGw=";
     })
     (extension {
-      publisher = "astro-build";
-      name = "houston";
-      version = "0.0.5";
-      sha256 = "sha256-IZ7xrHeLtqQREHBakRXsSPfWJWI03H1o1gfcS+IoVYw=";
-    })
-    (extension {
       publisher = "ekelley";
       name = "midnight-synth";
       version = "2.1.1";
@@ -127,14 +121,14 @@ in
     (extension {
       publisher = "antfu";
       name = "unocss";
-      version = "0.47.6";
-      sha256 = "sha256-Rgk3SIKBzDoo5rJAXWFZuwMtAEMZViollYVjEYvyLbA=";
+      version = "0.49.4";
+      sha256 = "sha256-rB7UiJRJ0ZQ138NR3mMqWhH5aao+1elnh7yd2u4GP0g=";
     })
     (extension {
       publisher = "svelte";
       name = "svelte-vscode";
-      version = "106.3.2";
-      sha256 = "sha256-xe1Ad24r2Ks85WAfaD5em8KGwaQ5h6i5qkUouU6lmtc=";
+      version = "107.0.2";
+      sha256 = "sha256-i0W/T8DL35nLiaqRdcGXuNRyCAHVxJZWulXlmYSXKhg=";
     })
     (extension {
       publisher = "atomiks";
@@ -319,8 +313,8 @@ in
     (extension {
       publisher = "ms-vscode";
       name = "vscode-typescript-next";
-      version = "4.8.20220805";
-      sha256 = "sha256-Nz1uAJ2gQXDDvmu1rnyzW5U1fQFbJDpcxNfujHNEsUI=";
+      version = "5.0.202302090";
+      sha256 = "sha256-LTB3lwu712Rxmi3hDGHP+l1DnQSjuy2fORf1df37d08=";
     })
     (extension {
       publisher = "bradlc";

@@ -13,9 +13,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     rust-overlay.url = "github:oxalica/rust-overlay";
+    riff.url = "github:DeterminateSystems/riff";
   };
 
-  outputs = { self, nixpkgs, darwin, flake-utils, home-manager, rust-overlay }:
+  outputs = { self, nixpkgs, darwin, flake-utils, home-manager, rust-overlay, riff }:
     let
       # Constants
       stateVersion = "22.11";
@@ -32,6 +33,9 @@
         };
         overlays = [
           (import rust-overlay)
+          (self: super: {
+            riff = riff.packages.${system}.riff;
+          })
         ] ++ (with self.overlays; [ go node rust ]);
       };
 

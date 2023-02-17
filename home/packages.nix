@@ -12,31 +12,14 @@ let
   };
 
   buildTools = with pkgs; [
-    bazelisk
-    buf
-    bun
     cmake
-    protobuf
   ];
 
-  configTools = with pkgs; [
-    cue
-    dhall
-  ];
-
-  databaseTools = with pkgs; [ postgresql_14 refinery-cli ];
+  databaseTools = with pkgs; [ postgresql_15 ];
 
   devOpsTools = with pkgs; [
-    dagger
-    dapr-cli
     dive
-    doctl
     doppler
-    flyctl
-    heroku
-    packer
-    terraform
-    terragrunt
   ];
 
   fonts = with pkgs.nerdfonts;
@@ -46,16 +29,10 @@ let
     [ diff-so-fancy git-codeowners gitflow ]
     ++ (with pkgs; [ difftastic git-annex git-crypt ]);
 
-  javaTools = with pkgs; [
-    gradle
-    maven
-  ];
-
   kubernetesTools = with pkgs; [
     kubectx
     kubectl
     minikube
-    tilt
   ];
 
   macTools = with pkgs.darwin.apple_sdk.frameworks; [
@@ -64,88 +41,51 @@ let
     Security
   ];
 
-  jsTools = with pkgs.nodePackages; [
+  jsTools = (with pkgs; [ deno ]) ++ (with pkgs.nodePackages; [
     pnpm
     yarn
-  ];
+  ]);
 
   # I'll categorize these later :)
   misc = with pkgs; [
     comma
     coreutils
     findutils
-    gleam
-    htmltest
-    hugo
-    just
+    hugo # for initializing projects
     keybase
     libiconv
-    litestream
     ncurses
-    nodejs-16_x
-    open-policy-agent
+    nodejs-18_x # for npm init
     openssl
     pikchr
     pinentry_mac
     pkg-config
     reattach-to-user-namespace # for tmux
-    skopeo
-    sqlite
-    statix
-    stow
+    riff
     subversion
     tailscale
     tree
     treefmt
-    vale
-    vector
-    watchexec
     wget
     youtube-dl
     yt-dlp
-    zola
     zstd
   ];
 
-  nixTools = with pkgs; [ cachix lorri nixfmt nixpkgs-fmt vulnix ];
+  nixTools = with pkgs; [ cachix nixfmt nixpkgs-fmt ];
 
-  pythonTools = with pkgs; [ python39 ] ++ (with pkgs.python39Packages; [ httpie mkdocs pip virtualenv ]);
-
-  rubyTools = with pkgs; [
-    rbenv
-  ];
+  pythonTools = with pkgs; [ python39 ] ++ (with pkgs.python39Packages; [ httpie pip virtualenv ]);
 
   rustTools = with pkgs; [
-    cargo-watch
-    cargo-web
-    rust-analyzer # For VS Code
     rustup
-    sqlx-cli
-  ];
-
-  virtualizationTools = with pkgs; [ vagrant qemu ];
-
-  wasmTools = with pkgs; [
-    binaryen
-    wabt
-    wapm-cli
-    #broken wasm3
-    wasm-bindgen-cli
-    wasm-pack
-    wasm-text-gen
-    wasmtime
-    wast-refmt
-    webassemblyjs-cli
-    webassemblyjs-repl
   ];
 
   # These are broken on aarch64-darwin but I hope to add them someday
-  broken = with pkgs; [ deno materialize wasmer ];
+  broken = with pkgs; [ materialize ];
 in
 bin
 ++ local
 ++ buildTools
-++ configTools
 ++ databaseTools
 ++ devOpsTools
 ++ fonts
@@ -157,5 +97,3 @@ bin
 ++ nixTools
 ++ pythonTools
 ++ rustTools
-++ virtualizationTools
-++ wasmTools
