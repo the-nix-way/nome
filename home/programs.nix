@@ -33,6 +33,9 @@
     enableAliases = true;
   };
 
+  # Fish shell
+  fish = import ./fish.nix { inherit homeDirectory pkgs; };
+
   # Fuzzy finder
   fzf = {
     enable = true;
