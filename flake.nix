@@ -41,6 +41,9 @@
 
       # Inheritance helpers
       inherit (flake-utils.lib) eachDefaultSystem;
+
+      # Helper functions
+      run = pkg: "${pkgs.${pkg}}/bin/${pkg}";
     in
     {
       darwinConfigurations.${username} = darwin.lib.darwinSystem {
@@ -103,16 +106,16 @@
         devShells.default =
           let
             format = pkgs.writeScriptBin "format" ''
-              ${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt **/*.nix
+              ${run "nixpkgs-fmt"} **/*.nix
             '';
 
             reload = pkgs.writeScriptBin "reload" ''
-              ${pkgs.nix}/bin/nix build .#homeConfigurations.${username}.activationPackage
+              ${run "nix"} build .#homeConfigurations.${username}.activationPackage
               ./result/activate
             '';
           in
           pkgs.mkShell {
-            buildInputs = [ format reload ];
+            packages = [ format reload ];
           };
 
         packages.default = pkgs.dockerTools.buildImage {

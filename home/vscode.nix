@@ -2,7 +2,7 @@
 
 let
   font = "CascadiaCode";
-  terminalFont = "FiraCode Nerd Font Mono";
+  terminalFont = "Iosevka";
   colorTheme = "GitHub Dark Dimmed";
   iconTheme = "material-icon-theme";
 
