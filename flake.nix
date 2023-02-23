@@ -39,11 +39,11 @@
         ] ++ (with self.overlays; [ go node rust ]);
       };
 
-      # Inheritance helpers
-      inherit (flake-utils.lib) eachDefaultSystem;
-
       # Helper functions
       run = pkg: "${pkgs.${pkg}}/bin/${pkg}";
+
+      # Modules
+      home = import ./home { inherit homeDirectory pkgs stateVersion system username; };
     in
     {
       darwinConfigurations.${username} = darwin.lib.darwinSystem {
@@ -54,31 +54,18 @@
       homeConfigurations = {
         default = "${username}";
 
-        "${username}" = home-manager.lib.homeManagerConfiguration
-          {
-            inherit pkgs;
+        "${username}" = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
 
-            modules =
-              [ (import ./home { inherit homeDirectory pkgs stateVersion system username; }) ];
-          };
+          modules = [
+            home
+          ];
+        };
       };
 
-      nixosConfigurations =
-        let
-          modules = [ ./nixos/configuration.nix ];
-        in
-        rec
-        {
-          default = x86_64-linux;
-
-          x86_64-linux = nixpkgs.lib.nixosSystem {
-            system = "x86_64-linux";
-            inherit modules;
-          };
-        };
-
       lib = import ./lib {
-        inherit eachDefaultSystem pkgs;
+        inherit pkgs;
+        inherit (flake-utils.lib) eachDefaultSystem;
       };
 
       overlays = import ./overlays;
@@ -98,7 +85,27 @@
 
         ec = editorconfig;
       };
-    } // eachDefaultSystem (system:
+    }
+
+    //
+
+    # System-specific stuff
+    flake-utils.lib.eachSystem [ "x86_64-linux" "aarch64-linux" ] (system: {
+      nixosConfigurations =
+        let
+          modules = [
+            ./nixos/configuration.nix
+            ./nixos/hardware-configuration.nix
+          ];
+        in
+        nixpkgs.lib.nixosSystem {
+          inherit modules system;
+        };
+    })
+
+    //
+
+    flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = import nixpkgs { inherit system; };
       in

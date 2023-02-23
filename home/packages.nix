@@ -46,6 +46,8 @@ let
     yarn
   ]);
 
+  monitoring = with pkgs; [ bottom btop htop ];
+
   # I'll categorize these later :)
   misc = with pkgs; [
     comma
@@ -55,7 +57,7 @@ let
     keybase
     libiconv
     ncurses
-    nodejs-18_x # for npm init
+    nodejs-18_x # for global npm and npx
     openssl
     pikchr
     pinentry_mac
@@ -74,10 +76,10 @@ let
 
   nixTools = with pkgs; [ cachix nixfmt nixpkgs-fmt ];
 
-  pythonTools = with pkgs; [ python39 ] ++ (with pkgs.python39Packages; [ httpie pip virtualenv ]);
+  pythonTools = with pkgs; [ python310 ] ++ (with pkgs.python310Packages; [ httpie pip virtualenv ]);
 
   rustTools = with pkgs; [
-    rustup
+    rustup # for things like `cargo init`
   ];
 
   # These are broken on aarch64-darwin but I hope to add them someday
@@ -93,6 +95,7 @@ bin
 ++ kubernetesTools
 ++ macTools
 ++ jsTools
+++ monitoring
 ++ misc
 ++ nixTools
 ++ pythonTools
