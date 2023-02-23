@@ -83,6 +83,11 @@
           description = "editorconfig file template";
         };
 
+        nix = {
+          path = ./templates/nix;
+          description = "Nix template";
+        };
+
         ec = editorconfig;
       };
     }
@@ -122,7 +127,7 @@
             '';
           in
           pkgs.mkShell {
-            packages = [ format reload ];
+            packages = [ format reload pkgs.jq ];
           };
 
         packages.default = pkgs.dockerTools.buildImage {
