@@ -19,7 +19,7 @@ rec {
   mkEnv = { toolchains ? [ ], extras ? [ ], shellHook ? "" }:
     eachDefaultSystem (system: {
       devShells.default = pkgs.mkShell {
-        buildInputs = toolchains ++ extras;
+        packages = toolchains ++ extras;
         inherit shellHook;
       };
     });

@@ -27,7 +27,11 @@ let
 
   gitTools = with pkgs.gitAndTools;
     [ diff-so-fancy git-codeowners gitflow ]
-    ++ (with pkgs; [ difftastic git-annex git-crypt ]);
+    ++ (with pkgs; [
+      difftastic
+      git-annex
+      git-crypt
+    ]);
 
   kubernetesTools = with pkgs; [
     kubectx
@@ -46,7 +50,11 @@ let
     yarn
   ]);
 
-  monitoring = with pkgs; [ bottom btop htop ];
+  monitoring = with pkgs; [
+    bottom
+    btop
+    htop
+  ];
 
   # I'll categorize these later :)
   misc = with pkgs; [
@@ -62,8 +70,10 @@ let
     pikchr
     pinentry_mac
     pkg-config
+    podman
+    qemu
     reattach-to-user-namespace # for tmux
-    riff
+    riff # from overlay
     subversion
     tailscale
     tree
@@ -74,7 +84,12 @@ let
     zstd
   ];
 
-  nixTools = with pkgs; [ cachix nixfmt nixpkgs-fmt ];
+  nixTools = with pkgs; [
+    cachix
+    nixfmt
+    nixpkgs-fmt
+    nix-init
+  ];
 
   pythonTools = with pkgs; [ python310 ] ++ (with pkgs.python310Packages; [ httpie pip virtualenv ]);
 
@@ -83,7 +98,10 @@ let
   ];
 
   # These are broken on aarch64-darwin but I hope to add them someday
-  broken = with pkgs; [ materialize ];
+  broken = with pkgs; [
+    materialize
+    ucm # unison programming language
+  ];
 in
 bin
 ++ local

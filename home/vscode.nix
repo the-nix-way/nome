@@ -35,6 +35,20 @@ in
     yzhang.markdown-all-in-one
 
     (extension {
+      publisher = "TheNuProjectContributors";
+      name = "vscode-nushell-lang";
+      version = "1.0.0";
+      sha256 = "sha256-2FHAFh4ipYKegir7o59Ypb78MOzy2iu+3p3aUUgsatw=";
+    })
+
+    (extension {
+      publisher = "benfradet";
+      name = "vscode-unison";
+      version = "0.4.0";
+      sha256 = "sha256-IDM9v+LWckf20xnRTj+ThAFSzVxxDVQaJkwO37UIIhs=";
+    })
+
+    (extension {
       publisher = "moalamri";
       name = "inline-fold";
       version = "0.1.10";
