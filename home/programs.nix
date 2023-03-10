@@ -84,7 +84,9 @@
   };
 
   # Experimental shell
-  nushell = { enable = true; };
+  nushell = {
+    enable = true;
+  };
 
   # Document conversion
   pandoc = {

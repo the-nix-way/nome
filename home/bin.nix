@@ -32,6 +32,13 @@ let
   '';
 in
 [
+  (script "cache" ''
+    ${checkForArg1 "no cache specified"}     
+    nix flake archive --json \
+      | ${pkgs.jq}/bin/jq -r '.path,(.inputs|to_entries[].value.path)' \
+      | ${pkgs.cachix}/bin/cachix push $1 
+  '')
+
   (script "docker-clean" ''
     docker system prune -a --volumes
   '')

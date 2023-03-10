@@ -35,6 +35,12 @@ in
     yzhang.markdown-all-in-one
 
     (extension {
+      publisher = "kubukoz";
+      name = "nickel-syntax";
+      version = "0.0.2";
+      sha256 = "sha256-ffPZd717Y2OF4d9MWE6zKwcsGWS90ZJvhWkqP831tVM=";
+    })
+    (extension {
       publisher = "TheNuProjectContributors";
       name = "vscode-nushell-lang";
       version = "1.0.0";
@@ -150,12 +156,12 @@ in
       version = "0.10.6";
       sha256 = "sha256-2Du/2rLWZUMo746rVWnngj0f0/H/94bt3rF+G+3Ipqw=";
     })
-    (extension {
-      publisher = "voorjaar";
-      name = "windicss-intellisense";
-      version = "0.23.5";
-      sha256 = "sha256-i+1DdEPw0Aaq4E/3avcD0clvaWrhzhlTLrenWUYtgsY=";
-    })
+    #(extension {
+    #  publisher = "voorjaar";
+    #  name = "windicss-intellisense";
+    #  version = "0.23.5";
+    #  sha256 = "sha256-i+1DdEPw0Aaq4E/3avcD0clvaWrhzhlTLrenWUYtgsY=";
+    #})
     (extension {
       publisher = "allanoricil";
       name = "nuxt-vscode-extension";
