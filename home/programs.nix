@@ -84,9 +84,7 @@
   };
 
   # Experimental shell
-  nushell = {
-    enable = true;
-  };
+  nushell = import ./nushell.nix { inherit pkgs; };
 
   # Document conversion
   pandoc = {

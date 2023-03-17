@@ -62,6 +62,7 @@ let
     coreutils
     findutils
     hugo # for initializing projects
+    just
     keybase
     libiconv
     ncurses
@@ -91,7 +92,11 @@ let
     nix-init
   ];
 
-  pythonTools = with pkgs; [ python310 ] ++ (with pkgs.python310Packages; [ httpie pip virtualenv ]);
+  pythonTools = with pkgs; [ python310 ] ++ (with pkgs.python310Packages; [
+    #httpie
+    pip
+    virtualenv
+  ]);
 
   rustTools = with pkgs; [
     rustup # for things like `cargo init`
