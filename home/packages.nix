@@ -66,6 +66,7 @@ let
     keybase
     libiconv
     ncurses
+    neofetch
     nodejs-18_x # for global npm and npx
     openssl
     pikchr

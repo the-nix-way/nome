@@ -16,9 +16,6 @@ in
   # Basic Home Manager config
   home = { inherit homeDirectory packages stateVersion username; };
 
-  # Configure Nix itself (using an unstable version)
-  nix = import ./nix.nix { nix = pkgs.nixUnstable; };
-
   # Nixpkgs config
   nixpkgs = import ./nixpkgs.nix;
 
