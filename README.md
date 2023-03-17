@@ -12,6 +12,11 @@ Nome is my **N**ix h**ome**. It encapsulates a range of Nix goodies that I use t
 What I run to activate my Home Manager configuration:
 
 ```shell
+# Install Nix (if necessary)
+curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix \
+  | sh -s -- install
+
+# Activate my config
 nix build "github:the-nix-way/nome#homeConfigurations.lucperkins.activationPackage"
 ./result/activate
 ```
