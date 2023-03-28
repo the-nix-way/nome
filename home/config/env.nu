@@ -1,1 +1,1 @@
-# Nothing here for now
+let FOO = "bar"

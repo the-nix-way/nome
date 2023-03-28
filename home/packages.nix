@@ -19,11 +19,20 @@ let
 
   devOpsTools = with pkgs; [
     dive
-    doppler
+    #doppler
   ];
 
   fonts = with pkgs.nerdfonts;
-    [ (override { fonts = [ "CascadiaCode" "FiraCode" "JetBrainsMono" "Iosevka" ]; }) ];
+    [
+      (override {
+        fonts = [
+          #"CascadiaCode"
+          "FiraCode"
+          "JetBrainsMono"
+          #"Iosevka"
+        ];
+      })
+    ];
 
   gitTools = with pkgs.gitAndTools;
     [ diff-so-fancy git-codeowners gitflow ]
@@ -34,9 +43,9 @@ let
     ]);
 
   kubernetesTools = with pkgs; [
-    kubectx
-    kubectl
-    minikube
+    #kubectx
+    #kubectl
+    #minikube
   ];
 
   macTools = with pkgs.darwin.apple_sdk.frameworks; [
@@ -47,7 +56,7 @@ let
 
   jsTools = (with pkgs; [ deno ]) ++ (with pkgs.nodePackages; [
     pnpm
-    yarn
+    #yarn
   ]);
 
   monitoring = with pkgs; [
@@ -56,11 +65,11 @@ let
     htop
   ];
 
+  basic = with pkgs; [ coreutils findutils unzip ];
+
   # I'll categorize these later :)
   misc = with pkgs; [
     comma
-    coreutils
-    findutils
     hugo # for initializing projects
     just
     keybase
@@ -76,12 +85,13 @@ let
     qemu
     reattach-to-user-namespace # for tmux
     riff # from overlay
-    subversion
+    #subversion
     tailscale
     tree
     treefmt
+    unison-ucm
     wget
-    youtube-dl
+    #youtube-dl
     yt-dlp
     zstd
   ];
@@ -90,13 +100,13 @@ let
     cachix
     nixfmt
     nixpkgs-fmt
-    nix-init
+    #nix-init
   ];
 
   pythonTools = with pkgs; [ python310 ] ++ (with pkgs.python310Packages; [
     #httpie
     pip
-    virtualenv
+    #virtualenv
   ]);
 
   rustTools = with pkgs; [
@@ -106,7 +116,6 @@ let
   # These are broken on aarch64-darwin but I hope to add them someday
   broken = with pkgs; [
     materialize
-    ucm # unison programming language
   ];
 in
 bin
@@ -120,6 +129,7 @@ bin
 ++ macTools
 ++ jsTools
 ++ monitoring
+++ basic
 ++ misc
 ++ nixTools
 ++ pythonTools

@@ -34,7 +34,7 @@
   };
 
   # Fish shell
-  fish = import ./fish.nix { inherit homeDirectory pkgs; };
+  #fish = import ./fish.nix { inherit homeDirectory pkgs; };
 
   # Fuzzy finder
   fzf = {
@@ -68,9 +68,9 @@
   jq.enable = true;
 
   # Kitty terminal emulator
-  kitty = {
-    enable = true;
-  };
+  #kitty = {
+  #  enable = true;
+  #};
 
   # For Git rebases and such
   neovim = import ./neovim.nix {
@@ -87,10 +87,10 @@
   nushell = import ./nushell.nix { inherit pkgs; };
 
   # Document conversion
-  pandoc = {
-    enable = true;
-    defaults = { metadata = { author = "Luc Perkins"; }; };
-  };
+  #pandoc = {
+  #  enable = true;
+  #  defaults = { metadata = { author = "Luc Perkins"; }; };
+  #};
 
   # The provider of my shell aesthetic
   starship = import ./starship.nix;

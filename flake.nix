@@ -2,19 +2,19 @@
   description = "My Nix world";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/release-22.11";
+    nixpkgs.url = "github:NixOS/nixpkgs";
+    nixpkgsUnstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable"; # For nix-darwin stuff
     darwin = {
       url = "github:lnl7/nix-darwin";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgsUnstable";
     };
     flake-utils.url = "github:numtide/flake-utils";
     home-manager = {
-      url = "github:nix-community/home-manager/release-22.11";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     rust-overlay.url = "github:oxalica/rust-overlay";
     riff.url = "github:DeterminateSystems/riff";
-    unison.url = "github:ceedubs/unison-nix";
     nix-init.url = "github:nix-community/nix-init";
   };
 
@@ -26,14 +26,16 @@
     , home-manager
     , rust-overlay
     , riff
-    , unison
     , nix-init
+    , ...
     }:
+
     let
       # Constants
       stateVersion = "22.11";
       system = "aarch64-darwin";
       username = "lucperkins";
+      macOsSystem = "Lucs-MacBook-Pro";
       homeDirectory = self.lib.getHomeDirectory username;
 
       # System-specific Nixpkgs
@@ -47,7 +49,6 @@
           (import rust-overlay)
           (self: super: {
             riff = riff.packages.${system}.riff;
-            ucm = unison.packages.${system}.ucm;
             nix-init = nix-init.packages.${system}.default;
           })
         ] ++ (with self.overlays; [ go node rust ]);
@@ -60,21 +61,17 @@
       home = import ./home { inherit homeDirectory pkgs stateVersion system username; };
     in
     {
-      darwinConfigurations.${username} = darwin.lib.darwinSystem {
+      darwinConfigurations.${macOsSystem} = darwin.lib.darwinSystem {
         inherit system;
         modules = [ (import ./nix-darwin) ];
       };
 
-      homeConfigurations = {
-        default = "${username}";
+      homeConfigurations.${system} = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
 
-        "${username}" = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-
-          modules = [
-            home
-          ];
-        };
+        modules = [
+          home
+        ];
       };
 
       lib = import ./lib {
@@ -136,32 +133,27 @@
           '';
 
           reload = pkgs.writeScriptBin "reload" ''
-            ${run "nix"} build --no-sandbox .#homeConfigurations.${username}.activationPackage
+            ${run "nix"} build --no-sandbox .#homeConfigurations.${system}.activationPackage
             ./result/activate
           '';
+          cache =
+            let
+              cachix = "${pkgs.cachix}/bin/cachix";
+              cachixCache = "the-nix-way";
+            in
+            pkgs.writeScriptBin "cache" ''
+              nix flake archive --json \
+              | jq -r '.path,(.inputs|to_entries[].value.path)' \
+              | ${cachix} push ${cachixCache}
+
+              # Comment this out until I actually have package outputs
+              #nix build --json \
+              #| jq -r '.[].outputs | to_entries[].value' \
+              #| ${cachix} push ${cachixCache}
+            '';
         in
         pkgs.mkShell {
-          packages = [ format reload pkgs.jq ];
+          packages = [ cache format reload pkgs.jq ];
         };
-
-      packages.default = pkgs.dockerTools.buildImage {
-        name = "nix-flakes";
-        tag = "latest";
-        fromImage = pkgs.dockerTools.pullImage {
-          imageName = "nixos/nix";
-          finalImageName = "nix";
-          finalImageTag = "2.12.0pre20220901_4823067";
-          imageDigest = "sha256:82da5bfe03f16bb1bc627af74e76b213fa237565c1dcd0b8d8ef1204d0960a59";
-          sha256 = "sha256-sMdYw2HtUM5r5PP+gW1xsZts+POvND6UffKvvaxcv4M=";
-        };
-
-        config = {
-          WorkingDir = "/app";
-
-          Env = [
-            "NIXPKGS_ALLOW_UNFREE=1"
-          ];
-        };
-      };
     });
 }
