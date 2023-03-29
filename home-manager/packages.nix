@@ -97,7 +97,7 @@ let
   ]);
 
   rustTools = with pkgs; [
-    rustup # for things like `cargo init`
+    rustToolchain # for things like `cargo init`
   ];
 
   # These are broken on aarch64-darwin but I hope to add them someday

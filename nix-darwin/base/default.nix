@@ -1,4 +1,9 @@
-{ cachix, overlays, pkgs, system, ... }:
+{ cachix
+, overlays
+, pkgs
+, system
+, ...
+}:
 
 let
   inherit (pkgs) username;
@@ -122,8 +127,12 @@ in
     inherit overlays;
   };
 
-  programs.nix-index.enable = true;
-  programs.zsh.enable = true;
+  programs = {
+    nix-index = {
+      enable = true;
+    };
+    zsh.enable = true;
+  };
 
   services.nix-daemon.enable = true;
 
@@ -131,5 +140,5 @@ in
   system.keyboard.remapCapsLockToEscape = true;
   security.pam.enableSudoTouchIdAuth = true;
 
-  users.users.lucperkins = { name = "lucperkins"; home = "/Users/lucperkins"; };
+  users.users.lucperkins = { name = "lucperkins"; home = pkgs.homeDirectory; };
 }

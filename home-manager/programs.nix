@@ -75,12 +75,6 @@
     inherit (pkgs) vimPlugins;
   };
 
-  # Speed up nix search functionality
-  nix-index = {
-    enable = true;
-    enableZshIntegration = true;
-  };
-
   # Experimental shell
   nushell = import ./nushell.nix { inherit pkgs; };
 

@@ -1,4 +1,6 @@
-{ pkgs, ... }:
+{ pkgs
+, ...
+}:
 
 {
   nixpkgs = import ./nixpkgs.nix;
