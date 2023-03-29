@@ -11,15 +11,24 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, nix-darwin, home-manager }: let
+  outputs = { self, nixpkgs, nix-darwin, home-manager, rust-overlay }: let
     username = "lucperkins";
     cachix = {
       cache = "the-nix-way";
       publicKey = "the-nix-way.cachix.org-1:x0GnA8CHhHs1twmTdtfZe3Y0IzCOAy7sU8ahaeCCmVw=";
     };
-
+    overlays = [
+      (import rust-overlay)
+      (final: prev: {
+        rustToolchain = prev.rust-bin.stable.latest.default;
+      })
+    ];
     stateVersion = "22.11";
     macOsSystems = [ "aarch64-darwin" ];
     forEachMacOsSystem = f: nixpkgs.lib.genAttrs macOsSystems (system: f {
@@ -42,20 +51,21 @@
     });
 
     # TODO: allow for multiple systems
-    darwinConfigurations."${username}-aarch64-darwin" = let
-      pkgs = import nixpkgs { system = "aarch64-darwin"; };
-    in nix-darwin.lib.darwinSystem {
+    darwinConfigurations."${username}-aarch64-darwin" = nix-darwin.lib.darwinSystem {
       system = "aarch64-darwin";
       modules = [
         self.darwinModules.base
         home-manager.darwinModules.home-manager
-        
+        ./home-manager
       ];
     };
 
     darwinModules = {
       base = { pkgs, ... }: {
-        config = import ./nix-darwin/base { inherit cachix pkgs username; };
+        config = import ./nix-darwin/base {
+          system = "aarch64-darwin";
+          inherit cachix overlays pkgs username;
+        };
       };
     };
   };

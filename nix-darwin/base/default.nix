@@ -1,4 +1,4 @@
-{ pkgs, username, cachix, ... }:
+{ cachix, overlays, pkgs, system, username, ... }:
 
 let
   # Linux system for the aarch64-linux builder
@@ -33,8 +33,6 @@ let
     ${linuxBuilder.builder}/bin/create-builder
   '';
 in {
-  environment.systemPackages = [ runLinuxBuilder ];
-
   environment = {
     etc = {
       "nix/ssh_config".text = ''
@@ -100,8 +98,11 @@ in {
   };
 
   nixpkgs = {
-    config = {};
-    overlays = [];
+    inherit system;
+    config = {
+      config = { allowUnfree = true; };
+    };
+    inherit overlays;
   };
 
   services.nix-daemon.enable = true;
