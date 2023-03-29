@@ -1,6 +1,7 @@
 { config, pkgs, lib, ... }:
 
 let
+  username = "lucperkins";
   dataDir = "/var/lib/nixos-builder";
   linuxSystem = builtins.replaceStrings [ "darwin" ] [ "linux" ]
     pkgs.stdenv.hostPlatform.system;
@@ -34,12 +35,27 @@ let
 in
 {
   config = {
-    #
     environment.systemPackages = [ runLinuxBuilder ];
 
     # Enable remote builds
     nix = {
+      package = pkgs.nixFlakes;
+
       distributedBuilds = true;
+
+      envVars = { NIX_SSHOPTS = "-F /etc/nix/ssh_config"; };
+
+      extraOptions = ''
+        auto-optimise-store = true
+        bash-prompt-prefix = (nix:$name)\040
+        experimental-features = nix-command flakes
+        extra-nix-path = nixpkgs=flake:nixpkgs
+        trusted-public-keys = the-nix-way.cachix.org-1:x0GnA8CHhHs1twmTdtfZe3Y0IzCOAy7sU8ahaeCCmVw=
+        trusted-substituters = https://cache.nixos.org https://the-nix-way.cachix.org
+        trusted-users = root ${username}
+      '';
+      
+      useDaemon = true;
 
       buildMachines = [{
         hostName = "ssh://linux-builder";
@@ -67,9 +83,6 @@ in
         [127.0.0.1]:31022 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJBWcxb/Blaqt1auOtE+F8QUWrUotiC5qBJ+UuEWdVCb
       '';
     };
-
-    # Tell nix-daemon to use our custom SSH config
-    nix.envVars = { NIX_SSHOPTS = "-F /etc/nix/ssh_config"; };
 
     launchd.daemons = {
       linux-builder = {

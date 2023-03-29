@@ -12,12 +12,65 @@ let
     buildVscodeMarketplaceExtension {
       mktplcRef = { inherit name publisher sha256 version; };
     };
+  
+  myExtensions = {
+    nickel = (extension {
+      publisher = "kubukoz";
+      name = "nickel-syntax";
+      version = "0.0.2";
+      sha256 = "sha256-ffPZd717Y2OF4d9MWE6zKwcsGWS90ZJvhWkqP831tVM=";
+    });
+
+    nix = (extension {
+      publisher = "bbenoist";
+      name = "nix";
+      version = "1.0.1";
+      sha256 = "sha256-qwxqOGublQeVP2qrLF94ndX/Be9oZOn+ZMCFX1yyoH0=";
+    });
+
+    nixpkgs-fmt = (extension {
+      publisher = "B4dM4n";
+      name = "nixpkgs-fmt";
+      version = "0.0.1";
+      sha256 = "sha256-vz2kU36B1xkLci2QwLpl/SBEhfSWltIDJ1r7SorHcr8=";
+    });
+
+    nushell = (extension {
+      publisher = "TheNuProjectContributors";
+      name = "vscode-nushell-lang";
+      version = "1.0.0";
+      sha256 = "sha256-2FHAFh4ipYKegir7o59Ypb78MOzy2iu+3p3aUUgsatw=";
+    });
+
+    unison = (extension {
+      publisher = "benfradet";
+      name = "vscode-unison";
+      version = "0.4.0";
+      sha256 = "sha256-IDM9v+LWckf20xnRTj+ThAFSzVxxDVQaJkwO37UIIhs=";
+    });
+  };
 in
 {
   enable = true;
-  extensions = with pkgs.vscode-extensions; [
+  enableExtensionUpdateCheck = true;
+  enableUpdateCheck = true;
+  keybindings = [
+    #{
+    #  key = "ctrl+c";
+    #  command = "editor.action.clipboardCopyAction";
+    #  when = "textInputFocus";
+    #}
+  ];
+
+  extensions = (with myExtensions; [
+    nickel
+    nix
+    nixpkgs-fmt
+    nushell
+    unison
+  ]) ++ (with pkgs.vscode-extensions; [
     # Provided by Nixpkgs
-    bbenoist.nix
+    
     bierner.markdown-mermaid
     dbaeumer.vscode-eslint
     #dhall.dhall-lang
@@ -34,24 +87,7 @@ in
     tamasfe.even-better-toml
     yzhang.markdown-all-in-one
 
-    (extension {
-      publisher = "kubukoz";
-      name = "nickel-syntax";
-      version = "0.0.2";
-      sha256 = "sha256-ffPZd717Y2OF4d9MWE6zKwcsGWS90ZJvhWkqP831tVM=";
-    })
-    (extension {
-      publisher = "TheNuProjectContributors";
-      name = "vscode-nushell-lang";
-      version = "1.0.0";
-      sha256 = "sha256-2FHAFh4ipYKegir7o59Ypb78MOzy2iu+3p3aUUgsatw=";
-    })
-    (extension {
-      publisher = "benfradet";
-      name = "vscode-unison";
-      version = "0.4.0";
-      sha256 = "sha256-IDM9v+LWckf20xnRTj+ThAFSzVxxDVQaJkwO37UIIhs=";
-    })
+
     #(extension {
     #  publisher = "moalamri";
     #  name = "inline-fold";
@@ -263,12 +299,6 @@ in
       sha256 = "sha256-juOcZgSfhM1BnyVQPleP86rbuRt0peGIr2aDh7WmNQk=";
     })
     (extension {
-      publisher = "B4dM4n";
-      name = "nixpkgs-fmt";
-      version = "0.0.1";
-      sha256 = "sha256-vz2kU36B1xkLci2QwLpl/SBEhfSWltIDJ1r7SorHcr8=";
-    })
-    (extension {
       publisher = "nickgo";
       name = "cuelang";
       version = "0.0.1";
@@ -313,8 +343,8 @@ in
     (extension {
       publisher = "PKief";
       name = "material-icon-theme";
-      version = "4.19.0";
-      sha256 = "sha256-RBXs7S0iyuutUn11hFqc0VyTs4NFDFLBRvY0u8id86s=";
+      version = "4.25.0";
+      sha256 = "sha256-/lD3i7ZdF/XOi7RduS3HIYHFXhkoW2+PJW249gQxcyk=";
     })
     (extension {
       publisher = "EditorConfig";
@@ -340,7 +370,7 @@ in
       version = "0.8.6";
       sha256 = "sha256-v15KuD3eYFCsrworCJ1SZAMkyZKztAwWKmfwmbirleI=";
     })
-  ];
+  ]);
   #keybindings = [];
 
   userSettings = {

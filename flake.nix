@@ -133,8 +133,8 @@
           '';
 
           reload = pkgs.writeScriptBin "reload" ''
-            ${run "nix"} build --no-sandbox .#homeConfigurations.${system}.activationPackage
-            ./result/activate
+            ${run "nix"} build .#darwinConfigurations.${macOsSystem}.system
+            ./result/sw/bin/darwin-rebuild switch --flake .
           '';
           cache =
             let
