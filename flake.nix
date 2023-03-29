@@ -15,9 +15,13 @@
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nuenv = {
+      url = "github:DeterminateSystems/nuenv";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, nix-darwin, home-manager, rust-overlay }:
+  outputs = { self, nixpkgs, nix-darwin, home-manager, rust-overlay, nuenv }:
     let
       username = "lucperkins";
       homeDirectory = "/Users/${username}";
@@ -33,6 +37,7 @@
 
           inherit homeDirectory stateVersion username;
         })
+        nuenv.overlays.default
       ];
       macOsSystems = [ "aarch64-darwin" ];
       forEachMacOsSystem = f: nixpkgs.lib.genAttrs macOsSystems (system: f {

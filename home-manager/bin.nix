@@ -1,167 +1,115 @@
 { pkgs }:
 
 let
-  inherit (pkgs) writeScriptBin;
   inherit (pkgs.lib) fakeHash;
 
-  checkForArg = pos: msg: ''
-    if [ -z "$''${pos}" ]; then
-      echo "${msg}"
-      exit 1
-    fi
-  '';
-
-  checkForArg1 = msg: checkForArg 1 msg;
-  checkForArg2 = msg: checkForArg 2 msg;
-  checkForArg3 = msg: checkForArg 3 msg;
-
-  prefix = ''
-    set -o errexit
-    set -o nounset
-    set -o pipefail
-    if [[ "''${TRACE-0}" == "1" ]]; then
-      set -o xtrace
-    fi
-  '';
-
-  script = name: content: writeScriptBin name ''
-    ${prefix}
-    ${content}
-  '';
+  nu = name: script: pkgs.nuenv.mkScript {
+    inherit name script;
+  };
 in
 [
-  (script "cache" ''
-    ${checkForArg1 "no cache specified"}
-    nix flake archive --json \
-      | ${pkgs.jq}/bin/jq -r '.path,(.inputs|to_entries[].value.path)' \
-      | ${pkgs.cachix}/bin/cachix push $1
-  '')
-
-  (script "cache-env" ''
-    ${checkForArg1 "no cache specified"}
-    nix develop --profile nuenv-ci-profile
-    cachix push $1 nuenv-ci-profile
-  '')
-
-  (script "docker-clean" ''
+  (nu "docker-clean" ''
     docker system prune -a --volumes
   '')
 
-  (script "build-push" ''
-    ${checkForArg1 "no build attribute specified"}
-
-    nix-build '<nixpkgs>' -A $1 | cachix push lucperkins-dev && rm result
-  '')
-  (script "crate-hash" ''
-    ${checkForArg1 "no package name provided"}
-    ${checkForArg2 "no package version provided"}
-
-    nix-prefetch-url --type sha256 --unpack https://crates.io/api/v1/crates/$1/$2/download
-  '')
-  (script "fakeHash" ''
-    echo "${fakeHash}" | pbcopy
-  '')
-  (script "hasher" ''
-    ${checkForArg1 "no string provided"}
-    nix-hash --type sha256 --flat --base32 <(echo $1) | cut -c 1-32
-  '')
-  (script "git-hash" ''
-    ${checkForArg1 "no owner specified"}
-    ${checkForArg2 "no repo specified"}
-    ${checkForArg3 "no revision specified"}
-
-    nix-prefetch-url --type sha256 --unpack https://github.com/$1/$2/archive/$3.tar.gz
-  '')
-  (script "has" ''
-    ${checkForArg1 "no search term specified"}
-
-    (cd ~/nx/nixpkgs && git grep $1)
-  '')
-  (script "proj" ''
-    nix flake init --template github:the-nix-way/nome
-  '')
-  (script "wo" ''
-    ${checkForArg1 "no executable specified"}
-
-    readlink $(which $1)
-  '')
-  (script "xr" ''
-    ${checkForArg1 "no executable specified"}
-
-    nix run nixpkgs#$1 -- $2
-  '')
-  (script "xs" ''
-    ${checkForArg1 "no attribute specified"}
-
-    nix-env --query --available --attr-path $1
-  '')
-  (script "xsp" ''
-    ${checkForArg1 "no attribute specified"}
-
-    nix-env --file '<nixpkgs>' --query --available --attr-path -A $1
+  (nu "crate-hash" ''
+    # Display the hash for a cargo crate
+    def main [
+      name: string, # Package name
+      version: string, # Package version
+    ] {
+      nix-prefetch-url --type sha256 --unpack $"https://crates.io/api/v1/crates/($name)/($version)/download"
+    }
   '')
 
-  (script "x-run-force" ''
-    nix run --tarball-ttl 0 ''${@}
+  (nu "fake-hash" ''
+    "${fakeHash}"
   '')
 
-  (script "px" ''
-    ${checkForArg1 "no system specified"}
-
-    nix eval nixpkgs#pkgsCross.$1.stdenv.hostPlatform.config
+  (nu "git-hash" ''
+    # Get the hash for the GitHub URL at https://github.com/<owner>/<repo>/archive/<rev>.tar.gz
+    def main [
+      owner: string, # The repo owner
+      repo: string, # The repo name
+      rev: string # The Git revision
+    ] {
+      nix-prefetch-url --type sha256 --unpack $"https://github.com/($owner)/($repo)/archive/($rev).tar.gz"
+    }
   '')
 
-  (script "dvt" ''
-    ${checkForArg1 "no template specified"}
-
-    nix flake init --template github:the-nix-way/dev-templates#$1
+  (nu "has" ''
+    # Search for a specific term in the local Nixpkgs repo
+    def main [
+      term: string # The search term
+    ] {
+      do {
+        cd ~/nx/nixpkgs
+        git grep $term
+      }
+    }
   '')
 
-  (script "cleanup" ''
+  (nu "proj" ''
+    def main [] {
+      "Initializing Nome proj template"
+      nix flake init --template github:the-nix-way/nome
+    }
+  '')
+
+  (nu "wo" ''
+    # See the path of an executable
+    def main [
+      executable: string, # The executable to trace
+    ] {
+      readlink $"(which $executable | get path.0)"
+    }
+  '')
+
+  (nu "xr" ''
+    # Quick run a Nix program
+    def main [
+      program: string, # The program to run
+      cmd?: string # The command to pass to the program
+    ] {
+      nix run $"nixpkgs#($program)(if $cmd { $" ($cmd)" })"
+    }
+  '')
+
+  (nu "px" ''
+    # Cross-compile for system
+    def main [
+      system: string, # The system
+    ] {
+      nix eval $"nixpkgs#pkgsCross.($system).stdenv.hostPlatform.config"
+    }
+  '')
+
+  (nu "dvs" ''
+    # Initialize a template from Nome
+    def main [
+      template: string, # The template to initialize
+    ] {
+      nix flake init --template $"github:the-nix-way/nome#($template)"
+    }
+  '')
+
+  (nu "dvt" ''
+    # Initialize a template from dev-templates
+    def main [
+      template: string, # The template
+    ] {
+      nix flake init --template $"github:the-nix-way/dev-templates#($template)"
+    }
+  '')
+
+  (nu "cleanup" ''
     docker system prune -af
     docker volume prune -f
     docker image prune -af
   '')
 
-  (script "dvs" ''
-    ${checkForArg1 "no template specified"}
-
-    nix flake init --template github:the-nix-way/nome#$1
-  '')
-
   # Open up this directory in VS Code for editing
-  (script "cfg" ''
+  (nu "cfg" ''
     code ${pkgs.homeDirectory}/the-nix-way/nome
   '')
-
-  (script "linux-builder" ''
-    nix run nixpkgs/release-22.11#darwin.builder
-  '')
-
-  # Borrowed from here: https://discourse.nixos.org/t/nixpkgs-support-for-linux-builders-running-on-macos/24313/2
-  (
-    let
-      dataDir = "/var/lib/nixos-builder";
-      linuxSystem = builtins.replaceStrings [ "darwin" ] [ "linux" ]
-        pkgs.stdenv.hostPlatform.system;
-      outerPkgs = pkgs;
-      port = 31022;
-      linuxBuilder = (import "${pkgs.nixpkgs-unstable.path}/nixos" {
-        system = linuxSystem;
-        configuration = ({ modulesPath, lib, ... }: {
-          imports = [ "${modulesPath}/profiles/macos-builder.nix" ];
-          virtualisation.host.pkgs = outerPkgs;
-          virtualisation.forwardPorts = lib.mkForce [{
-            from = "host";
-            host.address = "127.0.0.1";
-            host.port = port;
-            guest.port = 22;
-          }];
-        });
-      }).config.system.build.macos-builder-installer;
-    in
-    (script "linux-builder-daemon" ''
-      sudo launchctl kickstart -k system/org.nixos.nix-daemon
-    '')
-  )
 ]
