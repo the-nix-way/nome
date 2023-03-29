@@ -41,15 +41,15 @@
   };
 
   # The GitHub CLI
-  #gh = {
-  #  enable = true;
-  #  settings = {
-  #    editor = "vim";
-  #    git_protocol = "ssh";
-  #    prompt = "enabled";
-  #    aliases = (import ./aliases.nix { inherit homeDirectory; }).githubCli;
-  #  };
-  #};
+  gh = {
+    enable = true;
+    settings = {
+      editor = "vim";
+      git_protocol = "ssh";
+      prompt = "enabled";
+      aliases = (import ./aliases.nix { inherit pkgs; }).githubCli;
+    };
+  };
 
   # But of course
   git = import ./git.nix { inherit pkgs; };
@@ -71,9 +71,9 @@
   #};
 
   # For Git rebases and such
-  #neovim = import ./neovim.nix {
-  #  inherit (pkgs) vimPlugins;
-  #};
+  neovim = import ./neovim.nix {
+    inherit (pkgs) vimPlugins;
+  };
 
   # Speed up nix search functionality
   nix-index = {
@@ -82,7 +82,7 @@
   };
 
   # Experimental shell
-  #nushell = import ./nushell.nix { inherit pkgs; };
+  nushell = import ./nushell.nix { inherit pkgs; };
 
   # Document conversion
   #pandoc = {
@@ -94,7 +94,7 @@
   starship = import ./starship.nix;
 
   # My most-used multiplexer
-  #tmux = import ./tmux.nix;
+  tmux = import ./tmux.nix;
 
   # My most-used editor
   vscode = import ./vscode.nix { inherit pkgs; };

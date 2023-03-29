@@ -25,7 +25,7 @@ let
       });
     }).config.system.build.macos-builder-installer;
   };
-  
+
   runLinuxBuilder = pkgs.writeShellScriptBin "run-linux-builder" ''
     set -uo pipefail
     trap 's=$?; echo "$0: Error on line "$LINENO": $BASH_COMMAND"; exit $s' ERR
@@ -34,7 +34,8 @@ let
     cd "${linuxBuilder.dataDir}"
     ${linuxBuilder.builder}/bin/create-builder
   '';
-in {
+in
+{
   environment = {
     etc = {
       "nix/ssh_config".text = ''
@@ -53,12 +54,18 @@ in {
     variables = { BOOPER = "bopper"; };
   };
 
-  fonts.fontDir.enable = true;
-  fonts.fonts = with pkgs; [
-    recursive
-    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-   
-  ];
+  fonts = {
+    fontDir.enable = true;
+    fonts = with pkgs; [
+      recursive
+      (nerdfonts.override {
+        fonts = [
+          "FiraCode"
+          "JetBrainsMono"
+        ];
+      })
+    ];
+  };
 
   launchd.daemons.linux-builder = {
     command = "${runLinuxBuilder}/bin/run-linux-builder";
@@ -88,7 +95,7 @@ in {
       build-users-group = "nixbld";
       cores = 10;
       experimental-features = [ "nix-command" "flakes" ];
-      extra-sandbox-paths = [];
+      extra-sandbox-paths = [ ];
       extra-nix-path = "nixpkgs=flake:nixpkgs";
       max-jobs = "auto";
       require-sigs = true;

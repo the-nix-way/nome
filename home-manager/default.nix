@@ -1,15 +1,18 @@
 { pkgs, ... }:
 
 {
-    nixpkgs = { config = { allowUnfree = true; }; };
-    home-manager.useGlobalPkgs = true;
-    #home-manager.useUserPackages = true;
-    home-manager.users.lucperkins = { pkgs, ... }: {
-        home = {
-            inherit (pkgs) stateVersion;
-        };
+  nixpkgs = import ./nixpkgs.nix;
 
-        home.packages = with pkgs; [ curl neofetch wget ];
+  home-manager = {
+    useGlobalPkgs = true;
+    users = {
+      lucperkins = { pkgs, ... }: {
+        home = {
+          inherit (pkgs) stateVersion;
+          packages = import ./packages.nix { inherit pkgs; };
+        };
         programs = import ./programs.nix { inherit pkgs; };
+      };
     };
+  };
 }
