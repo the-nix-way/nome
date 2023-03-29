@@ -1,5 +1,5 @@
 {
-  description = "My Nix world";
+  description = "Nome: my Nix Home";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs";
@@ -15,14 +15,21 @@
 
   outputs = { self, nixpkgs, nix-darwin, home-manager }: let
     username = "lucperkins";
-    systems = [ "aarch64-darwin" ];
-    forEachSystem = f: nixpkgs.lib.genAttrs systems (system: f {
+    cachix = {
+      cache = "the-nix-way";
+      publicKey = "the-nix-way.cachix.org-1:x0GnA8CHhHs1twmTdtfZe3Y0IzCOAy7sU8ahaeCCmVw=";
+    };
+
+    stateVersion = "22.11";
+    macOsSystems = [ "aarch64-darwin" ];
+    forEachMacOsSystem = f: nixpkgs.lib.genAttrs macOsSystems (system: f {
       inherit system;
       pkgs = import nixpkgs { inherit system; };
     });
   in {
-    devShells = forEachSystem ({ pkgs, system }: {
+    devShells = forEachMacOsSystem ({ pkgs, system }: {
       default = let
+        # Helper script for reloading my full config
         reload = pkgs.writeScriptBin "reload" ''
           # This janky-ish script is necessary because nix-darwin isn't yet fully flake friendly
           ${pkgs.nixFlakes}/bin/nix build .#darwinConfigurations.${username}-${system}.system
@@ -35,11 +42,21 @@
     });
 
     # TODO: allow for multiple systems
-    darwinConfigurations."${username}-aarch64-darwin" = nix-darwin.lib.darwinSystem {
+    darwinConfigurations."${username}-aarch64-darwin" = let
+      pkgs = import nixpkgs { system = "aarch64-darwin"; };
+    in nix-darwin.lib.darwinSystem {
       system = "aarch64-darwin";
       modules = [
-        (import ./nix-darwin)
+        self.darwinModules.base
+        home-manager.darwinModules.home-manager
+        
       ];
+    };
+
+    darwinModules = {
+      base = { pkgs, ... }: {
+        config = import ./nix-darwin/base { inherit cachix pkgs username; };
+      };
     };
   };
 }
