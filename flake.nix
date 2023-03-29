@@ -76,6 +76,11 @@
         };
       };
 
+      nixosConfigurations.simple = nixpkgs.lib.nixosSystem {
+        system = "aarch64-linux";
+        modules = [ ./nixos/configuration.nix ./nixos/hardware-configuration.nix ];
+      };
+
       templates = import ./templates;
     };
 }
