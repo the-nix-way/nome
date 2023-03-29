@@ -1,6 +1,8 @@
-{ cachix, overlays, pkgs, system, username, ... }:
+{ cachix, overlays, pkgs, system, ... }:
 
 let
+  inherit (pkgs) username;
+
   # Linux system for the aarch64-linux builder
   linuxBuilder = rec {
     dataDir = "/var/lib/nixos-builder";
@@ -48,7 +50,15 @@ in {
         [127.0.0.1]:31022 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJBWcxb/Blaqt1auOtE+F8QUWrUotiC5qBJ+UuEWdVCb
       '';
     };
+    variables = { BOOPER = "bopper"; };
   };
+
+  fonts.fontDir.enable = true;
+  fonts.fonts = with pkgs; [
+    recursive
+    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+   
+  ];
 
   launchd.daemons.linux-builder = {
     command = "${runLinuxBuilder}/bin/run-linux-builder";
@@ -100,10 +110,19 @@ in {
   nixpkgs = {
     inherit system;
     config = {
-      config = { allowUnfree = true; };
+      allowUnfree = true;
     };
     inherit overlays;
   };
 
+  programs.nix-index.enable = true;
+  programs.zsh.enable = true;
+
   services.nix-daemon.enable = true;
+
+  system.keyboard.enableKeyMapping = true;
+  system.keyboard.remapCapsLockToEscape = true;
+  security.pam.enableSudoTouchIdAuth = true;
+
+  users.users.lucperkins = { name = "lucperkins"; home = "/Users/lucperkins"; };
 }
