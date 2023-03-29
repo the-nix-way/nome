@@ -14,20 +14,18 @@
   };
 
   outputs = { self, nixpkgs, nix-darwin, home-manager }: let
-    macosSystem = "Lucs-MacBook-Pro";
     username = "lucperkins";
     systems = [ "aarch64-darwin" ];
-    forAllSystems = f: nixpkgs.lib.genAttrs systems (system: f {
+    forEachSystem = f: nixpkgs.lib.genAttrs systems (system: f {
       inherit system;
       pkgs = import nixpkgs { inherit system; };
     });
   in {
-    devShells = forAllSystems ({ pkgs, system }: {
+    devShells = forEachSystem ({ pkgs, system }: {
       default = let
         reload = pkgs.writeScriptBin "reload" ''
           # This janky-ish script is necessary because nix-darwin isn't yet fully flake friendly
-          ${pkgs.nixFlakes}/bin/nix build \
-            .#darwinConfigurations.${macosSystem}.system
+          ${pkgs.nixFlakes}/bin/nix build .#darwinConfigurations.${username}-${system}.system
           ./result/sw/bin/darwin-rebuild switch --flake .
         '';
       in pkgs.mkShell {
@@ -36,7 +34,8 @@
       };
     });
 
-    darwinConfigurations.${macosSystem} = nix-darwin.lib.darwinSystem {
+    # TODO: allow for multiple systems
+    darwinConfigurations."${username}-aarch64-darwin" = nix-darwin.lib.darwinSystem {
       system = "aarch64-darwin";
       modules = [
         (import ./nix-darwin)
