@@ -1,6 +1,4 @@
-{ pkgs
-, ...
-}:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -54,8 +52,10 @@
   services = {
     openssh = {
       enable = true;
-      passwordAuthentication = true;
-      permitRootLogin = "no";
+      settings = {
+        PasswordAuthentication = true;
+        PermitRootLogin = "no";
+      };
     };
 
     sshd = {
@@ -64,6 +64,6 @@
   };
 
   system = {
-    stateVersion = "22.05";
+    stateVersion = "22.11";
   };
 }

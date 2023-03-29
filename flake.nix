@@ -19,9 +19,13 @@
       url = "github:DeterminateSystems/nuenv";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-generators = {
+      url = "github:nix-community/nixos-generators";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, nix-darwin, home-manager, rust-overlay, nuenv }:
+  outputs = { self, nixpkgs, nix-darwin, home-manager, rust-overlay, nuenv, nixos-generators }:
     let
       username = "lucperkins";
       homeDirectory = "/Users/${username}";
@@ -46,6 +50,17 @@
       });
     in
     {
+      packages = forEachMacOsSystem ({ pkgs, ... }: {
+        default = nixos-generators.nixosGenerate {
+          system = "aarch64-linux";
+          modules = [
+            ./nixos/configuration.nix
+            ./nixos/hardware-configuration.nix
+          ];
+          format = "vm-nogui";
+        };
+      });
+
       devShells = forEachMacOsSystem ({ pkgs, system }: {
         default =
           let
