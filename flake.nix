@@ -78,17 +78,23 @@
       darwinConfigurations."${username}-aarch64-darwin" = nix-darwin.lib.darwinSystem {
         system = "aarch64-darwin";
         modules = [
-          self.darwinModules.base
+          (self.darwinModules.base "aarch64-darwin")
+          (self.darwinModules.caching "aarch64-darwin")
           home-manager.darwinModules.home-manager
           ./home-manager
         ];
       };
 
       darwinModules = {
-        base = { pkgs, ... }: {
+        base = system: { pkgs, ... }: {
           config = import ./nix-darwin/base {
-            system = "aarch64-darwin";
-            inherit cachix overlays pkgs;
+            inherit overlays pkgs system;
+          };
+        };
+
+        caching = system: { ... }: {
+          config = import ./nix-darwin/caching {
+            inherit cachix username;
           };
         };
       };

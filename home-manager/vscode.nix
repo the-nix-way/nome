@@ -43,6 +43,13 @@ let
       sha256 = "sha256-2FHAFh4ipYKegir7o59Ypb78MOzy2iu+3p3aUUgsatw=";
     });
 
+    oil = (extension {
+      publisher = "karino2";
+      name = "oilshell-extension";
+      version = "1.3.0";
+      sha256 = pkgs.lib.fakeHash;
+    });
+
     unison = (extension {
       publisher = "benfradet";
       name = "vscode-unison";
