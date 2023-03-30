@@ -47,7 +47,14 @@ let
       publisher = "karino2";
       name = "oilshell-extension";
       version = "1.3.0";
-      sha256 = pkgs.lib.fakeHash;
+      sha256 = "sha256-rUAHB8rdUHh2G+2Fp8F7Pwmie+43PSWr9pLFfpj1cyw=";
+    });
+
+    opa = (extension {
+      publisher = "tsandall";
+      name = "opa";
+      version = "0.12.1";
+      sha256 = "sha256-HoFX0pNTbL4etkmZVvezmL0vKE54QZtIPjcAp2/llqs=";
     });
 
     unison = (extension {
@@ -67,6 +74,8 @@ in
     nix
     nixpkgs-fmt
     nushell
+    oil
+    opa
     unison
   ]) ++ (with pkgs.vscode-extensions; [
     # Provided by Nixpkgs
@@ -80,19 +89,6 @@ in
     tamasfe.even-better-toml
     yzhang.markdown-all-in-one
 
-
-    (extension {
-      publisher = "justusadam";
-      name = "language-haskell";
-      version = "3.6.0";
-      sha256 = "sha256-rZXRzPmu7IYmyRWANtpJp3wp0r/RwB7eGHEJa7hBvoQ=";
-    })
-    (extension {
-      publisher = "haskell";
-      name = "haskell";
-      version = "2.2.2";
-      sha256 = "sha256-zWdIVdz+kZg7KZQ7LeBCB4aB9wg8dUbkWfzGlM0Fq7Q=";
-    })
     (extension {
       publisher = "Vue";
       name = "volar";

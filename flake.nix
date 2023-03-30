@@ -78,30 +78,43 @@
       darwinConfigurations."${username}-aarch64-darwin" = nix-darwin.lib.darwinSystem {
         system = "aarch64-darwin";
         modules = [
-          (self.darwinModules.base "aarch64-darwin")
-          (self.darwinModules.caching "aarch64-darwin")
+          self.darwinModules.base
+          self.darwinModules.caching
+          self.darwinModules.linuxBuilder
           home-manager.darwinModules.home-manager
           ./home-manager
         ];
       };
 
       darwinModules = {
-        base = system: { pkgs, ... }: {
+        base = { pkgs, ... }: {
           config = import ./nix-darwin/base {
-            inherit overlays pkgs system;
+            inherit overlays pkgs;
           };
         };
 
-        caching = system: { ... }: {
+        caching = { ... }: {
           config = import ./nix-darwin/caching {
             inherit cachix username;
           };
         };
+
+        # This module is based on this very helpful comment on the NixOS Discourse:
+        # https://discourse.nixos.org/t/nixpkgs-support-for-linux-builders-running-on-macos/24313/2
+        linuxBuilder = { pkgs, ... }: {
+          config = import ./nix-darwin/linux-builder {
+            inherit pkgs;
+          };
+        };
       };
 
-      nixosConfigurations.simple = nixpkgs.lib.nixosSystem {
-        system = "aarch64-linux";
-        modules = [ ./nixos/configuration.nix ./nixos/hardware-configuration.nix ];
+      nixosConfigurations = rec {
+        default = simple;
+
+        simple = nixpkgs.lib.nixosSystem {
+          system = "aarch64-linux";
+          modules = [ ./nixos/configuration.nix ./nixos/hardware-configuration.nix ];
+        };
       };
 
       templates = import ./templates;
