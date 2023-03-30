@@ -95,7 +95,7 @@ in
     package = pkgs.nixVersions.unstable;
     settings = {
       auto-optimise-store = true;
-      bash-prompt-prefix = "(nix:$name)\040";
+      bash-prompt-prefix = "(nix:$name)\\040";
       build-users-group = "nixbld";
       cores = 10;
       experimental-features = [ "nix-command" "flakes" ];
