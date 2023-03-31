@@ -3,22 +3,11 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs";
-    nix-darwin = {
-      url = "github:lnl7/nix-darwin";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    rust-overlay = {
-      url = "github:oxalica/rust-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    nuenv = {
-      url = "github:DeterminateSystems/nuenv";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nix-darwin = { url = "github:lnl7/nix-darwin"; inputs.nixpkgs.follows = "nixpkgs"; };
+    home-manager = { url = "github:nix-community/home-manager"; inputs.nixpkgs.follows = "nixpkgs"; };
+    rust-overlay = { url = "github:oxalica/rust-overlay"; inputs.nixpkgs.follows = "nixpkgs"; };
+    nuenv = { url = "github:DeterminateSystems/nuenv"; inputs.nixpkgs.follows = "nixpkgs"; };
+    #detsys = { url = "github:DeterminateSystems/flake"; inputs.nixpkgs.follows = "nixpkgs"; };
   };
 
   outputs =
@@ -28,6 +17,7 @@
     , home-manager
     , rust-overlay
     , nuenv
+    , ...
     }:
 
     let
@@ -80,7 +70,8 @@
         modules = [
           self.darwinModules.base
           self.darwinModules.caching
-          self.darwinModules.linuxBuilder
+          self.darwinModules.linux-builder
+          #detsys.darwinModules.linux-builder
           home-manager.darwinModules.home-manager
           ./home-manager
         ];
