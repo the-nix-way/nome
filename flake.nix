@@ -87,24 +87,18 @@
       };
 
       darwinModules = {
-        base = { pkgs, ... }: {
-          config = import ./nix-darwin/base {
-            inherit overlays pkgs;
-          };
+        base = { pkgs, ... }: import ./nix-darwin/base {
+          inherit overlays pkgs;
         };
 
-        caching = { ... }: {
-          config = import ./nix-darwin/caching {
-            inherit cachix username;
-          };
+        caching = { ... }: import ./nix-darwin/caching {
+          inherit cachix username;
         };
 
         # This module is based on this very helpful comment on the NixOS Discourse:
         # https://discourse.nixos.org/t/nixpkgs-support-for-linux-builders-running-on-macos/24313/2
-        linuxBuilder = { pkgs, ... }: {
-          config = import ./nix-darwin/linux-builder {
-            inherit pkgs;
-          };
+        linuxBuilder = { pkgs, ... }: import ./nix-darwin/linux-builder {
+          inherit pkgs;
         };
       };
 
