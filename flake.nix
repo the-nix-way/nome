@@ -88,7 +88,7 @@
 
         # This module is based on this very helpful comment on the NixOS Discourse:
         # https://discourse.nixos.org/t/nixpkgs-support-for-linux-builders-running-on-macos/24313/2
-        linuxBuilder = { pkgs, ... }: import ./nix-darwin/linux-builder {
+        linux-builder = { pkgs, ... }: import ./nix-darwin/linux-builder {
           inherit pkgs;
         };
       };

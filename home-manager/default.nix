@@ -12,6 +12,7 @@
         home = {
           inherit (pkgs) stateVersion;
           packages = import ./packages.nix { inherit pkgs; };
+          shellAliases = (import ./aliases.nix { inherit pkgs; }).shell;
         };
         programs = import ./programs.nix { inherit pkgs; };
       };
