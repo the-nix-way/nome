@@ -70,6 +70,12 @@ nixos-rebuild switch --flake "github:the-nix-way"
 
 I should make it clear that this project is a personal project and not necessarily intended as a blueprint or a reproducible template. I do hope that you find some inspiration in it, but don't necessarily interpret what you see here as best practices. It's just an evolving project that I find quite useful and it's meant above all to show what Nix is capable of.
 
+## TODOs
+
+Stuff I'd like to change here:
+
+- Find a way to make nix-darwin install [Homebrew] for me
+
 [dev-templates]: https://github.com/the-nix-way/dev-templates
 [flakes]: https://nixos.wiki/wiki/Flakes
 [hm]: https://github.com/nix-community/home-manager

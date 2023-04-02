@@ -82,6 +82,7 @@
           self.darwinModules.base
           self.darwinModules.caching
           self.darwinModules.linux-builder
+          self.darwinModules.homebrew-replace
           #detsys.darwinModules.linux-builder
           home-manager.darwinModules.home-manager
           ./home-manager
@@ -95,6 +96,10 @@
 
         caching = { ... }: import ./nix-darwin/caching {
           inherit caches username;
+        };
+
+        homebrew-replace = {
+          imports = [ ./nix-darwin/homebrew-replace ];
         };
 
         # This module is based on this very helpful comment on the NixOS Discourse:
