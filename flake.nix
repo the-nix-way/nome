@@ -49,6 +49,18 @@
             else "/home/${username}";
 
           inherit stateVersion username;
+
+          temporalCli = prev.buildGoModule {
+            name = "temporal";
+            src = prev.fetchFromGitHub {
+              owner = "temporalio";
+              repo = "cli";
+              rev = "v0.7.0";
+              sha256 = "sha256-CXbf3B7XLsDFeRzUk9y1jf0F3ex0sLmBFy0YcOPpTjg=";
+            };
+            vendorSha256 = "sha256-JG9VeCrkU87MQOpZ2rs6cN1N5cgFVu1UT6w1OyGbw90=";
+            subPackages = [ "cmd/temporal" ];
+          };
         })
         nuenv.overlays.default
       ];
@@ -83,6 +95,8 @@
           self.darwinModules.caching
           self.darwinModules.linux-builder
           self.darwinModules.homebrew-replace
+          self.darwinModules.temporal
+          self.darwinModules.me # Where I configure all the modules
           #detsys.darwinModules.linux-builder
           home-manager.darwinModules.home-manager
           ./home-manager
@@ -107,6 +121,11 @@
         linux-builder = { pkgs, ... }: import ./nix-darwin/linux-builder {
           inherit pkgs;
         };
+
+        # Where I configure the imported modules
+        me = { imports = [ ./nix-darwin/me ]; };
+
+        temporal = { imports = [ ./nix-darwin/temporal ]; };
       };
 
       nixosConfigurations = rec {

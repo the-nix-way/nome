@@ -74,6 +74,7 @@ let
     riff # from overlay
     #subversion
     tailscale
+    temporalCli
     tree
     treefmt
     unison-ucm
