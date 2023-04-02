@@ -1,20 +1,22 @@
-{ cachix
+{ caches
 , username
 }:
 
 {
   config = {
     nix = {
-      settings = {
+      settings = rec {
         substituters = [
-          "https://cache.nixos.org"
-          "https://${cachix.cache}.cachix.org"
+          caches.nixos-org.cache
+          caches.the-nix-way.cache
+          caches.nix-community.cache
         ];
         trusted-public-keys = [
-          "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-          cachix.publicKey
+          caches.nixos-org.publicKey
+          caches.the-nix-way.publicKey
+          caches.nix-community.publicKey
         ];
-        trusted-substituters = [ "https://cache.nixos.org" "https://the-nix-way.cachix.org" ];
+        trusted-substituters = substituters;
         trusted-users = [ "root" username ];
       };
     };

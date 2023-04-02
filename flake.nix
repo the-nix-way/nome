@@ -23,10 +23,21 @@
     let
       username = "lucperkins";
       stateVersion = "22.11";
-      cachix = {
-        cache = "the-nix-way";
-        publicKey = "the-nix-way.cachix.org-1:x0GnA8CHhHs1twmTdtfZe3Y0IzCOAy7sU8ahaeCCmVw=";
+      caches = {
+        nixos-org = {
+          cache = "https://cache.nixos.org";
+          publicKey = "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=";
+        };
+        the-nix-way = {
+          cache = "https://the-nix-way.cachix.org";
+          publicKey = "the-nix-way.cachix.org-1:x0GnA8CHhHs1twmTdtfZe3Y0IzCOAy7sU8ahaeCCmVw=";
+        };
+        nix-community = {
+          cache = "https://nix-community.cachix.org";
+          publicKey = "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=";
+        };
       };
+
       overlays = [
         (import rust-overlay)
         (final: prev: {
@@ -83,7 +94,7 @@
         };
 
         caching = { ... }: import ./nix-darwin/caching {
-          inherit cachix username;
+          inherit caches username;
         };
 
         # This module is based on this very helpful comment on the NixOS Discourse:
