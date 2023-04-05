@@ -47,8 +47,8 @@ in
       command = ''
         ${temporalCli}/bin/temporal server start-dev \
           --namespace ${cfg.namespace} \
-          --port ${cfg.port} \
-          --ui-port ${cfg.uiPort}
+          --port ${toString cfg.port} \
+          --ui-port ${toString cfg.uiPort}
       '';
       serviceConfig = {
         KeepAlive = true;
