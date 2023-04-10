@@ -13,71 +13,12 @@ let
     buildVscodeMarketplaceExtension {
       mktplcRef = { inherit name publisher sha256 version; };
     };
-
-  myExtensions = {
-    nickel = (extension {
-      publisher = "kubukoz";
-      name = "nickel-syntax";
-      version = "0.0.2";
-      sha256 = "sha256-ffPZd717Y2OF4d9MWE6zKwcsGWS90ZJvhWkqP831tVM=";
-    });
-
-    nix = (extension {
-      publisher = "bbenoist";
-      name = "nix";
-      version = "1.0.1";
-      sha256 = "sha256-qwxqOGublQeVP2qrLF94ndX/Be9oZOn+ZMCFX1yyoH0=";
-    });
-
-    nixpkgs-fmt = (extension {
-      publisher = "B4dM4n";
-      name = "nixpkgs-fmt";
-      version = "0.0.1";
-      sha256 = "sha256-vz2kU36B1xkLci2QwLpl/SBEhfSWltIDJ1r7SorHcr8=";
-    });
-
-    nushell = (extension {
-      publisher = "TheNuProjectContributors";
-      name = "vscode-nushell-lang";
-      version = "1.0.0";
-      sha256 = "sha256-2FHAFh4ipYKegir7o59Ypb78MOzy2iu+3p3aUUgsatw=";
-    });
-
-    oil = (extension {
-      publisher = "karino2";
-      name = "oilshell-extension";
-      version = "1.3.0";
-      sha256 = "sha256-rUAHB8rdUHh2G+2Fp8F7Pwmie+43PSWr9pLFfpj1cyw=";
-    });
-
-    opa = (extension {
-      publisher = "tsandall";
-      name = "opa";
-      version = "0.12.1";
-      sha256 = "sha256-HoFX0pNTbL4etkmZVvezmL0vKE54QZtIPjcAp2/llqs=";
-    });
-
-    unison = (extension {
-      publisher = "benfradet";
-      name = "vscode-unison";
-      version = "0.4.0";
-      sha256 = "sha256-IDM9v+LWckf20xnRTj+ThAFSzVxxDVQaJkwO37UIIhs=";
-    });
-  };
 in
 {
   enable = true;
   enableExtensionUpdateCheck = true;
   enableUpdateCheck = true;
-  extensions = (with myExtensions; [
-    nickel
-    nix
-    nixpkgs-fmt
-    nushell
-    oil
-    opa
-    unison
-  ]) ++ (with pkgs.vscode-extensions; [
+  extensions = with pkgs.vscode-extensions; [
     # Provided by Nixpkgs
     dbaeumer.vscode-eslint
     esbenp.prettier-vscode
@@ -88,7 +29,50 @@ in
     rust-lang.rust-analyzer
     tamasfe.even-better-toml
     yzhang.markdown-all-in-one
+    bbenoist.nix
 
+    (extension {
+      publisher = "kubukoz";
+      name = "nickel-syntax";
+      version = "0.0.2";
+      sha256 = "sha256-ffPZd717Y2OF4d9MWE6zKwcsGWS90ZJvhWkqP831tVM=";
+    })
+    (extension {
+      publisher = "B4dM4n";
+      name = "nixpkgs-fmt";
+      version = "0.0.1";
+      sha256 = "sha256-vz2kU36B1xkLci2QwLpl/SBEhfSWltIDJ1r7SorHcr8=";
+    })
+    (extension {
+      publisher = "TheNuProjectContributors";
+      name = "vscode-nushell-lang";
+      version = "1.0.0";
+      sha256 = "sha256-2FHAFh4ipYKegir7o59Ypb78MOzy2iu+3p3aUUgsatw=";
+    })
+    (extension {
+      publisher = "karino2";
+      name = "oilshell-extension";
+      version = "1.3.0";
+      sha256 = "sha256-rUAHB8rdUHh2G+2Fp8F7Pwmie+43PSWr9pLFfpj1cyw=";
+    })
+    (extension {
+      publisher = "tsandall";
+      name = "opa";
+      version = "0.12.1";
+      sha256 = "sha256-HoFX0pNTbL4etkmZVvezmL0vKE54QZtIPjcAp2/llqs=";
+    })
+    (extension {
+      publisher = "benfradet";
+      name = "vscode-unison";
+      version = "0.4.0";
+      sha256 = "sha256-IDM9v+LWckf20xnRTj+ThAFSzVxxDVQaJkwO37UIIhs=";
+    })
+    (extension {
+      publisher = "benfradet";
+      name = "vscode-unison";
+      version = "0.4.0";
+      sha256 = "sha256-IDM9v+LWckf20xnRTj+ThAFSzVxxDVQaJkwO37UIIhs=";
+    })
     (extension {
       publisher = "Vue";
       name = "volar";
@@ -192,7 +176,7 @@ in
       version = "0.8.6";
       sha256 = "sha256-v15KuD3eYFCsrworCJ1SZAMkyZKztAwWKmfwmbirleI=";
     })
-  ]);
+  ];
 
   userSettings = {
     "[mdx]" = {
