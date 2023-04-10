@@ -19,18 +19,60 @@ in
   enableExtensionUpdateCheck = true;
   enableUpdateCheck = true;
   extensions = with pkgs.vscode-extensions; [
-    # Provided by Nixpkgs
-    dbaeumer.vscode-eslint
-    esbenp.prettier-vscode
-    formulahendry.auto-close-tag
-    ms-azuretools.vscode-docker
-    octref.vetur
-    redhat.vscode-yaml
-    rust-lang.rust-analyzer
-    tamasfe.even-better-toml
-    yzhang.markdown-all-in-one
-    bbenoist.nix
-
+    (extension {
+      publisher = "dbaeumer";
+      name = "vscode-eslint";
+      version = "2.4.0";
+      sha256 = "sha256-7MUQJkLPOF3oO0kpmfP3bWbS3aT7J0RF7f74LW55BQs=";
+    })
+    (extension {
+      publisher = "esbenp";
+      name = "prettier-vscode";
+      version = "9.10.4";
+      sha256 = "sha256-khtyB0Qbm+iuM1GsAaF32YRv1VBTIy7daeCKdgwCIC8=";
+    })
+    (extension {
+      publisher = "formulahendry";
+      name = "auto-close-tag";
+      version = "0.5.14";
+      sha256 = "sha256-XYYHS2QTy8WYjtUYYWsIESzmH4dRQLlXQpJq78BolMw=";
+    })
+    (extension {
+      publisher = "ms-azuretools";
+      name = "vscode-docker";
+      version = "1.24.0";
+      sha256 = "sha256-zZ34KQrRPqVbfGdpYACuLMiMj4ZIWSnJIPac1yXD87k=";
+    })
+    (extension {
+      publisher = "octref";
+      name = "vetur";
+      version = "0.37.3";
+      sha256 = "sha256-3hi1LOZto5AYaomB9ihkAt4j/mhkCDJ8Jqa16piwHIQ=";
+    })
+    (extension {
+      publisher = "redhat";
+      name = "vscode-yaml";
+      version = "1.12.2";
+      sha256 = "sha256-EjHQvWiEEfLxM+c/SWAJ2H9ltGEgzMSC84Zyl5u+eqQ=";
+    })
+    (extension {
+      publisher = "rust-lang";
+      name = "rust-analyzer";
+      version = "0.4.1470";
+      sha256 = "sha256-WzOBzPhjjrWKI4gQgL/fRhJzz3qs16IeMyYq+tZL6KE=";
+    })
+    (extension {
+      publisher = "tamasfe";
+      name = "even-better-toml";
+      version = "0.19.0";
+      sha256 = "sha256-MqSQarNThbEf1wHDTf1yA46JMhWJN46b08c7tV6+1nU=";
+    })
+    (extension {
+      publisher = "bbenoist";
+      name = "Nix";
+      version = "1.0.1";
+      sha256 = "sha256-qwxqOGublQeVP2qrLF94ndX/Be9oZOn+ZMCFX1yyoH0=";
+    })
     (extension {
       publisher = "kubukoz";
       name = "nickel-syntax";
