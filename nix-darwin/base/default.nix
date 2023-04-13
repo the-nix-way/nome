@@ -59,7 +59,6 @@
     services.nix-daemon.enable = true;
 
     system.keyboard.enableKeyMapping = true;
-    system.keyboard.remapCapsLockToEscape = true;
     security.pam.enableSudoTouchIdAuth = true;
 
     users.users.lucperkins = { name = "lucperkins"; home = pkgs.homeDirectory; };

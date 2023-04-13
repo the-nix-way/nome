@@ -63,6 +63,7 @@ let
     libiconv
     ncurses
     neofetch
+    ngrok
     nodejs-18_x # for global npm and npx
     openssl
     pikchr

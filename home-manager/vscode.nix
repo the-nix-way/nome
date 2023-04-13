@@ -62,10 +62,10 @@ in
       sha256 = "sha256-WzOBzPhjjrWKI4gQgL/fRhJzz3qs16IeMyYq+tZL6KE=";
     })
     (extension {
-      publisher = "tamasfe";
-      name = "even-better-toml";
-      version = "0.19.0";
-      sha256 = "sha256-MqSQarNThbEf1wHDTf1yA46JMhWJN46b08c7tV6+1nU=";
+      publisher = "bungcip";
+      name = "better-toml";
+      version = "0.3.2";
+      sha256 = "sha256-g+LfgjAnSuSj/nSmlPdB0t29kqTmegZB5B1cYzP8kCI=";
     })
     (extension {
       publisher = "bbenoist";
@@ -118,8 +118,8 @@ in
     (extension {
       publisher = "Vue";
       name = "volar";
-      version = "1.0.13";
-      sha256 = "sha256-rWEV8Reevg2QcTynSiN/0ZeHLMo61qakqVhJTKAFpp4=";
+      version = "1.3.14";
+      sha256 = "sha256-fnsVi24nVH915YZ9lx43hS9rwXGP3RwWOVeOd0hZKc4=";
     })
     (extension {
       publisher = "GitHub";
@@ -245,13 +245,15 @@ in
       };
     };
     "[toml]" = {
-      "editor.defaultFormatter" = "tamasfe.even-better-toml";
+      "editor.defaultFormatter" = "bungcip.better-toml";
     };
     "[txt]" = {
       "editor.formatOnSave" = false;
     };
     "[vue]" = {
-      "editor.defaultFormatter" = "Vue.volar";
+      "editor.wordWrapColumn" = 100;
+      "editor.wordWrap" = "wordWrapColumn";
+      "editor.defaultFormatter" = "esbenp.prettier-vscode";
     };
     "debug.javascript.unmapMissingSources" = true;
     "editor.defaultFormatter" = "esbenp.prettier-vscode";
@@ -290,6 +292,8 @@ in
       "**/.git" = true;
       "**/node_modules" = true;
       "*.lock" = true;
+      "dist" = true;
+      "tmp" = true;
     };
     "terminal.integrated.fontFamily" = terminalFont;
     "workbench.colorTheme" = colorTheme;
