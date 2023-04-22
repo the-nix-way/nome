@@ -40,7 +40,7 @@ let
     Security
   ];
 
-  jsTools = (with pkgs; [ deno ]) ++ (with pkgs.nodePackages; [
+  jsTools = (with pkgs; []) ++ (with pkgs.nodePackages; [
     pnpm
     #yarn
   ]);
@@ -57,6 +57,7 @@ let
   misc = with pkgs; [
     comma
     curl
+    flyctl
     hugo # for initializing projects
     just
     keybase
@@ -93,7 +94,7 @@ let
   ];
 
   pythonTools = with pkgs; [ python310 ] ++ (with pkgs.python310Packages; [
-    #httpie
+    httpie
     pip
     #virtualenv
   ]);

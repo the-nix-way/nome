@@ -93,9 +93,9 @@
         modules = [
           self.darwinModules.base
           self.darwinModules.caching
-          self.darwinModules.linux-builder
-          self.darwinModules.homebrew-replace
-          self.darwinModules.temporal
+          #self.darwinModules.linux-builder
+          #self.darwinModules.homebrew-replace
+          #self.darwinModules.temporal
           self.darwinModules.me # Where I configure all the modules
           #detsys.darwinModules.linux-builder
           home-manager.darwinModules.home-manager
