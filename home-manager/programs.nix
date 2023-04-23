@@ -57,6 +57,9 @@
   # GPG config
   gpg.enable = true;
 
+  # Helix text editor
+  helix = import ./helix.nix;
+
   # Configure HM itself
   home-manager = {
     enable = true;

@@ -40,7 +40,7 @@ let
     Security
   ];
 
-  jsTools = (with pkgs; []) ++ (with pkgs.nodePackages; [
+  jsTools = (with pkgs; [ ]) ++ (with pkgs.nodePackages; [
     pnpm
     #yarn
   ]);

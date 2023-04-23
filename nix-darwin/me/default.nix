@@ -1,5 +1,0 @@
-{ ... }:
-
-{
-  #services.temporal.enable = true;
-}

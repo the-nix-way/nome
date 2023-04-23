@@ -96,7 +96,6 @@
           #self.darwinModules.linux-builder
           #self.darwinModules.homebrew-replace
           #self.darwinModules.temporal
-          self.darwinModules.me # Where I configure all the modules
           #detsys.darwinModules.linux-builder
           home-manager.darwinModules.home-manager
           ./home-manager
@@ -121,9 +120,6 @@
         linux-builder = { pkgs, ... }: import ./nix-darwin/linux-builder {
           inherit pkgs;
         };
-
-        # Where I configure the imported modules
-        me = { imports = [ ./nix-darwin/me ]; };
 
         temporal = { imports = [ ./nix-darwin/temporal ]; };
       };
