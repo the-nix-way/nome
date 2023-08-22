@@ -25,7 +25,21 @@
     };
 
     nix = {
-      package = pkgs.nixVersions.unstable;
+      buildMachines = [
+        {
+          hostName = "eu.nixbuild.net";
+          system = "x86_64-linux";
+          maxJobs = 100;
+          supportedFeatures = [ "benchmark" "big-parallel" "nixos-test" ];
+        }
+        #{
+        #  hostName = "eu.nixbuild.net";
+        #  system = "aarch64-linux";
+        #  maxJobs = 100;
+        #  supportedFeatures = [ "benchmark" "big-parallel" "nixos-test" ];
+        #}
+      ];
+      distributedBuilds = true;
       settings = {
         auto-optimise-store = true;
         bash-prompt-prefix = "(nix:$name)\\040";
@@ -52,6 +66,14 @@
     programs = {
       nix-index = {
         enable = true;
+      };
+      ssh = {
+        knownHosts = {
+          nixbuild = {
+            hostNames = [ "eu.nixbuild.net" ];
+            publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPIQCZc54poJ8vqawd8TraNryQeJnvH1eLpIDgbiqymM";
+          };
+        };
       };
       zsh.enable = true;
     };

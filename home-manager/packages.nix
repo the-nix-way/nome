@@ -55,10 +55,13 @@ let
 
   # I'll categorize these later :)
   misc = with pkgs; [
+    certstrap
     comma
     curl
+    elixir
     flyctl
     hugo # for initializing projects
+    ijq
     just
     keybase
     libiconv
@@ -80,6 +83,7 @@ let
     tree
     treefmt
     unison-ucm
+    uuidv7
     wget
     #youtube-dl
     yt-dlp
@@ -88,6 +92,7 @@ let
 
   nixTools = with pkgs; [
     cachix
+    flake-checker
     nixfmt
     nixpkgs-fmt
     #nix-init
@@ -101,6 +106,7 @@ let
 
   rustTools = with pkgs; [
     rustToolchain # for things like `cargo init`
+    rust-analyzer
   ];
 
   # These are broken on aarch64-darwin but I hope to add them someday

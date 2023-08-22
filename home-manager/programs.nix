@@ -57,9 +57,6 @@
   # GPG config
   gpg.enable = true;
 
-  # Helix text editor
-  helix = import ./helix.nix;
-
   # Configure HM itself
   home-manager = {
     enable = true;
@@ -94,7 +91,7 @@
   tmux = import ./tmux.nix;
 
   # My most-used editor
-  vscode = import ./vscode.nix { inherit pkgs; };
+  #vscode = import ./vscode.nix { inherit pkgs; };
 
   # My fav shell
   zsh = import ./zsh.nix {

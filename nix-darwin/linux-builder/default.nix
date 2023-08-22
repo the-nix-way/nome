@@ -37,9 +37,9 @@ in
     };
 
     nix = {
-      buildMachines = [ linuxBuilder.builderMachine ];
-      distributedBuilds = true;
-      envVars = { NIX_SSHOPTS = "-F /etc/nix/ssh_config"; }; # See the config above
+      #buildMachines = [ linuxBuilder.builderMachine ];
+      #distributedBuilds = true;
+      #envVars = { NIX_SSHOPTS = "-F /etc/nix/ssh_config"; }; # See the config above
     };
 
     # Make sure that the Nix daemon is enabled in the nix-darwin config

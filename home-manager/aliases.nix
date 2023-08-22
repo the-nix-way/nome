@@ -63,5 +63,6 @@
     # Nix flake helpers
     nfs = "nix flake show";
     nfu = "nix flake update";
+    ndc = "nix develop --command";
   };
 }

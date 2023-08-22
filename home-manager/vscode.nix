@@ -7,7 +7,7 @@ let
   iconTheme = "material-icon-theme";
 in
 {
-  enable = true;
+  enable = false;
 
   extensions = with pkgs.vscode-extensions; [
     bbenoist.nix

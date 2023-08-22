@@ -7,6 +7,8 @@
     home-manager = { url = "github:nix-community/home-manager"; inputs.nixpkgs.follows = "nixpkgs"; };
     rust-overlay = { url = "github:oxalica/rust-overlay"; inputs.nixpkgs.follows = "nixpkgs"; };
     nuenv = { url = "github:DeterminateSystems/nuenv"; inputs.nixpkgs.follows = "nixpkgs"; };
+    flake-checker = { url = "github:DeterminateSystems/flake-checker"; };
+    uuidv7 = { url = "git+ssh://git@github.com/DeterminateSystems/uuidv7.git"; };
     #detsys = { url = "github:DeterminateSystems/flake"; inputs.nixpkgs.follows = "nixpkgs"; };
   };
 
@@ -17,6 +19,8 @@
     , home-manager
     , rust-overlay
     , nuenv
+    , flake-checker
+    , uuidv7
     , ...
     }:
 
@@ -39,29 +43,37 @@
       };
 
       overlays = [
-        (import rust-overlay)
-        (final: prev: {
-          rustToolchain = prev.rust-bin.stable.latest.default;
+        rust-overlay.overlays.default
+        (final: prev:
+          let
+            system = prev.system;
+          in
+          {
+            flake-checker = flake-checker.packages.${system}.default;
 
-          homeDirectory =
-            if (prev.stdenv.isDarwin)
-            then "/Users/${username}"
-            else "/home/${username}";
+            uuidv7 = uuidv7.packages.${system}.default;
 
-          inherit stateVersion username;
+            rustToolchain = prev.rust-bin.stable.latest.default;
 
-          temporalCli = prev.buildGoModule {
-            name = "temporal";
-            src = prev.fetchFromGitHub {
-              owner = "temporalio";
-              repo = "cli";
-              rev = "v0.7.0";
-              sha256 = "sha256-CXbf3B7XLsDFeRzUk9y1jf0F3ex0sLmBFy0YcOPpTjg=";
+            homeDirectory =
+              if (prev.stdenv.isDarwin)
+              then "/Users/${username}"
+              else "/home/${username}";
+
+            inherit stateVersion username;
+
+            temporalCli = prev.buildGoModule {
+              name = "temporal";
+              src = prev.fetchFromGitHub {
+                owner = "temporalio";
+                repo = "cli";
+                rev = "v0.7.0";
+                sha256 = "sha256-CXbf3B7XLsDFeRzUk9y1jf0F3ex0sLmBFy0YcOPpTjg=";
+              };
+              vendorSha256 = "sha256-JG9VeCrkU87MQOpZ2rs6cN1N5cgFVu1UT6w1OyGbw90=";
+              subPackages = [ "cmd/temporal" ];
             };
-            vendorSha256 = "sha256-JG9VeCrkU87MQOpZ2rs6cN1N5cgFVu1UT6w1OyGbw90=";
-            subPackages = [ "cmd/temporal" ];
-          };
-        })
+          })
         nuenv.overlays.default
       ];
       macOsSystems = [ "aarch64-darwin" ];
@@ -93,10 +105,6 @@
         modules = [
           self.darwinModules.base
           self.darwinModules.caching
-          #self.darwinModules.linux-builder
-          #self.darwinModules.homebrew-replace
-          #self.darwinModules.temporal
-          #detsys.darwinModules.linux-builder
           home-manager.darwinModules.home-manager
           ./home-manager
         ];
