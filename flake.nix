@@ -2,12 +2,12 @@
   description = "Nome: my Nix Home";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs";
+    nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.2305.*.tar.gz";
     nix-darwin = { url = "github:lnl7/nix-darwin"; inputs.nixpkgs.follows = "nixpkgs"; };
-    home-manager = { url = "github:nix-community/home-manager"; inputs.nixpkgs.follows = "nixpkgs"; };
+    home-manager = { url = "https://flakehub.com/f/nix-community/home-manager/0.1.*.tar.gz"; inputs.nixpkgs.follows = "nixpkgs"; };
     rust-overlay = { url = "github:oxalica/rust-overlay"; inputs.nixpkgs.follows = "nixpkgs"; };
-    nuenv = { url = "github:DeterminateSystems/nuenv"; inputs.nixpkgs.follows = "nixpkgs"; };
-    flake-checker = { url = "github:DeterminateSystems/flake-checker"; };
+    nuenv = { url = "https://flakehub.com/f/DeterminateSystems/nuenv/0.1.*.tar.gz"; inputs.nixpkgs.follows = "nixpkgs"; };
+    flake-checker = { url = "https://flakehub.com/f/DeterminateSystems/flake-checker/0.1.*.tar.gz"; };
     uuidv7 = { url = "git+ssh://git@github.com/DeterminateSystems/uuidv7.git"; };
     #detsys = { url = "github:DeterminateSystems/flake"; inputs.nixpkgs.follows = "nixpkgs"; };
   };
