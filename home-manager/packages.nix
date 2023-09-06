@@ -55,6 +55,7 @@ let
 
   # I'll categorize these later :)
   misc = with pkgs; [
+    fh
     certstrap
     comma
     curl

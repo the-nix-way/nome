@@ -2,13 +2,15 @@
   description = "Nome: my Nix Home";
 
   inputs = {
-    nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.2305.*.tar.gz";
-    nix-darwin = { url = "github:lnl7/nix-darwin"; inputs.nixpkgs.follows = "nixpkgs"; };
-    home-manager = { url = "https://flakehub.com/f/nix-community/home-manager/0.1.*.tar.gz"; inputs.nixpkgs.follows = "nixpkgs"; };
+    nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/*.tar.gz";
+    nix-darwin = { url = "github:lnl7/nix-darwin"; };
+    home-manager = { url = "github:nix-community/home-manager"; inputs.nixpkgs.follows = "nixpkgs"; };
     rust-overlay = { url = "github:oxalica/rust-overlay"; inputs.nixpkgs.follows = "nixpkgs"; };
-    nuenv = { url = "https://flakehub.com/f/DeterminateSystems/nuenv/0.1.*.tar.gz"; inputs.nixpkgs.follows = "nixpkgs"; };
+    nuenv = { url = "https://flakehub.com/f/DeterminateSystems/nuenv/*.tar.gz"; inputs.nixpkgs.follows = "nixpkgs"; };
     flake-checker = { url = "https://flakehub.com/f/DeterminateSystems/flake-checker/0.1.*.tar.gz"; };
-    uuidv7 = { url = "git+ssh://git@github.com/DeterminateSystems/uuidv7.git"; };
+    uuidv7 = { url = "git+ssh://git@github.com/DeterminateSystems/uuidv7.git"; inputs.nixpkgs.follows = "nixpkgs"; };
+    fh = { url = "git+ssh://git@github.com/DeterminateSystems/fh.git"; inputs.nixpkgs.follows = "nixpkgs"; };
+    flake-schemas = { url = "https://flakehub.com/f/DeterminateSystems/flake-schemas/*.tar.gz"; inputs.nixpkgs.follows = "nixpkgs"; };
     #detsys = { url = "github:DeterminateSystems/flake"; inputs.nixpkgs.follows = "nixpkgs"; };
   };
 
@@ -21,6 +23,8 @@
     , nuenv
     , flake-checker
     , uuidv7
+    , fh
+    , flake-schemas
     , ...
     }:
 
@@ -49,6 +53,8 @@
             system = prev.system;
           in
           {
+            fh = fh.packages.${system}.fh;
+
             flake-checker = flake-checker.packages.${system}.default;
 
             uuidv7 = uuidv7.packages.${system}.default;
@@ -83,6 +89,8 @@
       });
     in
     {
+      schemas = flake-schemas.schemas;
+
       devShells = forEachMacOsSystem ({ pkgs, system }: {
         default =
           let
