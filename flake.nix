@@ -10,7 +10,7 @@
     flake-checker = { url = "https://flakehub.com/f/DeterminateSystems/flake-checker/0.1.*.tar.gz"; };
     uuidv7 = { url = "git+ssh://git@github.com/DeterminateSystems/uuidv7.git"; inputs.nixpkgs.follows = "nixpkgs"; };
     fh = { url = "git+ssh://git@github.com/DeterminateSystems/fh.git"; inputs.nixpkgs.follows = "nixpkgs"; };
-    flake-schemas = { url = "https://flakehub.com/f/DeterminateSystems/flake-schemas/*.tar.gz"; inputs.nixpkgs.follows = "nixpkgs"; };
+    flake-schemas = { url = "https://flakehub.com/f/DeterminateSystems/flake-schemas/*.tar.gz"; };
     #detsys = { url = "github:DeterminateSystems/flake"; inputs.nixpkgs.follows = "nixpkgs"; };
   };
 
@@ -89,7 +89,21 @@
       });
     in
     {
-      schemas = flake-schemas.schemas;
+      schemas = flake-schemas.schemas // {
+        darwinConfigurations =
+          let
+            mkChildren = children: { inherit children; };
+          in
+          {
+            version = 1;
+            doc = "macOS configuration for nix-darwin";
+            inventory = output: mkChildren (builtins.mapAttrs
+              (configName: configuration: {
+                what = "nix-darwin configuration";
+              })
+              output);
+          };
+      };
 
       devShells = forEachMacOsSystem ({ pkgs, system }: {
         default =
