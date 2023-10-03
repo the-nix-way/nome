@@ -30,7 +30,8 @@
 
     let
       username = "lucperkins";
-      stateVersion = "22.11";
+      macos = "aarch64-darwin";
+      stateVersion = "23.05";
       caches = {
         nixos-org = {
           cache = "https://cache.nixos.org";
@@ -82,28 +83,13 @@
           })
         nuenv.overlays.default
       ];
-      macOsSystems = [ "aarch64-darwin" ];
+      macOsSystems = [ macos ];
       forEachMacOsSystem = f: nixpkgs.lib.genAttrs macOsSystems (system: f {
         inherit system;
         pkgs = import nixpkgs { inherit system; };
       });
     in
     {
-      schemas = flake-schemas.schemas // {
-        darwinConfigurations =
-          let
-            mkChildren = children: { inherit children; };
-          in
-          {
-            version = 1;
-            doc = "macOS configuration for nix-darwin";
-            inventory = output: mkChildren (builtins.mapAttrs
-              (configName: configuration: {
-                what = "nix-darwin configuration";
-              })
-              output);
-          };
-      };
 
       devShells = forEachMacOsSystem ({ pkgs, system }: {
         default =
@@ -122,13 +108,28 @@
       });
 
       # TODO: allow for multiple systems
-      darwinConfigurations."${username}-aarch64-darwin" = nix-darwin.lib.darwinSystem {
-        system = "aarch64-darwin";
+      darwinConfigurations."${username}-${macos}" = nix-darwin.lib.darwinSystem {
+        system = macos;
         modules = [
           self.darwinModules.base
           self.darwinModules.caching
+          #self.darwinModules.linux-builder
           home-manager.darwinModules.home-manager
-          ./home-manager
+          {
+            nixpkgs = import ./home-manager/nixpkgs.nix;
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.${username} = { pkgs, ... }: {
+                home = {
+                  inherit (pkgs) stateVersion;
+                  packages = import ./home-manager/packages.nix { inherit pkgs; };
+                  shellAliases = (import ./home-manager/aliases.nix { inherit pkgs; }).shell;
+                };
+                #programs = import ./home-manager/programs.nix { inherit pkgs; };
+              };
+            };
+          }
         ];
       };
 
@@ -139,10 +140,6 @@
 
         caching = { ... }: import ./nix-darwin/caching {
           inherit caches username;
-        };
-
-        homebrew-replace = {
-          imports = [ ./nix-darwin/homebrew-replace ];
         };
 
         # This module is based on this very helpful comment on the NixOS Discourse:
@@ -163,6 +160,7 @@
         };
       };
 
-      templates = import ./templates;
+      templates = import
+        ./templates;
     };
 }
