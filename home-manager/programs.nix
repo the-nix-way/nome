@@ -85,7 +85,7 @@
   #};
 
   # The provider of my shell aesthetic
-  starship = import ./starship.nix;
+  starship = import ./starship.nix { inherit pkgs; };
 
   # My most-used multiplexer
   tmux = import ./tmux.nix;

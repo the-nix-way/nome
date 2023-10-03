@@ -55,12 +55,12 @@ let
 
   # I'll categorize these later :)
   misc = with pkgs; [
-    fh
     certstrap
     comma
     curl
     deno
     elixir
+    fh
     flyctl
     hugo # for initializing projects
     ijq

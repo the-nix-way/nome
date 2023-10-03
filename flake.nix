@@ -2,16 +2,15 @@
   description = "Nome: my Nix Home";
 
   inputs = {
-    nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/*.tar.gz";
-    nix-darwin = { url = "github:lnl7/nix-darwin"; };
+    nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1.*.tar.gz";
+    nix-darwin = { url = "github:lnl7/nix-darwin"; inputs.nixpkgs.follows = "nixpkgs"; };
     home-manager = { url = "https://flakehub.com/f/nix-community/home-manager/*.tar.gz"; inputs.nixpkgs.follows = "nixpkgs"; };
     rust-overlay = { url = "github:oxalica/rust-overlay"; inputs.nixpkgs.follows = "nixpkgs"; };
     nuenv = { url = "https://flakehub.com/f/DeterminateSystems/nuenv/*.tar.gz"; inputs.nixpkgs.follows = "nixpkgs"; };
     flake-checker = { url = "https://flakehub.com/f/DeterminateSystems/flake-checker/0.1.*.tar.gz"; };
     uuidv7 = { url = "git+ssh://git@github.com/DeterminateSystems/uuidv7.git"; inputs.nixpkgs.follows = "nixpkgs"; };
-    fh = { url = "git+ssh://git@github.com/DeterminateSystems/fh.git"; inputs.nixpkgs.follows = "nixpkgs"; };
+    fh = { url = "https://flakehub.com/f/DeterminateSystems/fh/*.tar.gz"; inputs.nixpkgs.follows = "nixpkgs"; };
     flake-schemas = { url = "https://flakehub.com/f/DeterminateSystems/flake-schemas/*.tar.gz"; };
-    #detsys = { url = "github:DeterminateSystems/flake"; inputs.nixpkgs.follows = "nixpkgs"; };
   };
 
   outputs =
@@ -31,7 +30,7 @@
     let
       username = "lucperkins";
       macos = "aarch64-darwin";
-      stateVersion = "23.05";
+      stateVersion = "23.11";
       caches = {
         nixos-org = {
           cache = "https://cache.nixos.org";
@@ -54,7 +53,7 @@
             system = prev.system;
           in
           {
-            fh = fh.packages.${system}.fh;
+            fh = fh.packages.${system}.default;
 
             flake-checker = flake-checker.packages.${system}.default;
 
@@ -86,17 +85,17 @@
       macOsSystems = [ macos ];
       forEachMacOsSystem = f: nixpkgs.lib.genAttrs macOsSystems (system: f {
         inherit system;
-        pkgs = import nixpkgs { inherit system; };
+        pkgs = import nixpkgs { inherit overlays system; };
       });
     in
     {
+      schemas = flake-schemas.schemas;
 
       devShells = forEachMacOsSystem ({ pkgs, system }: {
         default =
           let
-            # Helper script for reloading my full config
+            # This janky-ish script is necessary because nix-darwin isn't yet fully flake friendly
             reload = pkgs.writeScriptBin "reload" ''
-              # This janky-ish script is necessary because nix-darwin isn't yet fully flake friendly
               ${pkgs.nixFlakes}/bin/nix build .#darwinConfigurations.${username}-${system}.system
               ./result/sw/bin/darwin-rebuild switch --flake .
             '';
@@ -113,7 +112,7 @@
         modules = [
           self.darwinModules.base
           self.darwinModules.caching
-          #self.darwinModules.linux-builder
+          self.darwinModules.temporal
           home-manager.darwinModules.home-manager
           {
             nixpkgs = import ./home-manager/nixpkgs.nix;
@@ -121,12 +120,13 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               users.${username} = { pkgs, ... }: {
+
                 home = {
                   inherit (pkgs) stateVersion;
                   packages = import ./home-manager/packages.nix { inherit pkgs; };
                   shellAliases = (import ./home-manager/aliases.nix { inherit pkgs; }).shell;
                 };
-                #programs = import ./home-manager/programs.nix { inherit pkgs; };
+                programs = import ./home-manager/programs.nix { inherit pkgs; };
               };
             };
           }

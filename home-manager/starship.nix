@@ -1,6 +1,10 @@
+{ pkgs }:
+
 {
   enable = true;
+  enableNushellIntegration = true;
   enableZshIntegration = true;
+  package = pkgs.starship;
   settings = {
     add_newline = false;
     git_branch = { symbol = "🌱 "; };
