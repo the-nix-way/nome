@@ -59,6 +59,7 @@ let
     certstrap
     comma
     curl
+    deno
     elixir
     flyctl
     hugo # for initializing projects
