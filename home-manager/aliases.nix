@@ -1,6 +1,11 @@
 { pkgs }:
 
 {
+  gh = {
+    pvw = "pr view --web";
+    rvw = "repo view --web";
+  };
+
   git = {
     ba = "branch -a";
     bd = "branch -D";
@@ -22,11 +27,6 @@
     whoops = "reset --hard";
     wipe = "commit -s";
     fix = "rebase --exec 'git commit --amend --no-edit -S' -i origin/develop";
-  };
-
-  githubCli = {
-    pvw = "pr view --web";
-    rvw = "repo view --web";
   };
 
   shell = {

@@ -47,7 +47,7 @@
       editor = "vim";
       git_protocol = "ssh";
       prompt = "enabled";
-      aliases = (import ./aliases.nix { inherit pkgs; }).githubCli;
+      aliases = (import ./aliases.nix { inherit pkgs; }).gh;
     };
   };
 
