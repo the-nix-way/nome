@@ -61,6 +61,8 @@
     xgc = "nix-env --delete-generations old && nix-store --gc";
 
     # Nix flake helpers
+    nfc = "nix flake check";
+    nfca = "nix flake check --all-systems";
     nfs = "nix flake show";
     nfu = "nix flake update";
     ndc = "nix develop --command";
