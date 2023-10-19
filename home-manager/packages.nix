@@ -62,6 +62,7 @@ let
     elixir
     fh
     flyctl
+    go_1_20
     hugo # for initializing projects
     ijq
     just
