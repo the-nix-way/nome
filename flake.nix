@@ -44,6 +44,10 @@
           cache = "https://nix-community.cachix.org";
           publicKey = "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=";
         };
+        nixbuild = {
+          cache = "ssh://eu.nixbuild.net";
+          publicKey = "nixbuild.net/lucperkins-detsys-1:BNEIuB8ciJTm5JxmLSpvFJCRRnGMRbuVjMEgMqQjyos=";
+        };
       };
 
       overlays = [

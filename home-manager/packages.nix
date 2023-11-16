@@ -80,6 +80,7 @@ let
     qemu
     reattach-to-user-namespace # for tmux
     riff # from overlay
+    rlwrap
     #subversion
     tailscale
     temporalCli
