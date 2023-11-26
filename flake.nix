@@ -80,7 +80,7 @@
                 rev = "v0.7.0";
                 sha256 = "sha256-CXbf3B7XLsDFeRzUk9y1jf0F3ex0sLmBFy0YcOPpTjg=";
               };
-              vendorSha256 = "sha256-JG9VeCrkU87MQOpZ2rs6cN1N5cgFVu1UT6w1OyGbw90=";
+              vendorHash = "sha256-JG9VeCrkU87MQOpZ2rs6cN1N5cgFVu1UT6w1OyGbw90=";
               subPackages = [ "cmd/temporal" ];
             };
           })
