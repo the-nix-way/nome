@@ -17,11 +17,11 @@ in
 
   extensions = with pkgs.vscode-extensions; [
     bbenoist.nix
-    bungcip.better-toml
     editorconfig.editorconfig
     esbenp.prettier-vscode
     golang.go
     rust-lang.rust-analyzer
+    tamasfe.even-better-toml
 
     # Extensions not in Nixpkgs
     (ext "b4dM4n" "nixpkgs-fmt" "0.0.1" "sha256-vz2kU36B1xkLci2QwLpl/SBEhfSWltIDJ1r7SorHcr8=")
@@ -45,7 +45,7 @@ in
       "editor.defaultFormatter" = "rust-lang.rust-analyzer";
     };
     "[toml]" = {
-      "editor.defaultFormatter" = "bungcip.better-toml";
+      "editor.defaultFormatter" = "tamasfe.even-better-toml";
     };
     "search.exclude" = {
       "**/.direnv" = true;

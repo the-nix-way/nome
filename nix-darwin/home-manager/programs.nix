@@ -58,6 +58,8 @@
   # But of course
   git = import ./git.nix { inherit pkgs; };
 
+  go.enable = true;
+
   # GPG config
   gpg.enable = true;
 
