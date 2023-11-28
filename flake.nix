@@ -40,10 +40,6 @@
           cache = "https://nix-community.cachix.org";
           publicKey = "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=";
         };
-        nixbuild = {
-          cache = "ssh://eu.nixbuild.net";
-          publicKey = "nixbuild.net/lucperkins-detsys-1:BNEIuB8ciJTm5JxmLSpvFJCRRnGMRbuVjMEgMqQjyos=";
-        };
       };
     in
     {
@@ -54,8 +50,7 @@
           let
             # This janky-ish script is necessary because nix-darwin isn't yet fully flake friendly
             reload = pkgs.writeScriptBin "reload" ''
-              ${pkgs.nixFlakes}/bin/nix build .#darwinConfigurations.${pkgs.username}-${pkgs.system}.system
-              ./result/sw/bin/darwin-rebuild switch --flake .
+              ${inputs.nix-darwin.packages.${system}.darwin-rebuild}/bin/darwin-rebuild switch --flake .
             '';
           in
           pkgs.mkShell {

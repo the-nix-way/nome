@@ -12,7 +12,7 @@
         enableNixpkgsReleaseCheck = false; # until 24.05 is available
         inherit (pkgs) homeDirectory;
         packages = import ./packages.nix { inherit pkgs; };
-        sessionVariables = import ./env.nix;
+        sessionVariables = import ./env.nix { inherit pkgs username; };
         shellAliases = (import ./aliases.nix { inherit pkgs; }).shell;
         inherit stateVersion username;
       };
