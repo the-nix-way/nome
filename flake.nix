@@ -50,7 +50,8 @@
           let
             # This janky-ish script is necessary because nix-darwin isn't yet fully flake friendly
             reload = pkgs.writeScriptBin "reload" ''
-              ${inputs.nix-darwin.packages.${system}.darwin-rebuild}/bin/darwin-rebuild switch --flake .
+              ${pkgs.nixFlakes}/bin/nix build .#darwinConfigurations.${pkgs.username}-${pkgs.system}.system
+              ./result/sw/bin/darwin-rebuild switch --flake .
             '';
           in
           pkgs.mkShell {
