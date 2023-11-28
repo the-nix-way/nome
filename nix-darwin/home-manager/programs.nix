@@ -1,8 +1,30 @@
 { pkgs }:
 
 {
+  # Alternative terminal
+  alacritty = import ./alacritty.nix { inherit pkgs; };
+
   # Fancy replacement for cat
-  bat.enable = true;
+  bat = {
+    enable = true;
+    extraPackages = with pkgs.bat-extras; [ batdiff batman batgrep batwatch ];
+    syntaxes = { };
+    themes = {
+      dracula = {
+        src = pkgs.fetchFromGitHub {
+          owner = "dracula";
+          repo = "sublime";
+          rev = "26c57ec282abcaa76e57e055f38432bd827ac34e";
+          sha256 = "019hfl4zbn4vm4154hh3bwk6hm7bdxbr1hdww83nabxwjn99ndhv";
+        };
+        file = "Dracula.tmTheme";
+      };
+    };
+  };
+
+  bottom = {
+    enable = true;
+  };
 
   # Navigate directory trees
   broot = {
@@ -13,6 +35,7 @@
   # Easy shell environments
   direnv = {
     enable = true;
+    enableNushellIntegration = true;
     enableZshIntegration = true;
     nix-direnv.enable = true;
   };
@@ -30,15 +53,7 @@
   };
 
   # GitHub CLI
-  gh = {
-    enable = true;
-    settings = {
-      editor = "vim";
-      git_protocol = "ssh";
-      prompt = "enabled";
-      aliases = (import ./aliases.nix { inherit pkgs; }).gh;
-    };
-  };
+  gh = import ./gh.nix { inherit pkgs; };
 
   # But of course
   git = import ./git.nix { inherit pkgs; };

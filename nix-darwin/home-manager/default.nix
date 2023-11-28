@@ -10,9 +10,11 @@
     users.${username} = { pkgs, ... }: {
       home = {
         enableNixpkgsReleaseCheck = false; # until 24.05 is available
+        inherit (pkgs) homeDirectory;
         packages = import ./packages.nix { inherit pkgs; };
-        inherit stateVersion;
+        sessionVariables = import ./env.nix;
         shellAliases = (import ./aliases.nix { inherit pkgs; }).shell;
+        inherit stateVersion username;
       };
       programs = import ./programs.nix { inherit pkgs; };
     };

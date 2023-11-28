@@ -21,6 +21,7 @@ let
   databaseTools = with pkgs; [ postgresql_14 ];
 
   devOpsTools = with pkgs; [
+    awscli2
     dive
     flyctl
   ];

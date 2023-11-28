@@ -7,7 +7,10 @@
       system = "x86_64-linux";
     }
   ];
+  checkConfig = true;
   distributedBuilds = true;
+  extraOptions = "";
+  registry = { };
   settings = {
     auto-optimise-store = true;
     bash-prompt-prefix = "(nix:$name)\\040";

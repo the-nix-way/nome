@@ -3,14 +3,13 @@
 }:
 
 {
-  networking = {
-    computerName = "${pkgs.username}-${pkgs.system}";
-  };
+  networking.computerName = "${pkgs.username}-${pkgs.system}";
 
   nix = import ./nix.nix;
 
   nixpkgs = {
     config = {
+      allowBroken = true;
       allowUnfree = true;
       allowUnsupportedSystem = true;
     };
