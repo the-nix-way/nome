@@ -21,7 +21,6 @@ in
     esbenp.prettier-vscode
     github.vscode-github-actions
     golang.go
-    #markusylisiurunen.githubdarkmode
     rust-lang.rust-analyzer
     tamasfe.even-better-toml
 
