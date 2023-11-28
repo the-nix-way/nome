@@ -82,5 +82,8 @@
           inherit pkgs stateVersion username;
         };
       };
+
+      templates = import
+        ./templates;
     };
 }

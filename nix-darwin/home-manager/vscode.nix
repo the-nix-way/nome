@@ -19,6 +19,7 @@ in
     bbenoist.nix
     editorconfig.editorconfig
     esbenp.prettier-vscode
+    github.vscode-github-actions
     golang.go
     rust-lang.rust-analyzer
     tamasfe.even-better-toml
