@@ -1,88 +1,72 @@
 { overlays
 , pkgs
-, ...
 }:
 
 {
-  config = {
-    environment = { postBuild = ''echo "DONE!"''; };
+  networking = {
+    computerName = "${pkgs.username}-${pkgs.system}";
+  };
 
-    fonts = {
-      fontDir.enable = true;
-      fonts = with pkgs; [
-        recursive
-        (nerdfonts.override {
-          fonts = [
-            "FiraCode"
-            "JetBrainsMono"
-          ];
-        })
-      ];
+  nix = import ./nix.nix;
+
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+      allowUnsupportedSystem = true;
     };
+    inherit overlays;
+  };
 
-    networking = {
-      computerName = "${pkgs.username}-${pkgs.system}";
-    };
+  security.pam.enableSudoTouchIdAuth = true;
 
-    nix = {
-      buildMachines = [
-        {
-          hostName = "eu.nixbuild.net";
-          system = "x86_64-linux";
-          maxJobs = 100;
-          supportedFeatures = [ "benchmark" "big-parallel" "nixos-test" ];
-        }
-        #{
-        #  hostName = "eu.nixbuild.net";
-        #  system = "aarch64-linux";
-        #  maxJobs = 100;
-        #  supportedFeatures = [ "benchmark" "big-parallel" "nixos-test" ];
-        #}
-      ];
-      distributedBuilds = true;
-      settings = {
-        auto-optimise-store = true;
-        bash-prompt-prefix = "(nix:$name)\\040";
-        build-users-group = "nixbld";
-        cores = 10;
-        experimental-features = [ "nix-command" "flakes" ];
-        extra-experimental-features = [ "repl-flake" ];
-        extra-sandbox-paths = [ ];
-        extra-nix-path = "nixpkgs=flake:nixpkgs";
-        max-jobs = "auto";
-        require-sigs = true;
-        sandbox = false;
-        sandbox-fallback = false;
+  services.nix-daemon.enable = true;
+
+  system = {
+    configurationRevision = pkgs.rev;
+
+    defaults = {
+      dock = {
+        autohide = true;
+        mru-spaces = false;
+        orientation = "left";
+        showhidden = true;
+      };
+
+      finder = {
+        AppleShowAllExtensions = true;
+        FXEnableExtensionChangeWarning = false;
+        QuitMenuItem = true;
+      };
+
+      NSGlobalDomain = {
+        AppleKeyboardUIMode = 3;
+        ApplePressAndHoldEnabled = false;
+        InitialKeyRepeat = 10;
+        KeyRepeat = 1;
+        NSAutomaticCapitalizationEnabled = false;
+        NSAutomaticDashSubstitutionEnabled = false;
+        NSAutomaticPeriodSubstitutionEnabled = false;
+        NSAutomaticQuoteSubstitutionEnabled = false;
+        NSAutomaticSpellingCorrectionEnabled = false;
+        NSNavPanelExpandedStateForSaveMode = true;
+        NSNavPanelExpandedStateForSaveMode2 = true;
+        _HIHideMenuBar = true;
+      };
+
+      trackpad = {
+        Clicking = true;
+        TrackpadThreeFingerDrag = true;
       };
     };
 
-    nixpkgs = {
-      config = {
-        allowUnfree = true;
-      };
-      inherit overlays;
+    keyboard = {
+      enableKeyMapping = true;
+      remapCapsLockToControl = true;
     };
+  };
 
-    programs = {
-      nix-index = {
-        enable = true;
-      };
-      ssh = {
-        knownHosts = {
-          nixbuild = {
-            hostNames = [ "eu.nixbuild.net" ];
-            publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPIQCZc54poJ8vqawd8TraNryQeJnvH1eLpIDgbiqymM";
-          };
-        };
-      };
-      zsh.enable = true;
-    };
-
-    services.nix-daemon.enable = true;
-
-    system.keyboard.enableKeyMapping = true;
-    security.pam.enableSudoTouchIdAuth = true;
-
-    users.users.lucperkins = { name = "lucperkins"; home = pkgs.homeDirectory; };
+  users.users.${pkgs.username} = {
+    name = pkgs.username;
+    home = "/Users/${pkgs.username}";
   };
 }

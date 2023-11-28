@@ -8,10 +8,6 @@ let
   };
 in
 [
-  (nu "docker-clean" ''
-    docker system prune -a --volumes
-  '')
-
   (nu "crate-hash" ''
     # Display the hash for a cargo crate
     def main [
@@ -102,7 +98,7 @@ in
     }
   '')
 
-  (nu "cleanup" ''
+  (nu "docker-cleanup" ''
     docker system prune -af
     docker volume prune -f
     docker image prune -af

@@ -14,7 +14,6 @@
   direnv = {
     enable = true;
     enableZshIntegration = true;
-
     nix-direnv.enable = true;
   };
 
@@ -24,16 +23,13 @@
     enableAliases = true;
   };
 
-  # Fish shell
-  #fish = import ./fish.nix { inherit pkgs; };
-
   # Fuzzy finder
   fzf = {
     enable = true;
     enableZshIntegration = true;
   };
 
-  # The GitHub CLI
+  # GitHub CLI
   gh = {
     enable = true;
     settings = {
@@ -58,33 +54,18 @@
   # JSON parsing on the CLI
   jq.enable = true;
 
-  # Kitty terminal emulator
-  #kitty = {
-  #  enable = true;
-  #};
-
-  # For Git rebases and such
-  neovim = import ./neovim.nix {
-    inherit (pkgs) vimPlugins;
+  # Mostly for use with comma
+  nix-index = {
+    enable = true;
+    enableZshIntegration = true;
+    package = pkgs.nix-index;
   };
-
-  # Experimental shell
-  nushell = import ./nushell.nix { inherit pkgs; };
-
-  # Document conversion
-  #pandoc = {
-  #  enable = true;
-  #  defaults = { metadata = { author = "Luc Perkins"; }; };
-  #};
 
   # The provider of my shell aesthetic
   starship = import ./starship.nix { inherit pkgs; };
 
-  # My most-used multiplexer
-  tmux = import ./tmux.nix;
-
   # My most-used editor
-  #vscode = import ./vscode.nix { inherit pkgs; };
+  vscode = import ./vscode.nix { inherit pkgs; };
 
   # My fav shell
   zsh = import ./zsh.nix {
