@@ -251,6 +251,7 @@
         ]
       },
       "locked": {
+        "lastModified": 1700795494,
         "narHash": "sha256-gzGLZSiOhf155FW7262kdHo2YDeugp3VuIFb4/GGng0=",
         "owner": "LnL7",
         "repo": "nix-darwin",
@@ -265,6 +266,7 @@
     },
     "nixpkgs": {
       "locked": {
+        "lastModified": 1700794826,
         "narHash": "sha256-RyJTnTNKhO0yqRpDISk03I/4A67/dp96YRxc86YOPgU=",
         "rev": "5a09cb4b393d58f9ed0d9ca1555016a8543c2ac8",
         "revCount": 552293,
