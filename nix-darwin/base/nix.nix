@@ -22,7 +22,7 @@
     extra-nix-path = "nixpkgs=flake:nixpkgs";
     max-jobs = "auto";
     require-sigs = true;
-    sandbox = false;
+    sandbox = true;
     sandbox-fallback = false;
   };
 }

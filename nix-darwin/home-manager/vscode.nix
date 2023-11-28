@@ -23,6 +23,8 @@ in
     golang.go
     rust-lang.rust-analyzer
     tamasfe.even-better-toml
+    thenuprojectcontributors.vscode-nushell-lang
+    unifiedjs.vscode-mdx
 
     # Extensions not in Nixpkgs
     (ext "b4dM4n" "nixpkgs-fmt" "0.0.1" "sha256-vz2kU36B1xkLci2QwLpl/SBEhfSWltIDJ1r7SorHcr8=")
