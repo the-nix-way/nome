@@ -54,6 +54,11 @@
   # JSON parsing on the CLI
   jq.enable = true;
 
+  # For Git rebases and such
+  neovim = import ./neovim.nix {
+    inherit (pkgs) vimPlugins;
+  };
+
   # Mostly for use with comma
   nix-index = {
     enable = true;

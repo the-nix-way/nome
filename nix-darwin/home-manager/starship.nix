@@ -7,6 +7,12 @@
   package = pkgs.starship;
   settings = {
     add_newline = false;
+    battery = {
+      full_symbol = "🔋 ";
+      charging_symbol = "⚡️ ";
+      discharging_symbol = "💀 ";
+    };
+    erlang = { format = "via [e $version](bold red) "; };
     git_branch = { symbol = "🌱 "; };
     git_commit = {
       commit_hash_length = 4;
@@ -33,6 +39,13 @@
       format = "on [work-box](bold red) ";
       disabled = false;
     };
+    nix_shell = {
+      disabled = true;
+      impure_msg = "[impure shell](bold red)";
+      pure_msg = "[pure shell](bold green)";
+      format = "via [☃️ $state( ($name))](bold blue) ";
+    };
+    "$schema" = "https://starship.rs/config-schema.json";
     terraform = { format = "[🏎💨 $version$workspace]($style) "; };
     username = {
       style_user = "white bold";
@@ -40,18 +53,6 @@
       format = "[$user]($style) ";
       disabled = false;
       show_always = true;
-    };
-    erlang = { format = "via [e $version](bold red) "; };
-    battery = {
-      full_symbol = "🔋 ";
-      charging_symbol = "⚡️ ";
-      discharging_symbol = "💀 ";
-    };
-    nix_shell = {
-      disabled = true;
-      impure_msg = "[impure shell](bold red)";
-      pure_msg = "[pure shell](bold green)";
-      format = "via [☃️ $state( ($name))](bold blue) ";
     };
   };
 }

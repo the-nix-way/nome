@@ -67,6 +67,6 @@
 
   users.users.${pkgs.username} = {
     name = pkgs.username;
-    home = "/Users/${pkgs.username}";
+    home = pkgs.homeDirectory;
   };
 }
