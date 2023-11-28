@@ -10,9 +10,4 @@ rec {
     path = ./nix;
     description = "Nix template";
   };
-
-  proj = {
-    path = ./proj;
-    description = "Nome project starter template";
-  };
 }

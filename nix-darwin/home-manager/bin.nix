@@ -45,13 +45,6 @@ in
     }
   '')
 
-  (nu "proj" ''
-    def main [] {
-      "Initializing Nome proj template"
-      nix flake init --template github:the-nix-way/nome
-    }
-  '')
-
   (nu "wo" ''
     # See the path of an executable
     def main [
