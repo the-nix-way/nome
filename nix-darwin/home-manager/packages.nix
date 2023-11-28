@@ -61,6 +61,10 @@ let
     httpie
   ]);
 
+  rustTools = with pkgs; [
+    rustToolchain
+  ];
+
   security = with pkgs; [
     certstrap
     pinentry_mac
@@ -91,5 +95,6 @@ basic
 ++ macTools
 ++ misc
 ++ nixTools
+++ rustTools
 ++ security
 ++ shells

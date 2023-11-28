@@ -3,13 +3,14 @@
   description = "Nome: my Nix home";
 
   inputs = {
-    fh = { url = "https://flakehub.com/f/DeterminateSystems/fh/*.tar.gz"; inputs.nixpkgs.follows = "nixpkgs"; };
-    flake-checker = { url = "https://flakehub.com/f/DeterminateSystems/flake-checker/*.tar.gz"; inputs.nixpkgs.follows = "nixpkgs"; };
-    flake-schemas.url = "https://flakehub.com/f/DeterminateSystems/flake-schemas/*.tar.gz";
-    home-manager = { url = "https://flakehub.com/f/nix-community/home-manager/*.tar.gz"; inputs.nixpkgs.follows = "nixpkgs"; };
+    fenix = { url = "https://flakehub.com/f/nix-community/fenix/0.1.*.tar.gz"; inputs.nixpkgs.follows = "nixpkgs"; };
+    fh = { url = "https://flakehub.com/f/DeterminateSystems/fh/0.1.*.tar.gz"; inputs.nixpkgs.follows = "nixpkgs"; };
+    flake-checker = { url = "https://flakehub.com/f/DeterminateSystems/flake-checker/0.1.*.tar.gz"; inputs.nixpkgs.follows = "nixpkgs"; };
+    flake-schemas.url = "https://flakehub.com/f/DeterminateSystems/flake-schemas/0.1.*.tar.gz";
+    home-manager = { url = "https://flakehub.com/f/nix-community/home-manager/0.2311.*.tar.gz"; inputs.nixpkgs.follows = "nixpkgs"; };
     nix-darwin = { url = "github:LnL7/nix-darwin"; inputs.nixpkgs.follows = "nixpkgs"; };
     nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1.*.tar.gz";
-    nuenv = { url = "https://flakehub.com/f/DeterminateSystems/nuenv/*.tar.gz"; inputs.nixpkgs.follows = "nixpkgs"; };
+    nuenv = { url = "https://flakehub.com/f/DeterminateSystems/nuenv/0.1.*.tar.gz"; inputs.nixpkgs.follows = "nixpkgs"; };
     uuidv7 = { url = "git+ssh://git@github.com/DeterminateSystems/uuidv7.git"; inputs.nixpkgs.follows = "nixpkgs"; };
   };
 
@@ -26,6 +27,24 @@
       stateVersion = "23.11";
       system = "aarch64-darwin";
       username = "lucperkins";
+      caches = {
+        nixos-org = {
+          cache = "https://cache.nixos.org";
+          publicKey = "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=";
+        };
+        the-nix-way = {
+          cache = "https://the-nix-way.cachix.org";
+          publicKey = "the-nix-way.cachix.org-1:x0GnA8CHhHs1twmTdtfZe3Y0IzCOAy7sU8ahaeCCmVw=";
+        };
+        nix-community = {
+          cache = "https://nix-community.cachix.org";
+          publicKey = "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=";
+        };
+        nixbuild = {
+          cache = "ssh://eu.nixbuild.net";
+          publicKey = "nixbuild.net/lucperkins-detsys-1:BNEIuB8ciJTm5JxmLSpvFJCRRnGMRbuVjMEgMqQjyos=";
+        };
+      };
     in
     {
       schemas = inputs.flake-schemas.schemas;
@@ -58,12 +77,21 @@
         flake-checker = inputs.flake-checker.packages.${system}.default;
         fh = inputs.fh.packages.${system}.default;
         uuidv7 = inputs.uuidv7.packages.${system}.default;
+        rustToolchain = with inputs.fenix.packages.${system};
+          combine ([
+            stable.clippy
+            stable.rustc
+            stable.cargo
+            stable.rustfmt
+            stable.rust-src
+          ]);
       };
 
       darwinConfigurations."${username}-${system}" = inputs.nix-darwin.lib.darwinSystem {
         inherit system;
         modules = [
           inputs.self.darwinModules.base
+          inputs.self.darwinModules.caching
           inputs.home-manager.darwinModules.home-manager
           inputs.self.darwinModules.home-manager
         ];
@@ -78,8 +106,21 @@
           ];
         };
 
+        caching = { ... }: import ./nix-darwin/caching {
+          inherit caches username;
+        };
+
         home-manager = { pkgs, ... }: import ./nix-darwin/home-manager {
           inherit pkgs stateVersion username;
+        };
+      };
+
+      nixosConfigurations = rec {
+        default = simple;
+
+        simple = inputs.nixpkgs.lib.nixosSystem {
+          system = "aarch64-linux";
+          modules = [ ./nixos/configuration.nix ./nixos/hardware-configuration.nix ];
         };
       };
 
