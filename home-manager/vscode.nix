@@ -1,8 +1,8 @@
 { pkgs }:
 
 let
-  font = "CascadiaCode";
-  terminalFont = "Iosevka";
+  font = "JetBrains Mono";
+  terminalFont = "JetBrains Mono";
   colorTheme = "GitHub Dark Mode";
   iconTheme = "material-icon-theme";
 

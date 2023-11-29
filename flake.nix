@@ -103,7 +103,7 @@
           inherit caches username;
         };
 
-        home-manager = { pkgs, ... }: import ./nix-darwin/home-manager {
+        home-manager = { pkgs, ... }: import ./home-manager {
           inherit pkgs stateVersion username;
         };
       };
