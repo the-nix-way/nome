@@ -57,7 +57,7 @@ let
     nixpkgs-fmt
   ];
 
-  pythonTools = with pkgs; [ python313 ] ++ (with pkgs.python313Packages; [
+  pythonTools = with pkgs; [ python311 ] ++ (with pkgs.python311Packages; [
     httpie
   ]);
 
@@ -95,6 +95,7 @@ basic
 ++ macTools
 ++ misc
 ++ nixTools
+++ pythonTools
 ++ rustTools
 ++ security
 ++ shells

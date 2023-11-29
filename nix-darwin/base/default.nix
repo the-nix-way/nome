@@ -3,6 +3,19 @@
 }:
 
 {
+  fonts = {
+    fontDir.enable = true;
+    fonts = with pkgs; [
+      recursive
+      (nerdfonts.override {
+        fonts = [
+          "FiraCode"
+          "JetBrainsMono"
+        ];
+      })
+    ];
+  };
+
   networking.computerName = "${pkgs.username}-${pkgs.system}";
 
   nix = import ./nix.nix;

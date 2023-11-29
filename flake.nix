@@ -46,7 +46,8 @@
           let
             # This janky-ish script is necessary because nix-darwin isn't yet fully flake friendly
             reload = pkgs.writeScriptBin "reload" ''
-              ${pkgs.nixFlakes}/bin/nix build .#darwinConfigurations.${pkgs.username}-${pkgs.system}.system
+              ${pkgs.nixFlakes}/bin/nix build .#darwinConfigurations.${pkgs.username}-${pkgs.system}.system \
+                --option sandbox false
               ./result/sw/bin/darwin-rebuild switch --flake .
             '';
           in
