@@ -32,7 +32,6 @@
 
     commit.gpgsign = "true";
     gpg = {
-      format = "ssh";
       program = "gpg2";
     };
 

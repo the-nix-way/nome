@@ -66,5 +66,6 @@
     nfs = "nix flake show";
     nfu = "nix flake update";
     ndc = "nix develop --command";
+    nsn = "nix search nixpkgs";
   };
 }

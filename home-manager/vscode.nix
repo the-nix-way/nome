@@ -33,6 +33,7 @@ in
     (ext "ms-vscode" "vscode-typescript-next" "5.4.20231127" "sha256-UVuYggzeWyQTmQxXdM4sT78FUOtYGKD4SzREntotU5g=")
     (ext "PKief" "material-icon-theme" "4.32.0" "sha256-6I9/nWv449PgO1tHJbLy/wxzG6BQF6X550l3Qx0IWpw=")
     (ext "whizkydee" "material-palenight-theme" "2.0.3" "sha256-qz2pz9JlnO2OV3eJnRqzbcic1lzpl0ViygwhNjZOWpI=")
+    (ext "jeff-hykin" "better-nix-syntax" "1.0.7" "sha256-vqfhUIjFBf9JvmxB4QFrZH4KMhxamuYjs5n9VyW/BiI=")
   ];
 
   globalSnippets = { };
@@ -43,14 +44,16 @@ in
 
   userSettings = {
     "[nix]" = {
-      "editor.defaultFormatter" = "B4dM4n.nixpkgs-fmt";
+      "editor.defaultFormatter" = "jeff-hykin.better-nix-syntax";
       "editor.formatOnSave" = true;
     };
     "[rust]" = {
       "editor.defaultFormatter" = "rust-lang.rust-analyzer";
+      "editor.formatOnSave" = true;
     };
     "[toml]" = {
       "editor.defaultFormatter" = "tamasfe.even-better-toml";
+      "editor.formatOnSave" = true;
     };
     "search.exclude" = {
       "**/.direnv" = true;

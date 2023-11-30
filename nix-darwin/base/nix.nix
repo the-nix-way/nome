@@ -2,9 +2,9 @@
   buildMachines = [
     {
       hostName = "eu.nixbuild.net";
-      maxJobs = 100;
-      supportedFeatures = [ "benchmark" "big-parallel" "nixos-test" ];
       system = "x86_64-linux";
+      maxJobs = 100;
+      supportedFeatures = [ "benchmark" "big-parallel" ];
     }
   ];
   checkConfig = true;
