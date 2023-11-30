@@ -31,13 +31,16 @@
     };
 
     commit.gpgsign = "true";
-    gpg.program = "gpg2";
+    gpg = {
+      format = "ssh";
+      program = "gpg2";
+    };
 
     protocol.keybase.allow = "always";
     credential.helper = "osxkeychain";
     pull.rebase = "false";
     init.defaultBranch = "main";
 
-    user = { signingkey = "CED8419FB058467A"; };
+    user = { signingkey = "16DB1108FB591835"; };
   };
 }

@@ -56,7 +56,7 @@
       AppleTemperatureUnit = "Celsius";
       AppleWindowTabbingMode = "fullscreen";
       InitialKeyRepeat = 11;
-      KeyRepeat = 1;
+      KeyRepeat = null;
       NSAutomaticCapitalizationEnabled = false;
       NSAutomaticDashSubstitutionEnabled = false;
       NSAutomaticPeriodSubstitutionEnabled = false;
@@ -74,7 +74,7 @@
       NSWindowResizeTime = 0.2;
       PMPrintingExpandedStateForPrint = false;
       PMPrintingExpandedStateForPrint2 = false;
-      _HIHideMenuBar = true;
+      _HIHideMenuBar = false;
 
       "com.apple.keyboard.fnState" = false;
       "com.apple.mouse.tapBehavior" = null;
