@@ -44,7 +44,7 @@ in
 
   userSettings = {
     "[nix]" = {
-      "editor.defaultFormatter" = "jeff-hykin.better-nix-syntax";
+      "editor.defaultFormatter" = "B4dM4n.nixpkgs-fmt";
       "editor.formatOnSave" = true;
     };
     "[rust]" = {
