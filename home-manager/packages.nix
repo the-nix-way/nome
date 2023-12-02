@@ -26,16 +26,17 @@ let
     flyctl
   ];
 
-  gitTools = with pkgs.gitAndTools;
-    [ diff-so-fancy git-codeowners gitflow ]
-    ++ (with pkgs; [
-      difftastic
-      git-crypt
-    ]);
+  gitTools = (with pkgs; [
+    difftastic
+    git-crypt
+  ] ++ (with gitAndTools; [ diff-so-fancy git-codeowners gitflow ]));
 
-  jsTools = (with pkgs; [ bun ]) ++ (with pkgs.nodePackages; [
+  jsTools = (with pkgs; [
+    bun
+    deno
+  ] ++ (with nodePackages; [
     pnpm
-  ]);
+  ]));
 
   macTools = with pkgs.darwin.apple_sdk.frameworks; [
     CoreServices

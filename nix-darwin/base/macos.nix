@@ -55,8 +55,8 @@
       AppleShowScrollBars = "WhenScrolling";
       AppleTemperatureUnit = "Celsius";
       AppleWindowTabbingMode = "fullscreen";
-      InitialKeyRepeat = 11;
-      KeyRepeat = null;
+      InitialKeyRepeat = 15;
+      KeyRepeat = 2;
       NSAutomaticCapitalizationEnabled = false;
       NSAutomaticDashSubstitutionEnabled = false;
       NSAutomaticPeriodSubstitutionEnabled = false;

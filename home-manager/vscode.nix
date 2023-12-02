@@ -1,9 +1,9 @@
 { pkgs }:
 
 let
+  colorTheme = "Tokyo Night";
   font = "JetBrains Mono";
   terminalFont = "JetBrains Mono";
-  colorTheme = "GitHub Dark Mode";
   iconTheme = "material-icon-theme";
 
   ext = publisher: name: version: sha256: pkgs.vscode-utils.buildVscodeMarketplaceExtension {
@@ -15,8 +15,10 @@ in
 
   enableExtensionUpdateCheck = true;
 
-  extensions = with pkgs.vscode-extensions; [
+  extensions = (with pkgs.vscode-extensions; [
     bbenoist.nix
+    bradlc.vscode-tailwindcss
+    denoland.vscode-deno
     editorconfig.editorconfig
     esbenp.prettier-vscode
     github.vscode-github-actions
@@ -25,15 +27,17 @@ in
     tamasfe.even-better-toml
     thenuprojectcontributors.vscode-nushell-lang
     unifiedjs.vscode-mdx
-
+  ]) ++ [
     # Extensions not in Nixpkgs
     (ext "b4dM4n" "nixpkgs-fmt" "0.0.1" "sha256-vz2kU36B1xkLci2QwLpl/SBEhfSWltIDJ1r7SorHcr8=")
+    (ext "enkia" "tokyo-night" "1.0.6" "sha256-VWdUAU6SC7/dNDIOJmSGuIeffbwmcfeGhuSDmUE7Dig=")
     (ext "GitHub" "github-vscode-theme" "6.3.4" "sha256-JbI0B7jxt/2pNg/hMjAE5pBBa3LbUdi+GF0iEZUDUDM=")
+    (ext "jeff-hykin" "better-nix-syntax" "1.0.7" "sha256-vqfhUIjFBf9JvmxB4QFrZH4KMhxamuYjs5n9VyW/BiI=")
     (ext "markusylisiurunen" "githubdarkmode" "0.1.6" "sha256-Xzh8g5bEi4kPul1nJyROcN0CeDnXuNxQEYt6HgMepvM=")
     (ext "ms-vscode" "vscode-typescript-next" "5.4.20231127" "sha256-UVuYggzeWyQTmQxXdM4sT78FUOtYGKD4SzREntotU5g=")
     (ext "PKief" "material-icon-theme" "4.32.0" "sha256-6I9/nWv449PgO1tHJbLy/wxzG6BQF6X550l3Qx0IWpw=")
+    (ext "vue" "volar" "1.8.24" "sha256-KK6u9JFndTctq9h8Irhb0LzrJH9peNsq9+TzaNE9b8o=")
     (ext "whizkydee" "material-palenight-theme" "2.0.3" "sha256-qz2pz9JlnO2OV3eJnRqzbcic1lzpl0ViygwhNjZOWpI=")
-    (ext "jeff-hykin" "better-nix-syntax" "1.0.7" "sha256-vqfhUIjFBf9JvmxB4QFrZH4KMhxamuYjs5n9VyW/BiI=")
   ];
 
   globalSnippets = { };
