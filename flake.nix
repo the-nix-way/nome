@@ -44,9 +44,9 @@
       devShells = forEachSupportedSystem ({ pkgs }: {
         default =
           let
-            # This janky-ish script is necessary because nix-darwin isn't yet fully flake friendly
             reload = pkgs.writeScriptBin "reload" ''
-              ${pkgs.nixFlakes}/bin/nix build .#darwinConfigurations.${pkgs.username}-${pkgs.system}.system \
+              CONFIG_NAME="''${USER}-$(nix eval --impure --raw --expr 'builtins.currentSystem')"
+              ${pkgs.nixFlakes}/bin/nix build .#darwinConfigurations."''${CONFIG_NAME}".system \
                 --option sandbox false
               ./result/sw/bin/darwin-rebuild switch --flake .
             '';
@@ -71,12 +71,12 @@
         fh = inputs.fh.packages.${system}.default;
         uuidv7 = inputs.uuidv7.packages.${system}.default;
         rustToolchain = with inputs.fenix.packages.${system};
-          combine ([
-            stable.clippy
-            stable.rustc
-            stable.cargo
-            stable.rustfmt
-            stable.rust-src
+          combine (with stable; [
+            cargo
+            clippy
+            rustc
+            rustfmt
+            rust-src
           ]);
       };
 
