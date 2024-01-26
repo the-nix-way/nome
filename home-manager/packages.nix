@@ -18,7 +18,7 @@ let
     cmake
   ];
 
-  databaseTools = with pkgs; [ postgresql_14 ];
+  databaseTools = with pkgs; [ postgresql_14 redis ];
 
   devOpsTools = with pkgs; [
     awscli2
@@ -46,7 +46,11 @@ let
 
   misc = with pkgs; [
     comma
+    elixir
+    elixir-ls
+    mprocs
     neofetch
+    process-compose
     reattach-to-user-namespace # for tmux
     yt-dlp
   ];
@@ -66,20 +70,20 @@ let
     rustToolchain
   ];
 
+  scripts = with pkgs; [
+    (writeScriptBin "pk" ''
+      if [ $# -eq 0 ]; then
+        echo "No search term supplied"
+      fi
+
+      pgrep -f $1 | xargs kill -9
+    '')
+  ];
+
   security = with pkgs; [
     certstrap
     pinentry_mac
   ];
-
-  shells = with pkgs; [
-    nushell
-  ];
-
-  # The provider of my shell aesthetic
-  starship = import ./starship.nix { inherit pkgs; };
-
-  # My most-used multiplexer
-  tmux = import ./tmux.nix;
 
   # These are broken on aarch64-darwin but I hope to add them someday
   broken = with pkgs; [
@@ -98,5 +102,5 @@ basic
 ++ nixTools
 ++ pythonTools
 ++ rustTools
+++ scripts
 ++ security
-++ shells

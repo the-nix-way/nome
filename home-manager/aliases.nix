@@ -58,7 +58,7 @@
       "home-manager switch --flake github:the-nix-way/nome && source ${pkgs.homeDirectory}/.zshrc";
 
     # Run Nix garbage collection
-    xgc = "nix store gc";
+    xgc = "nix store gc -v";
 
     # Nix flake helpers
     nfc = "nix flake check";

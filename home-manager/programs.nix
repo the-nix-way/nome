@@ -83,6 +83,11 @@
     package = pkgs.nix-index;
   };
 
+  # Nushell
+  nushell = {
+    enable = true;
+  };
+
   # The provider of my shell aesthetic
   starship = import ./starship.nix { inherit pkgs; };
 
