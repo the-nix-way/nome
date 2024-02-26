@@ -18,7 +18,7 @@
 
   networking.computerName = "${pkgs.username}-${pkgs.system}";
 
-  nix = import ./nix.nix;
+  nix = import ./nix.nix { inherit (pkgs) username; };
 
   nixpkgs = {
     config = {

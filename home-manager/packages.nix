@@ -50,6 +50,7 @@ let
     elixir-ls
     mprocs
     neofetch
+    ngrok
     process-compose
     reattach-to-user-namespace # for tmux
     yt-dlp
