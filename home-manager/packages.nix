@@ -52,6 +52,7 @@ let
     neofetch
     ngrok
     process-compose
+    protobuf
     reattach-to-user-namespace # for tmux
     yt-dlp
   ];
@@ -69,6 +70,9 @@ let
 
   rustTools = with pkgs; [
     rustToolchain
+    cargo-edit
+    cargo-machete
+    cargo-watch
   ];
 
   scripts = with pkgs; [

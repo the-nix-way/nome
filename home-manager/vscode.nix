@@ -67,6 +67,8 @@ in
       "editor.defaultFormatter" = "tamasfe.even-better-toml";
       "editor.formatOnSave" = true;
     };
+    "editor.wordWrap" = "wordWrapColumn";
+    "editor.wordWrapColumn" = 120;
     "search.exclude" = {
       "**/.direnv" = true;
       "**/.git" = true;
@@ -75,7 +77,7 @@ in
       "dist" = true;
       "tmp" = true;
     };
-    "editor.defaultFormatter" = "esbenp.prettier-vscode";
+    # "editor.defaultFormatter" = "esbenp.prettier-vscode";
     "terminal.integrated.fontFamily" = terminalFont;
     "workbench.colorTheme" = colorTheme;
     "workbench.iconTheme" = iconTheme;

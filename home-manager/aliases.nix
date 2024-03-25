@@ -51,7 +51,7 @@
     dr = "direnv reload";
     dk = "direnv revoke";
 
-    ## Nix stuff. Inspired by: https://alexfedoseev.com/blog/post/nix-time.
+    # Nix stuff. Inspired by: https://alexfedoseev.com/blog/post/nix-time.
 
     # Reload the Home Manager configuration (after git push)
     xx =
@@ -61,11 +61,14 @@
     xgc = "nix store gc -v";
 
     # Nix flake helpers
+    ndc = "nix develop --command";
     nfc = "nix flake check";
     nfca = "nix flake check --all-systems";
     nfs = "nix flake show";
     nfu = "nix flake update";
-    ndc = "nix develop --command";
     nsn = "nix search nixpkgs";
+
+    # Restart Nix daemon
+    rnd = "sudo launchctl unload /Library/LaunchDaemons/org.nixos.nix-daemon.plist && sudo launchctl load /Library/LaunchDaemons/org.nixos.nix-daemon.plist";
   };
 }

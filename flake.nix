@@ -3,14 +3,15 @@
   description = "Nome: my Nix home";
 
   inputs = {
-    fenix = { url = "https://flakehub.com/f/nix-community/fenix/0.1.*.tar.gz"; inputs.nixpkgs.follows = "nixpkgs"; };
-    fh = { url = "https://flakehub.com/f/DeterminateSystems/fh/0.1.*.tar.gz"; inputs.nixpkgs.follows = "nixpkgs"; };
-    flake-checker = { url = "https://flakehub.com/f/DeterminateSystems/flake-checker/0.1.*.tar.gz"; inputs.nixpkgs.follows = "nixpkgs"; };
-    flake-schemas.url = "https://flakehub.com/f/DeterminateSystems/flake-schemas/0.1.*.tar.gz";
-    home-manager = { url = "https://flakehub.com/f/nix-community/home-manager/0.2311.*.tar.gz"; inputs.nixpkgs.follows = "nixpkgs"; };
+    fenix = { url = "https://flakehub.com/f/nix-community/fenix/0.1.*"; inputs.nixpkgs.follows = "nixpkgs"; };
+    fh = { url = "https://flakehub.com/f/DeterminateSystems/fh/0.1.*"; inputs.nixpkgs.follows = "nixpkgs"; };
+    flake-checker = { url = "https://flakehub.com/f/DeterminateSystems/flake-checker/0.1.*"; inputs.nixpkgs.follows = "nixpkgs"; };
+    flake-schemas.url = "https://flakehub.com/f/DeterminateSystems/flake-schemas/0.1.*";
+    home-manager = { url = "https://flakehub.com/f/nix-community/home-manager/0.2311.*"; inputs.nixpkgs.follows = "nixpkgs"; };
+    nix.url = "https://flakehub.com/f/DeterminateSystems/nix/2.21.0-rc.1";
     nix-darwin = { url = "github:LnL7/nix-darwin"; inputs.nixpkgs.follows = "nixpkgs"; };
-    nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.2311.*.tar.gz";
-    nuenv = { url = "https://flakehub.com/f/DeterminateSystems/nuenv/0.1.*.tar.gz"; inputs.nixpkgs.follows = "nixpkgs"; };
+    nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.2311.*";
+    nuenv = { url = "https://flakehub.com/f/DeterminateSystems/nuenv/0.1.*"; inputs.nixpkgs.follows = "nixpkgs"; };
     uuidv7 = { url = "git+ssh://git@github.com/DeterminateSystems/uuidv7.git"; inputs.nixpkgs.follows = "nixpkgs"; };
   };
 
@@ -46,9 +47,10 @@
           let
             reload = pkgs.writeScriptBin "reload" ''
               CONFIG_NAME="''${USER}-$(nix eval --impure --raw --expr 'builtins.currentSystem')"
-              ${pkgs.nixFlakes}/bin/nix build .#darwinConfigurations."''${CONFIG_NAME}".system \
+              ${pkgs.nixFlakes}/bin/nix build --builders "" .#darwinConfigurations."''${CONFIG_NAME}".system \
                 --option sandbox false
               ./result/sw/bin/darwin-rebuild switch --flake .
+              ${pkgs.zsh}/bin/zsh -c "source ${pkgs.homeDirectory}/.zshrc"
             '';
           in
           pkgs.mkShell {
@@ -83,6 +85,7 @@
       darwinConfigurations."${username}-${system}" = inputs.nix-darwin.lib.darwinSystem {
         inherit system;
         modules = [
+          inputs.nix.darwinModules.default
           inputs.self.darwinModules.base
           inputs.self.darwinModules.caching
           inputs.home-manager.darwinModules.home-manager

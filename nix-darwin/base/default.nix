@@ -42,8 +42,6 @@
 
   security.pam.enableSudoTouchIdAuth = true;
 
-  services.nix-daemon.enable = true;
-
   system = import ./macos.nix { inherit pkgs; };
 
   users.users.${pkgs.username} = {
