@@ -37,7 +37,8 @@
     enable = true;
     enableNushellIntegration = true;
     enableZshIntegration = true;
-    nix-direnv.enable = true;
+    # Re-enable when Nix versioning issue is sorted
+    #nix-direnv.enable = true;
   };
 
   # Replacement for ls

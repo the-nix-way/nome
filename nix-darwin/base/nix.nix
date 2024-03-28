@@ -2,12 +2,13 @@
 
 {
   buildMachines = [
-    {
-      hostName = "eu.nixbuild.net";
-      system = "x86_64-linux";
-      maxJobs = 100;
-      supportedFeatures = [ "benchmark" "big-parallel" ];
-    }
+    # Re-enable when Nix issue is fixed
+    #{
+    #  hostName = "eu.nixbuild.net";
+    #  system = "x86_64-linux";
+    #  maxJobs = 100;
+    #  supportedFeatures = [ "benchmark" "big-parallel" ];
+    #}
   ];
   checkConfig = true;
   distributedBuilds = true;
