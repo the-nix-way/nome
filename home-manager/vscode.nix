@@ -26,6 +26,7 @@ in
     github.github-vscode-theme
     golang.go
     hashicorp.terraform
+    lucperkins.vrl-vscode
     matthewpi.caddyfile-support
     prisma.prisma
     phoenixframework.phoenix
