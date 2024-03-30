@@ -48,6 +48,7 @@ let
     comma
     elixir
     elixir-ls
+    jelly
     mprocs
     neofetch
     ngrok

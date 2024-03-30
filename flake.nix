@@ -3,6 +3,7 @@
   description = "Nome: my Nix home";
 
   inputs = {
+    jelly.url = "https://flakehub.com/f/lucperkins/jelly/0.1.209.tar.gz";
     fenix = { url = "https://flakehub.com/f/nix-community/fenix/0.1.*"; inputs.nixpkgs.follows = "nixpkgs"; };
     fh = { url = "https://flakehub.com/f/DeterminateSystems/fh/0.1.*"; inputs.nixpkgs.follows = "nixpkgs"; };
     flake-checker = { url = "https://flakehub.com/f/DeterminateSystems/flake-checker/0.1.*"; inputs.nixpkgs.follows = "nixpkgs"; };
@@ -71,6 +72,7 @@
         rev = inputs.self.rev or inputs.self.dirtyRev or null;
         flake-checker = inputs.flake-checker.packages.${system}.default;
         fh = inputs.fh.packages.${system}.default;
+        jelly = inputs.jelly.packages.${system}.default;
         uuidv7 = inputs.uuidv7.packages.${system}.default;
         rustToolchain = with inputs.fenix.packages.${system};
           combine (with stable; [

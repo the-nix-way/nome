@@ -19,3 +19,5 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 eval "$(ssh-agent -s)"
 
 eval "$(go env)"
+
+export ENVRC_USE_FLAKE="1"
