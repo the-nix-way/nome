@@ -2,6 +2,7 @@
 
 {
   enable = true;
+
   extensions = with pkgs; [
     gh-actions-cache
     gh-cal
@@ -16,9 +17,9 @@
     hosts = [ "https://github.com" ];
   };
   settings = {
+    aliases = (import ./aliases.nix { inherit pkgs; }).gh;
     editor = "vim";
     git_protocol = "ssh";
     prompt = "enabled";
-    aliases = (import ./aliases.nix { inherit pkgs; }).gh;
   };
 }

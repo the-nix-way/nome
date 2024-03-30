@@ -7,6 +7,7 @@
   # Fancy replacement for cat
   bat = {
     enable = true;
+
     extraPackages = with pkgs.bat-extras; [ batdiff batman batgrep batwatch ];
     syntaxes = { };
     themes = {
@@ -63,6 +64,9 @@
 
   # GPG config
   gpg.enable = true;
+
+  # Helix editor
+  helix = import ./helix.nix { inherit pkgs; };
 
   # Configure HM itself
   home-manager = {
