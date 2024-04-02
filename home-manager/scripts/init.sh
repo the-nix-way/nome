@@ -13,9 +13,6 @@ fi
 # Suppress direnv log output (which is super verbose and not that useful)
 export DIRENV_LOG_FORMAT=
 
-# Enable Homebrew
-eval "$(/opt/homebrew/bin/brew shellenv)"
-
 eval "$(ssh-agent -s)"
 
 eval "$(go env)"
