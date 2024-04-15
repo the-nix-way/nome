@@ -3,10 +3,10 @@
   description = "Nome: my Nix home";
 
   inputs = {
-    jelly.url = "https://flakehub.com/f/lucperkins/jelly/0.1.209.tar.gz";
+    jelly.url = "https://flakehub.com/f/lucperkins/jelly/*";
     fenix = { url = "https://flakehub.com/f/nix-community/fenix/0.1.*"; inputs.nixpkgs.follows = "nixpkgs"; };
-    fh = { url = "https://flakehub.com/f/DeterminateSystems/fh/0.1.*"; inputs.nixpkgs.follows = "nixpkgs"; };
-    flake-checker = { url = "https://flakehub.com/f/DeterminateSystems/flake-checker/0.1.*"; inputs.nixpkgs.follows = "nixpkgs"; };
+    fh = { url = "https://flakehub.com/f/DeterminateSystems/fh/*"; inputs.nixpkgs.follows = "nixpkgs"; };
+    flake-checker = { url = "https://flakehub.com/f/DeterminateSystems/flake-checker/*"; inputs.nixpkgs.follows = "nixpkgs"; };
     flake-schemas.url = "https://flakehub.com/f/DeterminateSystems/flake-schemas/0.1.*";
     home-manager = { url = "https://flakehub.com/f/nix-community/home-manager/0.2311.*"; inputs.nixpkgs.follows = "nixpkgs"; };
     nix.url = "https://flakehub.com/f/DeterminateSystems/nix/2.21.0-rc.2";
@@ -49,9 +49,9 @@
             reload = pkgs.writeScriptBin "reload" ''
               CONFIG_NAME=$(scutil --get LocalHostName)
               FLAKE_OUTPUT=".#darwinConfigurations.''${CONFIG_NAME}.system"
-              ${pkgs.nixFlakes}/bin/nix build "''${FLAKE_OUTPUT}"
-              ./result/sw/bin/darwin-rebuild activate
-              ${pkgs.zsh}/bin/zsh -c "source ${pkgs.homeDirectory}/.zshrc"
+              ${pkgs.nixFlakes}/bin/nix build "''${FLAKE_OUTPUT}" && \
+                ./result/sw/bin/darwin-rebuild activate && \
+                ${pkgs.zsh}/bin/zsh -c "source ${pkgs.homeDirectory}/.zshrc"
             '';
           in
           pkgs.mkShell {

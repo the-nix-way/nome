@@ -46,7 +46,7 @@ in
     (ext "ms-vscode" "vscode-typescript-next" "5.4.20231127" "sha256-UVuYggzeWyQTmQxXdM4sT78FUOtYGKD4SzREntotU5g=")
     (ext "PKief" "material-icon-theme" "4.32.0" "sha256-6I9/nWv449PgO1tHJbLy/wxzG6BQF6X550l3Qx0IWpw=")
     (ext "teabyii" "ayu" "1.0.5" "sha256-+IFqgWliKr+qjBLmQlzF44XNbN7Br5a119v9WAnZOu4=")
-    (ext "vue" "volar" "1.8.24" "sha256-KK6u9JFndTctq9h8Irhb0LzrJH9peNsq9+TzaNE9b8o=")
+    (ext "vue" "volar" "2.0.11" "sha256-EyULg2yS/aqf0ipUQKFjW1WJIHECr26/JIQ+UuTPSLk=")
     (ext "whizkydee" "material-palenight-theme" "2.0.3" "sha256-qz2pz9JlnO2OV3eJnRqzbcic1lzpl0ViygwhNjZOWpI=")
   ];
 

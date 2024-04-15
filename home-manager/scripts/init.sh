@@ -17,4 +17,5 @@ eval "$(ssh-agent -s)"
 
 eval "$(go env)"
 
+# Specific to FlakeHub dev
 export ENVRC_USE_FLAKE="1"

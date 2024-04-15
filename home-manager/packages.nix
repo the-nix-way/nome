@@ -18,7 +18,10 @@ let
     cmake
   ];
 
-  databaseTools = with pkgs; [ postgresql_14 redis ];
+  databaseTools = with pkgs; [
+    postgresql_14
+    redis
+  ];
 
   devOpsTools = with pkgs; [
     awscli2
@@ -29,7 +32,11 @@ let
   gitTools = (with pkgs; [
     difftastic
     git-crypt
-  ] ++ (with gitAndTools; [ diff-so-fancy git-codeowners gitflow ]));
+  ] ++ (with gitAndTools; [
+    diff-so-fancy
+    git-codeowners
+    gitflow
+  ]));
 
   jsTools = (with pkgs; [
     bun
@@ -55,6 +62,7 @@ let
     process-compose
     protobuf
     reattach-to-user-namespace # for tmux
+    uuidv7
     yt-dlp
   ];
 
@@ -70,6 +78,7 @@ let
   ]);
 
   rustTools = with pkgs; [
+    bacon
     rustToolchain
     cargo-edit
     cargo-machete

@@ -2,8 +2,9 @@
 
 {
   enable = true;
+
+  autocd = false;
   enableAutosuggestions = true;
   enableCompletion = true;
-  autocd = false;
   initExtra = (builtins.readFile ./scripts/init.sh);
 }
