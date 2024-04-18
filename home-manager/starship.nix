@@ -40,7 +40,7 @@
       disabled = false;
     };
     nix_shell = {
-      disabled = true;
+      disabled = false;
       impure_msg = "[impure shell](bold red)";
       pure_msg = "[pure shell](bold green)";
       format = "via [☃️ $state( ($name))](bold blue) ";
