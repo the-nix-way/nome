@@ -70,5 +70,8 @@
 
     # Restart Nix daemon
     rnd = "sudo launchctl unload /Library/LaunchDaemons/org.nixos.nix-daemon.plist && sudo launchctl load /Library/LaunchDaemons/org.nixos.nix-daemon.plist";
+
+    # processes
+    pf = "pgrep -f";
   };
 }
