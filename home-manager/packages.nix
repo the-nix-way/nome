@@ -51,8 +51,39 @@ let
     Security
   ];
 
+  docsTools =
+    let
+      hugo = pkgs.buildGoModule rec {
+        pname = "hugo";
+        version = "0.126.2";
+
+        src = pkgs.fetchFromGitHub {
+          owner = "gohugoio";
+          repo = "hugo";
+          rev = "refs/tags/v${version}";
+          hash = "sha256-ySXnJJJDjZqZkWOiq9ByflfUG6bg+0GSzuXpNnuyMZc=";
+        };
+
+        vendorHash = "sha256-AyZt0Ubl3nNeY0oZlcnbcmC21Z+OvmkAScKeNytEv20=";
+
+        doCheck = false;
+
+        proxyVendor = true;
+
+        tags = [ "extended" ];
+
+        subPackages = [ "." ];
+
+        nativeBuildInputs = with pkgs; [ installShellFiles ];
+
+        ldflags = [ "-s" "-w" "-X github.com/gohugoio/hugo/common/hugo.vendorInfo=nixpkgs" ];
+      };
+    in
+    [ hugo ];
+
   misc = with pkgs; [
     comma
+    cue
     elixir
     elixir-ls
     jelly
@@ -119,3 +150,4 @@ basic
 ++ rustTools
 ++ scripts
 ++ security
+++ docsTools

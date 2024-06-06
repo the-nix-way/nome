@@ -36,7 +36,7 @@ in
   ]) ++ [
     # Extensions not in Nixpkgs
     (ext "andrejunges" "Handlebars" "0.4.1" "sha256-Rwhr9X3sjDm6u/KRYE2ucCJSlZwsgUJbH/fdq2WZ034=")
-    (ext "astro-build" "astro-vscode" "2.8.5" "sha256-CZ7UsnCJYjjQA666E0+//lbQqQ7/wZreHZ87OxMkPDA=")
+    (ext "astro-build" "astro-vscode" "2.8.5" "sha256-mP+MKHDirgemcexSCof/Be7YN2FTXwOnGQHnmtKLgtM=")
     (ext "oven" "bun-vscode" "0.0.12" "sha256-8+Fqabbwup6Jzm5m8GlWbxTqumqXtWAw5s3VaDht9Us=")
     (ext "b4dM4n" "nixpkgs-fmt" "0.0.1" "sha256-vz2kU36B1xkLci2QwLpl/SBEhfSWltIDJ1r7SorHcr8=")
     (ext "enkia" "tokyo-night" "1.0.6" "sha256-VWdUAU6SC7/dNDIOJmSGuIeffbwmcfeGhuSDmUE7Dig=")
