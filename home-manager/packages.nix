@@ -86,6 +86,7 @@ let
     cue
     elixir
     elixir-ls
+    grype
     jelly
     mprocs
     neofetch
@@ -93,6 +94,7 @@ let
     process-compose
     protobuf
     reattach-to-user-namespace # for tmux
+    syft
     uuidv7
     yt-dlp
   ];
@@ -114,6 +116,7 @@ let
     cargo-edit
     cargo-machete
     cargo-watch
+    rust-analyzer
   ];
 
   scripts = with pkgs; [

@@ -41,6 +41,7 @@
     tf = "terraform";
     tg = "terragrunt";
     zj = "zellij";
+    j = "just";
 
     # kubectl
     k = "kubectl";
