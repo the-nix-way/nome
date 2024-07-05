@@ -18,7 +18,7 @@
 
   outputs = inputs:
     let
-      supportedSystems = [ "x86_64-linux" "aarch64-darwin" "x86_64-darwin" "aarch64-linux" ];
+      supportedSystems = [ "aarch64-darwin" ];
       forEachSupportedSystem = f: inputs.nixpkgs.lib.genAttrs supportedSystems (system: f {
         pkgs = import inputs.nixpkgs {
           inherit system;
