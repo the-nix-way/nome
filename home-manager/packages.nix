@@ -86,7 +86,6 @@ let
     cue
     elixir
     elixir-ls
-    grype
     jelly
     mprocs
     neofetch
@@ -94,7 +93,6 @@ let
     process-compose
     protobuf
     reattach-to-user-namespace # for tmux
-    syft
     uuidv7
     yt-dlp
   ];
@@ -122,16 +120,21 @@ let
   scripts = with pkgs; [
     (writeScriptBin "pk" ''
       if [ $# -eq 0 ]; then
-        echo "No search term supplied"
+        echo "No process name supplied"
       fi
 
-      pgrep -f $1 | xargs kill -9
+      for proc in $1; do
+        pgrep -f $proc | xargs kill -9
+      done
     '')
   ];
 
   security = with pkgs; [
     certstrap
+    cosign
+    grype
     pinentry_mac
+    syft
   ];
 
   # These are broken on aarch64-darwin but I hope to add them someday
