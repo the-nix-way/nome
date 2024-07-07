@@ -45,7 +45,7 @@
   # Replacement for ls
   eza = {
     enable = true;
-    enableAliases = true;
+    enableZshIntegration = true;
   };
 
   # Fuzzy finder

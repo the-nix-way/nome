@@ -64,7 +64,7 @@ let
           hash = "sha256-ySXnJJJDjZqZkWOiq9ByflfUG6bg+0GSzuXpNnuyMZc=";
         };
 
-        vendorHash = "sha256-AyZt0Ubl3nNeY0oZlcnbcmC21Z+OvmkAScKeNytEv20=";
+        vendorHash = "sha256-VfwiA5LCAJ1pkmMCy/Dcc5bLKkNY1MHtxHcHvKLoWHs=";
 
         doCheck = false;
 
@@ -100,7 +100,7 @@ let
   nixTools = with pkgs; [
     fh
     flake-checker
-    nixfmt
+    nixfmt-classic
     nixpkgs-fmt
   ];
 
