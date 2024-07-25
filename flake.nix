@@ -3,13 +3,13 @@
   description = "Nome: my Nix home";
 
   inputs = {
+    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
     jelly = { url = "github:lucperkins/jelly"; inputs.nixpkgs.follows = "nixpkgs"; };
     fenix = { url = "https://flakehub.com/f/nix-community/fenix/0.1.*"; inputs.nixpkgs.follows = "nixpkgs"; };
     fh = { url = "https://flakehub.com/f/DeterminateSystems/fh/*"; inputs.nixpkgs.follows = "nixpkgs"; };
     flake-checker = { url = "https://flakehub.com/f/DeterminateSystems/flake-checker/*"; inputs.nixpkgs.follows = "nixpkgs"; };
     flake-schemas.url = "https://flakehub.com/f/DeterminateSystems/flake-schemas/0.1.*";
     home-manager = { url = "https://flakehub.com/f/nix-community/home-manager/0.2405.*"; inputs.nixpkgs.follows = "nixpkgs"; };
-    nix.url = "https://flakehub.com/f/DeterminateSystems/nix/=2.23.3";
     nix-darwin = { url = "github:LnL7/nix-darwin"; inputs.nixpkgs.follows = "nixpkgs"; };
     nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.2405.*";
     nuenv = { url = "https://flakehub.com/f/DeterminateSystems/nuenv/0.1.*"; inputs.nixpkgs.follows = "nixpkgs"; };
@@ -87,7 +87,12 @@
       darwinConfigurations."${username}-${system}" = inputs.nix-darwin.lib.darwinSystem {
         inherit system;
         modules = [
-          inputs.nix.darwinModules.default
+          inputs.determinate.darwinModules.default
+
+          {
+            determinate.nix.primaryUser.username = username;
+          }
+
           inputs.self.darwinModules.base
           inputs.self.darwinModules.caching
           inputs.home-manager.darwinModules.home-manager
