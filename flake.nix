@@ -41,7 +41,7 @@
       };
     in
     {
-      schemas = inputs.flake-schemas.schemas;
+      inherit (inputs.flake-schemas) schemas;
 
       devShells = forEachSupportedSystem ({ pkgs }: {
         default =
@@ -49,7 +49,7 @@
             reload = pkgs.writeScriptBin "reload" ''
               CONFIG_NAME=$(scutil --get LocalHostName)
               FLAKE_OUTPUT=".#darwinConfigurations.''${CONFIG_NAME}.system"
-              ${pkgs.nixFlakes}/bin/nix build "''${FLAKE_OUTPUT}" && \
+              nix build "''${FLAKE_OUTPUT}" && \
                 ./result/sw/bin/darwin-rebuild activate && \
                 ${pkgs.zsh}/bin/zsh -c "source ${pkgs.homeDirectory}/.zshrc"
             '';
