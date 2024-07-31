@@ -6,7 +6,6 @@
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
     jelly = { url = "github:lucperkins/jelly"; inputs.nixpkgs.follows = "nixpkgs"; };
     fenix = { url = "https://flakehub.com/f/nix-community/fenix/0.1.*"; inputs.nixpkgs.follows = "nixpkgs"; };
-    fh = { url = "https://flakehub.com/f/DeterminateSystems/fh/*"; inputs.nixpkgs.follows = "nixpkgs"; };
     flake-checker = { url = "https://flakehub.com/f/DeterminateSystems/flake-checker/*"; inputs.nixpkgs.follows = "nixpkgs"; };
     flake-schemas.url = "https://flakehub.com/f/DeterminateSystems/flake-schemas/0.1.*";
     home-manager = { url = "https://flakehub.com/f/nix-community/home-manager/0.2405.*"; inputs.nixpkgs.follows = "nixpkgs"; };
@@ -71,7 +70,6 @@
           else "/home/${username}";
         rev = inputs.self.rev or inputs.self.dirtyRev or null;
         flake-checker = inputs.flake-checker.packages.${system}.default;
-        fh = inputs.fh.packages.${system}.default;
         jelly = inputs.jelly.packages.${system}.default;
         uuidv7 = inputs.uuidv7.packages.${system}.default;
         rustToolchain = with inputs.fenix.packages.${system};
@@ -88,11 +86,6 @@
         inherit system;
         modules = [
           inputs.determinate.darwinModules.default
-
-          {
-            determinate.nix.primaryUser.username = username;
-          }
-
           inputs.self.darwinModules.base
           inputs.self.darwinModules.caching
           inputs.home-manager.darwinModules.home-manager

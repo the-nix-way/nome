@@ -98,7 +98,6 @@ let
   ];
 
   nixTools = with pkgs; [
-    fh
     flake-checker
     nixfmt-classic
     nixpkgs-fmt
