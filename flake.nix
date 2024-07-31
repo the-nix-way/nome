@@ -7,7 +7,6 @@
     jelly = { url = "github:lucperkins/jelly"; inputs.nixpkgs.follows = "nixpkgs"; };
     fenix = { url = "https://flakehub.com/f/nix-community/fenix/0.1.*"; inputs.nixpkgs.follows = "nixpkgs"; };
     flake-checker = { url = "https://flakehub.com/f/DeterminateSystems/flake-checker/*"; inputs.nixpkgs.follows = "nixpkgs"; };
-    flake-schemas.url = "https://flakehub.com/f/DeterminateSystems/flake-schemas/0.1.*";
     home-manager = { url = "https://flakehub.com/f/nix-community/home-manager/0.2405.*"; inputs.nixpkgs.follows = "nixpkgs"; };
     nix-darwin = { url = "github:LnL7/nix-darwin"; inputs.nixpkgs.follows = "nixpkgs"; };
     nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.2405.*";
@@ -23,6 +22,7 @@
           inherit system;
           overlays = [ inputs.self.overlays.default ];
         };
+        inherit system;
       });
 
       stateVersion = "24.05";
@@ -40,17 +40,12 @@
       };
     in
     {
-      inherit (inputs.flake-schemas) schemas;
-
-      devShells = forEachSupportedSystem ({ pkgs }: {
+      devShells = forEachSupportedSystem ({ pkgs, system }: {
         default =
           let
+            darwinRebuild = inputs.nix-darwin.packages.${system}.darwin-rebuild;
             reload = pkgs.writeScriptBin "reload" ''
-              CONFIG_NAME=$(scutil --get LocalHostName)
-              FLAKE_OUTPUT=".#darwinConfigurations.''${CONFIG_NAME}.system"
-              nix build "''${FLAKE_OUTPUT}" && \
-                ./result/sw/bin/darwin-rebuild activate && \
-                ${pkgs.zsh}/bin/zsh -c "source ${pkgs.homeDirectory}/.zshrc"
+              ${darwinRebuild}/bin/darwin-rebuild switch --flake .
             '';
           in
           pkgs.mkShell {

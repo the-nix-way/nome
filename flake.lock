@@ -220,20 +220,6 @@
     },
     "flake-schemas": {
       "locked": {
-        "lastModified": 1721999734,
-        "narHash": "sha256-G5CxYeJVm4lcEtaO87LKzOsVnWeTcHGKbKxNamNWgOw=",
-        "rev": "0a5c42297d870156d9c57d8f99e476b738dcd982",
-        "revCount": 75,
-        "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/DeterminateSystems/flake-schemas/0.1.5/0190ef2f-61e0-794b-ba14-e82f225e55e6/source.tar.gz"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://flakehub.com/f/DeterminateSystems/flake-schemas/0.1.%2A"
-      }
-    },
-    "flake-schemas_2": {
-      "locked": {
         "lastModified": 1697467827,
         "narHash": "sha256-j8SR19V1SRysyJwpOBF4TLuAvAjF5t+gMiboN4gYQDU=",
         "rev": "764932025c817d4e500a8d2a4d8c565563923d29",
@@ -336,7 +322,7 @@
     },
     "jelly": {
       "inputs": {
-        "flake-schemas": "flake-schemas_2",
+        "flake-schemas": "flake-schemas",
         "nixpkgs": [
           "nixpkgs"
         ],
@@ -608,7 +594,6 @@
         "determinate": "determinate",
         "fenix": "fenix_2",
         "flake-checker": "flake-checker",
-        "flake-schemas": "flake-schemas",
         "home-manager": "home-manager",
         "jelly": "jelly",
         "nix-darwin": "nix-darwin",
