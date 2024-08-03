@@ -3,5 +3,5 @@
 }:
 
 {
-  PATH = "/etc/profiles/per-user/${username}/bin:$PATH";
+  PATH = "/etc/profiles/per-user/${username}/bin:/run/current-system/sw/bin:$PATH";
 }

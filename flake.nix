@@ -46,6 +46,7 @@
             darwinRebuild = inputs.nix-darwin.packages.${system}.darwin-rebuild;
             reload = pkgs.writeScriptBin "reload" ''
               ${darwinRebuild}/bin/darwin-rebuild switch --flake .
+              source /Users/${username}/.zshrc
             '';
           in
           pkgs.mkShell {
