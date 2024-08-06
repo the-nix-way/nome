@@ -45,8 +45,11 @@
           let
             darwinRebuild = inputs.nix-darwin.packages.${system}.darwin-rebuild;
             reload = pkgs.writeScriptBin "reload" ''
+              echo "Running darwin-rebuild switch"
               ${darwinRebuild}/bin/darwin-rebuild switch --flake .
-              source /Users/${username}/.zshrc
+              echo "Refreshing zshrc"
+              ${pkgs.zsh}/bin/zsh -c "source ${pkgs.homeDirectory}/.zshrc"
+              echo "DONE"
             '';
           in
           pkgs.mkShell {
