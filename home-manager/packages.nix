@@ -86,6 +86,7 @@ let
     cue
     elixir
     elixir-ls
+    gleam
     jelly
     mprocs
     neofetch
