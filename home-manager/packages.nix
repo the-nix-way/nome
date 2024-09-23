@@ -27,6 +27,8 @@ let
     awscli2
     dive
     flyctl
+    kubectl
+    minikube
   ];
 
   gitTools = (with pkgs; [
