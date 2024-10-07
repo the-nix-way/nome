@@ -91,6 +91,7 @@
       darwinConfigurations."${username}-${system}" = inputs.nix-darwin.lib.darwinSystem {
         inherit system;
         modules = [
+          { system.stateVersion = 1; }
           inputs.determinate.darwinModules.default
           inputs.self.darwinModules.base
           inputs.self.darwinModules.caching

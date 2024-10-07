@@ -57,27 +57,19 @@ let
     let
       hugo = pkgs.buildGoModule rec {
         pname = "hugo";
-        version = "0.126.2";
-
+        version = "0.135.0";
         src = pkgs.fetchFromGitHub {
           owner = "gohugoio";
           repo = "hugo";
           rev = "refs/tags/v${version}";
-          hash = "sha256-ySXnJJJDjZqZkWOiq9ByflfUG6bg+0GSzuXpNnuyMZc=";
+          hash = "sha256-WCWaEVD2HON6feOev9HBfpqBWYIFmfevu6LH0OMtv2Q=";
         };
-
-        vendorHash = "sha256-VfwiA5LCAJ1pkmMCy/Dcc5bLKkNY1MHtxHcHvKLoWHs=";
-
+        vendorHash = "sha256-XIFgmT0VyhRrUNfwy85Ac7YIO9fij0KqVmqb/s3IDVg=";
         doCheck = false;
-
         proxyVendor = true;
-
         tags = [ "extended" ];
-
         subPackages = [ "." ];
-
         nativeBuildInputs = with pkgs; [ installShellFiles ];
-
         ldflags = [ "-s" "-w" "-X github.com/gohugoio/hugo/common/hugo.vendorInfo=nixpkgs" ];
       };
     in
@@ -90,6 +82,7 @@ let
     elixir-ls
     gleam
     jelly
+    lima
     mprocs
     neofetch
     ngrok
