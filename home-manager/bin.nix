@@ -54,16 +54,6 @@ in
     }
   '')
 
-  (nu "xr" ''
-    # Quick run a Nix program
-    def main [
-      program: string, # The program to run
-      cmd?: string # The command to pass to the program
-    ] {
-      nix run $"nixpkgs#($program)(if $cmd { $" ($cmd)" })"
-    }
-  '')
-
   (nu "px" ''
     # Cross-compile for system
     def main [
