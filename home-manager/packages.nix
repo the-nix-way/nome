@@ -41,6 +41,7 @@ let
   ]));
 
   jsTools = (with pkgs; [
+    biome
     bun
     deno
   ] ++ (with nodePackages; [
@@ -89,7 +90,7 @@ let
     process-compose
     protobuf
     reattach-to-user-namespace # for tmux
-    uuidv7
+    vector
     yt-dlp
   ];
 

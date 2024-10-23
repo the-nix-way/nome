@@ -5,6 +5,7 @@
   inputs = {
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
     fh = { url = "https://flakehub.com/f/DeterminateSystems/fh/*"; inputs.nixpkgs.follows = "nixpkgs"; };
+    h = { url = "https://flakehub.com/f/zimbatm/h/*"; inputs.nixpkgs.follows = "nixpkgs"; };
     jelly = { url = "github:lucperkins/jelly"; inputs.nixpkgs.follows = "nixpkgs"; };
     fenix = { url = "https://flakehub.com/f/nix-community/fenix/0.1.*"; inputs.nixpkgs.follows = "nixpkgs"; };
     flake-checker = { url = "https://flakehub.com/f/DeterminateSystems/flake-checker/*"; inputs.nixpkgs.follows = "nixpkgs"; };
@@ -13,7 +14,6 @@
     nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.2405.*";
     nixpkgs-unstable.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1.*";
     nuenv = { url = "https://flakehub.com/f/DeterminateSystems/nuenv/0.1.*"; inputs.nixpkgs.follows = "nixpkgs"; };
-    uuidv7 = { url = "git+ssh://git@github.com/DeterminateSystems/uuidv7.git"; inputs.nixpkgs.follows = "nixpkgs"; };
   };
 
   outputs = inputs:
@@ -74,7 +74,6 @@
         fh = inputs.fh.packages.${system}.default;
         flake-checker = inputs.flake-checker.packages.${system}.default;
         jelly = inputs.jelly.packages.${system}.default;
-        uuidv7 = inputs.uuidv7.packages.${system}.default;
         rustToolchain = with inputs.fenix.packages.${system};
           combine (with stable; [
             cargo
@@ -93,6 +92,7 @@
         modules = [
           { system.stateVersion = 1; }
           inputs.determinate.darwinModules.default
+          inputs.h.darwinModules.default
           inputs.self.darwinModules.base
           inputs.self.darwinModules.caching
           inputs.home-manager.darwinModules.home-manager
