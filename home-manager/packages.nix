@@ -89,7 +89,6 @@ let
     process-compose
     protobuf
     reattach-to-user-namespace # for tmux
-    uuidv7
     yt-dlp
   ];
 

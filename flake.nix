@@ -13,7 +13,6 @@
     nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.2405.*";
     nixpkgs-unstable.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1.*";
     nuenv = { url = "https://flakehub.com/f/DeterminateSystems/nuenv/0.1.*"; inputs.nixpkgs.follows = "nixpkgs"; };
-    uuidv7 = { url = "git+ssh://git@github.com/DeterminateSystems/uuidv7.git"; inputs.nixpkgs.follows = "nixpkgs"; };
   };
 
   outputs = inputs:
@@ -74,7 +73,6 @@
         fh = inputs.fh.packages.${system}.default;
         flake-checker = inputs.flake-checker.packages.${system}.default;
         jelly = inputs.jelly.packages.${system}.default;
-        uuidv7 = inputs.uuidv7.packages.${system}.default;
         rustToolchain = with inputs.fenix.packages.${system};
           combine (with stable; [
             cargo
