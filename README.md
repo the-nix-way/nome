@@ -5,7 +5,6 @@ It encapsulates a range of Nix goodies that I use to declutter and bring order t
 
 - My [nix-darwin] and [Home Manager][hm] configuration
 - Shell aliases and helper scripts
-- [NixOS](#nixos-configuration)
 
 What I run to apply my [nix-darwin] configuration (which in turn applies my [Home Manager][hm] config):
 
@@ -15,15 +14,6 @@ nix develop --command reload
 
 That's right: with Nix installed and [flakes enabled][flakes], this is all that I need to run to stand up a new machine according to my exact specifications, including configuration for [Vim](./nix-darwin/home-manager/neovim.nix), [tmux](./nix-darwin/home-manager/tmux.nix), [zsh](./nix-darwin/home-manager/zsh.nix), [Visual Studio Code](./nix-darwin/home-manager/vscode.nix), [Git](./nix-darwin/home-manager/git.nix), and more.
 This has enabled me to eliminate [Homebrew] from my machine.
-
-## NixOS configuration
-
-My Nome flake also exports a [NixOS](./nixos) configuration that I use for experimentation.
-To apply that config on any NixOS machine:
-
-```shell
-nixos-rebuild switch --flake "github:the-nix-way"
-```
 
 ## Scope
 
