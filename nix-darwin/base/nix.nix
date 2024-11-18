@@ -13,7 +13,6 @@
   distributedBuilds = true;
   extraOptions = "";
   settings = {
-    auto-optimise-store = true;
     build-users-group = "nixbld";
     cores = 10;
     extra-sandbox-paths = [ ];
