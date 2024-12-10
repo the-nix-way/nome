@@ -16,7 +16,7 @@
     init.defaultBranch = "main";
     protocol.keybase.allow = "always";
     pull.rebase = "false";
-    user = { signingkey = "16DB1108FB591835"; };
+    user = { signingkey = "C86EE5D85EE4DDA5"; };
   };
   ignores = [
     ".cache/"

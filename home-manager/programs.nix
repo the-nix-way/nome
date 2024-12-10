@@ -109,6 +109,12 @@
     enable = true;
   };
 
+  # SSH
+  ssh = {
+    enable = true;
+    package = pkgs.openssh;
+  };
+
   # The provider of my shell aesthetic
   starship = import ./starship.nix { inherit pkgs; };
 
