@@ -1,9 +1,6 @@
 { pkgs }:
 
 {
-  # Alternative terminal
-  alacritty = import ./alacritty.nix { inherit pkgs; };
-
   # Fancy replacement for cat
   bat = {
     enable = true;
@@ -56,6 +53,14 @@
 
   # GitHub CLI
   gh = import ./gh.nix { inherit pkgs; };
+
+  # Ghostty
+  ghostty = {
+    enable = true;
+    #package = pkgs.ghostty;
+    shellIntegration.enable = false;
+    shellIntegration.enableZshIntegration = true;
+  };
 
   # But of course
   git = import ./git.nix { inherit pkgs; };

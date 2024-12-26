@@ -5,6 +5,8 @@
   inputs = {
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
     fh = { url = "https://flakehub.com/f/DeterminateSystems/fh/*"; inputs.nixpkgs.follows = "nixpkgs"; };
+    ghostty.url = "github:ghostty-org/ghostty";
+    ghostty-module.url = "github:clo4/ghostty-hm-module";
     jelly = { url = "github:lucperkins/jelly"; inputs.nixpkgs.follows = "nixpkgs"; };
     fenix = { url = "https://flakehub.com/f/nix-community/fenix/0.1.*"; inputs.nixpkgs.follows = "nixpkgs"; };
     flake-checker = { url = "https://flakehub.com/f/DeterminateSystems/flake-checker/*"; inputs.nixpkgs.follows = "nixpkgs"; };
@@ -71,6 +73,7 @@
         rev = inputs.self.rev or inputs.self.dirtyRev or null;
         fh = inputs.fh.packages.${system}.default;
         flake-checker = inputs.flake-checker.packages.${system}.default;
+        ghostty = inputs.ghostty.packages.${system}.default;
         jelly = inputs.jelly.packages.${system}.default;
         rustToolchain = with inputs.fenix.packages.${system};
           combine (with stable; [
@@ -99,6 +102,7 @@
           inherit pkgs;
           overlays = [
             inputs.nuenv.overlays.default
+            inputs.fenix.overlays.default
             inputs.self.overlays.default
           ];
         };
@@ -109,6 +113,7 @@
 
         home-manager = { pkgs, ... }: import ./home-manager {
           inherit pkgs stateVersion username;
+          ghosttyModule = inputs.ghostty-module.homeModules.default;
         };
       };
 

@@ -1,6 +1,7 @@
 { pkgs
 , stateVersion
 , username
+, ghosttyModule
 }:
 
 {
@@ -16,6 +17,7 @@
         shellAliases = (import ./aliases.nix { inherit pkgs; }).shell;
         inherit stateVersion username;
       };
+      imports = [ ghosttyModule ];
       programs = import ./programs.nix { inherit pkgs; };
     };
   };

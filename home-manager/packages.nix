@@ -109,7 +109,7 @@ let
     cargo-edit
     cargo-machete
     cargo-watch
-    rust-analyzer
+    rust-analyzer-nightly
   ];
 
   scripts = with pkgs; [

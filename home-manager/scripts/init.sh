@@ -19,3 +19,5 @@ eval "$(go env)"
 
 # Specific to FlakeHub dev
 export ENVRC_USE_FLAKE="1"
+
+export CARGO_NET_GIT_FETCH_WITH_CLI="true"
