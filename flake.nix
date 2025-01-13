@@ -13,6 +13,7 @@
     home-manager = { url = "https://flakehub.com/f/nix-community/home-manager/0.2405.*"; inputs.nixpkgs.follows = "nixpkgs"; };
     nix-darwin = { url = "github:LnL7/nix-darwin"; inputs.nixpkgs.follows = "nixpkgs"; };
     nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.2405.*";
+    nixpkgs-unstable.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1.*";
     nuenv = { url = "https://flakehub.com/f/DeterminateSystems/nuenv/0.1.*"; inputs.nixpkgs.follows = "nixpkgs"; };
   };
 
@@ -75,6 +76,7 @@
         flake-checker = inputs.flake-checker.packages.${system}.default;
         ghostty = inputs.ghostty.packages.${system}.default;
         jelly = inputs.jelly.packages.${system}.default;
+        ollama-unstable = inputs.nixpkgs-unstable.legacyPackages.${system}.ollama;
         rustToolchain = with inputs.fenix.packages.${system};
           combine (with stable; [
             cargo

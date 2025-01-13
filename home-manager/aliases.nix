@@ -32,6 +32,7 @@
   shell = {
     # General
     "," = "comma";
+    ai = "ollama run llama3.3";
     cat = "bat";
     conf = "code ~/.config/nixpkgs";
     dc = "docker compose";
@@ -52,7 +53,7 @@
     dr = "direnv reload";
     dk = "direnv revoke";
 
-    # Nix stuff. Inspired by: https://alexfedoseev.com/blog/post/nix-time.
+    ## Nix stuff. Inspired by: https://alexfedoseev.com/blog/post/nix-time.
 
     # Reload the Home Manager configuration (after git push)
     xx =

@@ -86,6 +86,7 @@ let
     mprocs
     neofetch
     ngrok
+    ollama-unstable
     process-compose
     protobuf
     reattach-to-user-namespace # for tmux

@@ -57,9 +57,9 @@
   # Ghostty
   ghostty = {
     enable = true;
-    #package = pkgs.ghostty;
     shellIntegration.enable = false;
     shellIntegration.enableZshIntegration = true;
+    settings = { };
   };
 
   # But of course
