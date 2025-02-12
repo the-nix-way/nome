@@ -3,7 +3,6 @@
   description = "Nome: my Nix home";
 
   inputs = {
-    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
     fh = { url = "https://flakehub.com/f/DeterminateSystems/fh/*"; inputs.nixpkgs.follows = "nixpkgs"; };
     ghostty.url = "github:ghostty-org/ghostty";
     ghostty-module.url = "github:clo4/ghostty-hm-module";
@@ -91,7 +90,6 @@
         inherit system;
         modules = [
           { system.stateVersion = 1; }
-          inputs.determinate.darwinModules.default
           inputs.self.darwinModules.base
           inputs.self.darwinModules.caching
           inputs.home-manager.darwinModules.home-manager
