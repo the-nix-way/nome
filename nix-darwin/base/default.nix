@@ -42,8 +42,6 @@
 
   security.pam.enableSudoTouchIdAuth = true;
 
-  #system = import ./macos.nix { inherit pkgs; };
-
   users.users.${pkgs.username} = {
     name = pkgs.username;
     home = pkgs.homeDirectory;
