@@ -33,11 +33,13 @@
             darwinRebuild = inputs.nix-darwin.packages.${system}.darwin-rebuild;
             reload = pkgs.writeScriptBin "reload" ''
               set -e
-              echo "Running darwin-rebuild switch"
+              echo "> Running darwin-rebuild switch..."
               sudo ${darwinRebuild}/bin/darwin-rebuild switch --flake .
-              echo "Refreshing zshrc"
+              echo "> darwin-rebuild switch was successful ✅"
+              echo "> Refreshing zshrc..."
               ${pkgs.zsh}/bin/zsh -c "source ${pkgs.homeDirectory}/.zshrc"
-              echo "DONE"
+              echo "> zshrc was refreshed successfully ✅"
+              echo "> macOS config was successfully applied 🚀"
             '';
           in
           pkgs.mkShell {
