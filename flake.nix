@@ -4,8 +4,6 @@
 
   inputs = {
     fh = { url = "https://flakehub.com/f/DeterminateSystems/fh/*"; inputs.nixpkgs.follows = "nixpkgs"; };
-    jelly = { url = "github:lucperkins/jelly"; inputs.nixpkgs.follows = "nixpkgs"; };
-    fenix = { url = "https://flakehub.com/f/nix-community/fenix/0.1.*"; inputs.nixpkgs.follows = "nixpkgs"; };
     flake-checker = { url = "https://flakehub.com/f/DeterminateSystems/flake-checker/*"; inputs.nixpkgs.follows = "nixpkgs"; };
     home-manager = { url = "https://flakehub.com/f/nix-community/home-manager/0.2411.*"; inputs.nixpkgs.follows = "nixpkgs"; };
     nix-darwin = { url = "github:LnL7/nix-darwin/nix-darwin-24.11"; inputs.nixpkgs.follows = "nixpkgs"; };
@@ -24,19 +22,9 @@
         inherit system;
       });
 
-      stateVersion = "24.05";
+      stateVersion = "24.11";
       system = "aarch64-darwin";
       username = "lucperkins";
-      caches = {
-        nixos-org = {
-          cache = "https://cache.nixos.org";
-          publicKey = "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=";
-        };
-        nix-community = {
-          cache = "https://nix-community.cachix.org";
-          publicKey = "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=";
-        };
-      };
     in
     {
       devShells = forEachSupportedSystem ({ pkgs, system }: {
@@ -70,7 +58,6 @@
         rev = inputs.self.rev or inputs.self.dirtyRev or null;
         fh = inputs.fh.packages.${system}.default;
         flake-checker = inputs.flake-checker.packages.${system}.default;
-        jelly = inputs.jelly.packages.${system}.default;
       };
 
       darwinConfigurations."${username}-${system}" = inputs.nix-darwin.lib.darwinSystem {
@@ -78,7 +65,6 @@
         modules = [
           { system.stateVersion = 1; }
           inputs.self.darwinModules.base
-          #inputs.self.darwinModules.caching
           inputs.home-manager.darwinModules.home-manager
           inputs.self.darwinModules.home-manager
         ];
@@ -88,14 +74,9 @@
         base = { pkgs, ... }: import ./nix-darwin/base {
           inherit pkgs;
           overlays = [
-            #inputs.nuenv.overlays.default
-            #inputs.fenix.overlays.default
+            inputs.nuenv.overlays.default
             inputs.self.overlays.default
           ];
-        };
-
-        caching = { ... }: import ./nix-darwin/caching {
-          inherit caches username;
         };
 
         home-manager = { pkgs, ... }: import ./home-manager {
