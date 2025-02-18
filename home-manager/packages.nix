@@ -76,21 +76,20 @@ let
     [ hugo ];
 
   misc = with pkgs; [
-    comma
-    cue
-    elixir
-    elixir-ls
-    gleam
-    jelly
-    lima
-    mprocs
-    neofetch
-    ngrok
-    ollama-unstable
-    process-compose
-    protobuf
-    reattach-to-user-namespace # for tmux
-    yt-dlp
+    #comma
+    #cue
+    #elixir
+    #elixir-ls
+    #gleam
+    #jelly
+    #lima
+    #mprocs
+    #neofetch
+    #ngrok
+    #process-compose
+    #protobuf
+    #reattach-to-user-namespace # for tmux
+    #yt-dlp
   ];
 
   nixTools = with pkgs; [
@@ -105,12 +104,10 @@ let
   ]);
 
   rustTools = with pkgs; [
-    bacon
-    rustToolchain
-    cargo-edit
-    cargo-machete
-    cargo-watch
-    rust-analyzer-nightly
+  #  bacon
+  #  cargo-edit
+  #  cargo-machete
+  #  cargo-watch
   ];
 
   scripts = with pkgs; [

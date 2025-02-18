@@ -4,15 +4,12 @@
 
   inputs = {
     fh = { url = "https://flakehub.com/f/DeterminateSystems/fh/*"; inputs.nixpkgs.follows = "nixpkgs"; };
-    ghostty.url = "github:ghostty-org/ghostty";
-    ghostty-module.url = "github:clo4/ghostty-hm-module";
     jelly = { url = "github:lucperkins/jelly"; inputs.nixpkgs.follows = "nixpkgs"; };
     fenix = { url = "https://flakehub.com/f/nix-community/fenix/0.1.*"; inputs.nixpkgs.follows = "nixpkgs"; };
     flake-checker = { url = "https://flakehub.com/f/DeterminateSystems/flake-checker/*"; inputs.nixpkgs.follows = "nixpkgs"; };
-    home-manager = { url = "https://flakehub.com/f/nix-community/home-manager/0.2405.*"; inputs.nixpkgs.follows = "nixpkgs"; };
-    nix-darwin = { url = "github:LnL7/nix-darwin"; inputs.nixpkgs.follows = "nixpkgs"; };
-    nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.2405.*";
-    nixpkgs-unstable.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1.*";
+    home-manager = { url = "https://flakehub.com/f/nix-community/home-manager/0.2411.*"; inputs.nixpkgs.follows = "nixpkgs"; };
+    nix-darwin = { url = "github:LnL7/nix-darwin/nix-darwin-24.11"; inputs.nixpkgs.follows = "nixpkgs"; };
+    nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.2411.*";
     nuenv = { url = "https://flakehub.com/f/DeterminateSystems/nuenv/0.1.*"; inputs.nixpkgs.follows = "nixpkgs"; };
   };
 
@@ -73,17 +70,7 @@
         rev = inputs.self.rev or inputs.self.dirtyRev or null;
         fh = inputs.fh.packages.${system}.default;
         flake-checker = inputs.flake-checker.packages.${system}.default;
-        ghostty = inputs.ghostty.packages.${system}.default;
         jelly = inputs.jelly.packages.${system}.default;
-        ollama-unstable = inputs.nixpkgs-unstable.legacyPackages.${system}.ollama;
-        rustToolchain = with inputs.fenix.packages.${system};
-          combine (with stable; [
-            cargo
-            clippy
-            rustc
-            rustfmt
-            rust-src
-          ]);
       };
 
       darwinConfigurations."${username}-${system}" = inputs.nix-darwin.lib.darwinSystem {
@@ -91,7 +78,7 @@
         modules = [
           { system.stateVersion = 1; }
           inputs.self.darwinModules.base
-          inputs.self.darwinModules.caching
+          #inputs.self.darwinModules.caching
           inputs.home-manager.darwinModules.home-manager
           inputs.self.darwinModules.home-manager
         ];
@@ -101,8 +88,8 @@
         base = { pkgs, ... }: import ./nix-darwin/base {
           inherit pkgs;
           overlays = [
-            inputs.nuenv.overlays.default
-            inputs.fenix.overlays.default
+            #inputs.nuenv.overlays.default
+            #inputs.fenix.overlays.default
             inputs.self.overlays.default
           ];
         };
@@ -113,7 +100,6 @@
 
         home-manager = { pkgs, ... }: import ./home-manager {
           inherit pkgs stateVersion username;
-          ghosttyModule = inputs.ghostty-module.homeModules.default;
         };
       };
 

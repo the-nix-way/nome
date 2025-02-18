@@ -32,7 +32,6 @@
   shell = {
     # General
     "," = "comma";
-    ai = "ollama run llama3.3";
     cat = "bat";
     conf = "code ~/.config/nixpkgs";
     dc = "docker compose";

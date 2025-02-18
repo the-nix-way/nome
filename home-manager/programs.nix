@@ -54,14 +54,6 @@
   # GitHub CLI
   gh = import ./gh.nix { inherit pkgs; };
 
-  # Ghostty
-  ghostty = {
-    enable = true;
-    shellIntegration.enable = false;
-    shellIntegration.enableZshIntegration = true;
-    settings = { };
-  };
-
   # But of course
   git = import ./git.nix { inherit pkgs; };
 

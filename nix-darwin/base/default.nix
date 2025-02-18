@@ -18,6 +18,8 @@
 
   networking.computerName = "${pkgs.username}-${pkgs.system}";
 
+  nix.enable = false;
+
   nixpkgs = {
     config = {
       allowBroken = true;
