@@ -33,6 +33,7 @@ in
     jeff-hykin.better-nix-syntax
     lucperkins.vrl-vscode
     matthewpi.caddyfile-support
+    mesonbuild.mesonbuild
     mkhl.direnv
     nefrob.vscode-just-syntax
     pkief.material-icon-theme

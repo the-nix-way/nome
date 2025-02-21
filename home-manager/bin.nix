@@ -54,15 +54,6 @@ in
     }
   '')
 
-  (nu "px" ''
-    # Cross-compile for system
-    def main [
-      system: string, # The system
-    ] {
-      nix eval $"nixpkgs#pkgsCross.($system).stdenv.hostPlatform.config"
-    }
-  '')
-
   (nu "dvs" ''
     # Initialize a template from Nome
     def main [
