@@ -16,7 +16,7 @@
     ];
   };
 
-  networking.computerName = "${pkgs.username}-${pkgs.system}";
+  networking.computerName = "${pkgs.constants.username}-${pkgs.constants.system}";
 
   nix.enable = false;
 
@@ -42,8 +42,8 @@
 
   security.pam.enableSudoTouchIdAuth = true;
 
-  users.users.${pkgs.username} = {
-    name = pkgs.username;
-    home = pkgs.homeDirectory;
+  users.users.${pkgs.constants.username} = {
+    name = pkgs.constants.username;
+    home = pkgs.lib.homeDirectory;
   };
 }

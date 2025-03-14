@@ -80,6 +80,6 @@ in
 
   # Open up this directory in VS Code for editing
   (nu "cfg" ''
-    code ${pkgs.homeDirectory}/the-nix-way/nome
+    code ${pkgs.lib.homeDirectory}/the-nix-way/nome
   '')
 ]

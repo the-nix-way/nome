@@ -56,7 +56,7 @@
 
     # Reload the Home Manager configuration (after git push)
     xx =
-      "home-manager switch --flake github:the-nix-way/nome && source ${pkgs.homeDirectory}/.zshrc";
+      "home-manager switch --flake github:the-nix-way/nome && source ${pkgs.lib.homeDirectory}/.zshrc";
 
     # Run Nix garbage collection
     xgc = "nix store gc -v";

@@ -30,14 +30,13 @@
       devShells = forEachSupportedSystem ({ pkgs, system }: {
         default =
           let
-            darwinRebuild = inputs.nix-darwin.packages.${system}.darwin-rebuild;
             reload = pkgs.writeScriptBin "reload" ''
               set -e
               echo "> Running darwin-rebuild switch..."
-              sudo ${darwinRebuild}/bin/darwin-rebuild switch --flake .
+              sudo ${inputs.nix-darwin.packages.${system}.darwin-rebuild}/bin/darwin-rebuild switch --flake .
               echo "> darwin-rebuild switch was successful ✅"
               echo "> Refreshing zshrc..."
-              ${pkgs.zsh}/bin/zsh -c "source ${pkgs.homeDirectory}/.zshrc"
+              ${pkgs.zsh}/bin/zsh -c "source ${pkgs.lib.homeDirectory}/.zshrc"
               echo "> zshrc was refreshed successfully ✅"
               echo "> macOS config was successfully applied 🚀"
             '';
@@ -52,12 +51,20 @@
       });
 
       overlays.default = final: prev: {
-        inherit username system;
-        homeDirectory =
-          if (prev.stdenv.isDarwin)
-          then "/Users/${username}"
-          else "/home/${username}";
-        rev = inputs.self.rev or inputs.self.dirtyRev or null;
+        # Constant values to pass around
+        constants = {
+          inherit username system;
+        };
+
+        # Extra lib functions
+        lib = prev.lib // {
+          homeDirectory =
+            if (prev.stdenv.isDarwin)
+            then "/Users/${username}"
+            else "/home/${username}";
+        };
+
+        # Packages
         fh = inputs.fh.packages.${system}.default;
         flake-checker = inputs.flake-checker.packages.${system}.default;
       };
