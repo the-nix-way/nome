@@ -109,16 +109,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1739757849,
-        "narHash": "sha256-Gs076ot1YuAAsYVcyidLKUMIc4ooOaRGO0PqTY7sBzA=",
-        "rev": "9d3d080aec2a35e05a15cedd281c2384767c2cfe",
-        "revCount": 3881,
+        "lastModified": 1742655702,
+        "narHash": "sha256-jbqlw4sPArFtNtA1s3kLg7/A4fzP4GLk9bGbtUJg0JQ=",
+        "rev": "0948aeedc296f964140d9429223c7e4a0702a1ff",
+        "revCount": 3884,
         "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/nix-community/home-manager/0.2411.3881%2Brev-9d3d080aec2a35e05a15cedd281c2384767c2cfe/0195126a-5a0d-7158-a4b0-1251804a5b30/source.tar.gz"
+        "url": "https://api.flakehub.com/f/pinned/nix-community/home-manager/0.2411.3884%2Brev-0948aeedc296f964140d9429223c7e4a0702a1ff/0195beed-619a-75e3-80e2-da686eba413a/source.tar.gz"
       },
       "original": {
         "type": "tarball",
-        "url": "https://flakehub.com/f/nix-community/home-manager/0.2411.%2A"
+        "url": "https://flakehub.com/f/nix-community/home-manager/0"
       }
     },
     "naersk": {
@@ -184,16 +184,16 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1741862977,
-        "narHash": "sha256-prZ0M8vE/ghRGGZcflvxCu40ObKaB+ikn74/xQoNrGQ=",
-        "rev": "cdd2ef009676ac92b715ff26630164bb88fec4e0",
-        "revCount": 715614,
+        "lastModified": 1742512142,
+        "narHash": "sha256-8XfURTDxOm6+33swQJu/hx6xw1Tznl8vJJN5HwVqckg=",
+        "rev": "7105ae3957700a9646cc4b766f5815b23ed0c682",
+        "revCount": 715908,
         "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/NixOS/nixpkgs/0.2411.715614%2Brev-cdd2ef009676ac92b715ff26630164bb88fec4e0/019590d8-bf83-7849-9c87-9e373480fc07/source.tar.gz"
+        "url": "https://api.flakehub.com/f/pinned/NixOS/nixpkgs/0.2411.715908%2Brev-7105ae3957700a9646cc4b766f5815b23ed0c682/0195b8ff-82a6-7d19-b362-1f70dcb1c7f7/source.tar.gz"
       },
       "original": {
         "type": "tarball",
-        "url": "https://flakehub.com/f/NixOS/nixpkgs/0.2411.%2A"
+        "url": "https://flakehub.com/f/NixOS/nixpkgs/0"
       }
     },
     "nuenv": {

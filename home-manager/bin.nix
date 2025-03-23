@@ -8,6 +8,10 @@ let
   };
 in
 [
+  (pkgs.writeScriptBin "random-hash" ''
+    nix hash convert --hash-algo sha1 --to nix32 $(openssl rand -hex 20 | sha1sum | awk '{print $1}')
+  '')
+
   (nu "crate-hash" ''
     # Display the hash for a cargo crate
     def main [
