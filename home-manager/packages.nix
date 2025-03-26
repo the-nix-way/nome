@@ -76,6 +76,7 @@ let
     [ hugo ];
 
   misc = with pkgs; [
+    bottom
     comma
     cue
     elixir
@@ -98,7 +99,7 @@ let
     nixpkgs-fmt
   ];
 
-  pythonTools = with pkgs; [ python311 ] ++ (with pkgs.python311Packages; [
+  pythonTools = with pkgs; [ python314 ] ++ (with pkgs.python314Packages; [
     httpie
   ]);
 
