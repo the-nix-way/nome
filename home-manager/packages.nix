@@ -53,27 +53,7 @@ let
     Security
   ];
 
-  docsTools =
-    let
-      hugo = pkgs.buildGoModule rec {
-        pname = "hugo";
-        version = "0.135.0";
-        src = pkgs.fetchFromGitHub {
-          owner = "gohugoio";
-          repo = "hugo";
-          rev = "refs/tags/v${version}";
-          hash = "sha256-WCWaEVD2HON6feOev9HBfpqBWYIFmfevu6LH0OMtv2Q=";
-        };
-        vendorHash = "sha256-XIFgmT0VyhRrUNfwy85Ac7YIO9fij0KqVmqb/s3IDVg=";
-        doCheck = false;
-        proxyVendor = true;
-        tags = [ "extended" ];
-        subPackages = [ "." ];
-        nativeBuildInputs = with pkgs; [ installShellFiles ];
-        ldflags = [ "-s" "-w" "-X github.com/gohugoio/hugo/common/hugo.vendorInfo=nixpkgs" ];
-      };
-    in
-    [ hugo ];
+  docsTools = with pkgs; [ hugo ];
 
   misc = with pkgs; [
     bottom
@@ -82,6 +62,7 @@ let
     elixir
     elixir-ls
     gleam
+    httpie
     lima
     mprocs
     neofetch
@@ -99,9 +80,7 @@ let
     nixpkgs-fmt
   ];
 
-  pythonTools = with pkgs; [ python314 ] ++ (with pkgs.python314Packages; [
-    httpie
-  ]);
+  pythonTools = with pkgs; [ python314 ];
 
   rustTools = with pkgs; [
     bacon
