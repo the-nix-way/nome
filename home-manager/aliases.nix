@@ -74,5 +74,9 @@
 
     # processes
     pf = "pgrep -f";
+
+    # hashes
+    rnh = "random-nix-hash";
+    rsh = "random-sha256-hash";
   };
 }
