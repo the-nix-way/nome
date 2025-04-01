@@ -65,6 +65,7 @@ let
     httpie
     lima
     mprocs
+    nh
     neofetch
     ngrok
     process-compose
