@@ -77,6 +77,7 @@ let
   nixTools = with pkgs; [
     fh
     flake-checker
+    flake-iter
     nixfmt-classic
     nixpkgs-fmt
   ];
