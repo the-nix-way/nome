@@ -46,6 +46,7 @@ in
     thenuprojectcontributors.vscode-nushell-lang
     unifiedjs.vscode-mdx
     vue.volar
+    yzhang.markdown-all-in-one
   ]) ++ [
     # Extensions not in Nixpkgs
     (ext "andrejunges" "Handlebars" "0.4.1" "sha256-Rwhr9X3sjDm6u/KRYE2ucCJSlZwsgUJbH/fdq2WZ034=")
@@ -64,6 +65,10 @@ in
   mutableExtensionsDir = false;
 
   userSettings = {
+    "[markdown]" = {
+      "editor.defaultFormatter" = "yzhang.markdown-all-in-one";
+      "editor.formatOnSave" = true;
+    };
     "[nix]" = {
       "editor.defaultFormatter" = "B4dM4n.nixpkgs-fmt";
       "editor.formatOnSave" = true;
