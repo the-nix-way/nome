@@ -43,6 +43,7 @@ let
   jsTools = (with pkgs; [
     bun
     deno
+    nodejs
   ] ++ (with nodePackages; [
     pnpm
   ]));
@@ -53,7 +54,7 @@ let
     Security
   ];
 
-  docsTools = with pkgs; [ hugo ];
+  docsTools = with pkgs; [ antora hugo ];
 
   misc = with pkgs; [
     bottom

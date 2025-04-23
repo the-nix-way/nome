@@ -7,7 +7,7 @@
     flake-checker = { url = "https://flakehub.com/f/DeterminateSystems/flake-checker/*"; inputs.nixpkgs.follows = "nixpkgs"; };
     flake-iter = { url = "https://flakehub.com/f/DeterminateSystems/flake-iter/*"; inputs.nixpkgs.follows = "nixpkgs"; };
     home-manager = { url = "https://flakehub.com/f/nix-community/home-manager/0"; inputs.nixpkgs.follows = "nixpkgs"; };
-    nix-darwin = { url = "github:LnL7/nix-darwin/nix-darwin-24.11"; inputs.nixpkgs.follows = "nixpkgs"; };
+    nix-darwin = { url = "https://flakehub.com/f/nix-darwin/nix-darwin/0"; inputs.nixpkgs.follows = "nixpkgs"; };
     nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0";
     nixpkgs-unstable.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1";
     nuenv = { url = "https://flakehub.com/f/DeterminateSystems/nuenv/0.1.*"; inputs.nixpkgs.follows = "nixpkgs"; };

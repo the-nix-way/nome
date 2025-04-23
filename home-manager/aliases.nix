@@ -60,6 +60,7 @@
 
     # Run Nix garbage collection
     xgc = "nix store gc -v";
+    xrd = "sudo launchctl unload /Library/LaunchDaemons/systems.determinate.nix-daemon.plist && sudo launchctl load /Library/LaunchDaemons/systems.determinate.nix-daemon.plist";
 
     # Nix flake helpers
     ndc = "nix develop --command";
