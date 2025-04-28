@@ -60,6 +60,7 @@ let
     bottom
     comma
     cue
+    duckdb
     elixir
     elixir-ls
     gleam
