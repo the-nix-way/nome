@@ -31,7 +31,6 @@ in
     golang.go
     hashicorp.hcl
     hashicorp.terraform
-    jeff-hykin.better-nix-syntax
     lucperkins.vrl-vscode
     matthewpi.caddyfile-support
     mesonbuild.mesonbuild

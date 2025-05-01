@@ -14,6 +14,7 @@
     gruvbox
     nerdtree
     tabular
+    vim-cpp-enhanced-highlight
     vim-elixir
     vim-nix
   ];
