@@ -63,6 +63,7 @@ let
     duckdb
     elixir
     elixir-ls
+    fastfetch
     gleam
     httpie
     lima
@@ -77,6 +78,7 @@ let
   ];
 
   nixTools = with pkgs; [
+    ephemera
     fh
     flake-checker
     flake-iter

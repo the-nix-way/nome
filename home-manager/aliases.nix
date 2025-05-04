@@ -52,6 +52,9 @@
     dr = "direnv reload";
     dk = "direnv revoke";
 
+    # Misc
+    ff = "fastfetch";
+
     ## Nix stuff. Inspired by: https://alexfedoseev.com/blog/post/nix-time.
 
     # Reload the Home Manager configuration (after git push)
