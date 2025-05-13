@@ -82,6 +82,7 @@ let
     fh
     flake-checker
     flake-iter
+    linux-builder
     nixfmt-classic
     nixpkgs-fmt
   ];
