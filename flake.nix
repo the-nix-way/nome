@@ -75,7 +75,7 @@
         flake-iter = inputs.flake-iter.packages.${system}.default;
         hugo = inputs.nixpkgs-unstable.legacyPackages.${system}.hugo;
         linux-builder = final.writeScriptBin "linux-builder" ''
-          ${inputs.nixpkgs-unstable.legacyPackages.${system}.darwin.linux-builder}/bin/create-builder
+          sudo ${inputs.nixpkgs-unstable.legacyPackages.${system}.darwin.linux-builder}/bin/create-builder
         '';
         nh = inputs.nixpkgs-unstable.legacyPackages.${system}.nh;
       };
