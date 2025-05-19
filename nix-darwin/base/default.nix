@@ -25,9 +25,6 @@
       allowBroken = true;
       allowUnfree = true;
       allowUnsupportedSystem = true;
-      permittedInsecurePackages = [
-        "jujutsu-0.23.0"
-      ];
     };
     inherit overlays;
   };

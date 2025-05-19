@@ -74,6 +74,7 @@
         flake-checker = inputs.flake-checker.packages.${system}.default;
         flake-iter = inputs.flake-iter.packages.${system}.default;
         hugo = inputs.nixpkgs-unstable.legacyPackages.${system}.hugo;
+        jujutsu = inputs.nixpkgs-unstable.legacyPackages.${system}.jujutsu;
         linux-builder = final.writeScriptBin "linux-builder" ''
           sudo ${inputs.nixpkgs-unstable.legacyPackages.${system}.darwin.linux-builder}/bin/create-builder
         '';
@@ -103,7 +104,6 @@
         };
       };
 
-      templates = import
-        ./templates;
+      templates = import ./templates;
     };
 }
