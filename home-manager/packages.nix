@@ -38,21 +38,17 @@ let
     diff-so-fancy
     git-codeowners
     gitflow
+    jujutsu
   ]));
 
   jsTools = (with pkgs; [
     bun
     deno
     nodejs
+    oxlint
   ] ++ (with nodePackages; [
     pnpm
   ]));
-
-  macTools = with pkgs.darwin.apple_sdk.frameworks; [
-    CoreServices
-    Foundation
-    Security
-  ];
 
   docsTools = with pkgs; [ antora hugo ];
 
@@ -130,7 +126,6 @@ basic
 ++ devOpsTools
 ++ gitTools
 ++ jsTools
-++ macTools
 ++ misc
 ++ nixTools
 ++ pythonTools

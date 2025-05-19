@@ -83,7 +83,6 @@
       darwinConfigurations."${username}-${system}" = inputs.nix-darwin.lib.darwinSystem {
         inherit system;
         modules = [
-          { system.stateVersion = 1; }
           inputs.self.darwinModules.base
           inputs.home-manager.darwinModules.home-manager
           inputs.self.darwinModules.home-manager

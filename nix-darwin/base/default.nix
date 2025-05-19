@@ -25,6 +25,9 @@
       allowBroken = true;
       allowUnfree = true;
       allowUnsupportedSystem = true;
+      permittedInsecurePackages = [
+        "jujutsu-0.23.0"
+      ];
     };
     inherit overlays;
   };
@@ -41,6 +44,8 @@
   };
 
   security.pam.enableSudoTouchIdAuth = true;
+
+  system.stateVersion = 1;
 
   users.users.${pkgs.constants.username} = {
     name = pkgs.constants.username;
