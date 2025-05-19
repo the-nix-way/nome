@@ -21,6 +21,14 @@ I should make it clear that this project is a personal project and not necessari
 I do hope that you find some inspiration in it, but don't necessarily interpret what you see here as best practices.
 It's just an evolving project that I find quite useful and it's meant above all to show what Nix is capable of.
 
+## Bootstrapping
+
+On a machine that has Nix installed but potentially not flakes:
+
+```shell
+./bootstrap.sh
+```
+
 [flakes]: https://nixos.wiki/wiki/Flakes
 [hm]: https://github.com/nix-community/home-manager
 [homebrew]: https://brew.sh
