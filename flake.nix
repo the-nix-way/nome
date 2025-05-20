@@ -3,8 +3,8 @@
   description = "Nome: my Nix home";
 
   inputs = {
-    ephemera = { url = "https://flakehub.com/f/DeterminateSystems/ephemera/*"; inputs.nixpkgs.follows = "nixpkgs"; };
-    fh = { url = "https://flakehub.com/f/DeterminateSystems/fh/*"; inputs.nixpkgs.follows = "nixpkgs"; };
+    ephemera = { url = "https://flakehub.com/f/DeterminateSystems/ephemera/0.1"; inputs.nixpkgs.follows = "nixpkgs"; };
+    fh = { url = "https://flakehub.com/f/DeterminateSystems/fh/0.1"; inputs.nixpkgs.follows = "nixpkgs"; };
     flake-checker = { url = "https://flakehub.com/f/DeterminateSystems/flake-checker/*"; inputs.nixpkgs.follows = "nixpkgs"; };
     flake-iter = { url = "https://flakehub.com/f/DeterminateSystems/flake-iter/*"; inputs.nixpkgs.follows = "nixpkgs"; };
     home-manager = { url = "https://flakehub.com/f/nix-community/home-manager/0"; inputs.nixpkgs.follows = "nixpkgs"; };
