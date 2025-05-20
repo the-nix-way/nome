@@ -1,9 +1,21 @@
 "$schema" = "https://jj-vcs.github.io/jj/latest/config-schema.json"
 
+[aliases]
+hop = [
+  "bookmark",
+  "move",
+  "--from",
+  "closest_bookmark(@)",
+  "--to",
+  "closest_pushable(@)",
+]
+
 [git]
 sign-on-push = true
+write-change-id-header = true
 
 [revset-aliases]
+"T" = "trunk()"
 "trunk()" = "main@origin"
 
 [signing]
@@ -12,6 +24,8 @@ backend = "gpg"
 
 [ui]
 default-command = "log"
+diff-editor = ":builtin"
+graph.style = "square"
 log-synthetic-elided-nodes = true
 
 [user]
