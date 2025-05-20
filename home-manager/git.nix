@@ -23,6 +23,7 @@
     ".DS_Store"
     ".direnv/"
     ".idea/"
+    ".jj/"
     "*.swp"
     "built-in-stubs.jar"
     "dumb.rdb"
