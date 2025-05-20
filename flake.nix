@@ -76,9 +76,11 @@
         hugo = inputs.nixpkgs-unstable.legacyPackages.${system}.hugo;
         jjui = inputs.nixpkgs-unstable.legacyPackages.${system}.jjui;
         jujutsu = inputs.nixpkgs-unstable.legacyPackages.${system}.jujutsu;
+        lazyjj = inputs.nixpkgs-unstable.legacyPackages.${system}.lazyjj;
         linux-builder = final.writeScriptBin "linux-builder" ''
           sudo ${inputs.nixpkgs-unstable.legacyPackages.${system}.darwin.linux-builder}/bin/create-builder
         '';
+        materialize = inputs.nixpkgs-unstable.legacyPackages.${system}.materialize;
         nh = inputs.nixpkgs-unstable.legacyPackages.${system}.nh;
       };
 

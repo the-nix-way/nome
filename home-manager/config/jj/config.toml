@@ -1,7 +1,18 @@
 "$schema" = "https://jj-vcs.github.io/jj/latest/config-schema.json"
 
+[git]
+sign-on-push = true
+
+[revset-aliases]
+"trunk()" = "main@origin"
+
+[signing]
+behavior = "drop"
+backend = "gpg"
+
 [ui]
 default-command = "log"
+log-synthetic-elided-nodes = true
 
 [user]
 name = "Luc Perkins"

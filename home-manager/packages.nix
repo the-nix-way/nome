@@ -19,7 +19,7 @@ let
   ];
 
   databaseTools = with pkgs; [
-    postgresql_14
+    postgresql_17
     redis
   ];
 
@@ -31,9 +31,11 @@ let
     minikube
   ];
 
-  gitTools = (with pkgs; [
+  versionControlTools = (with pkgs; [
     difftastic
     git-crypt
+    jjui
+    lazyjj
   ] ++ (with gitAndTools; [
     diff-so-fancy
     git-codeowners
@@ -61,7 +63,6 @@ let
     fastfetch
     gleam
     httpie
-    jjui
     lima
     mprocs
     nh
@@ -115,18 +116,13 @@ let
     pinentry_mac
     syft
   ];
-
-  # These are broken on aarch64-darwin but I hope to add them someday
-  broken = with pkgs; [
-    materialize
-  ];
 in
 basic
 ++ bin
 ++ buildTools
 ++ databaseTools
 ++ devOpsTools
-++ gitTools
+++ docsTools
 ++ jsTools
 ++ misc
 ++ nixTools
@@ -134,4 +130,4 @@ basic
 ++ rustTools
 ++ scripts
 ++ security
-++ docsTools
+++ versionControlTools
