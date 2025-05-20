@@ -38,7 +38,6 @@ let
     diff-so-fancy
     git-codeowners
     gitflow
-    jujutsu
   ]));
 
   jsTools = (with pkgs; [
@@ -62,6 +61,7 @@ let
     fastfetch
     gleam
     httpie
+    jjui
     lima
     mprocs
     nh

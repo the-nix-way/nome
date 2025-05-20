@@ -84,6 +84,12 @@
     };
   };
 
+  jujutsu = {
+    enable = true;
+    package = pkgs.jujutsu;
+    settings = (builtins.fromTOML (builtins.readFile ./config/jj/config.toml));
+  };
+
   # For Git rebases and such
   neovim = import ./neovim.nix {
     inherit (pkgs) vimPlugins;

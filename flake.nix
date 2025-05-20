@@ -74,6 +74,7 @@
         flake-checker = inputs.flake-checker.packages.${system}.default;
         flake-iter = inputs.flake-iter.packages.${system}.default;
         hugo = inputs.nixpkgs-unstable.legacyPackages.${system}.hugo;
+        jjui = inputs.nixpkgs-unstable.legacyPackages.${system}.jjui;
         jujutsu = inputs.nixpkgs-unstable.legacyPackages.${system}.jujutsu;
         linux-builder = final.writeScriptBin "linux-builder" ''
           sudo ${inputs.nixpkgs-unstable.legacyPackages.${system}.darwin.linux-builder}/bin/create-builder
