@@ -362,10 +362,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1747596523,
+        "lastModified": 1747847914,
         "owner": "nix-community",
         "repo": "nh",
-        "rev": "e75dacd5df3f8feff16896884bd264dea78df334",
+        "rev": "45048d3e9f183f3f09fddf667841b7327c04ad8f",
         "type": "github"
       },
       "original": {
