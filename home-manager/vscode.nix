@@ -35,6 +35,7 @@ in
     matthewpi.caddyfile-support
     mesonbuild.mesonbuild
     mkhl.direnv
+    ms-python.python
     nefrob.vscode-just-syntax
     pkief.material-icon-theme
     prisma.prisma
