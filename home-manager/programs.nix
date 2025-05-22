@@ -66,22 +66,20 @@
   helix = import ./helix.nix { inherit pkgs; };
 
   # Configure HM itself
-  home-manager = {
-    enable = true;
-  };
+  home-manager.enable = true;
 
   # JSON parsing on the CLI
   jq = {
     enable = true;
-    colors = {
-      arrays = "1;37";
-      false = "0;37";
-      null = "1;30";
-      numbers = "0;37";
-      objects = "1;37";
-      strings = "0;32";
-      true = "0;37";
-    };
+    #colors = {
+    #  arrays = "1;37";
+    #  false = "0;37";
+    #  null = "1;30";
+    #  numbers = "0;37";
+    #  objects = "1;37";
+    #  strings = "0;32";
+    #  true = "0;37";
+    #};
   };
 
   jujutsu = {

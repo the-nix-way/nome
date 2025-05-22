@@ -3,18 +3,9 @@
 , ...
 }:
 
+
 {
-  fonts = {
-    packages = with pkgs; [
-      recursive
-      (nerdfonts.override {
-        fonts = [
-          "FiraCode"
-          "JetBrainsMono"
-        ];
-      })
-    ];
-  };
+  fonts.packages = with pkgs; [ fira-code jetbrains-mono ];
 
   networking.computerName = "${pkgs.constants.username}-${pkgs.constants.system}";
 
@@ -40,7 +31,7 @@
     };
   };
 
-  security.pam.enableSudoTouchIdAuth = true;
+  #security.pam.enableSudoTouchIdAuth = true;
 
   system.stateVersion = 1;
 
