@@ -5,9 +5,6 @@ if [ -e ~/.env.sh ]; then
   . ~/.env.sh
 fi
 
-# Suppress direnv log output (which is super verbose and not that useful)
-export DIRENV_LOG_FORMAT=
-
 eval "$(ssh-agent -s)"
 
 eval "$(go env)"
