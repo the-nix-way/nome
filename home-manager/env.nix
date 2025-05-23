@@ -8,5 +8,6 @@ let
   cargoBin = "$HOME/.cargo/bin";
 in
 {
+  EDITOR = "nvim";
   PATH = "${nixProfile}:${swBin}:${cargoBin}:$PATH";
 }

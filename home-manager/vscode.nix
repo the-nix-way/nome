@@ -4,6 +4,8 @@ let
   font = "JetBrains Mono";
   terminalFont = "JetBrains Mono";
   iconTheme = "material-icon-theme";
+  lightTheme = "Catppuccin Latte";
+  darkTheme = "Catppuccin Mocha";
 
   vsce = publisher: name: version: sha256: pkgs.vscode-utils.buildVscodeMarketplaceExtension {
     mktplcRef = { inherit name publisher sha256 version; };
@@ -20,6 +22,8 @@ in
       b4dm4n.vscode-nixpkgs-fmt
       bbenoist.nix
       bradlc.vscode-tailwindcss
+      catppuccin.catppuccin-vsc
+      catppuccin.catppuccin-vsc-icons
       denoland.vscode-deno
       disneystreaming.smithy
       editorconfig.editorconfig
@@ -95,8 +99,9 @@ in
       "rust-analyzer.server.path" = "rust-analyzer";
       "terminal.integrated.fontFamily" = terminalFont;
       "window.autoDetectColorScheme" = true;
-      "workbench.preferredLightColorTheme" = "Vitesse Light";
-      "workbench.preferredDarkColorTheme" = "Vitesse Dark";
+      "workbench.iconTheme" = iconTheme;
+      "workbench.preferredLightColorTheme" = lightTheme;
+      "workbench.preferredDarkColorTheme" = darkTheme;
     };
   };
 
