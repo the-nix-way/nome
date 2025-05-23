@@ -1,9 +1,9 @@
 { pkgs }:
 
 let
-  font = "JetBrains Mono";
-  terminalFont = "JetBrains Mono";
-  iconTheme = "material-icon-theme";
+  font = "Fira Code";
+  terminalFont = "Fira Code";
+  iconTheme = "catppuccin-mocha";
   lightTheme = "Catppuccin Latte";
   darkTheme = "Catppuccin Mocha";
 
