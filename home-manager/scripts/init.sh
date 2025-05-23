@@ -7,7 +7,9 @@ fi
 
 eval "$(ssh-agent -s)"
 
+# Go settings
 eval "$(go env)"
+export PATH="${GOPATH}/bin:${PATH}"
 
 # Specific to FlakeHub dev
 export ENVRC_USE_FLAKE="1"
