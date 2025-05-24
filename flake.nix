@@ -7,6 +7,7 @@
     fh = { url = "https://flakehub.com/f/DeterminateSystems/fh/0.1"; };
     flake-checker = { url = "https://flakehub.com/f/DeterminateSystems/flake-checker/*"; inputs.nixpkgs.follows = "nixpkgs"; };
     flake-iter = { url = "https://flakehub.com/f/DeterminateSystems/flake-iter/*"; inputs.nixpkgs.follows = "nixpkgs"; };
+    helix = { url = "github:helix-editor/helix"; inputs.nixpkgs.follows = "nixpkgs"; };
     home-manager = { url = "github:nix-community/home-manager/release-25.05"; inputs.nixpkgs.follows = "nixpkgs"; };
     nh = { url = "github:nix-community/nh"; inputs.nixpkgs.follows = "nixpkgs"; };
     nix-darwin = { url = "github:nix-darwin/nix-darwin/nix-darwin-25.05"; inputs.nixpkgs.follows = "nixpkgs"; };
@@ -73,6 +74,7 @@
         fh = inputs.fh.packages.${system}.default;
         flake-checker = inputs.flake-checker.packages.${system}.default;
         flake-iter = inputs.flake-iter.packages.${system}.default;
+        helix = inputs.helix.packages.${system}.default;
         hugo = inputs.nixpkgs-unstable.legacyPackages.${system}.hugo;
         jjui = inputs.nixpkgs-unstable.legacyPackages.${system}.jjui;
         jujutsu = inputs.nixpkgs-unstable.legacyPackages.${system}.jujutsu;

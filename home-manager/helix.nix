@@ -4,7 +4,12 @@
   enable = true;
 
   defaultEditor = false;
-  languages = { language = [{ name = "rust"; auto-format = true; }]; };
+  languages = {
+    language = [
+      { name = "rust"; auto-format = true; }
+      { name = "nix"; auto-format = true; }
+    ];
+  };
   package = pkgs.helix;
   settings = { };
 }
