@@ -27,7 +27,7 @@
         inherit system;
       });
 
-      stateVersion = "24.11";
+      stateVersion = "25.05";
       system = "aarch64-darwin";
       username = "lucperkins";
     in

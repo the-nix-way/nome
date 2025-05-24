@@ -52,8 +52,46 @@ let
 
   docsTools = with pkgs; [ antora hugo ];
 
+  # Mostly for use with Helix
+  languageServers = with pkgs; [
+    astro-language-server # Astro
+    bash-language-server # Bash
+    beam27Packages.erlang-ls # Erlang
+    cuelsp # Cue
+    docker-compose-language-service # Docker Compose
+    gopls # Go
+    haskellPackages.dhall-lsp-server # Dhall
+    jq-lsp # jq
+    just-lsp # Just
+    lldb_20 # Rust debugging
+    markdown-oxide # Markdown
+    marksman # Markdown
+    mesonlsp # Meson
+    metals # Scala
+    nil # Nix
+    nixd # Nix
+    nls # Nickel
+    nodePackages_latest.vscode-json-languageserver # JSON
+    protols # Protobuf
+    regols # Rego
+    rubyPackages_3_4.ruby-lsp # Ruby
+    ruff # Python
+    starpls # Starlark
+    superhtml # HTML
+    svelte-language-server # Svelte
+    taplo # TOML
+    terraform-ls # Terraform
+    tinymist # Typst
+    typescript-language-server # TypeScript
+    vscode-langservers-extracted # HTML, CSS, JSON, etc.
+    vue-language-server # Vue
+    wasm-language-tools # WebAssembly
+    yaml-language-server # YAML
+  ];
+
   misc = with pkgs; [
     bottom
+    buf
     comma
     cue
     duckdb
@@ -122,6 +160,7 @@ basic
 ++ databaseTools
 ++ devOpsTools
 ++ docsTools
+++ languageServers
 ++ jsTools
 ++ misc
 ++ nixTools
