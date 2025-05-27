@@ -84,6 +84,7 @@
         '';
         materialize = inputs.nixpkgs-unstable.legacyPackages.${system}.materialize;
         nh = inputs.nixpkgs-unstable.legacyPackages.${system}.nh;
+        zed-editor = inputs.nixpkgs-unstable.legacyPackages.${system}.zed-editor;
       };
 
       darwinConfigurations."${username}-${system}" = inputs.nix-darwin.lib.darwinSystem {

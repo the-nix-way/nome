@@ -54,6 +54,9 @@
   # GitHub CLI
   gh = import ./gh.nix { inherit pkgs; };
 
+  # Ghostty terminal
+  #ghostty = import ./ghostty.nix { inherit pkgs; };
+
   # But of course
   git = import ./git.nix { inherit pkgs; };
 
@@ -124,8 +127,12 @@
   # My most-used editor
   vscode = import ./vscode.nix { inherit pkgs; };
 
+  # Zed editor
+  zed-editor = import ./zed.nix { inherit pkgs; };
+
+  # Zellij multiplexer
+  zellij = import ./zellij.nix { inherit pkgs; };
+
   # My fav shell
-  zsh = import ./zsh.nix {
-    inherit pkgs;
-  };
+  zsh = import ./zsh.nix { inherit pkgs; };
 }

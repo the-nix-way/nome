@@ -4,12 +4,10 @@
   enable = true;
 
   defaultEditor = false;
-  languages = {
-    language = [
-      { name = "rust"; auto-format = true; }
-      { name = "nix"; auto-format = true; }
-    ];
-  };
   package = pkgs.helix;
-  settings = { };
+  settings = {
+    editor = {
+      auto-format = true;
+    };
+  };
 }

@@ -29,6 +29,8 @@
         };
       };
     };
+
+    zsh.enable = true;
   };
 
   #security.pam.enableSudoTouchIdAuth = true;
@@ -38,5 +40,6 @@
   users.users.${pkgs.constants.username} = {
     name = pkgs.constants.username;
     home = pkgs.lib.homeDirectory;
+    shell = pkgs.zsh;
   };
 }

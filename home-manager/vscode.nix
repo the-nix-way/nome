@@ -21,6 +21,7 @@ in
       astro-build.astro-vscode
       b4dm4n.vscode-nixpkgs-fmt
       bbenoist.nix
+      biomejs.biome
       bradlc.vscode-tailwindcss
       catppuccin.catppuccin-vsc
       catppuccin.catppuccin-vsc-icons

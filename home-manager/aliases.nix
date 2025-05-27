@@ -73,14 +73,13 @@
     nfu = "nix flake update";
     nsn = "nix search nixpkgs";
 
-    # Restart Nix daemon
-    rnd = "sudo launchctl unload /Library/LaunchDaemons/org.nixos.nix-daemon.plist && sudo launchctl load /Library/LaunchDaemons/org.nixos.nix-daemon.plist";
-
     # processes
     pf = "pgrep -f";
 
     # hashes
     rnh = "random-nix-hash";
     rsh = "random-sha256-hash";
+
+    zed = "zeditor";
   };
 }
