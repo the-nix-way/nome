@@ -9,5 +9,6 @@
     editor = {
       auto-format = true;
     };
+    theme = "catppuccin_mocha";
   };
 }
