@@ -69,6 +69,7 @@
     ndc = "nix develop --command";
     nfc = "nix flake check";
     nfca = "nix flake check --all-systems";
+    nfm = "nix flake metadata";
     nfs = "nix flake show";
     nfu = "nix flake update";
     nsn = "nix search nixpkgs";
