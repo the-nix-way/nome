@@ -1,12 +1,7 @@
 { pkgs }:
 
 let
-  font = "Fira Code";
-  terminalFont = "Fira Code";
-  iconTheme = "catppuccin-mocha";
-  lightTheme = "Catppuccin Latte";
-  darkTheme = "Catppuccin Mocha";
-
+  # Helper function
   vsce = publisher: name: version: sha256: pkgs.vscode-utils.buildVscodeMarketplaceExtension {
     mktplcRef = { inherit name publisher sha256 version; };
   };
@@ -69,41 +64,52 @@ in
 
     keybindings = [ ];
 
-    userSettings = {
-      "[markdown]" = {
-        "editor.defaultFormatter" = "yzhang.markdown-all-in-one";
-        "editor.formatOnSave" = true;
+    userSettings =
+      let
+        biome = {
+          "editor.defaultFormatter" = "biomejs.biome";
+          "editor.formatOnSave" = true;
+        };
+      in
+      {
+        "[markdown]" = {
+          "editor.defaultFormatter" = "yzhang.markdown-all-in-one";
+          "editor.formatOnSave" = true;
+        };
+        "[nix]" = {
+          "editor.defaultFormatter" = "B4dM4n.nixpkgs-fmt";
+          "editor.formatOnSave" = true;
+        };
+        "[rust]" = {
+          "editor.defaultFormatter" = "rust-lang.rust-analyzer";
+          "editor.formatOnSave" = true;
+        };
+        "[toml]" = {
+          "editor.defaultFormatter" = "tamasfe.even-better-toml";
+          "editor.formatOnSave" = true;
+        };
+        "[javascript]" = biome;
+        "[javacriptreact]" = biome;
+        "[typescript]" = biome;
+        "[typescriptreact]" = biome;
+        "editor.wordWrap" = "wordWrapColumn";
+        "editor.wordWrapColumn" = 120;
+        "search.exclude" = {
+          "**/.direnv" = true;
+          "**/.git" = true;
+          "**/node_modules" = true;
+          "*.lock" = true;
+          "dist" = true;
+          "tmp" = true;
+        };
+        # "editor.defaultFormatter" = "esbenp.prettier-vscode";
+        "rust-analyzer.server.path" = "rust-analyzer";
+        "terminal.integrated.fontFamily" = pkgs.fonts.vscode.terminal;
+        "window.autoDetectColorScheme" = true;
+        "workbench.iconTheme" = pkgs.themes.vscode.icon;
+        "workbench.preferredLightColorTheme" = pkgs.themes.vscode.light;
+        "workbench.preferredDarkColorTheme" = pkgs.themes.vscode.dark;
       };
-      "[nix]" = {
-        "editor.defaultFormatter" = "B4dM4n.nixpkgs-fmt";
-        "editor.formatOnSave" = true;
-      };
-      "[rust]" = {
-        "editor.defaultFormatter" = "rust-lang.rust-analyzer";
-        "editor.formatOnSave" = true;
-      };
-      "[toml]" = {
-        "editor.defaultFormatter" = "tamasfe.even-better-toml";
-        "editor.formatOnSave" = true;
-      };
-      "editor.wordWrap" = "wordWrapColumn";
-      "editor.wordWrapColumn" = 120;
-      "search.exclude" = {
-        "**/.direnv" = true;
-        "**/.git" = true;
-        "**/node_modules" = true;
-        "*.lock" = true;
-        "dist" = true;
-        "tmp" = true;
-      };
-      # "editor.defaultFormatter" = "esbenp.prettier-vscode";
-      "rust-analyzer.server.path" = "rust-analyzer";
-      "terminal.integrated.fontFamily" = terminalFont;
-      "window.autoDetectColorScheme" = true;
-      "workbench.iconTheme" = iconTheme;
-      "workbench.preferredLightColorTheme" = lightTheme;
-      "workbench.preferredDarkColorTheme" = darkTheme;
-    };
   };
 
   mutableExtensionsDir = false;

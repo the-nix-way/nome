@@ -9,6 +9,7 @@ hop = [
   "--to",
   "closest_pushable(@)",
 ]
+init = ["git", "init", "--colocate"]
 
 [git]
 sign-on-push = true

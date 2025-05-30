@@ -9,6 +9,7 @@
 
   # Neovim plugins
   plugins = with vimPlugins; [
+    catppuccin-nvim
     ctrlp
     editorconfig-vim
     gruvbox

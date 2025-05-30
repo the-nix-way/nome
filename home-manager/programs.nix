@@ -2,26 +2,21 @@
 
 {
   # Fancy replacement for cat
-  bat =
-    let
-      theme = "catppuccin";
-    in
-    {
-      enable = true;
-
-      config.theme = theme;
-      extraPackages = with pkgs.bat-extras; [ batdiff batman batgrep batwatch ];
-      syntaxes = { };
-      themes.${theme} = {
-        src = pkgs.fetchFromGitHub {
-          owner = "catppuccin";
-          repo = "bat";
-          rev = "699f60fc8ec434574ca7451b444b880430319941";
-          sha256 = "sha256-6fWoCH90IGumAMc4buLRWL0N61op+AuMNN9CAR9/OdI=";
-        };
-        file = "themes/Catppuccin Mocha.tmTheme";
+  bat = {
+    enable = true;
+    config.theme = pkgs.themes.bat;
+    extraPackages = with pkgs.bat-extras; [ batdiff batman batgrep batwatch ];
+    syntaxes = { };
+    themes.${pkgs.themes.bat} = {
+      src = pkgs.fetchFromGitHub {
+        owner = "catppuccin";
+        repo = "bat";
+        rev = "699f60fc8ec434574ca7451b444b880430319941";
+        sha256 = "sha256-6fWoCH90IGumAMc4buLRWL0N61op+AuMNN9CAR9/OdI=";
       };
+      file = "themes/${pkgs.themes.bat}.tmTheme";
     };
+  };
 
   bottom = {
     enable = true;

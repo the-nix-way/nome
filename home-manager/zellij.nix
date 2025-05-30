@@ -7,6 +7,6 @@
   enableZshIntegration = true;
   settings = {
     show_startup_tips = false;
-    theme = "catppuccin-mocha";
+    theme = pkgs.themes.zellij;
   };
 }

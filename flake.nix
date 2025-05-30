@@ -69,6 +69,27 @@
             else "/home/${username}";
         };
 
+        # Centralize theme stuff here
+        fonts = {
+          packages = with final; [ jetbrains-mono ];
+
+          vscode = {
+            main = "Jetbrains Mono";
+            terminal = "Jetbrains Mono";
+          };
+        };
+
+        themes = {
+          bat = "Catppuccin Mocha";
+          helix = "catppuccin_mocha";
+          vscode = {
+            icon = "catppuccin-mocha";
+            light = "Catppuccin Latte";
+            dark = "Catppuccin Mocha";
+          };
+          zellij = "catppuccin-mocha";
+        };
+
         # Packages
         ephemera = inputs.ephemera.packages.${system}.default;
         fh = inputs.fh.packages.${system}.default;
