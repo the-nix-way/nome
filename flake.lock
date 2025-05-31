@@ -44,12 +44,12 @@
     },
     "crane": {
       "locked": {
-        "lastModified": 1741479724,
-        "narHash": "sha256-fnyETBKSVRa5abjOiRG/IAzKZq5yX8U6oRrHstPl4VM=",
-        "rev": "60202a2e3597a3d91f5e791aab03f45470a738b5",
-        "revCount": 709,
+        "lastModified": 1745454774,
+        "narHash": "sha256-oLvmxOnsEKGtwczxp/CwhrfmQUG2ym24OMWowcoRhH8=",
+        "rev": "efd36682371678e2b6da3f108fdb5c613b3ec598",
+        "revCount": 729,
         "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/ipetkov/crane/0.20.2/0195784b-915b-7d2d-915d-ab02d1112ef9/source.tar.gz"
+        "url": "https://api.flakehub.com/f/pinned/ipetkov/crane/0.20.3/01966538-0f80-7363-a573-2ba9fd154399/source.tar.gz"
       },
       "original": {
         "type": "tarball",
@@ -192,49 +192,34 @@
         ]
       },
       "locked": {
-        "lastModified": 1748033359,
-        "narHash": "sha256-qEdwtyk5IaYCx67BFnLp4iUN+ewfPMl/wjs9K4hKqGc=",
-        "rev": "0f484de735a38d5ee2b5a42456a1508868969bc8",
-        "revCount": 617,
+        "lastModified": 1748447721,
+        "narHash": "sha256-RwkyyrWm0QRNOn7Bb9jKOyJ049B6pPmhbrx8tXpUf4w=",
+        "rev": "fc0d03efe300c1e923158831fd6d0a84d3ef75d3",
+        "revCount": 624,
         "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/DeterminateSystems/flake-checker/0.2.6/0196fefc-3aac-7002-b79c-103f16f59c18/source.tar.gz"
+        "url": "https://api.flakehub.com/f/pinned/DeterminateSystems/flake-checker/0.2.7/01971801-7110-7e01-9cc2-8a8744b8f36c/source.tar.gz"
       },
       "original": {
         "type": "tarball",
         "url": "https://flakehub.com/f/DeterminateSystems/flake-checker/%2A"
       }
     },
-    "flake-compat": {
-      "locked": {
-        "lastModified": 1733328505,
-        "narHash": "sha256-NeCCThCEP3eCl2l/+27kNNK7QrwZB1IJCrXfrbv5oqU=",
-        "rev": "ff81ac966bb2cae68946d5ed5fc4994f96d0ffec",
-        "revCount": 69,
-        "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/edolstra/flake-compat/1.1.0/01948eb7-9cba-704f-bbf3-3fa956735b52/source.tar.gz"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://flakehub.com/f/edolstra/flake-compat/%2A"
-      }
-    },
     "flake-iter": {
       "inputs": {
         "crane": "crane",
         "fenix": "fenix_4",
-        "flake-compat": "flake-compat",
         "flake-schemas": "flake-schemas",
         "nixpkgs": [
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1745508848,
-        "narHash": "sha256-eG3NvPJWfF/Tf6WESOPGA1gomglfsUh+USMGNplPvMw=",
-        "rev": "9ae4d57f9f3f5935a7ffb7e697957db2e182677b",
-        "revCount": 112,
+        "lastModified": 1748449530,
+        "narHash": "sha256-qv5eU1YT1fHtcVUJkMLdY6fr7g1HBe9/1Pva+nTiptQ=",
+        "rev": "9af104eb38034beecf2c9d518a1e7b053dbfbd68",
+        "revCount": 117,
         "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/DeterminateSystems/flake-iter/0.1.112%2Brev-9ae4d57f9f3f5935a7ffb7e697957db2e182677b/01966872-f04c-79a1-af9a-c1d530abb6f7/source.tar.gz"
+        "url": "https://api.flakehub.com/f/pinned/DeterminateSystems/flake-iter/0.1.117%2Brev-9af104eb38034beecf2c9d518a1e7b053dbfbd68/019717bb-3de0-77c6-832b-d494659c65f0/source.tar.gz"
       },
       "original": {
         "type": "tarball",
@@ -281,17 +266,16 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1748359092,
-        "narHash": "sha256-bfQVlnTe1PZ3DfulcHUwJzh6qcir0n1F8B0xYUV+Vu0=",
-        "owner": "helix-editor",
-        "repo": "helix",
-        "rev": "2bd7452fe0309e273d06280d15caad6943034377",
-        "type": "github"
+        "lastModified": 1748702599,
+        "narHash": "sha256-cXzTGHrZsT4wSxlLvw2ZlHPVjC/MA2W0sI/KF1yStbY=",
+        "rev": "2baff46b2578d78d817b9e128e8cc00345541f0b",
+        "revCount": 6595,
+        "type": "tarball",
+        "url": "https://api.flakehub.com/f/pinned/helix-editor/helix/0.1.6595%2Brev-2baff46b2578d78d817b9e128e8cc00345541f0b/0197276a-a931-717e-8f48-0a0c0c5c529a/source.tar.gz"
       },
       "original": {
-        "owner": "helix-editor",
-        "repo": "helix",
-        "type": "github"
+        "type": "tarball",
+        "url": "https://flakehub.com/f/helix-editor/helix/0.1"
       }
     },
     "home-manager": {
@@ -429,12 +413,12 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1748190013,
-        "narHash": "sha256-R5HJFflOfsP5FBtk+zE8FpL8uqE7n62jqOsADvVshhE=",
-        "rev": "62b852f6c6742134ade1abdd2a21685fd617a291",
-        "revCount": 805967,
+        "lastModified": 1748460289,
+        "narHash": "sha256-7doLyJBzCllvqX4gszYtmZUToxKvMUrg45EUWaUYmBg=",
+        "rev": "96ec055edbe5ee227f28cdbc3f1ddf1df5965102",
+        "revCount": 807377,
         "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/NixOS/nixpkgs/0.1.805967%2Brev-62b852f6c6742134ade1abdd2a21685fd617a291/01970db8-4dda-7701-817a-6c888461eb33/source.tar.gz"
+        "url": "https://api.flakehub.com/f/pinned/NixOS/nixpkgs/0.1.807377%2Brev-96ec055edbe5ee227f28cdbc3f1ddf1df5965102/01972133-94d2-786e-bfeb-34136c7f0b07/source.tar.gz"
       },
       "original": {
         "type": "tarball",
@@ -443,12 +427,12 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1748162331,
-        "narHash": "sha256-rqc2RKYTxP3tbjA+PB3VMRQNnjesrT0pEofXQTrMsS8=",
-        "rev": "7c43f080a7f28b2774f3b3f43234ca11661bf334",
-        "revCount": 802491,
+        "lastModified": 1748437600,
+        "narHash": "sha256-hYKMs3ilp09anGO7xzfGs3JqEgUqFMnZ8GMAqI6/k04=",
+        "rev": "7282cb574e0607e65224d33be8241eae7cfe0979",
+        "revCount": 802746,
         "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/NixOS/nixpkgs/0.2505.802491%2Brev-7c43f080a7f28b2774f3b3f43234ca11661bf334/01970886-40c4-7b8c-a32f-bb580ba9bcb1/source.tar.gz"
+        "url": "https://api.flakehub.com/f/pinned/NixOS/nixpkgs/0.2505.802746%2Brev-7282cb574e0607e65224d33be8241eae7cfe0979/01972246-83e0-7eee-b37e-089e4cceceda/source.tar.gz"
       },
       "original": {
         "type": "tarball",

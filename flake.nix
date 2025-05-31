@@ -7,7 +7,7 @@
     fh = { url = "https://flakehub.com/f/DeterminateSystems/fh/0.1"; };
     flake-checker = { url = "https://flakehub.com/f/DeterminateSystems/flake-checker/*"; inputs.nixpkgs.follows = "nixpkgs"; };
     flake-iter = { url = "https://flakehub.com/f/DeterminateSystems/flake-iter/*"; inputs.nixpkgs.follows = "nixpkgs"; };
-    helix = { url = "github:helix-editor/helix"; inputs.nixpkgs.follows = "nixpkgs"; };
+    helix = { url = "https://flakehub.com/f/helix-editor/helix/0.1"; inputs.nixpkgs.follows = "nixpkgs"; };
     home-manager = { url = "https://flakehub.com/f/nix-community/home-manager/0"; inputs.nixpkgs.follows = "nixpkgs"; };
     nh = { url = "github:nix-community/nh"; inputs.nixpkgs.follows = "nixpkgs"; };
     nix-darwin = { url = "https://flakehub.com/f/nix-darwin/nix-darwin/0"; inputs.nixpkgs.follows = "nixpkgs"; };
