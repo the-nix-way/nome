@@ -109,6 +109,7 @@ let
     process-compose
     protobuf
     reattach-to-user-namespace # for tmux
+    typst
     wrk
     jq
     yt-dlp
