@@ -2,7 +2,6 @@
 
 {
   enable = true;
-
   package = pkgs.zellij;
   enableZshIntegration = true;
   settings = {
