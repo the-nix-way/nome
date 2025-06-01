@@ -118,6 +118,7 @@
   # Nushell
   nushell = {
     enable = true;
+    package = pkgs.nushell;
   };
 
   # ripgrep

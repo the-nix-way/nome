@@ -106,6 +106,7 @@
         '';
         materialize = inputs.nixpkgs-unstable.legacyPackages.${system}.materialize;
         nh = inputs.nixpkgs-unstable.legacyPackages.${system}.nh;
+        nushell = inputs.nixpkgs-unstable.legacyPackages.${system}.nushell;
         zed-editor = inputs.nixpkgs-unstable.legacyPackages.${system}.zed-editor;
       };
 
