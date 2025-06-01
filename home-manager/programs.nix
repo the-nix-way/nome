@@ -18,9 +18,23 @@
     };
   };
 
-  bottom = {
-    enable = true;
-  };
+  bottom =
+    let
+      themes =
+        let
+          repo = pkgs.fetchFromGitHub {
+            owner = "catppuccin";
+            repo = "bottom";
+            rev = "eadd75acd0ecad4a58ade9a1d6daa3b97ccec07c";
+            sha256 = "sha256-dfukdk70ug1lRGADKBnvMhkl+3tsY7F+UAwTS2Qyapk=";
+          };
+        in
+        builtins.path { path = "${repo}/themes/mocha.toml"; };
+    in
+    {
+      enable = true;
+      settings = builtins.fromTOML (builtins.readFile themes);
+    };
 
   # Navigate directory trees
   broot = {
@@ -111,6 +125,14 @@
     enable = true;
   };
 
+  # Spotify on the CLI
+  spotify-player = {
+    enable = true;
+    settings = {
+      theme = pkgs.themes.spotify-player;
+    };
+  };
+
   # SSH
   ssh = {
     enable = true;
@@ -120,6 +142,7 @@
   # The provider of my shell aesthetic
   starship = import ./starship.nix { inherit pkgs; };
 
+  # Terminal multiplexer I don't really use anymore
   tmux = import ./tmux.nix;
 
   # My most-used editor

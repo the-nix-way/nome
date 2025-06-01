@@ -82,6 +82,7 @@
         themes = {
           bat = "Catppuccin Mocha";
           helix = "catppuccin_mocha";
+          spotify-player = "catppuccin-mocha";
           vscode = {
             icon = "catppuccin-mocha";
             light = "Catppuccin Latte";
