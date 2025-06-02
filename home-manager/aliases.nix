@@ -81,6 +81,7 @@
     rnh = "random-nix-hash";
     rsh = "random-sha256-hash";
 
+    yt = "yt-dlp";
     zed = "zeditor";
   };
 }

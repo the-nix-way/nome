@@ -11,6 +11,9 @@
       home = {
         inherit (pkgs.lib) homeDirectory;
         packages = import ./packages.nix { inherit pkgs; };
+        sessionPath = [
+          "${pkgs.uutils-coreutils}/bin" # Use Rust coreutils
+        ];
         sessionVariables = import ./env.nix { inherit pkgs username; };
         shellAliases = (import ./aliases.nix { inherit pkgs; }).shell;
         inherit stateVersion username;

@@ -12,7 +12,7 @@ What I run to apply my [nix-darwin] configuration (which in turn applies my [Hom
 nix develop --command reload
 ```
 
-That's right: with Nix installed and [flakes enabled][flakes], this is all that I need to run to stand up a new machine according to my exact specifications, including configuration for [Vim](./nix-darwin/home-manager/neovim.nix), [tmux](./nix-darwin/home-manager/tmux.nix), [zsh](./nix-darwin/home-manager/zsh.nix), [Visual Studio Code](./nix-darwin/home-manager/vscode.nix), [Git](./nix-darwin/home-manager/git.nix), and more.
+That's right: with Nix installed and [flakes enabled][flakes], this is all that I need to run to stand up a new machine according to my exact specifications, including configuration for [Vim](./nix-darwin/home-manager/neovim.nix), [zellij](./nix-darwin/home-manager/zellij.nix), [zsh](./nix-darwin/home-manager/zsh.nix), [Visual Studio Code](./nix-darwin/home-manager/vscode.nix), [Git](./nix-darwin/home-manager/git.nix), and more.
 This has enabled me to eliminate [Homebrew] from my machine.
 
 ## Scope

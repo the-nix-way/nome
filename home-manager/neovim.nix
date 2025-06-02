@@ -1,4 +1,4 @@
-{ vimPlugins }:
+{ pkgs }:
 
 {
   enable = true;
@@ -8,7 +8,7 @@
   extraConfig = (builtins.readFile ./config/.vimrc);
 
   # Neovim plugins
-  plugins = with vimPlugins; [
+  plugins = with pkgs.vimPlugins; [
     catppuccin-nvim
     ctrlp
     editorconfig-vim

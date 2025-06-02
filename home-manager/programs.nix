@@ -97,15 +97,19 @@
     #};
   };
 
+  # Shiny new version control
   jujutsu = {
     enable = true;
     package = pkgs.jujutsu;
     settings = (builtins.fromTOML (builtins.readFile ./config/jj/config.toml));
   };
 
+  # is more
+  less.enable = true;
+
   # For Git rebases and such
   neovim = import ./neovim.nix {
-    inherit (pkgs) vimPlugins;
+    inherit pkgs;
   };
 
   # Mostly for use with comma
@@ -142,9 +146,6 @@
 
   # The provider of my shell aesthetic
   starship = import ./starship.nix { inherit pkgs; };
-
-  # Terminal multiplexer I don't really use anymore
-  tmux = import ./tmux.nix;
 
   # My most-used editor
   vscode = import ./vscode.nix { inherit pkgs; };

@@ -2,7 +2,6 @@
 
 let
   basic = with pkgs; [
-    coreutils
     findutils
     tree
     unzip
@@ -92,27 +91,34 @@ let
 
   misc = with pkgs; [
     bottom
+    btop
     buf
     comma
     cue
     duckdb
+    duf
+    dust
     elixir
     elixir-ls
     fastfetch
+    ffmpeg
     gleam
+    glow
     httpie
+    jid
+    jq
     lima
+    mesonlsp
     mprocs
     nh
-    neofetch
     ngrok
     process-compose
     protobuf
-    reattach-to-user-namespace # for tmux
     static-web-server
     typst
+    uutils-coreutils
     wrk
-    jq
+    yq
     yt-dlp
   ];
 

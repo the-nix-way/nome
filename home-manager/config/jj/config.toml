@@ -9,15 +9,13 @@ hop = [
   "--to",
   "closest_pushable(@)",
 ]
-init = ["git", "init", "--colocate"]
+l = ["log"]
+n = ["new"]
+ol = ["op", "log"]
 
 [git]
 sign-on-push = true
 write-change-id-header = true
-
-[revset-aliases]
-"T" = "trunk()"
-"trunk()" = "main@origin"
 
 [signing]
 behavior = "drop"
@@ -28,6 +26,7 @@ default-command = "log"
 diff-editor = ":builtin"
 graph.style = "square"
 log-synthetic-elided-nodes = true
+pager = "less -FRX"
 
 [user]
 name = "Luc Perkins"
