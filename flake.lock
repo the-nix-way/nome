@@ -266,12 +266,12 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1748702599,
-        "narHash": "sha256-cXzTGHrZsT4wSxlLvw2ZlHPVjC/MA2W0sI/KF1yStbY=",
-        "rev": "2baff46b2578d78d817b9e128e8cc00345541f0b",
-        "revCount": 6595,
+        "lastModified": 1748959729,
+        "narHash": "sha256-wYUaAhGSetByNQrwUhppxNwubtP8BK3zfhOIllm5mEE=",
+        "rev": "f6878f62f74430cff188e7978d06c5ed143179e9",
+        "revCount": 6598,
         "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/helix-editor/helix/0.1.6595%2Brev-2baff46b2578d78d817b9e128e8cc00345541f0b/0197276a-a931-717e-8f48-0a0c0c5c529a/source.tar.gz"
+        "url": "https://api.flakehub.com/f/pinned/helix-editor/helix/0.1.6598%2Brev-f6878f62f74430cff188e7978d06c5ed143179e9/019736df-a2c1-7b17-8215-1be8dc34cd44/source.tar.gz"
       },
       "original": {
         "type": "tarball",
@@ -365,10 +365,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1748096601,
+        "lastModified": 1748942204,
         "owner": "nix-community",
         "repo": "nh",
-        "rev": "1ea27e73a3dcbc9950258e9054377ee677d12b9e",
+        "rev": "f761c6f35dd392bbfea1fc7861a25e0494b96b32",
         "type": "github"
       },
       "original": {
@@ -426,12 +426,12 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1748708770,
-        "narHash": "sha256-q8jG2HJWgooWa9H0iatZqBPF3bp0504e05MevFmnFLY=",
-        "rev": "a59eb7800787c926045d51b70982ae285faa2346",
-        "revCount": 802985,
+        "lastModified": 1748889542,
+        "narHash": "sha256-Hb4iMhIbjX45GcrgOp3b8xnyli+ysRPqAgZ/LZgyT5k=",
+        "rev": "10d7f8d34e5eb9c0f9a0485186c1ca691d2c5922",
+        "revCount": 803297,
         "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/NixOS/nixpkgs/0.2505.802985%2Brev-a59eb7800787c926045d51b70982ae285faa2346/01972f28-f65f-7fc5-9d0a-8c7413937c4d/source.tar.gz"
+        "url": "https://api.flakehub.com/f/pinned/NixOS/nixpkgs/0.2505.803297%2Brev-10d7f8d34e5eb9c0f9a0485186c1ca691d2c5922/0197344e-7637-7c57-9a13-51bd7d90ddfd/source.tar.gz"
       },
       "original": {
         "type": "tarball",

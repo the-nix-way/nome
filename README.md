@@ -29,7 +29,7 @@ On a machine that has Nix installed but potentially not flakes:
 ./bootstrap.sh
 ```
 
-[flakes]: https://nixos.wiki/wiki/Flakes
+[flakes]: https://zero-to-nix.com/concepts/flakes
 [hm]: https://github.com/nix-community/home-manager
 [homebrew]: https://brew.sh
 [nix-darwin]: https://github.com/LnL7/nix-darwin
