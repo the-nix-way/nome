@@ -33,7 +33,6 @@ let
   versionControlTools = (with pkgs; [
     difftastic
     git-crypt
-    jjui
     lazyjj
   ] ++ (with gitAndTools; [
     diff-so-fancy
@@ -50,7 +49,7 @@ let
     pnpm
   ]));
 
-  docsTools = with pkgs; [ antora hugo ];
+  docsTools = with pkgs; [ antora ];
 
   # Mostly for use with Helix
   languageServers = with pkgs; [
@@ -178,3 +177,4 @@ basic
 ++ scripts
 ++ security
 ++ versionControlTools
+++ pkgs.unstable

@@ -9,7 +9,6 @@
     flake-iter = { url = "https://flakehub.com/f/DeterminateSystems/flake-iter/*"; inputs.nixpkgs.follows = "nixpkgs"; };
     helix = { url = "https://flakehub.com/f/helix-editor/helix/0.1"; inputs.nixpkgs.follows = "nixpkgs"; };
     home-manager = { url = "https://flakehub.com/f/nix-community/home-manager/0"; inputs.nixpkgs.follows = "nixpkgs"; };
-    nh = { url = "github:nix-community/nh"; inputs.nixpkgs.follows = "nixpkgs"; };
     nix-darwin = { url = "https://flakehub.com/f/nix-darwin/nix-darwin/0"; inputs.nixpkgs.follows = "nixpkgs"; };
     nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0";
     nixpkgs-unstable.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1";
@@ -97,17 +96,19 @@
         flake-checker = inputs.flake-checker.packages.${system}.default;
         flake-iter = inputs.flake-iter.packages.${system}.default;
         helix = inputs.helix.packages.${system}.default;
-        hugo = inputs.nixpkgs-unstable.legacyPackages.${system}.hugo;
-        jjui = inputs.nixpkgs-unstable.legacyPackages.${system}.jjui;
         jujutsu = inputs.nixpkgs-unstable.legacyPackages.${system}.jujutsu;
-        lazyjj = inputs.nixpkgs-unstable.legacyPackages.${system}.lazyjj;
         linux-builder = final.writeScriptBin "linux-builder" ''
           sudo ${inputs.nixpkgs-unstable.legacyPackages.${system}.darwin.linux-builder}/bin/create-builder
         '';
-        materialize = inputs.nixpkgs-unstable.legacyPackages.${system}.materialize;
-        nh = inputs.nixpkgs-unstable.legacyPackages.${system}.nh;
         nushell = inputs.nixpkgs-unstable.legacyPackages.${system}.nushell;
         zed-editor = inputs.nixpkgs-unstable.legacyPackages.${system}.zed-editor;
+
+        unstable = with inputs.nixpkgs-unstable.legacyPackages.${system}; [
+          hugo
+          jjui
+          lazyjj
+          nh
+        ];
       };
 
       darwinConfigurations."${username}-${system}" = inputs.nix-darwin.lib.darwinSystem {

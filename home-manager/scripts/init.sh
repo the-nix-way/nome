@@ -7,6 +7,9 @@ fi
 
 eval "$(ssh-agent -s)"
 
+# Shell completion for various tools
+eval "$(determinate-nixd completion zsh)"
+
 # Go settings
 eval "$(go env)"
 export PATH="${GOPATH}/bin:${PATH}"
