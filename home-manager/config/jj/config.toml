@@ -1,6 +1,9 @@
 "$schema" = "https://jj-vcs.github.io/jj/latest/config-schema.json"
 
 [aliases]
+bcr = ["bookmark", "create", "--revision"]
+bl = ["bookmark", "list"]
+d = ["diff"]
 hop = [
   "bookmark",
   "move",
@@ -16,6 +19,10 @@ ol = ["op", "log"]
 [git]
 sign-on-push = true
 write-change-id-header = true
+
+[revset-aliases]
+'closest_bookmark(to)' = 'heads(::to & bookmarks())'
+'closest_pushable(to)' = 'heads(::to & ~description(exact:"") & (~empty() | merges()))'
 
 [signing]
 behavior = "drop"
