@@ -71,15 +71,6 @@ in
     }
   '')
 
-  (nu "dvt" ''
-    # Initialize a template from dev-templates
-    def main [
-      template: string, # The template
-    ] {
-      nix flake init --template $"github:the-nix-way/dev-templates#($template)"
-    }
-  '')
-
   (nu "docker-cleanup" ''
     docker system prune -af
     docker volume prune -f

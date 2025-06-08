@@ -74,6 +74,7 @@
     nfu = "nix flake update";
     nsn = "nix search nixpkgs";
     flake-schemas = "nix run github:DeterminateSystems/nix-src/flake-schemas --";
+    old-nix = "nix run github:NixOS/nix/2.27.0 --";
 
     # processes
     pf = "pgrep -f";

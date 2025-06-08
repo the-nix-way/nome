@@ -89,6 +89,7 @@ let
   ];
 
   misc = with pkgs; [
+    asciinema
     bottom
     btop
     buf
@@ -122,6 +123,7 @@ let
   ];
 
   nixTools = with pkgs; [
+    dvt
     ephemera
     fh
     flake-checker

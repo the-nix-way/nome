@@ -3,6 +3,7 @@
   description = "Nome: my Nix home";
 
   inputs = {
+    dev-templates = { url = "https://flakehub.com/f/the-nix-way/dev-templates/0.1"; inputs.nixpkgs.follows = "nixpkgs"; };
     ephemera = { url = "https://flakehub.com/f/DeterminateSystems/ephemera/0.1"; inputs.nixpkgs.follows = "nixpkgs"; };
     fh = { url = "https://flakehub.com/f/DeterminateSystems/fh/0.1"; };
     flake-checker = { url = "https://flakehub.com/f/DeterminateSystems/flake-checker/*"; inputs.nixpkgs.follows = "nixpkgs"; };
@@ -91,6 +92,7 @@
         };
 
         # Packages
+        dvt = inputs.dev-templates.packages.${system}.dvt;
         ephemera = inputs.ephemera.packages.${system}.default;
         fh = inputs.fh.packages.${system}.default;
         flake-checker = inputs.flake-checker.packages.${system}.default;

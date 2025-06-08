@@ -56,6 +56,25 @@
         "url": "https://flakehub.com/f/ipetkov/crane/0.20"
       }
     },
+    "dev-templates": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1747045407,
+        "narHash": "sha256-vb3MDoM6lj12ZttQPNcSrZYAuGEFfafoytQfi3L+qgc=",
+        "rev": "70638d3675ef115269cb997e5530cc48eff05607",
+        "revCount": 311,
+        "type": "tarball",
+        "url": "https://api.flakehub.com/f/pinned/the-nix-way/dev-templates/0.1.311%2Brev-70638d3675ef115269cb997e5530cc48eff05607/0196c40c-1611-79bd-b721-8648029a89ad/source.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://flakehub.com/f/the-nix-way/dev-templates/0.1"
+      }
+    },
     "ephemera": {
       "inputs": {
         "coldsnap": "coldsnap",
@@ -456,6 +475,7 @@
     },
     "root": {
       "inputs": {
+        "dev-templates": "dev-templates",
         "ephemera": "ephemera",
         "fh": "fh",
         "flake-checker": "flake-checker",
