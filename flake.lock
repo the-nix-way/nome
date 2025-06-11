@@ -285,12 +285,12 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1749569711,
-        "narHash": "sha256-v2r0SjkB7TNBp5lGxmin/XpR0COyhBSTwDU9QNUaVGE=",
-        "rev": "ab97585b69f11b159a447c85dfd528cc241cf1e3",
-        "revCount": 6620,
+        "lastModified": 1749650446,
+        "narHash": "sha256-zNAqyl3fpOo6aPexK34WEl2wF9c05ZqjyPOodCvgV/s=",
+        "rev": "3b7aaddb1391a9e343877ceadb83a41c95ede33f",
+        "revCount": 6621,
         "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/helix-editor/helix/0.1.6620%2Brev-ab97585b69f11b159a447c85dfd528cc241cf1e3/01975aec-0bb1-7dfd-b755-aa0aa3679f3e/source.tar.gz"
+        "url": "https://api.flakehub.com/f/pinned/helix-editor/helix/0.1.6621%2Brev-3b7aaddb1391a9e343877ceadb83a41c95ede33f/01976012-1af9-7dd7-ac14-8c957e0038bb/source.tar.gz"
       },
       "original": {
         "type": "tarball",
@@ -377,6 +377,26 @@
         "url": "https://flakehub.com/f/nix-community/naersk/0.1.%2A"
       }
     },
+    "nh": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1749409404,
+        "narHash": "sha256-v02NsZ589zzPq5xsCxyrG1/ZkFbbMkUthly50QdmYKo=",
+        "owner": "nix-community",
+        "repo": "nh",
+        "rev": "003dd72d3234361c93d5be7ec9766c88e0dd1052",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nh",
+        "type": "github"
+      }
+    },
     "nix-darwin": {
       "inputs": {
         "nixpkgs": [
@@ -384,12 +404,12 @@
         ]
       },
       "locked": {
-        "lastModified": 1748373722,
-        "narHash": "sha256-qi6aDGP2W6GyAUNEhg+slQWEpUiJ8LNIrQkmxHpzadI=",
-        "rev": "75b99daa12b1fffd646d6c3cf13b06f1fa5cef63",
-        "revCount": 2180,
+        "lastModified": 1749622275,
+        "narHash": "sha256-9zwRWpVHlOLDbSngSCfppuogfHKnZ1N4j18WU5WzFBc=",
+        "rev": "294d18da177b1e454104af7cd3c7002e34293209",
+        "revCount": 2183,
         "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/nix-darwin/nix-darwin/0.2505.2180%2Brev-75b99daa12b1fffd646d6c3cf13b06f1fa5cef63/01971334-dd99-71ea-91ec-c715b9e99de8/source.tar.gz"
+        "url": "https://api.flakehub.com/f/pinned/nix-darwin/nix-darwin/0.2505.2183%2Brev-294d18da177b1e454104af7cd3c7002e34293209/01975da0-2dc6-72de-b00b-b7077f73cb41/source.tar.gz"
       },
       "original": {
         "type": "tarball",
@@ -482,6 +502,7 @@
         "flake-iter": "flake-iter",
         "helix": "helix",
         "home-manager": "home-manager",
+        "nh": "nh",
         "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-unstable": "nixpkgs-unstable",
