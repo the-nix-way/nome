@@ -98,6 +98,7 @@ let
     duckdb
     duf
     dust
+    easy-template
     elixir
     elixir-ls
     fastfetch
