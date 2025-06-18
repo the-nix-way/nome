@@ -109,7 +109,6 @@ let
     jid
     jq
     lima
-    mesonlsp
     mprocs
     nh
     ngrok
@@ -118,6 +117,7 @@ let
     static-web-server
     typst
     uutils-coreutils
+    vhs
     wrk
     yq
     yt-dlp
