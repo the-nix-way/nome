@@ -341,12 +341,12 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1750257161,
-        "narHash": "sha256-O4ZU8bqFNSeBdK4EMXbWcsFjZAJPhZBI6zboNxNePOE=",
-        "rev": "3c6c221d4525f373e16e4e1020067e9a49d62cd2",
-        "revCount": 6643,
+        "lastModified": 1750344736,
+        "narHash": "sha256-pPktfkA5r1zhza2Gw+u7K4g/s9EfpXXMh7m/IQ3mIbs=",
+        "rev": "036729211a94d058b835f5ee212ab15de83bc037",
+        "revCount": 6646,
         "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/helix-editor/helix/0.1.6643%2Brev-3c6c221d4525f373e16e4e1020067e9a49d62cd2/0197841f-b6e4-7a9a-a18e-3fb283e8a14b/source.tar.gz"
+        "url": "https://api.flakehub.com/f/pinned/helix-editor/helix/0.1.6646%2Brev-036729211a94d058b835f5ee212ab15de83bc037/01978946-12ef-711e-a908-f9bcd5a8874c/source.tar.gz"
       },
       "original": {
         "type": "tarball",
