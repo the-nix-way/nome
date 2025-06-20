@@ -125,7 +125,7 @@ let
 
   nixTools = with pkgs; [
     dvt
-    ephemera
+    #ephemera
     fh
     flake-checker
     flake-iter

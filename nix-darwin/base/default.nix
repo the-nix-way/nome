@@ -3,7 +3,6 @@
 , ...
 }:
 
-
 {
   documentation.enable = true;
 
@@ -11,7 +10,13 @@
 
   networking.computerName = "${pkgs.constants.username}-${pkgs.constants.system}";
 
+  # Let Determinate Nix handle Nix configuration
   nix.enable = false;
+
+  # TODO: fix this
+  determinate-nix.custom = {
+    lazy-trees = "true";
+  };
 
   nixpkgs = {
     config = {
