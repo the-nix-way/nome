@@ -13,9 +13,8 @@
   # Let Determinate Nix handle Nix configuration
   nix.enable = false;
 
-  # TODO: fix this
-  determinate-nix.custom = {
-    lazy-trees = "true";
+  determinate-nix.customSettings = {
+    lazy-trees = true;
   };
 
   nixpkgs = {

@@ -145,27 +145,75 @@
             mkValueString = v:
               if v == null then ""
               else if builtins.isInt v then builtins.toString v
-              else if builtins.isBool v then builtins.boolToString v
+              else if builtins.isBool v then lib.boolToString v
               else if builtins.isFloat v then lib.strings.floatToString v
               else if builtins.isList v then builtins.toString v
               else if lib.isDerivation v then builtins.toString v
               else if builtins.isPath v then builtins.toString v
               else if builtins.isString v then v
-              else if builtins.isCoercibleToString v then builtins.toString v
-              else abort "The nix conf value ${lib.toPretty {} v} can't be encoded";
+              else if lib.strings.isCoercibleToString v then builtins.toString v
+              else abort "The nix conf value ${lib.generators.toPretty {} v} can't be encoded";
             mkKeyValue = k: v: "${lib.escape [ "=" ] k} = ${mkValueString v}";
+
+            inherit (lib) types;
+
+            semanticConfType = with types;
+              let
+                confAtom = nullOr
+                  (oneOf [
+                    bool
+                    int
+                    float
+                    str
+                    path
+                    package
+                  ]) // {
+                  description = "Nix config atom (null, bool, int, float, str, path or package)";
+                };
+              in
+              attrsOf (either confAtom (listOf confAtom));
+
+            # Settings that Determinate Nix handles for you
+            disallowedOptions = [
+              "always-allow-substitutes"
+              "bash-prompt-prefix"
+              "extra-experimental-features"
+              "extra-nix-path"
+              "netrc-file"
+              "ssl-cert-file"
+              "upgrade-nix-store-path-url"
+            ];
           in
           {
-            options.determinate-nix.custom = lib.mkOption {
-              type =
-                let
-                  confAtom = lib.types.nullOr (lib.types.oneOf (with lib.types; [ bool int float str path package ]));
-                in
-                lib.types.attrsOf (lib.types.either confAtom (lib.listOf confAtom));
-              default = { };
+            options.determinate-nix.customSettings = lib.mkOption {
+              type = types.submodule {
+                freeformType = semanticConfType;
+
+                options = {
+                  lazy-trees = lib.mkOption {
+                    type = types.bool;
+                    default = false;
+                    example = true;
+                    description = ''
+                      Whether to enable lazy trees.
+                    '';
+                  };
+                };
+              };
             };
 
-            config = lib.mkIf (config.determinate-nix.custom != { }) {
+            config = lib.mkIf (config.determinate-nix.customSettings != { }) {
+              assertions = [
+                {
+                  assertion =
+                    lib.all (key: !lib.hasAttr key config.determinate-nix.customSettings) disallowedOptions;
+                  message = ''
+                    These settings are not allowed in `determinate-nix.customSettings`:
+                      ${lib.concatStringsSep ", " disallowedOptions}
+                  '';
+                }
+              ];
+
               environment.etc."nix/nix.custom.conf".text =
                 lib.concatStringsSep "\n" (
                   [
@@ -173,7 +221,7 @@
                     "# Update this file by changing your nix-darwin configuration, not by modifying it directly."
                     ""
                   ]
-                  ++ lib.mapAttrsToList mkKeyValue config.determinate-nix.custom
+                  ++ lib.mapAttrsToList mkKeyValue config.determinate-nix.customSettings
                 );
             };
           };
