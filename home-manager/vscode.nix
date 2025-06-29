@@ -38,6 +38,7 @@ in
       mkhl.direnv
       ms-python.python
       ms-python.vscode-pylance
+      myriad-dreamin.tinymist
       nefrob.vscode-just-syntax
       pkief.material-icon-theme
       prisma.prisma

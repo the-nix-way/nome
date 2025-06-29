@@ -33,7 +33,6 @@ let
   versionControlTools = (with pkgs; [
     difftastic
     git-crypt
-    lazyjj
   ] ++ (with gitAndTools; [
     diff-so-fancy
     gitflow

@@ -109,11 +109,7 @@
         nushell = inputs.nixpkgs-unstable.legacyPackages.${system}.nushell;
         zed-editor = inputs.nixpkgs-unstable.legacyPackages.${system}.zed-editor;
 
-        unstable = with inputs.nixpkgs-unstable.legacyPackages.${system}; [
-          hugo
-          jjui
-          lazyjj
-        ];
+        unstable = with inputs.nixpkgs-unstable.legacyPackages.${system}; [ hugo jjui ];
       };
 
       darwinConfigurations."${username}-${system}" = inputs.nix-darwin.lib.darwinSystem {
