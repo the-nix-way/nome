@@ -40,10 +40,10 @@
             reload = pkgs.writeScriptBin "reload" ''
               set -e
               echo "> Running darwin-rebuild switch..."
-              sudo ${inputs.nix-darwin.packages.${system}.darwin-rebuild}/bin/darwin-rebuild switch --flake .
+              sudo ${inputs.nixpkgs.lib.getExe inputs.nix-darwin.packages.${system}.darwin-rebuild} switch --flake .
               echo "> darwin-rebuild switch was successful ✅"
               echo "> Refreshing zshrc..."
-              ${pkgs.zsh}/bin/zsh -c "source ${pkgs.lib.homeDirectory}/.zshrc"
+              ${pkgs.lib.getExe pkgs.zsh} -c "source ${pkgs.lib.homeDirectory}/.zshrc"
               echo "> zshrc was refreshed successfully ✅"
               echo "> macOS config was successfully applied 🚀"
             '';
@@ -103,7 +103,7 @@
         helix = inputs.helix.packages.${system}.default;
         jujutsu = inputs.nixpkgs-unstable.legacyPackages.${system}.jujutsu;
         linux-builder = final.writeScriptBin "linux-builder" ''
-          sudo ${inputs.nixpkgs-unstable.legacyPackages.${system}.darwin.linux-builder}/bin/create-builder
+          sudo ${inputs.nixpkgs.lib.getExe' inputs.nixpkgs-unstable.legacyPackages.${system}.darwin.linux-builder "create-builder"}
         '';
         nh = inputs.nh.packages.${system}.default;
         nushell = inputs.nixpkgs-unstable.legacyPackages.${system}.nushell;
