@@ -18,13 +18,13 @@
     nuenv = { url = "https://flakehub.com/f/DeterminateSystems/nuenv/0.1.*"; inputs.nixpkgs.follows = "nixpkgs"; };
   };
 
-  outputs = inputs:
+  outputs = { self, ... }@inputs:
     let
       supportedSystems = [ "aarch64-darwin" ];
       forEachSupportedSystem = f: inputs.nixpkgs.lib.genAttrs supportedSystems (system: f {
         pkgs = import inputs.nixpkgs {
           inherit system;
-          overlays = [ inputs.self.overlays.default ];
+          overlays = [ self.overlays.default ];
         };
         inherit system;
       });
@@ -115,10 +115,10 @@
       darwinConfigurations."${username}-${system}" = inputs.nix-darwin.lib.darwinSystem {
         inherit system;
         modules = [
-          inputs.self.darwinModules.base
-          inputs.self.darwinModules.determinate-nix
+          self.darwinModules.base
+          self.darwinModules.determinate-nix
           inputs.home-manager.darwinModules.home-manager
-          inputs.self.darwinModules.home-manager
+          self.darwinModules.home-manager
         ];
       };
 
@@ -127,7 +127,7 @@
           inherit pkgs;
           overlays = [
             inputs.nuenv.overlays.default
-            inputs.self.overlays.default
+            self.overlays.default
           ];
         };
 
