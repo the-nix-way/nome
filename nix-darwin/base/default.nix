@@ -1,6 +1,7 @@
-{ overlays
-, pkgs
-, ...
+{
+  overlays,
+  pkgs,
+  ...
 }:
 
 {

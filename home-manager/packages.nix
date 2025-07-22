@@ -9,13 +9,9 @@ let
     zstd
   ];
 
-  bin = import ./bin.nix {
-    inherit pkgs;
-  };
+  bin = import ./bin.nix { inherit pkgs; };
 
-  buildTools = with pkgs; [
-    cmake
-  ];
+  buildTools = with pkgs; [ cmake ];
 
   databaseTools = with pkgs; [
     postgresql_17
@@ -30,23 +26,28 @@ let
     minikube
   ];
 
-  versionControlTools = (with pkgs; [
-    difftastic
-    git-crypt
-  ] ++ (with gitAndTools; [
-    diff-so-fancy
-    gitflow
-  ]));
+  versionControlTools = (
+    with pkgs;
+    [
+      difftastic
+      git-crypt
+    ]
+    ++ (with gitAndTools; [
+      diff-so-fancy
+      gitflow
+    ])
+  );
 
-  jsTools = (with pkgs; [
-    biome
-    bun
-    deno
-    nodejs
-    oxlint
-  ] ++ (with nodePackages; [
-    pnpm
-  ]));
+  jsTools = (
+    with pkgs;
+    [
+      bun
+      deno
+      nodejs
+      oxlint
+    ]
+    ++ (with nodePackages; [ pnpm ])
+  );
 
   docsTools = with pkgs; [ antora ];
 
@@ -109,7 +110,6 @@ let
     jq
     lima
     mprocs
-    nh
     ngrok
     process-compose
     protobuf
@@ -129,15 +129,20 @@ let
     flake-checker
     flake-iter
     linux-builder
-    nixfmt-classic
+    nh
+    nixfmt-rfc-style
     nixpkgs-fmt
+    qemu_kvm
   ];
 
-  pythonTools = with pkgs; [ python314 ];
+  pythonTools = with pkgs; [
+    python314
+    uv
+  ];
 
   rustTools = with pkgs; [
+    rustToolchain
     bacon
-    cargo
     cargo-edit
     cargo-machete
     cargo-watch

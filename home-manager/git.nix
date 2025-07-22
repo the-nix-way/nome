@@ -4,7 +4,9 @@
   enable = true;
 
   aliases = (import ./aliases.nix { inherit pkgs; }).git;
-  delta = { enable = true; };
+  delta = {
+    enable = true;
+  };
   extraConfig = {
     core = {
       editor = "nvim";
@@ -16,7 +18,9 @@
     init.defaultBranch = "main";
     protocol.keybase.allow = "always";
     pull.rebase = "false";
-    user = { signingkey = "C86EE5D85EE4DDA5"; };
+    user = {
+      signingkey = "C86EE5D85EE4DDA5";
+    };
   };
   ignores = [
     ".cache/"
@@ -31,7 +35,9 @@
     ".vscode/"
     "npm-debug.log"
   ];
-  lfs = { enable = true; };
+  lfs = {
+    enable = true;
+  };
   package = pkgs.gitAndTools.gitFull;
   userEmail = "lucperkins@gmail.com";
   userName = "Luc Perkins";

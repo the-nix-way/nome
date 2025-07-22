@@ -5,7 +5,12 @@
   bat = {
     enable = true;
     config.theme = pkgs.themes.bat;
-    extraPackages = with pkgs.bat-extras; [ batdiff batman batgrep batwatch ];
+    extraPackages = with pkgs.bat-extras; [
+      batdiff
+      batman
+      batgrep
+      batwatch
+    ];
     syntaxes = { };
     themes.${pkgs.themes.bat} = {
       src = pkgs.fetchFromGitHub {
@@ -108,9 +113,7 @@
   less.enable = true;
 
   # For Git rebases and such
-  neovim = import ./neovim.nix {
-    inherit pkgs;
-  };
+  neovim = import ./neovim.nix { inherit pkgs; };
 
   # Mostly for use with comma
   nix-index = {

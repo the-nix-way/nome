@@ -3,72 +3,126 @@
   description = "Nome: my Nix home";
 
   inputs = {
-    dev-templates = { url = "https://flakehub.com/f/the-nix-way/dev-templates/0.1"; inputs.nixpkgs.follows = "nixpkgs"; };
-    easy-template = { url = "https://flakehub.com/f/DeterminateSystems/easy-template/0.1"; inputs.nixpkgs.follows = "nixpkgs"; };
+    dev-templates = {
+      url = "https://flakehub.com/f/the-nix-way/dev-templates/0.1";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    easy-template = {
+      url = "https://flakehub.com/f/DeterminateSystems/easy-template/0.1";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    fenix = {
+      # TODO: switch back to FlakeHub
+      url = "github:nix-community/fenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     #ephemera = { url = "https://flakehub.com/f/DeterminateSystems/ephemera/0.1"; inputs.nixpkgs.follows = "nixpkgs"; };
-    fh = { url = "https://flakehub.com/f/DeterminateSystems/fh/0.1"; };
-    flake-checker = { url = "https://flakehub.com/f/DeterminateSystems/flake-checker/*"; inputs.nixpkgs.follows = "nixpkgs"; };
-    flake-iter = { url = "https://flakehub.com/f/DeterminateSystems/flake-iter/*"; inputs.nixpkgs.follows = "nixpkgs"; };
-    helix = { url = "https://flakehub.com/f/helix-editor/helix/0.1"; inputs.nixpkgs.follows = "nixpkgs"; };
-    home-manager = { url = "https://flakehub.com/f/nix-community/home-manager/0"; inputs.nixpkgs.follows = "nixpkgs"; };
-    nh = { url = "github:nix-community/nh"; inputs.nixpkgs.follows = "nixpkgs"; };
-    nix-darwin = { url = "https://flakehub.com/f/nix-darwin/nix-darwin/0"; inputs.nixpkgs.follows = "nixpkgs"; };
+    fh = {
+      url = "https://flakehub.com/f/DeterminateSystems/fh/0.1";
+    };
+    flake-checker = {
+      url = "https://flakehub.com/f/DeterminateSystems/flake-checker/*";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    flake-iter = {
+      url = "https://flakehub.com/f/DeterminateSystems/flake-iter/*";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    helix = {
+      url = "https://flakehub.com/f/helix-editor/helix/0.1";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    home-manager = {
+      url = "https://flakehub.com/f/nix-community/home-manager/0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nh = {
+      url = "github:nix-community/nh";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-darwin = {
+      url = "https://flakehub.com/f/nix-darwin/nix-darwin/0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0";
     nixpkgs-unstable.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1";
-    nuenv = { url = "https://flakehub.com/f/DeterminateSystems/nuenv/0.1.*"; inputs.nixpkgs.follows = "nixpkgs"; };
+    nuenv = {
+      url = "https://flakehub.com/f/DeterminateSystems/nuenv/0.1.*";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, ... }@inputs:
+  outputs =
+    { self, ... }@inputs:
     let
       supportedSystems = [ "aarch64-darwin" ];
-      forEachSupportedSystem = f: inputs.nixpkgs.lib.genAttrs supportedSystems (system: f {
-        pkgs = import inputs.nixpkgs {
-          inherit system;
-          overlays = [ self.overlays.default ];
-        };
-        inherit system;
-      });
+      forEachSupportedSystem =
+        f:
+        inputs.nixpkgs.lib.genAttrs supportedSystems (
+          system:
+          f {
+            pkgs = import inputs.nixpkgs {
+              inherit system;
+              overlays = [ self.overlays.default ];
+            };
+            inherit system;
+          }
+        );
 
       stateVersion = "25.05";
       system = "aarch64-darwin";
       username = "lucperkins";
     in
     {
-      devShells = forEachSupportedSystem ({ pkgs, system }: {
-        default =
-          let
-            reload = pkgs.writeScriptBin "reload" ''
-              set -e
-              echo "> Running darwin-rebuild switch..."
-              sudo ${inputs.nixpkgs.lib.getExe inputs.nix-darwin.packages.${system}.darwin-rebuild} switch --flake .
-              echo "> darwin-rebuild switch was successful ✅"
-              echo "> Refreshing zshrc..."
-              ${pkgs.lib.getExe pkgs.zsh} -c "source ${pkgs.lib.homeDirectory}/.zshrc"
-              echo "> zshrc was refreshed successfully ✅"
-              echo "> macOS config was successfully applied 🚀"
-            '';
-          in
-          pkgs.mkShell {
-            name = "nome";
-            packages = with pkgs; [
-              nixpkgs-fmt
-              reload
-            ];
-          };
-      });
+      devShells = forEachSupportedSystem (
+        { pkgs, system }:
+        {
+          default =
+            let
+              reload = pkgs.writeScriptBin "reload" ''
+                set -e
+                echo "> Running darwin-rebuild switch..."
+                sudo ${
+                  inputs.nixpkgs.lib.getExe inputs.nix-darwin.packages.${system}.darwin-rebuild
+                } switch --flake .
+                echo "> darwin-rebuild switch was successful ✅"
+                echo "> Refreshing zshrc..."
+                ${pkgs.lib.getExe pkgs.zsh} -c "source ${pkgs.lib.homeDirectory}/.zshrc"
+                echo "> zshrc was refreshed successfully ✅"
+                echo "> macOS config was successfully applied 🚀"
+              '';
+            in
+            pkgs.mkShell {
+              name = "nome";
+              packages = with pkgs; [
+                nixpkgs-fmt
+                reload
+              ];
+            };
+        }
+      );
 
       overlays.default = final: prev: {
+        rustToolchain =
+          with inputs.fenix.packages.${prev.stdenv.hostPlatform.system};
+          combine (
+            with stable;
+            [
+              clippy
+              rustc
+              cargo
+              rustfmt
+              rust-src
+              rust-std
+            ]
+          );
+
         # Constant values to pass around
-        constants = {
-          inherit username system;
-        };
+        constants = { inherit username system; };
 
         # Extra lib functions
         lib = prev.lib // {
-          homeDirectory =
-            if (prev.stdenv.isDarwin)
-            then "/Users/${username}"
-            else "/home/${username}";
+          homeDirectory = if (prev.stdenv.isDarwin) then "/Users/${username}" else "/home/${username}";
         };
 
         # Centralize theme stuff here
@@ -103,13 +157,19 @@
         helix = inputs.helix.packages.${system}.default;
         jujutsu = inputs.nixpkgs-unstable.legacyPackages.${system}.jujutsu;
         linux-builder = final.writeScriptBin "linux-builder" ''
-          sudo ${inputs.nixpkgs.lib.getExe' inputs.nixpkgs-unstable.legacyPackages.${system}.darwin.linux-builder "create-builder"}
+          sudo ${
+            inputs.nixpkgs.lib.getExe' inputs.nixpkgs-unstable.legacyPackages.${system}.darwin.linux-builder
+              "create-builder"
+          }
         '';
         nh = inputs.nh.packages.${system}.default;
         nushell = inputs.nixpkgs-unstable.legacyPackages.${system}.nushell;
         zed-editor = inputs.nixpkgs-unstable.legacyPackages.${system}.zed-editor;
 
-        unstable = with inputs.nixpkgs-unstable.legacyPackages.${system}; [ hugo jjui ];
+        unstable = with inputs.nixpkgs-unstable.legacyPackages.${system}; [
+          hugo
+          jjui
+        ];
       };
 
       darwinConfigurations."${username}-${system}" = inputs.nix-darwin.lib.darwinSystem {
@@ -123,49 +183,63 @@
       };
 
       darwinModules = {
-        base = { pkgs, ... }: import ./nix-darwin/base {
-          inherit pkgs;
-          overlays = [
-            inputs.nuenv.overlays.default
-            self.overlays.default
-          ];
-        };
+        base =
+          { pkgs, ... }:
+          import ./nix-darwin/base {
+            inherit pkgs;
+            overlays = [
+              inputs.nuenv.overlays.default
+              self.overlays.default
+            ];
+          };
 
-        home-manager = { pkgs, ... }: import ./home-manager {
-          inherit pkgs stateVersion username;
-        };
+        home-manager = { pkgs, ... }: import ./home-manager { inherit pkgs stateVersion username; };
 
-        determinate-nix = { config, lib, ... }:
+        determinate-nix =
+          { config, lib, ... }:
           let
             # https://github.com/nix-darwin/nix-darwin/blob/0d71cbf88d63e938b37b85b3bf8b238bcf7b39b9/modules/nix/default.nix#L34
-            mkValueString = v:
-              if v == null then ""
-              else if builtins.isInt v then builtins.toString v
-              else if builtins.isBool v then lib.boolToString v
-              else if builtins.isFloat v then lib.strings.floatToString v
-              else if builtins.isList v then builtins.toString v
-              else if lib.isDerivation v then builtins.toString v
-              else if builtins.isPath v then builtins.toString v
-              else if builtins.isString v then v
-              else if lib.strings.isCoercibleToString v then builtins.toString v
-              else abort "The nix conf value ${lib.generators.toPretty {} v} can't be encoded";
+            mkValueString =
+              v:
+              if v == null then
+                ""
+              else if builtins.isInt v then
+                builtins.toString v
+              else if builtins.isBool v then
+                lib.boolToString v
+              else if builtins.isFloat v then
+                lib.strings.floatToString v
+              else if builtins.isList v then
+                builtins.toString v
+              else if lib.isDerivation v then
+                builtins.toString v
+              else if builtins.isPath v then
+                builtins.toString v
+              else if builtins.isString v then
+                v
+              else if lib.strings.isCoercibleToString v then
+                builtins.toString v
+              else
+                abort "The nix conf value ${lib.generators.toPretty { } v} can't be encoded";
             mkKeyValue = k: v: "${lib.escape [ "=" ] k} = ${mkValueString v}";
 
             inherit (lib) types;
 
-            semanticConfType = with types;
+            semanticConfType =
+              with types;
               let
-                confAtom = nullOr
-                  (oneOf [
+                confAtom =
+                  nullOr (oneOf [
                     bool
                     int
                     float
                     str
                     path
                     package
-                  ]) // {
-                  description = "Nix config atom (null, bool, int, float, str, path or package)";
-                };
+                  ])
+                  // {
+                    description = "Nix config atom (null, bool, int, float, str, path or package)";
+                  };
               in
               attrsOf (either confAtom (listOf confAtom));
 
@@ -201,8 +275,7 @@
             config = lib.mkIf (config.determinate-nix.customSettings != { }) {
               assertions = [
                 {
-                  assertion =
-                    lib.all (key: !lib.hasAttr key config.determinate-nix.customSettings) disallowedOptions;
+                  assertion = lib.all (key: !lib.hasAttr key config.determinate-nix.customSettings) disallowedOptions;
                   message = ''
                     These settings are not allowed in `determinate-nix.customSettings`:
                       ${lib.concatStringsSep ", " disallowedOptions}
@@ -210,15 +283,14 @@
                 }
               ];
 
-              environment.etc."nix/nix.custom.conf".text =
-                lib.concatStringsSep "\n" (
-                  [
-                    "# This file is generated by the determinate module for nix-darwin."
-                    "# Update this file by changing your nix-darwin configuration, not by modifying it directly."
-                    ""
-                  ]
-                  ++ lib.mapAttrsToList mkKeyValue config.determinate-nix.customSettings
-                );
+              environment.etc."nix/nix.custom.conf".text = lib.concatStringsSep "\n" (
+                [
+                  "# This file is generated by the determinate module for nix-darwin."
+                  "# Update this file by changing your nix-darwin configuration, not by modifying it directly."
+                  ""
+                ]
+                ++ lib.mapAttrsToList mkKeyValue config.determinate-nix.customSettings
+              );
             };
           };
       };

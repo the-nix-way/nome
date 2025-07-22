@@ -3,9 +3,11 @@
 let
   inherit (pkgs.lib) fakeHash;
 
-  nu = name: script: pkgs.nuenv.mkScript {
-    inherit name script;
-  };
+  nu =
+    name: script:
+    pkgs.nuenv.mkScript {
+      inherit name script;
+    };
 in
 [
   (pkgs.writeScriptBin "random-nix-hash" ''

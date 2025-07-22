@@ -1,5 +1,6 @@
-{ pkgs
-, username
+{
+  pkgs,
+  username,
 }:
 
 let
