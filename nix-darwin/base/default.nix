@@ -15,7 +15,7 @@
   nix.enable = false;
 
   determinate-nix.customSettings = {
-    lazy-trees = true;
+    # nothing custom for now
   };
 
   nixpkgs = {

@@ -111,8 +111,10 @@ let
     lima
     mprocs
     ngrok
+    pkg-config
     process-compose
     protobuf
+    qemu
     static-web-server
     typst
     uutils-coreutils
@@ -131,8 +133,6 @@ let
     linux-builder
     nh
     nixfmt-rfc-style
-    nixpkgs-fmt
-    qemu_kvm
   ];
 
   pythonTools = with pkgs; [

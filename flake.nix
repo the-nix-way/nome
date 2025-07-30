@@ -95,7 +95,7 @@
             pkgs.mkShell {
               name = "nome";
               packages = with pkgs; [
-                nixpkgs-fmt
+                nixfmt-rfc-style
                 reload
               ];
             };
@@ -259,16 +259,7 @@
               type = types.submodule {
                 freeformType = semanticConfType;
 
-                options = {
-                  lazy-trees = lib.mkOption {
-                    type = types.bool;
-                    default = false;
-                    example = true;
-                    description = ''
-                      Whether to enable lazy trees.
-                    '';
-                  };
-                };
+                options = { };
               };
             };
 
