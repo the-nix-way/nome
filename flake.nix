@@ -16,7 +16,6 @@
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    #ephemera = { url = "https://flakehub.com/f/DeterminateSystems/ephemera/0.1"; inputs.nixpkgs.follows = "nixpkgs"; };
     fh = {
       url = "https://flakehub.com/f/DeterminateSystems/fh/0.1";
     };
@@ -161,7 +160,6 @@
         # Packages
         dvt = inputs.dev-templates.packages.${system}.dvt;
         easy-template = inputs.easy-template.packages.${system}.default;
-        #ephemera = inputs.ephemera.packages.${system}.default;
         fh = inputs.fh.packages.${system}.default;
         flake-checker = inputs.flake-checker.packages.${system}.default;
         flake-iter = inputs.flake-iter.packages.${system}.default;
