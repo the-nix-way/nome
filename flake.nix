@@ -81,6 +81,17 @@
             let
               reload = pkgs.writeScriptBin "reload" ''
                 set -e
+
+                if [[ -f "/etc/nix/nix.custom.conf" ]]; then
+                  echo "> Making backup of custom Nix config"
+                  sudo cp /etc/nix/nix.custom.conf /etc/nix/nix.custom.conf.before-nix-darwin
+                fi
+
+                if [[ -f "/etc/nix/flake-registry.json" ]]; then
+                  echo "> Making backup of custom Nix flake registry"
+                  sudo cp /etc/nix/flake-registry.json /etc/nix/flake-registry.json.before-nix-darwin
+                fi
+
                 echo "> Running darwin-rebuild switch..."
                 sudo ${
                   inputs.nixpkgs.lib.getExe inputs.nix-darwin.packages.${system}.darwin-rebuild
@@ -92,7 +103,7 @@
                 echo "> macOS config was successfully applied 🚀"
               '';
             in
-            pkgs.mkShell {
+            pkgs.mkShellNoCC {
               name = "nome";
               packages = with pkgs; [
                 nixfmt-rfc-style
@@ -210,17 +221,20 @@
               else if builtins.isFloat v then
                 lib.strings.floatToString v
               else if builtins.isList v then
-                builtins.toString v
+                builtins.toJSON v
               else if lib.isDerivation v then
                 builtins.toString v
               else if builtins.isPath v then
                 builtins.toString v
+              else if builtins.isAttrs v then
+                builtins.toJSON v
               else if builtins.isString v then
                 v
               else if lib.strings.isCoercibleToString v then
                 builtins.toString v
               else
                 abort "The nix conf value ${lib.generators.toPretty { } v} can't be encoded";
+
             mkKeyValue = k: v: "${lib.escape [ "=" ] k} = ${mkValueString v}";
 
             inherit (lib) types;
@@ -236,6 +250,7 @@
                     str
                     path
                     package
+                    attrs
                   ])
                   // {
                     description = "Nix config atom (null, bool, int, float, str, path or package)";
@@ -247,7 +262,7 @@
             disallowedOptions = [
               "always-allow-substitutes"
               "bash-prompt-prefix"
-              "extra-experimental-features"
+              #"extra-experimental-features"
               "extra-nix-path"
               "netrc-file"
               "ssl-cert-file"

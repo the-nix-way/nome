@@ -7,6 +7,30 @@
 {
   documentation.enable = true;
 
+  environment.etc."nix/flake-registry.json".text =
+    let
+      tarball = id: url: {
+        from = {
+          inherit id;
+          type = "indirect";
+        };
+        to = {
+          type = "tarball";
+          inherit url;
+        };
+      };
+    in
+    builtins.toJSON {
+      flakes = [
+        (tarball "home-manager" "https://flakehub.com/f/nix-community/home-manager/*")
+        (tarball "minnows" "https://flakehub.com/f/DeterminateSystems/minnows/*")
+        (tarball "nix-darwin" "https://flakehub.com/f/nix-darwin/nix-darwin/*")
+        (tarball "nixpkgs" "https://flakehub.com/f/DeterminateSystems/nixpkgs-weekly/*")
+        (tarball "templates" "github:NixOS/templates")
+      ];
+      version = 2;
+    };
+
   fonts.packages = pkgs.fonts.packages;
 
   networking.computerName = "${pkgs.constants.username}-${pkgs.constants.system}";
@@ -15,7 +39,7 @@
   nix.enable = false;
 
   determinate-nix.customSettings = {
-    # nothing custom for now
+    flake-registry = "/etc/nix/flake-registry.json";
   };
 
   nixpkgs = {
