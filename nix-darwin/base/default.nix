@@ -9,24 +9,36 @@
 
   environment.etc."nix/flake-registry.json".text =
     let
-      tarball = id: url: {
+      entry = id: to: {
         from = {
           inherit id;
           type = "indirect";
         };
-        to = {
-          type = "tarball";
-          inherit url;
-        };
+        inherit to;
       };
+
+      flakehub =
+        id: org: flake:
+        entry id {
+          type = "tarball";
+          url = "https://flakehub.com/f/${org}/${flake}/*";
+        };
+
+      github =
+        id: owner: repo:
+        entry id {
+          type = "github";
+          inherit owner repo;
+        };
     in
     builtins.toJSON {
       flakes = [
-        (tarball "home-manager" "https://flakehub.com/f/nix-community/home-manager/*")
-        (tarball "minnows" "https://flakehub.com/f/DeterminateSystems/minnows/*")
-        (tarball "nix-darwin" "https://flakehub.com/f/nix-darwin/nix-darwin/*")
-        (tarball "nixpkgs" "https://flakehub.com/f/DeterminateSystems/nixpkgs-weekly/*")
-        (tarball "templates" "github:NixOS/templates")
+        (github "dev-templates" "the-nix-way" "dev-templates")
+        (flakehub "home-manager" "nix-community" "home-manager")
+        (flakehub "nix" "DeterminateSystems" "nix-src")
+        (flakehub "nix-darwin" "nix-darwin" "nix-darwin")
+        (flakehub "nixpkgs" "DeterminateSystems" "nixpkgs-weekly")
+        (github "templates" "NixOS" "templates")
       ];
       version = 2;
     };
