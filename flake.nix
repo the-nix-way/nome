@@ -27,6 +27,10 @@
       url = "https://flakehub.com/f/DeterminateSystems/flake-iter/*";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    flake-schemas = {
+      url = "https://flakehub.com/f/DeterminateSystems/flake-schemas/*";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     helix = {
       url = "https://flakehub.com/f/helix-editor/helix/0.1";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -73,6 +77,8 @@
       username = "lucperkins";
     in
     {
+      inherit (inputs.flake-schemas) schemas;
+
       devShells = forEachSupportedSystem (
         { pkgs, system }:
         {

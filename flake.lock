@@ -249,6 +249,20 @@
         "url": "https://flakehub.com/f/DeterminateSystems/flake-schemas/%2A"
       }
     },
+    "flake-schemas_2": {
+      "locked": {
+        "lastModified": 1721999734,
+        "narHash": "sha256-G5CxYeJVm4lcEtaO87LKzOsVnWeTcHGKbKxNamNWgOw=",
+        "rev": "0a5c42297d870156d9c57d8f99e476b738dcd982",
+        "revCount": 75,
+        "type": "tarball",
+        "url": "https://api.flakehub.com/f/pinned/DeterminateSystems/flake-schemas/0.1.5/0190ef2f-61e0-794b-ba14-e82f225e55e6/source.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://flakehub.com/f/DeterminateSystems/flake-schemas/%2A"
+      }
+    },
     "flake-utils": {
       "inputs": {
         "systems": "systems"
@@ -455,6 +469,7 @@
         "fh": "fh",
         "flake-checker": "flake-checker",
         "flake-iter": "flake-iter",
+        "flake-schemas": "flake-schemas_2",
         "helix": "helix",
         "home-manager": "home-manager",
         "nh": "nh",
