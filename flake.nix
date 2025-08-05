@@ -4,7 +4,7 @@
 
   inputs = {
     determinate = {
-      url = "github:DeterminateSystems/determinate/nix-darwin-custom-conf";
+      url = "https://flakehub.com/f/DeterminateSystems/determinate/0.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     dev-templates = {
