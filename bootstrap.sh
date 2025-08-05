@@ -2,6 +2,4 @@
 
 set -e
 
-nix develop \
-  --extra-experimental-features 'flakes nix-command' \
-  --command "reload"
+nix develop --command reload
