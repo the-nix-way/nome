@@ -11,7 +11,7 @@ let
 in
 [
   (pkgs.writeScriptBin "random-nix-hash" ''
-    nix hash convert --hash-algo sha1 --to nix32 $(openssl rand -hex 20 | sha1sum | awk '{print $1}')
+    nix hash convert --from base16 --hash-algo sha1 --to nix32 "$(openssl rand -hex 20)"
   '')
 
   (pkgs.writeScriptBin "random-sha256-hash" ''

@@ -129,7 +129,6 @@ let
     fh
     flake-checker
     flake-iter
-    linux-builder
     nh
     nixfmt-rfc-style
   ];

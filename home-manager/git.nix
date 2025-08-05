@@ -19,7 +19,7 @@
     protocol.keybase.allow = "always";
     pull.rebase = "false";
     user = {
-      signingkey = "C86EE5D85EE4DDA5";
+      signingkey = "0AC42F39CE1FB90F";
     };
   };
   ignores = [

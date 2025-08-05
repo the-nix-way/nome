@@ -3,6 +3,10 @@
   description = "Nome: my Nix home";
 
   inputs = {
+    determinate = {
+      url = "github:DeterminateSystems/determinate/nix-darwin-custom-conf";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     dev-templates = {
       url = "https://flakehub.com/f/the-nix-way/dev-templates/0.1";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -27,10 +31,7 @@
       url = "https://flakehub.com/f/DeterminateSystems/flake-iter/*";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    flake-schemas = {
-      url = "https://flakehub.com/f/DeterminateSystems/flake-schemas/*";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    flake-schemas.url = "https://flakehub.com/f/DeterminateSystems/flake-schemas/*";
     helix = {
       url = "https://flakehub.com/f/helix-editor/helix/0.1";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -171,12 +172,6 @@
         flake-iter = inputs.flake-iter.packages.${system}.default;
         helix = inputs.helix.packages.${system}.default;
         jujutsu = inputs.nixpkgs-unstable.legacyPackages.${system}.jujutsu;
-        linux-builder = final.writeScriptBin "linux-builder" ''
-          sudo ${
-            inputs.nixpkgs.lib.getExe' inputs.nixpkgs-unstable.legacyPackages.${system}.darwin.linux-builder
-              "create-builder"
-          }
-        '';
         nh = inputs.nh.packages.${system}.default;
         nushell = inputs.nixpkgs-unstable.legacyPackages.${system}.nushell;
         zed-editor = inputs.nixpkgs-unstable.legacyPackages.${system}.zed-editor;
@@ -191,7 +186,7 @@
         inherit system;
         modules = [
           self.darwinModules.base
-          self.darwinModules.determinate-nix
+          inputs.determinate.darwinModules.default
           inputs.home-manager.darwinModules.home-manager
           self.darwinModules.home-manager
         ];
@@ -209,100 +204,6 @@
           };
 
         home-manager = { pkgs, ... }: import ./home-manager { inherit pkgs stateVersion username; };
-
-        determinate-nix =
-          { config, lib, ... }:
-          let
-            # https://github.com/nix-darwin/nix-darwin/blob/0d71cbf88d63e938b37b85b3bf8b238bcf7b39b9/modules/nix/default.nix#L34
-            mkValueString =
-              v:
-              if v == null then
-                ""
-              else if builtins.isInt v then
-                builtins.toString v
-              else if builtins.isBool v then
-                lib.boolToString v
-              else if builtins.isFloat v then
-                lib.strings.floatToString v
-              else if builtins.isList v then
-                builtins.toJSON v
-              else if lib.isDerivation v then
-                builtins.toString v
-              else if builtins.isPath v then
-                builtins.toString v
-              else if builtins.isAttrs v then
-                builtins.toJSON v
-              else if builtins.isString v then
-                v
-              else if lib.strings.isCoercibleToString v then
-                builtins.toString v
-              else
-                abort "The nix conf value ${lib.generators.toPretty { } v} can't be encoded";
-
-            mkKeyValue = k: v: "${lib.escape [ "=" ] k} = ${mkValueString v}";
-
-            inherit (lib) types;
-
-            semanticConfType =
-              with types;
-              let
-                confAtom =
-                  nullOr (oneOf [
-                    bool
-                    int
-                    float
-                    str
-                    path
-                    package
-                    attrs
-                  ])
-                  // {
-                    description = "Nix config atom (null, bool, int, float, str, path or package)";
-                  };
-              in
-              attrsOf (either confAtom (listOf confAtom));
-
-            # Settings that Determinate Nix handles for you
-            disallowedOptions = [
-              "always-allow-substitutes"
-              "bash-prompt-prefix"
-              #"extra-experimental-features"
-              "extra-nix-path"
-              "netrc-file"
-              "ssl-cert-file"
-              "upgrade-nix-store-path-url"
-            ];
-          in
-          {
-            options.determinate-nix.customSettings = lib.mkOption {
-              type = types.submodule {
-                freeformType = semanticConfType;
-
-                options = { };
-              };
-            };
-
-            config = lib.mkIf (config.determinate-nix.customSettings != { }) {
-              assertions = [
-                {
-                  assertion = lib.all (key: !lib.hasAttr key config.determinate-nix.customSettings) disallowedOptions;
-                  message = ''
-                    These settings are not allowed in `determinate-nix.customSettings`:
-                      ${lib.concatStringsSep ", " disallowedOptions}
-                  '';
-                }
-              ];
-
-              environment.etc."nix/nix.custom.conf".text = lib.concatStringsSep "\n" (
-                [
-                  "# This file is generated by the determinate module for nix-darwin."
-                  "# Update this file by changing your nix-darwin configuration, not by modifying it directly."
-                  ""
-                ]
-                ++ lib.mapAttrsToList mkKeyValue config.determinate-nix.customSettings
-              );
-            };
-          };
       };
 
       templates = import ./templates;
