@@ -38,6 +38,7 @@
         (flakehub "nix" "DeterminateSystems" "nix-src")
         (flakehub "nix-darwin" "nix-darwin" "nix-darwin")
         (flakehub "nixpkgs" "DeterminateSystems" "nixpkgs-weekly")
+        (flakehub "nome" "the-nix-way" "nome")
         (github "templates" "NixOS" "templates")
       ];
       version = 2;
