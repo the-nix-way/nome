@@ -7,7 +7,7 @@
 {
   documentation.enable = true;
 
-  environment.etc."nix/flake-registry.json".text =
+  environment.etc.${pkgs.flake-registry-file}.text =
     let
       entry = id: to: {
         from = {
@@ -51,8 +51,9 @@
   # Let Determinate Nix handle Nix configuration
   nix.enable = false;
 
+  # Custom Nix settings in /etc/nix/nix.custom.conf
   determinate-nix.customSettings = {
-    flake-registry = "/etc/nix/flake-registry.json";
+    flake-registry = "/etc/${pkgs.flake-registry-file}";
   };
 
   nixpkgs = {

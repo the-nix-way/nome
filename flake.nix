@@ -152,6 +152,8 @@
           };
         };
 
+        flake-registry-file = "nix/flake-registry.json";
+
         themes = {
           bat = "Catppuccin Mocha";
           helix = "catppuccin_mocha";
