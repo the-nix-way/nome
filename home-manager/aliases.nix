@@ -81,7 +81,7 @@
     rnh = "random-nix-hash";
     rsh = "random-sha256-hash";
 
-    yt = "yt-dlp";
+    yt = "yt-dlp --cookies-from-browser firefox";
     zed = "zeditor";
   };
 }
