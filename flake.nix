@@ -16,8 +16,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     fenix = {
-      # TODO: switch back to FlakeHub
-      url = "github:nix-community/fenix";
+      url = "https://flakehub.com/f/nix-community/fenix/0.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     fh = {
