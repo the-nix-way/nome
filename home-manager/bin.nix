@@ -69,7 +69,7 @@ in
     def main [
       template: string, # The template to initialize
     ] {
-      nix flake init --template $"github:the-nix-way/nome#($template)"
+      nix flake init --template $"https://flakehub.com/f/the-nix-way/nome/0.1#($template)"
     }
   '')
 
