@@ -97,8 +97,6 @@
                     zsh
                   ];
                   text = ''
-                    set -e
-
                     if [[ -f "/etc/nix/nix.custom.conf" ]]; then
                       echo "> Making backup of custom Nix config"
                       sudo cp /etc/nix/nix.custom.conf /etc/nix/nix.custom.conf.before-nix-darwin
