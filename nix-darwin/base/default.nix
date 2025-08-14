@@ -37,6 +37,7 @@
         (flakehub "home-manager" "nix-community" "home-manager")
         (flakehub "nix" "DeterminateSystems" "nix-src")
         (flakehub "nix-darwin" "nix-darwin" "nix-darwin")
+        (flakehub "nixos-generators" "nix-community" "nixos-generators")
         (flakehub "nixpkgs" "DeterminateSystems" "nixpkgs-weekly")
         (flakehub "nome" "the-nix-way" "nome")
         (github "templates" "NixOS" "templates")
