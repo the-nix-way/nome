@@ -286,7 +286,7 @@
       },
       "original": {
         "type": "tarball",
-        "url": "https://flakehub.com/f/DeterminateSystems/flake-checker/%2A"
+        "url": "https://flakehub.com/f/DeterminateSystems/flake-checker/0"
       }
     },
     "flake-compat": {
@@ -324,7 +324,7 @@
       },
       "original": {
         "type": "tarball",
-        "url": "https://flakehub.com/f/DeterminateSystems/flake-iter/%2A"
+        "url": "https://flakehub.com/f/DeterminateSystems/flake-iter/0.1"
       }
     },
     "flake-parts": {
@@ -373,7 +373,7 @@
       },
       "original": {
         "type": "tarball",
-        "url": "https://flakehub.com/f/DeterminateSystems/flake-schemas/%2A"
+        "url": "https://flakehub.com/f/DeterminateSystems/flake-schemas/0.1"
       }
     },
     "flake-utils": {

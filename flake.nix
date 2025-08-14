@@ -23,14 +23,14 @@
       url = "https://flakehub.com/f/DeterminateSystems/fh/0.1";
     };
     flake-checker = {
-      url = "https://flakehub.com/f/DeterminateSystems/flake-checker/*";
+      url = "https://flakehub.com/f/DeterminateSystems/flake-checker/0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     flake-iter = {
-      url = "https://flakehub.com/f/DeterminateSystems/flake-iter/*";
+      url = "https://flakehub.com/f/DeterminateSystems/flake-iter/0.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    flake-schemas.url = "https://flakehub.com/f/DeterminateSystems/flake-schemas/*";
+    flake-schemas.url = "https://flakehub.com/f/DeterminateSystems/flake-schemas/0.1";
     helix = {
       url = "https://flakehub.com/f/helix-editor/helix/0.1";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -84,29 +84,40 @@
         {
           default =
             let
-              reload = pkgs.writeScriptBin "reload" ''
-                set -e
+              reload =
+                let
+                  darwin-rebuild = inputs.nixpkgs.lib.getExe inputs.nix-darwin.packages.${system}.darwin-rebuild;
+                  zsh = inputs.nixpkgs.lib.getExe pkgs.zsh;
+                  zshrc = "${pkgs.lib.homeDirectory}/.zshrc";
+                in
+                pkgs.writeShellApplication {
+                  name = "reload";
+                  runtimeInputs = with pkgs; [
+                    darwin-rebuild
+                    zsh
+                  ];
+                  text = ''
+                    set -e
 
-                if [[ -f "/etc/nix/nix.custom.conf" ]]; then
-                  echo "> Making backup of custom Nix config"
-                  sudo cp /etc/nix/nix.custom.conf /etc/nix/nix.custom.conf.before-nix-darwin
-                fi
+                    if [[ -f "/etc/nix/nix.custom.conf" ]]; then
+                      echo "> Making backup of custom Nix config"
+                      sudo cp /etc/nix/nix.custom.conf /etc/nix/nix.custom.conf.before-nix-darwin
+                    fi
 
-                if [[ -f "/etc/nix/flake-registry.json" ]]; then
-                  echo "> Making backup of custom Nix flake registry"
-                  sudo cp /etc/nix/flake-registry.json /etc/nix/flake-registry.json.before-nix-darwin
-                fi
+                    if [[ -f "/etc/nix/flake-registry.json" ]]; then
+                      echo "> Making backup of custom Nix flake registry"
+                      sudo cp /etc/nix/flake-registry.json /etc/nix/flake-registry.json.before-nix-darwin
+                    fi
 
-                echo "> Running darwin-rebuild switch..."
-                sudo ${
-                  inputs.nixpkgs.lib.getExe inputs.nix-darwin.packages.${system}.darwin-rebuild
-                } switch --flake .
-                echo "> darwin-rebuild switch was successful ✅"
-                echo "> Refreshing zshrc..."
-                ${pkgs.lib.getExe pkgs.zsh} -c "source ${pkgs.lib.homeDirectory}/.zshrc"
-                echo "> zshrc was refreshed successfully ✅"
-                echo "> macOS config was successfully applied 🚀"
-              '';
+                    echo "> Running darwin-rebuild switch..."
+                    sudo darwin-rebuild switch --flake .
+                    echo "> darwin-rebuild switch was successful ✅"
+                    echo "> Refreshing zshrc..."
+                    zsh -c "source ${zshrc}"
+                    echo "> zshrc was refreshed successfully ✅"
+                    echo "> macOS config was successfully applied 🚀"
+                  '';
+                };
             in
             pkgs.mkShellNoCC {
               name = "nome";
