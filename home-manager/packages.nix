@@ -110,7 +110,6 @@ let
     httpie
     jid
     jq
-    lima
     mprocs
     ngrok
     pkg-config

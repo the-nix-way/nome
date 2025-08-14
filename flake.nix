@@ -221,6 +221,7 @@
         unstable = with inputs.nixpkgs-unstable.legacyPackages.${system}; [
           hugo
           jjui
+          lima
         ];
       };
 
