@@ -119,6 +119,7 @@
             path = ./.;
           };
           hooks = {
+            editorconfig-checker.enable = true;
             nixfmt-rfc-style.enable = true;
             statix.enable = true;
           };

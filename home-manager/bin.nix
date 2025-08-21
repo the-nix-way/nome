@@ -22,7 +22,7 @@ in
     # Display the hash for a cargo crate
     def main [
       name: string, # Package name
-     version: string, # Package version
+      version: string, # Package version
     ] {
       nix-prefetch-url --type sha256 --unpack $"https://crates.io/api/v1/crates/($name)/($version)/download"
     }
