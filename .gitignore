@@ -1,2 +1,5 @@
 # Nix artifacts
 result*
+
+# Pre-commit hook artifacts
+/.pre-commit-config.yaml
