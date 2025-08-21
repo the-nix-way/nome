@@ -88,7 +88,7 @@
       checks = forEachSupportedSystem (
         { pkgs, ... }:
         {
-          inherit (pkgs) pre-commit-check;
+          inherit (pkgs) pre-commit-checks;
         }
       );
 
@@ -98,56 +98,22 @@
           system,
         }:
         {
-          default =
-            let
-              reload =
-                let
-                  darwin-rebuild = inputs.nixpkgs.lib.getExe inputs.nix-darwin.packages.${system}.darwin-rebuild;
-                  zsh = inputs.nixpkgs.lib.getExe pkgs.zsh;
-                  zshrc = "${pkgs.lib.homeDirectory}/.zshrc";
-                in
-                pkgs.writeShellApplication {
-                  name = "reload";
-                  runtimeInputs = with pkgs; [
-                    darwin-rebuild
-                    zsh
-                  ];
-                  text = ''
-                    if [[ -f "/etc/nix/nix.custom.conf" ]]; then
-                      echo "> Making backup of custom Nix config"
-                      sudo cp /etc/nix/nix.custom.conf /etc/nix/nix.custom.conf.before-nix-darwin
-                    fi
-
-                    if [[ -f "/etc/nix/flake-registry.json" ]]; then
-                      echo "> Making backup of custom Nix flake registry"
-                      sudo cp /etc/nix/flake-registry.json /etc/nix/flake-registry.json.before-nix-darwin
-                    fi
-
-                    echo "> Running darwin-rebuild switch..."
-                    sudo darwin-rebuild switch --flake .
-                    echo "> darwin-rebuild switch was successful ✅"
-                    echo "> Refreshing zshrc..."
-                    zsh -c "source ${zshrc}"
-                    echo "> zshrc was refreshed successfully ✅"
-                    echo "> macOS config was successfully applied 🚀"
-                  '';
-                };
-            in
-            pkgs.mkShellNoCC {
-              name = "nome";
-              packages = with pkgs; [
-                nixfmt-rfc-style
+          default = pkgs.mkShellNoCC {
+            name = "nome";
+            packages =
+              (with pkgs; [
                 reload
-              ];
-              inherit (self.checks.${system}.pre-commit-check) shellHook;
-            };
+              ])
+              ++ self.checks.${system}.pre-commit-checks.enabledPackages;
+            inherit (self.checks.${system}.pre-commit-checks) shellHook;
+          };
         }
       );
 
       overlays.default = final: prev: {
         system = prev.stdenv.hostPlatform.system;
 
-        pre-commit-check = inputs.git-hooks.lib.${system}.run {
+        pre-commit-checks = inputs.git-hooks.lib.${system}.run {
           src = builtins.path {
             name = "root";
             path = ./.;
@@ -156,6 +122,39 @@
             nixfmt-rfc-style.enable = true;
           };
         };
+
+        reload =
+          let
+            darwin-rebuild = inputs.nixpkgs.lib.getExe inputs.nix-darwin.packages.${system}.darwin-rebuild;
+            zsh = inputs.nixpkgs.lib.getExe final.zsh;
+            zshrc = "${final.lib.homeDirectory}/.zshrc";
+          in
+          final.writeShellApplication {
+            name = "reload";
+            runtimeInputs = with final; [
+              darwin-rebuild
+              zsh
+            ];
+            text = ''
+              if [[ -f "/etc/nix/nix.custom.conf" ]]; then
+                echo "> Making backup of custom Nix config"
+                sudo cp /etc/nix/nix.custom.conf /etc/nix/nix.custom.conf.before-nix-darwin
+              fi
+
+              if [[ -f "/etc/nix/flake-registry.json" ]]; then
+                echo "> Making backup of custom Nix flake registry"
+                sudo cp /etc/nix/flake-registry.json /etc/nix/flake-registry.json.before-nix-darwin
+              fi
+
+              echo "> Running darwin-rebuild switch..."
+              sudo darwin-rebuild switch --flake .
+              echo "> darwin-rebuild switch was successful ✅"
+              echo "> Refreshing zshrc..."
+              zsh -c "source ${zshrc}"
+              echo "> zshrc was refreshed successfully ✅"
+              echo "> macOS config was successfully applied 🚀"
+            '';
+          };
 
         rustToolchain =
           with inputs.fenix.packages.${system};
