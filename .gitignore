@@ -1,3 +1,6 @@
+# Direnv artifacts
+/.direnv/
+
 # Nix artifacts
 result*
 
