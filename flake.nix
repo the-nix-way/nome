@@ -111,7 +111,7 @@
       );
 
       overlays.default = final: prev: {
-        system = prev.stdenv.hostPlatform.system;
+        inherit (prev.stdenv.hostPlatform) system;
 
         pre-commit-checks = inputs.git-hooks.lib.${system}.run {
           src = builtins.path {
@@ -120,6 +120,7 @@
           };
           hooks = {
             nixfmt-rfc-style.enable = true;
+            statix.enable = true;
           };
         };
 
@@ -175,7 +176,7 @@
 
         # Extra lib functions
         lib = prev.lib // {
-          homeDirectory = if (prev.stdenv.isDarwin) then "/Users/${username}" else "/home/${username}";
+          homeDirectory = if prev.stdenv.isDarwin then "/Users/${username}" else "/home/${username}";
         };
 
         # Centralize theme stuff here
@@ -203,16 +204,17 @@
         };
 
         # Packages
-        dvt = inputs.dev-templates.packages.${system}.dvt;
+
+        inherit (inputs.dev-templates.packages.${system}) dvt;
         easy-template = inputs.easy-template.packages.${system}.default;
         fh = inputs.fh.packages.${system}.default;
         flake-checker = inputs.flake-checker.packages.${system}.default;
         flake-iter = inputs.flake-iter.packages.${system}.default;
         helix = inputs.helix.packages.${system}.default;
-        jujutsu = inputs.nixpkgs-unstable.legacyPackages.${system}.jujutsu;
+        inherit (inputs.nixpkgs-unstable.legacyPackages.${system}) jujutsu;
         nh = inputs.nh.packages.${system}.default;
-        nushell = inputs.nixpkgs-unstable.legacyPackages.${system}.nushell;
-        zed-editor = inputs.nixpkgs-unstable.legacyPackages.${system}.zed-editor;
+        inherit (inputs.nixpkgs-unstable.legacyPackages.${system}) nushell;
+        inherit (inputs.nixpkgs-unstable.legacyPackages.${system}) zed-editor;
 
         unstable = with inputs.nixpkgs-unstable.legacyPackages.${system}; [
           hugo

@@ -26,19 +26,20 @@ let
     minikube
   ];
 
-  versionControlTools = (
+  versionControlTools =
     with pkgs;
     [
       difftastic
       git-crypt
+      gitAndTools.diff-so-fancy
+      gitAndTools.gitflow
     ]
     ++ (with gitAndTools; [
       diff-so-fancy
       gitflow
-    ])
-  );
+    ]);
 
-  jsTools = (
+  jsTools =
     with pkgs;
     [
       bun
@@ -46,8 +47,7 @@ let
       nodejs
       oxlint
     ]
-    ++ (with nodePackages; [ pnpm ])
-  );
+    ++ (with nodePackages; [ pnpm ]);
 
   docsTools = with pkgs; [ antora ];
 

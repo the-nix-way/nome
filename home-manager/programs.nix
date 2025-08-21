@@ -106,7 +106,7 @@
   jujutsu = {
     enable = true;
     package = pkgs.jujutsu;
-    settings = (builtins.fromTOML (builtins.readFile ./config/jj/config.toml));
+    settings = builtins.fromTOML (builtins.readFile ./config/jj/config.toml);
   };
 
   # is more
