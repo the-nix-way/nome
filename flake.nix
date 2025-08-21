@@ -31,6 +31,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     flake-schemas.url = "https://flakehub.com/f/DeterminateSystems/flake-schemas/0.1";
+    git-hooks = {
+      url = "https://flakehub.com/f/cachix/git-hooks.nix/0.1";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     helix = {
       url = "https://flakehub.com/f/helix-editor/helix/0.1";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -79,8 +83,20 @@
     {
       inherit (inputs.flake-schemas) schemas;
 
+      formatter = forEachSupportedSystem ({ pkgs, ... }: pkgs.nixfmt-rfc-style);
+
+      checks = forEachSupportedSystem (
+        { pkgs, ... }:
+        {
+          inherit (pkgs) pre-commit-check;
+        }
+      );
+
       devShells = forEachSupportedSystem (
-        { pkgs, system }:
+        {
+          pkgs,
+          system,
+        }:
         {
           default =
             let
@@ -123,13 +139,26 @@
                 nixfmt-rfc-style
                 reload
               ];
+              inherit (self.checks.${system}.pre-commit-check) shellHook;
             };
         }
       );
 
       overlays.default = final: prev: {
+        system = prev.stdenv.hostPlatform.system;
+
+        pre-commit-check = inputs.git-hooks.lib.${system}.run {
+          src = builtins.path {
+            name = "root";
+            path = ./.;
+          };
+          hooks = {
+            nixfmt-rfc-style.enable = true;
+          };
+        };
+
         rustToolchain =
-          with inputs.fenix.packages.${prev.stdenv.hostPlatform.system};
+          with inputs.fenix.packages.${system};
           combine (
             with stable;
             [
