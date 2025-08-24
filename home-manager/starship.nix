@@ -16,7 +16,7 @@
       };
     in
 
-    builtins.fromTOML builtins.readFile "${catppuccinTheme}/themes/mocha.toml"
+    (builtins.fromTOML (builtins.readFile "${catppuccinTheme}/themes/mocha.toml"))
     // {
       "$schema" = "https://starship.rs/config-schema.json";
       palette = "catppuccin_mocha";
