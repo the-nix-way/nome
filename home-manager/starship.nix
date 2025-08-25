@@ -7,16 +7,16 @@
   enableZshIntegration = true;
   package = pkgs.starship;
   settings =
-    let
-      catppuccinTheme = pkgs.fetchFromGitHub {
-        owner = "catppuccin";
-        repo = "starship";
-        rev = "e99ba6b210c0739af2a18094024ca0bdf4bb3225";
-        sha256 = "sha256-1w0TJdQP5lb9jCrCmhPlSexf0PkAlcz8GBDEsRjPRns=";
-      };
-    in
-
-    (builtins.fromTOML (builtins.readFile "${catppuccinTheme}/themes/mocha.toml"))
+    (builtins.fromTOML (
+      builtins.readFile "${
+        pkgs.fetchFromGitHub {
+          owner = "catppuccin";
+          repo = "starship";
+          rev = "e99ba6b210c0739af2a18094024ca0bdf4bb3225";
+          sha256 = "sha256-1w0TJdQP5lb9jCrCmhPlSexf0PkAlcz8GBDEsRjPRns=";
+        }
+      }/themes/mocha.toml"
+    ))
     // {
       "$schema" = "https://starship.rs/config-schema.json";
       palette = "catppuccin_mocha";
