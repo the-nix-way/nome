@@ -4,7 +4,7 @@
 
   inputs = {
     determinate = {
-      url = "https://flakehub.com/f/DeterminateSystems/determinate/0.1";
+      url = "github:DeterminateSystems/determinate/fix-string-list-handling";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     dev-templates = {
