@@ -40,7 +40,7 @@
         (flakehub "nixos-generators" "nix-community" "nixos-generators")
         (flakehub "nixpkgs" "DeterminateSystems" "nixpkgs-weekly")
         (flakehub "nome" "the-nix-way" "nome")
-        (github "templates" "NixOS" "templates")
+        (flakehub "templates" "DeterminateSystems" "flake-templates")
       ];
       version = 2;
     };
