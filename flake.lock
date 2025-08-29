@@ -546,17 +546,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1755960929,
-        "narHash": "sha256-28NHVSsYAp4vdSApAmbbdkG4bjhBODPDiyx/E4uMGpc=",
-        "owner": "nix-community",
-        "repo": "nh",
-        "rev": "6cd62b00023932effbf57f21879f4d2deae4b256",
-        "type": "github"
+        "lastModified": 1755510252,
+        "narHash": "sha256-IPwAGaR9LO4LasxIFPqOTmIfliDsnzWVgzsaIekzRG4=",
+        "rev": "8d690296fb3b898da565b33455a4227aed8a3133",
+        "revCount": 730,
+        "type": "tarball",
+        "url": "https://api.flakehub.com/f/pinned/nix-community/nh/4.2.0-beta2/0198f157-78bf-74f5-af29-04c354a01a1d/source.tar.gz"
       },
       "original": {
-        "owner": "nix-community",
-        "repo": "nh",
-        "type": "github"
+        "type": "tarball",
+        "url": "https://flakehub.com/f/nix-community/nh/4.2.0-beta2"
       }
     },
     "nix": {

@@ -44,7 +44,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nh = {
-      url = "github:nix-community/nh";
+      url = "https://flakehub.com/f/nix-community/nh/4.2.0-beta2";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-darwin = {
