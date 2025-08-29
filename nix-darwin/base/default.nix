@@ -35,7 +35,7 @@
       flakes = [
         (flakehub "dev-templates" "the-nix-way" "dev-templates" "0.1")
         (flakehub "home-manager" "nix-community" "home-manager" "0")
-        (flakehub "nix" "DeterminateSystems" "nix-src" "0")
+        (flakehub "nix" "DeterminateSystems" "nix-src" "3")
         (flakehub "nix-darwin" "nix-darwin" "nix-darwin" "0")
         (flakehub "nixos-generators" "nix-community" "nixos-generators" "0.1")
         (flakehub "nixpkgs" "DeterminateSystems" "nixpkgs-weekly" "0.1")

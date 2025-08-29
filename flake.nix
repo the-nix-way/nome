@@ -4,7 +4,7 @@
 
   inputs = {
     determinate = {
-      url = "github:DeterminateSystems/determinate/custom-settings-default";
+      url = "https://flakehub.com/f/DeterminateSystems/determinate/3";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     dev-templates = {

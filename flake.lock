@@ -57,18 +57,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1756470463,
-        "narHash": "sha256-P1aQNha3X/R7Bg093jAEchn1tfh1QD24ziWDuY7dPlI=",
-        "owner": "DeterminateSystems",
-        "repo": "determinate",
-        "rev": "b4c2e6ff6cec69ad11e92fe1e6726a73b97ed449",
-        "type": "github"
+        "lastModified": 1756351134,
+        "narHash": "sha256-7vs0lRl37XFpKLBM1ZNA5qzmFgsI1pdJuGrjDOdM/YU=",
+        "rev": "909d38cfc44f6cb0a891729c15c6176a124455a3",
+        "revCount": 289,
+        "type": "tarball",
+        "url": "https://api.flakehub.com/f/pinned/DeterminateSystems/determinate/3.9.1/0198eeb2-9af3-7183-bab5-8e82a80b71a7/source.tar.gz"
       },
       "original": {
-        "owner": "DeterminateSystems",
-        "ref": "custom-settings-default",
-        "repo": "determinate",
-        "type": "github"
+        "type": "tarball",
+        "url": "https://flakehub.com/f/DeterminateSystems/determinate/3"
       }
     },
     "determinate-nixd-aarch64-darwin": {
