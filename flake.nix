@@ -4,7 +4,7 @@
 
   inputs = {
     determinate = {
-      url = "github:DeterminateSystems/determinate/fix-string-list-handling";
+      url = "github:DeterminateSystems/determinate/custom-settings-default";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     dev-templates = {
