@@ -18,10 +18,10 @@
       };
 
       flakehub =
-        id: org: flake:
+        id: org: flake: version:
         entry id {
           type = "tarball";
-          url = "https://flakehub.com/f/${org}/${flake}/*";
+          url = "https://flakehub.com/f/${org}/${flake}/${version}";
         };
 
       github =
@@ -33,14 +33,14 @@
     in
     builtins.toJSON {
       flakes = [
-        (github "dev-templates" "the-nix-way" "dev-templates")
-        (flakehub "home-manager" "nix-community" "home-manager")
-        (flakehub "nix" "DeterminateSystems" "nix-src")
-        (flakehub "nix-darwin" "nix-darwin" "nix-darwin")
-        (flakehub "nixos-generators" "nix-community" "nixos-generators")
-        (flakehub "nixpkgs" "DeterminateSystems" "nixpkgs-weekly")
-        (flakehub "nome" "the-nix-way" "nome")
-        (flakehub "templates" "DeterminateSystems" "flake-templates")
+        (flakehub "dev-templates" "the-nix-way" "dev-templates" "0.1")
+        (flakehub "home-manager" "nix-community" "home-manager" "0")
+        (flakehub "nix" "DeterminateSystems" "nix-src" "0")
+        (flakehub "nix-darwin" "nix-darwin" "nix-darwin" "0")
+        (flakehub "nixos-generators" "nix-community" "nixos-generators" "0.1")
+        (flakehub "nixpkgs" "DeterminateSystems" "nixpkgs-weekly" "0.1")
+        (flakehub "nome" "the-nix-way" "nome" "0.1")
+        (flakehub "templates" "DeterminateSystems" "flake-templates" "0.1")
       ];
       version = 2;
     };
