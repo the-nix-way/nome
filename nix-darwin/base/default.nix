@@ -55,7 +55,10 @@
   # Custom Nix settings in /etc/nix/nix.custom.conf
   determinate-nix.customSettings = {
     flake-registry = "/etc/${pkgs.flake-registry-file}";
-    extra-experimental-features = [ "build-time-fetch-tree" ];
+    extra-experimental-features = [
+      "build-time-fetch-tree"
+      "parallel-eval"
+    ];
   };
 
   nixpkgs = {
