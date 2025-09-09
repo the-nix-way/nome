@@ -701,7 +701,7 @@
       },
       "original": {
         "type": "tarball",
-        "url": "https://flakehub.com/f/DeterminateSystems/nuenv/0.1.%2A"
+        "url": "https://flakehub.com/f/DeterminateSystems/nuenv/0.1"
       }
     },
     "root": {
