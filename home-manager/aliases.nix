@@ -71,7 +71,6 @@
     nfs = "nix flake show";
     nfu = "nix flake update";
     nsn = "nix search nixpkgs";
-    flake-schemas = "nix run github:DeterminateSystems/nix-src/flake-schemas -- --extra-experimental-features 'nix-command flakes'";
     old-nix = "nix run github:NixOS/nix/2.27.0 --";
 
     # processes
