@@ -71,7 +71,7 @@
     nfs = "nix flake show";
     nfu = "nix flake update";
     nsn = "nix search nixpkgs";
-    old-nix = "nix run github:NixOS/nix/2.27.0 --";
+    upstream-nix = "nix run github:NixOS/nix/2.31.1 --";
 
     # processes
     pf = "pgrep -f";

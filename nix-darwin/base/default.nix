@@ -58,6 +58,10 @@
     extra-experimental-features = [
       "build-time-fetch-tree"
       "parallel-eval"
+
+      # for use by upstream Nix
+      "nix-command"
+      "flakes"
     ];
   };
 
