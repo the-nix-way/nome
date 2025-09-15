@@ -20,6 +20,14 @@
           sessionVariables = import ./env.nix { inherit pkgs username; };
           shellAliases = (import ./aliases.nix { inherit pkgs; }).shell;
           inherit stateVersion username;
+
+          # Ghostty config
+          file.".config/ghostty/config" = {
+            text = ''
+              theme = ${pkgs.themes.ghostty}
+            '';
+            executable = false;
+          };
         };
         imports = [ ];
         programs = import ./programs.nix { inherit pkgs; };

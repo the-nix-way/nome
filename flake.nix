@@ -194,6 +194,7 @@
 
         themes = {
           bat = "Catppuccin Mocha";
+          ghostty = "Catppuccin Mocha";
           helix = "catppuccin_mocha";
           spotify-player = "catppuccin-mocha";
           vscode = {
