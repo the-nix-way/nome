@@ -42,6 +42,7 @@ let
   jsTools =
     with pkgs;
     [
+      biome
       bun
       deno
       nodejs
@@ -95,6 +96,7 @@ let
     buf
     comma
     cue
+    curl
     duckdb
     duf
     dust
