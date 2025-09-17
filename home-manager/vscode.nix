@@ -75,6 +75,7 @@ in
         (vsce "ms-vscode" "vscode-typescript-next" "5.4.20231127"
           "sha256-UVuYggzeWyQTmQxXdM4sT78FUOtYGKD4SzREntotU5g="
         )
+        (vsce "Ph0enixKM" "amber-language" "1.2.8" "sha256-2Fd9cLieuamSp1S0cnj1arCA8YpZ3ce3OxclO8pXYJg=")
       ];
 
     globalSnippets = { };
