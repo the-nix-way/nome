@@ -41,6 +41,7 @@
         (flakehub "nix-darwin" "nix-darwin" "nix-darwin" "0")
         (flakehub "nixos-generators" "nix-community" "nixos-generators" "0.1")
         (flakehub "nixpkgs" "DeterminateSystems" "secure" "0")
+        (flakehub "unstable" "DeterminateSystems" "nixpkgs-weekly" "0.1")
         (flakehub "nome" "the-nix-way" "nome" "0.1")
         (flakehub "templates" "DeterminateSystems" "flake-templates" "0.1")
       ];
