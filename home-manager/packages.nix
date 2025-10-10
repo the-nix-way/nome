@@ -42,7 +42,6 @@ let
   jsTools =
     with pkgs;
     [
-      biome
       bun
       deno
       nodejs

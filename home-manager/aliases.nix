@@ -73,6 +73,7 @@
     nfs = "nix flake show";
     nfu = "nix flake update";
     nsn = "nix search nixpkgs";
+    flake-schemas = "nix run github:DeterminateSystems/nix-src/flake-schemas-detsys --";
     upstream-nix = "nix run github:NixOS/nix/2.31.1 --";
 
     # processes

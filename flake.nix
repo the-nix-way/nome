@@ -219,6 +219,7 @@
         inherit (inputs.nixpkgs-unstable.legacyPackages.${system}) zed-editor;
 
         unstable = with inputs.nixpkgs-unstable.legacyPackages.${system}; [
+          biome
           hugo
           jjui
           lima

@@ -45,6 +45,7 @@
         (flakehub "nuenv" "DeterminateSystems" "nuenv" "0.1")
         (flakehub "pdfs" "DeterminateSystems" "pdfs" "0.1")
         (flakehub "secure-packages" "DeterminateSystems" "secure" "0")
+        (flakehub "stable" "NixOS" "nixpkgs" "0")
         (flakehub "templates" "DeterminateSystems" "flake-templates" "0.1")
         (flakehub "unstable" "DeterminateSystems" "nixpkgs-weekly" "0.1")
       ];
@@ -68,6 +69,12 @@
       # for use by upstream Nix
       "nix-command"
       "flakes"
+    ];
+    system-features = [
+      "nixos-test"
+      "benchmark"
+      "big-parallel"
+      "kvm"
     ];
   };
 

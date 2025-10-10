@@ -99,6 +99,7 @@ in
         "editor.defaultFormatter" = "tamasfe.even-better-toml";
         "editor.formatOnSave" = true;
       };
+      "terminal.integrated.shellIntegration.enabled" = false;
       "editor.wordWrap" = "wordWrapColumn";
       "editor.wordWrapColumn" = 120;
       "search.exclude" = {
