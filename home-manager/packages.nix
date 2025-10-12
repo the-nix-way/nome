@@ -119,6 +119,7 @@ let
     typst
     uutils-coreutils
     vhs
+    wrangler
     wrk
     yq
     yt-dlp
