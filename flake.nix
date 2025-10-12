@@ -30,7 +30,6 @@
       url = "https://flakehub.com/f/DeterminateSystems/flake-iter/0.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    flake-schemas.url = "https://flakehub.com/f/DeterminateSystems/flake-schemas/0.1";
     git-hooks = {
       url = "https://flakehub.com/f/cachix/git-hooks.nix/0.1";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -81,8 +80,6 @@
       username = "lucperkins";
     in
     {
-      inherit (inputs.flake-schemas) schemas;
-
       formatter = forEachSupportedSystem ({ pkgs, ... }: pkgs.nixfmt-rfc-style);
 
       checks = forEachSupportedSystem (
@@ -223,6 +220,7 @@
           hugo
           jjui
           lima
+          wrangler
         ];
       };
 
