@@ -119,7 +119,6 @@ let
     typst
     uutils-coreutils
     vhs
-    wrangler
     wrk
     yq
     yt-dlp
@@ -143,6 +142,7 @@ let
     rustToolchain
     bacon
     cargo-edit
+    cargo-generate
     cargo-machete
     cargo-watch
     rust-analyzer

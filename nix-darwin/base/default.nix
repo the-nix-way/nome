@@ -40,7 +40,7 @@
         (flakehub "nix" "DeterminateSystems" "nix-src" "3")
         (flakehub "nix-darwin" "nix-darwin" "nix-darwin" "0")
         (flakehub "nixos-generators" "nix-community" "nixos-generators" "0.1")
-        (flakehub "nixpkgs" "DeterminateSystems" "secure" "0")
+        (flakehub "nixpkgs" "DeterminateSystems" "nixpkgs-weekly" "0.1")
         (flakehub "nome" "the-nix-way" "nome" "0.1")
         (flakehub "nuenv" "DeterminateSystems" "nuenv" "0.1")
         (flakehub "pdfs" "DeterminateSystems" "pdfs" "0.1")
@@ -56,26 +56,28 @@
 
   networking.computerName = "${pkgs.constants.username}-${pkgs.constants.system}";
 
-  # Let Determinate Nix handle Nix configuration
-  nix.enable = false;
-
   # Custom Nix settings in /etc/nix/nix.custom.conf
-  determinate-nix.customSettings = {
-    flake-registry = "/etc/${pkgs.flake-registry-file}";
-    extra-experimental-features = [
-      "build-time-fetch-tree"
-      "parallel-eval"
+  determinateNix = {
+    # Let Determinate Nix handle Nix configuration
+    enable = true;
 
-      # for use by upstream Nix
-      "nix-command"
-      "flakes"
-    ];
-    system-features = [
-      "nixos-test"
-      "benchmark"
-      "big-parallel"
-      "kvm"
-    ];
+    customSettings = {
+      flake-registry = "/etc/${pkgs.flake-registry-file}";
+      extra-experimental-features = [
+        "build-time-fetch-tree"
+        "parallel-eval"
+
+        # for use by upstream Nix
+        "nix-command"
+        "flakes"
+      ];
+      system-features = [
+        "nixos-test"
+        "benchmark"
+        "big-parallel"
+        "kvm"
+      ];
+    };
   };
 
   nixpkgs = {
