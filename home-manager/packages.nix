@@ -119,6 +119,7 @@ let
     typst
     uutils-coreutils
     vhs
+    watchexec
     wrk
     yq
     yt-dlp
@@ -131,6 +132,7 @@ let
     flake-iter
     nh
     nixfmt-rfc-style
+    statix
   ];
 
   pythonTools = with pkgs; [
