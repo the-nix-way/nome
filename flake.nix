@@ -143,12 +143,16 @@
               fi
 
               echo "> Running darwin-rebuild switch..."
-              sudo darwin-rebuild switch --flake ".#${username}-${system}"
-              echo "> darwin-rebuild switch was successful ✅"
-              echo "> Refreshing zshrc..."
-              zsh -c "source ${zshrc}"
-              echo "> zshrc was refreshed successfully ✅"
-              echo "> macOS config was successfully applied 🚀"
+              if sudo darwin-rebuild switch --flake ".#${username}-${system}"; then
+                echo "> darwin-rebuild switch was successful ✅"
+                echo "> Refreshing zshrc..."
+                zsh -c "source ${zshrc}"
+                echo "> zshrc was refreshed successfully ✅"
+                echo "> macOS config was successfully applied 🚀"
+              else
+                echo "> home-manager switch failed ❌"
+                exit 1
+              fi
             '';
           };
 
