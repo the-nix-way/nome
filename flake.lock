@@ -42,6 +42,20 @@
         "url": "https://flakehub.com/f/ipetkov/crane/0.20"
       }
     },
+    "crane_4": {
+      "locked": {
+        "lastModified": 1745454774,
+        "narHash": "sha256-oLvmxOnsEKGtwczxp/CwhrfmQUG2ym24OMWowcoRhH8=",
+        "rev": "efd36682371678e2b6da3f108fdb5c613b3ec598",
+        "revCount": 729,
+        "type": "tarball",
+        "url": "https://api.flakehub.com/f/pinned/ipetkov/crane/0.20.3/01966538-0f80-7363-a573-2ba9fd154399/source.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://flakehub.com/f/ipetkov/crane/0.20"
+      }
+    },
     "determinate": {
       "inputs": {
         "determinate-nixd-aarch64-darwin": "determinate-nixd-aarch64-darwin",
@@ -249,6 +263,27 @@
         "url": "https://flakehub.com/f/nix-community/fenix/0.1.1885"
       }
     },
+    "fenix_6": {
+      "inputs": {
+        "nixpkgs": [
+          "minnows",
+          "nixpkgs"
+        ],
+        "rust-analyzer-src": "rust-analyzer-src_6"
+      },
+      "locked": {
+        "lastModified": 1756709111,
+        "narHash": "sha256-xv2u5dnQpdWkrIy5TBSomr055odWtRSoECSGBzNpp3w=",
+        "rev": "113eba389317407992ea219d5aaced44bf6407f9",
+        "revCount": 2375,
+        "type": "tarball",
+        "url": "https://api.flakehub.com/f/pinned/nix-community/fenix/0.1.2375%2Brev-113eba389317407992ea219d5aaced44bf6407f9/0199045f-8452-723d-b201-deb22d41c75e/source.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://flakehub.com/f/nix-community/fenix/0.1"
+      }
+    },
     "fh": {
       "inputs": {
         "crane": "crane_2",
@@ -378,6 +413,20 @@
         "url": "https://flakehub.com/f/DeterminateSystems/flake-schemas/%2A"
       }
     },
+    "flake-schemas_2": {
+      "locked": {
+        "lastModified": 1721999734,
+        "narHash": "sha256-G5CxYeJVm4lcEtaO87LKzOsVnWeTcHGKbKxNamNWgOw=",
+        "rev": "0a5c42297d870156d9c57d8f99e476b738dcd982",
+        "revCount": 75,
+        "type": "tarball",
+        "url": "https://api.flakehub.com/f/pinned/DeterminateSystems/flake-schemas/0.1.5/0190ef2f-61e0-794b-ba14-e82f225e55e6/source.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://flakehub.com/f/DeterminateSystems/flake-schemas/0"
+      }
+    },
     "flake-utils": {
       "inputs": {
         "systems": "systems"
@@ -501,6 +550,29 @@
       "original": {
         "type": "tarball",
         "url": "https://flakehub.com/f/nix-community/home-manager/0"
+      }
+    },
+    "minnows": {
+      "inputs": {
+        "crane": "crane_4",
+        "fenix": "fenix_6",
+        "flake-schemas": "flake-schemas_2",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "typix": "typix"
+      },
+      "locked": {
+        "lastModified": 1760640951,
+        "narHash": "sha256-qmjW4Wd8V7z6WkdPZF0GSH+Wt+WEZcHMwC79fpRF8HE=",
+        "rev": "61096b54cc3ef63a11e023a9e990c383d6e19eb7",
+        "revCount": 2123,
+        "type": "tarball",
+        "url": "https://api.flakehub.com/f/pinned/DeterminateSystems/minnows/0.1.2123%2Brev-61096b54cc3ef63a11e023a9e990c383d6e19eb7/0199ee61-93c3-77bf-b732-7504fb339fd1/source.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://flakehub.com/f/DeterminateSystems/minnows/0"
       }
     },
     "naersk": {
@@ -716,6 +788,7 @@
         "git-hooks": "git-hooks",
         "helix": "helix",
         "home-manager": "home-manager",
+        "minnows": "minnows",
         "nh": "nh",
         "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs_4",
@@ -808,6 +881,23 @@
         "type": "github"
       }
     },
+    "rust-analyzer-src_6": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1756597274,
+        "narHash": "sha256-wfaKRKsEVQDB7pQtAt04vRgFphkVscGRpSx3wG1l50E=",
+        "owner": "rust-lang",
+        "repo": "rust-analyzer",
+        "rev": "21614ed2d3279a9aa1f15c88d293e65a98991b30",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rust-lang",
+        "ref": "nightly",
+        "repo": "rust-analyzer",
+        "type": "github"
+      }
+    },
     "rust-overlay": {
       "inputs": {
         "nixpkgs": [
@@ -864,6 +954,26 @@
         "owner": "nix-systems",
         "repo": "default",
         "type": "github"
+      }
+    },
+    "typix": {
+      "inputs": {
+        "nixpkgs": [
+          "minnows",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1751013253,
+        "narHash": "sha256-P0n7lAITZiDy05bpEHzsrCMyd+kDXqAnjqXwYSaWWQk=",
+        "rev": "bddd0cbdc97f838602c664f6bd82c29d2522c8b8",
+        "revCount": 415,
+        "type": "tarball",
+        "url": "https://api.flakehub.com/f/pinned/loqusion/typix/0.3.2/0197b088-26aa-70be-805b-166c7976a527/source.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://flakehub.com/f/loqusion/typix/%2A"
       }
     }
   },

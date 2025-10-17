@@ -39,6 +39,10 @@
       url = "https://flakehub.com/f/nix-community/home-manager/0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    minnows = {
+      url = "https://flakehub.com/f/DeterminateSystems/minnows/0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nh = {
       url = "https://flakehub.com/f/nix-community/nh/4.2.0-beta2";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -215,6 +219,7 @@
         nh = inputs.nh.packages.${system}.default;
         inherit (inputs.nixpkgs-unstable.legacyPackages.${system}) nushell;
         inherit (inputs.nixpkgs-unstable.legacyPackages.${system}) zed-editor;
+        inherit (inputs.minnows.packages.${system}) minnows-cli;
 
         unstable = with inputs.nixpkgs-unstable.legacyPackages.${system}; [
           biome
