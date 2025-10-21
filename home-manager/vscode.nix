@@ -113,11 +113,15 @@ in
       };
       # "editor.defaultFormatter" = "esbenp.prettier-vscode";
       "rust-analyzer.server.path" = "rust-analyzer";
+      "terminal.integrated.defaultLocation" = "panel";
       "terminal.integrated.fontFamily" = pkgs.fonts.vscode.terminal;
+      "terminal.integrated.showTabs" = true;
       "window.autoDetectColorScheme" = true;
       "workbench.iconTheme" = pkgs.themes.vscode.icon;
+      "workbench.panel.defaultLocation" = "bottom";
       "workbench.preferredLightColorTheme" = pkgs.themes.vscode.light;
       "workbench.preferredDarkColorTheme" = pkgs.themes.vscode.dark;
+      "workbench.sideBar.location" = "left";
     };
   };
 

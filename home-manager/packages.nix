@@ -93,6 +93,7 @@ let
     bottom
     btop
     buf
+    claude-code
     comma
     cue
     curl
@@ -120,6 +121,7 @@ let
     uutils-coreutils
     vhs
     watchexec
+    worker-build
     wrk
     yq
     yt-dlp
