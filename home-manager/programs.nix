@@ -47,6 +47,15 @@
     enableZshIntegration = true;
   };
 
+  claude-desktop = {
+    enable = true;
+    mcpServers.determinate-mcp = {
+      type = "stdio";
+      command = pkgs.lib.getExe pkgs.determinate-mcp;
+      args = [ "stdio" ];
+    };
+  };
+
   # Easy shell environments
   direnv = {
     enable = true;

@@ -39,8 +39,8 @@
       url = "https://flakehub.com/f/nix-community/home-manager/0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    determinate-systems-mcp = {
-      url = "https://flakehub.com/f/DeterminateSystems/mcp/0";
+    determinate-mcp = {
+      url = "path:/Users/lucperkins/dts/mcp";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     minnows = {
@@ -212,8 +212,7 @@
         };
 
         # Packages
-
-        determinate-systems-mcp = inputs.determinate-systems-mcp.packages.${system}.default;
+        determinate-mcp = inputs.determinate-mcp.packages.${system}.default;
         inherit (inputs.dev-templates.packages.${system}) dvt;
         easy-template = inputs.easy-template.packages.${system}.default;
         fh = inputs.fh.packages.${system}.default;
@@ -255,7 +254,12 @@
             ];
           };
 
-        home-manager = { pkgs, ... }: import ./home-manager { inherit pkgs stateVersion username; };
+        home-manager =
+          { pkgs, ... }:
+          import ./home-manager {
+            inherit pkgs stateVersion username;
+            modules = [ inputs.determinate-mcp.homeModules.claude-desktop ];
+          };
       };
 
       templates = import ./templates;

@@ -97,6 +97,26 @@
         "type": "github"
       }
     },
+    "determinate-mcp": {
+      "inputs": {
+        "crane": "crane",
+        "fenix": "fenix",
+        "git-hooks": "git-hooks",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1761590331,
+        "narHash": "sha256-fm2I2umuFuJB3RQUykng5yVnkPjPHuFbsrr7EO9Xefs=",
+        "path": "/Users/lucperkins/dts/mcp",
+        "type": "path"
+      },
+      "original": {
+        "path": "/Users/lucperkins/dts/mcp",
+        "type": "path"
+      }
+    },
     "determinate-nixd-aarch64-darwin": {
       "flake": false,
       "locked": {
@@ -131,28 +151,6 @@
       "original": {
         "type": "file",
         "url": "https://install.determinate.systems/determinate-nixd/tag/v3.11.3/x86_64-linux"
-      }
-    },
-    "determinate-systems-mcp": {
-      "inputs": {
-        "crane": "crane",
-        "fenix": "fenix",
-        "git-hooks": "git-hooks",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1761585190,
-        "narHash": "sha256-0jwQ+2uj4Tyv5EJosdNkrF4mkNPRIZO5bjr42gY8Z5M=",
-        "rev": "2bacd15307df3c3de536f79232f0e077ce44332f",
-        "revCount": 33,
-        "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/DeterminateSystems/mcp/0.1.33%2Brev-2bacd15307df3c3de536f79232f0e077ce44332f/019a26ae-e33b-7a20-9bb0-dcd2cae2dbd2/source.tar.gz"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://flakehub.com/f/DeterminateSystems/mcp/0"
       }
     },
     "dev-templates": {
@@ -198,7 +196,7 @@
     "fenix": {
       "inputs": {
         "nixpkgs": [
-          "determinate-systems-mcp",
+          "determinate-mcp",
           "nixpkgs"
         ],
         "rust-analyzer-src": "rust-analyzer-src"
@@ -523,7 +521,7 @@
         "flake-compat": "flake-compat_2",
         "gitignore": "gitignore",
         "nixpkgs": [
-          "determinate-systems-mcp",
+          "determinate-mcp",
           "nixpkgs"
         ]
       },
@@ -590,7 +588,7 @@
     "gitignore": {
       "inputs": {
         "nixpkgs": [
-          "determinate-systems-mcp",
+          "determinate-mcp",
           "git-hooks",
           "nixpkgs"
         ]
@@ -896,7 +894,7 @@
     "root": {
       "inputs": {
         "determinate": "determinate",
-        "determinate-systems-mcp": "determinate-systems-mcp",
+        "determinate-mcp": "determinate-mcp",
         "dev-templates": "dev-templates",
         "easy-template": "easy-template",
         "fenix": "fenix_3",
