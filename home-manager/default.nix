@@ -22,12 +22,27 @@
           shellAliases = (import ./aliases.nix { inherit pkgs; }).shell;
           inherit stateVersion username;
 
-          # Ghostty config
-          file.".config/ghostty/config" = {
-            text = ''
-              theme = ${pkgs.themes.ghostty}
-            '';
-            executable = false;
+          file = {
+            # Ghostty config
+            ".config/ghostty/config" = {
+              text = ''
+                theme = ${pkgs.themes.ghostty}
+              '';
+              executable = false;
+            };
+
+            # Claude Desktop config
+            "Library/Application Support/Claude/claude_desktop_config.json" = {
+              text = builtins.toJSON {
+                mcpServers = {
+                  determinate-systems-mcp = {
+                    type = "stdio";
+                    command = pkgs.lib.getExe pkgs.determinate-systems-mcp;
+                    args = [ "stdio" ];
+                  };
+                };
+              };
+            };
           };
         };
         imports = [ ];

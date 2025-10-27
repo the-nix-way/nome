@@ -39,6 +39,10 @@
       url = "https://flakehub.com/f/nix-community/home-manager/0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    determinate-systems-mcp = {
+      url = "https://flakehub.com/f/DeterminateSystems/mcp/0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     minnows = {
       url = "https://flakehub.com/f/DeterminateSystems/minnows/0";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -209,6 +213,7 @@
 
         # Packages
 
+        determinate-systems-mcp = inputs.determinate-systems-mcp.packages.${system}.default;
         inherit (inputs.dev-templates.packages.${system}) dvt;
         easy-template = inputs.easy-template.packages.${system}.default;
         fh = inputs.fh.packages.${system}.default;

@@ -37,6 +37,7 @@
         (flakehub "fenix" "nix-community" "fenix" "0.1")
         (flakehub "flakehub" "DeterminateSystems" "flakehub" "0.1")
         (flakehub "home-manager" "nix-community" "home-manager" "0")
+        (flakehub "mcp" "DeterminateSystems" "mcp" "0")
         (flakehub "minnows" "DeterminateSystems" "minnows" "0.1")
         (flakehub "nix" "DeterminateSystems" "nix-src" "3")
         (flakehub "nix-darwin" "nix-darwin" "nix-darwin" "0")
