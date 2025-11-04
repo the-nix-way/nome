@@ -28,14 +28,12 @@
     ".jj/"
     "*.swp"
     "built-in-stubs.jar"
-    "dumb.rdb"
+    "dump.rdb"
     ".elixir_ls/"
     ".vscode/"
     "npm-debug.log"
   ];
-  lfs = {
-    enable = true;
-  };
+  lfs.enable = true;
   package = pkgs.gitAndTools.gitFull;
   userEmail = "lucperkins@gmail.com";
   userName = "Luc Perkins";
