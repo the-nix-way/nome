@@ -22,8 +22,10 @@ let
     awscli2
     dive
     flyctl
+    kubectx
     kubectl
     minikube
+    skaffold
   ];
 
   versionControlTools =
@@ -149,7 +151,6 @@ let
     cargo-generate
     cargo-machete
     cargo-watch
-    rust-analyzer
   ];
 
   scripts = with pkgs; [

@@ -23,7 +23,7 @@
   ignores = [
     ".cache/"
     ".DS_Store"
-    ".direnv/"
+    ".direnv"
     ".idea/"
     ".jj/"
     "*.swp"

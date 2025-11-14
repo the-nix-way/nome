@@ -175,6 +175,7 @@
               rustfmt
               rust-src
               rust-std
+              rust-analyzer
             ]
           );
 
