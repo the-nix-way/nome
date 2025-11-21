@@ -1,13 +1,14 @@
 {
   overlays,
   pkgs,
+  constants,
   ...
 }:
 
 {
   documentation.enable = true;
 
-  environment.etc.${pkgs.flake-registry-file}.text =
+  environment.etc.${constants.flake-registry-file}.text =
     let
       entry = id: to: {
         from = {
@@ -37,7 +38,6 @@
         (flakehub "fenix" "nix-community" "fenix" "0.1")
         (flakehub "flakehub" "DeterminateSystems" "flakehub" "0.1")
         (flakehub "home-manager" "nix-community" "home-manager" "0")
-        (flakehub "mcp" "DeterminateSystems" "mcp" "0")
         (flakehub "minnows" "DeterminateSystems" "minnows" "0.1")
         (flakehub "nix" "DeterminateSystems" "nix-src" "3")
         (flakehub "nix-darwin" "nix-darwin" "nix-darwin" "0")
@@ -56,7 +56,7 @@
 
   fonts.packages = pkgs.fonts.packages;
 
-  networking.computerName = "${pkgs.constants.username}-${pkgs.constants.system}";
+  networking.computerName = "${constants.username}-${constants.system}";
 
   # Custom Nix settings in /etc/nix/nix.custom.conf
   determinateNix = {
@@ -64,7 +64,7 @@
     enable = true;
 
     customSettings = {
-      flake-registry = "/etc/${pkgs.flake-registry-file}";
+      flake-registry = "/etc/${constants.flake-registry-file}";
       extra-experimental-features = [
         "build-time-fetch-tree"
         "parallel-eval"
@@ -108,8 +108,8 @@
 
   system.stateVersion = 1;
 
-  users.users.${pkgs.constants.username} = {
-    name = pkgs.constants.username;
+  users.users.${constants.username} = {
+    name = constants.username;
     home = pkgs.lib.homeDirectory;
     shell = pkgs.zsh;
   };

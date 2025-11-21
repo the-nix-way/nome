@@ -39,10 +39,6 @@
       url = "https://flakehub.com/f/nix-community/home-manager/0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    determinate-mcp = {
-      url = "path:/Users/lucperkins/dts/mcp";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     minnows = {
       url = "https://flakehub.com/f/DeterminateSystems/minnows/0";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -83,6 +79,12 @@
       stateVersion = "25.05";
       system = "aarch64-darwin";
       username = "lucperkins";
+
+      # Constant values to pass around
+      constants = {
+        inherit username system;
+        flake-registry-file = "nix/flake-registry.json";
+      };
     in
     {
       formatter = forEachSupportedSystem ({ pkgs, ... }: pkgs.nixfmt-rfc-style);
@@ -114,6 +116,10 @@
 
       overlays.default = final: prev: {
         inherit (prev.stdenv.hostPlatform) system;
+
+        lib = prev.lib // {
+          homeDirectory = if prev.stdenv.isDarwin then "/Users/${username}" else "/home/${username}";
+        };
 
         pre-commit-checks = inputs.git-hooks.lib.${system}.run {
           src = builtins.path {
@@ -179,14 +185,6 @@
             ]
           );
 
-        # Constant values to pass around
-        constants = { inherit username system; };
-
-        # Extra lib functions
-        lib = prev.lib // {
-          homeDirectory = if prev.stdenv.isDarwin then "/Users/${username}" else "/home/${username}";
-        };
-
         # Centralize theme stuff here
         fonts = {
           packages = with final; [ jetbrains-mono ];
@@ -196,8 +194,6 @@
             terminal = "Jetbrains Mono";
           };
         };
-
-        flake-registry-file = "nix/flake-registry.json";
 
         themes = {
           bat = "Catppuccin Mocha";
@@ -213,7 +209,6 @@
         };
 
         # Packages
-        determinate-mcp = inputs.determinate-mcp.packages.${system}.default;
         inherit (inputs.dev-templates.packages.${system}) dvt;
         easy-template = inputs.easy-template.packages.${system}.default;
         fh = inputs.fh.packages.${system}.default;
@@ -248,7 +243,7 @@
         base =
           { pkgs, ... }:
           import ./nix-darwin/base {
-            inherit pkgs;
+            inherit constants pkgs;
             overlays = [
               inputs.nuenv.overlays.default
               self.overlays.default
@@ -259,7 +254,7 @@
           { pkgs, ... }:
           import ./home-manager {
             inherit pkgs stateVersion username;
-            modules = [ inputs.determinate-mcp.homeModules.claude-desktop ];
+            modules = [ ];
           };
       };
 

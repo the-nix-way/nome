@@ -22,6 +22,7 @@ let
     awscli2
     dive
     flyctl
+    k9s
     kubectx
     kubectl
     minikube
