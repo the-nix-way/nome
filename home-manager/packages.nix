@@ -111,6 +111,7 @@ let
     gleam
     glow
     httpie
+    hyperfine
     jid
     jq
     mprocs
