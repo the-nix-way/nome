@@ -100,6 +100,7 @@ let
     comma
     cue
     curl
+    doctl
     duckdb
     duf
     dust
