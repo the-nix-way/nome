@@ -3,7 +3,7 @@
   description = "Nome: my Nix home";
 
   inputs = {
-    determinate.url = "github:DeterminateSystems/determinate/lucperkins/cf-170-improve-the-nix-darwin-solution-for-better-user-experience";
+    determinate.url = "path:/Users/lucperkins/dts/determinate";
     dev-templates = {
       url = "https://flakehub.com/f/the-nix-way/dev-templates/0.1";
       inputs.nixpkgs.follows = "nixpkgs";
