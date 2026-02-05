@@ -96,7 +96,6 @@ let
     bottom
     btop
     buf
-    claude-code
     comma
     cue
     curl
