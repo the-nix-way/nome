@@ -93,7 +93,7 @@ let
     flake-checker
     flake-iter
     nh
-    nixfmt-rfc-style
+    nixfmt
     statix
   ];
 

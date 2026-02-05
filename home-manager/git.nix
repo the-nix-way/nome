@@ -3,11 +3,8 @@
 {
   enable = true;
 
-  aliases = (import ./aliases.nix { inherit pkgs; }).git;
-  delta = {
-    enable = true;
-  };
-  extraConfig = {
+  settings = {
+    alias = (import ./aliases.nix { inherit pkgs; }).git;
     core = {
       editor = "nvim";
       whitespace = "trailing-space,space-before-tab";
@@ -18,8 +15,13 @@
     init.defaultBranch = "main";
     protocol.keybase.allow = "always";
     pull.rebase = "false";
-    user.signingkey = "0AC42F39CE1FB90F";
+    user = {
+      email = "lucperkins@gmail.com";
+      name = "Luc Perkins";
+      signingkey = "0AC42F39CE1FB90F";
+    };
   };
+
   ignores = [
     ".cache/"
     ".DS_Store"
@@ -35,6 +37,4 @@
   ];
   lfs.enable = true;
   package = pkgs.git;
-  userEmail = "lucperkins@gmail.com";
-  userName = "Luc Perkins";
 }

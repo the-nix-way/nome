@@ -7,7 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ### Primary Commands
 - `nix develop --command reload` - Apply nix-darwin configuration (includes Home Manager)
 - `./bootstrap.sh` - Bootstrap the configuration on a new machine
-- `nixfmt flake.nix` - Format Nix files using nixfmt-rfc-style
+- `nixfmt flake.nix` - Format Nix files using nixfmt
 - `statix check` - Lint Nix code for best practices
 - `flake-checker` - Check flake.nix for issues
 
@@ -15,7 +15,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `nix develop` - Enter development shell with reload command and pre-commit hooks
 - Pre-commit hooks are automatically enabled in the dev shell for:
   - editorconfig-checker
-  - nixfmt-rfc-style
+  - nixfmt
   - statix
 
 ## Architecture Overview
