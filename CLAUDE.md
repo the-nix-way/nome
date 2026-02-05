@@ -30,7 +30,7 @@ This is a personal Nix configuration repository called "Nome" (Nix home) that us
 
 ### Key Configuration Files
 - **home-manager/packages.nix** - All user packages organized by category (dev tools, language servers, etc.)
-- **home-manager/programs.nix** - Program-specific configurations (git, helix, vscode, etc.)
+- **home-manager/programs.nix** - Program-specific configurations (git, vscode, etc.)
 - **home-manager/default.nix** - Home Manager module entry point
 - **nix-darwin/base/default.nix** - System-level macOS configuration
 
@@ -41,7 +41,6 @@ This is a personal Nix configuration repository called "Nome" (Nix home) that us
 
 ### Package Organization
 Packages are categorized into groups like:
-- Language servers (for Helix editor)
 - Development tools (Rust, Go, Python, JS toolchains)
 - Security tools (cosign, grype, syft)
 - DevOps tools (kubectl, awscli2, flyctl)
@@ -49,7 +48,7 @@ Packages are categorized into groups like:
 
 ### Theme System
 Centralized theming system in flake.nix overlays with Catppuccin themes for:
-- bat, helix, vscode, zellij, ghostty, spotify-player
+- bat, vscode, zellij, ghostty, spotify-player
 
 ### Custom Overlays
 The flake defines custom overlays that provide:

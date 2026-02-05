@@ -82,9 +82,6 @@
   # GPG config
   gpg.enable = true;
 
-  # Helix editor
-  helix = import ./helix.nix { inherit pkgs; };
-
   # Configure HM itself
   home-manager.enable = true;
 

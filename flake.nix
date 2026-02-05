@@ -31,10 +31,6 @@
       url = "https://flakehub.com/f/cachix/git-hooks.nix/0.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    helix = {
-      url = "https://flakehub.com/f/helix-editor/helix/0.1";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     home-manager = {
       url = "https://flakehub.com/f/nix-community/home-manager/0";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -198,7 +194,6 @@
         themes = {
           bat = "Catppuccin Mocha";
           ghostty = "Catppuccin Mocha";
-          helix = "catppuccin_mocha";
           spotify-player = "catppuccin-mocha";
           vscode = {
             icon = "catppuccin-mocha";
@@ -214,7 +209,6 @@
         fh = inputs.fh.packages.${system}.default;
         flake-checker = inputs.flake-checker.packages.${system}.default;
         flake-iter = inputs.flake-iter.packages.${system}.default;
-        helix = inputs.helix.packages.${system}.default;
         inherit (inputs.nixpkgs-unstable.legacyPackages.${system}) jujutsu;
         nh = inputs.nh.packages.${system}.default;
         inherit (inputs.nixpkgs-unstable.legacyPackages.${system}) nushell;

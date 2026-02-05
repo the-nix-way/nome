@@ -34,7 +34,7 @@
     "npm-debug.log"
   ];
   lfs.enable = true;
-  package = pkgs.gitAndTools.gitFull;
+  package = pkgs.git;
   userEmail = "lucperkins@gmail.com";
   userName = "Luc Perkins";
 }
