@@ -76,6 +76,7 @@ let
     process-compose
     protobuf
     qemu
+    rumdl
     static-web-server
     typst
     uutils-coreutils
