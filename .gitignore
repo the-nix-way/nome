@@ -6,3 +6,5 @@ result*
 
 # Pre-commit hook artifacts
 /.pre-commit-config.yaml
+
+/.rumdl_cache/
