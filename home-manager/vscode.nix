@@ -102,6 +102,8 @@ in
         "editor.defaultFormatter" = "tamasfe.even-better-toml";
         "editor.formatOnSave" = true;
       };
+      "rumdl.configPath" = "\${workspaceFolder}/.rumdl.toml";
+      "rumdl.enable" = true;
       "rumdl.server.path" = pkgs.lib.getExe pkgs.rumdl;
       "terminal.integrated.shellIntegration.enabled" = false;
       "editor.codeActionsOnSave" = {

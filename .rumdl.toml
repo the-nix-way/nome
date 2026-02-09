@@ -1,2 +1,4 @@
-[MD013]
-enabled = false
+[global]
+include = ["**/*.md"]
+
+disable = ["MD013"]
