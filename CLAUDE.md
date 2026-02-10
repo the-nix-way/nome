@@ -67,7 +67,6 @@ The flake defines custom overlays that provide:
 - `rustToolchain` with fenix
 - Theme configurations
 - Custom lib functions (homeDirectory)
-- Package references from unstable nixpkgs
 
 ## File Editing Guidelines
 

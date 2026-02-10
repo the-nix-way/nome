@@ -48,7 +48,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1";
-    nixpkgs-unstable.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1";
     nuenv = {
       url = "https://flakehub.com/f/DeterminateSystems/nuenv/0.1";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -210,18 +209,11 @@
         fh = inputs.fh.packages.${system}.default;
         flake-checker = inputs.flake-checker.packages.${system}.default;
         flake-iter = inputs.flake-iter.packages.${system}.default;
-        inherit (inputs.nixpkgs-unstable.legacyPackages.${system}) jujutsu;
+        inherit (inputs.nixpkgs.legacyPackages.${system}) jujutsu;
         nh = inputs.nh.packages.${system}.default;
-        inherit (inputs.nixpkgs-unstable.legacyPackages.${system}) nushell;
-        inherit (inputs.nixpkgs-unstable.legacyPackages.${system}) zed-editor;
+        inherit (inputs.nixpkgs.legacyPackages.${system}) nushell;
+        inherit (inputs.nixpkgs.legacyPackages.${system}) zed-editor;
         inherit (inputs.minnows.packages.${system}) minnows-cli;
-
-        unstable = with inputs.nixpkgs-unstable.legacyPackages.${system}; [
-          biome
-          hugo
-          jjui
-          lima
-        ];
       };
 
       darwinConfigurations."${username}-${system}" = inputs.nix-darwin.lib.darwinSystem {

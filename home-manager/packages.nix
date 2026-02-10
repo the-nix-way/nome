@@ -146,4 +146,3 @@ basic
 ++ scripts
 ++ security
 ++ versionControlTools
-++ pkgs.unstable
