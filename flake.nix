@@ -209,10 +209,8 @@
         fh = inputs.fh.packages.${system}.default;
         flake-checker = inputs.flake-checker.packages.${system}.default;
         flake-iter = inputs.flake-iter.packages.${system}.default;
-        inherit (inputs.nixpkgs.legacyPackages.${system}) jujutsu;
         nh = inputs.nh.packages.${system}.default;
-        inherit (inputs.nixpkgs.legacyPackages.${system}) nushell;
-        inherit (inputs.nixpkgs.legacyPackages.${system}) zed-editor;
+        inherit (inputs.nixpkgs.legacyPackages.${system}) jujutsu nushell zed-editor;
         inherit (inputs.minnows.packages.${system}) minnows-cli;
       };
 
