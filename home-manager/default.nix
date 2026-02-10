@@ -33,6 +33,7 @@
             };
           };
         };
+        nix.package = null; # Make sure Home Manager doesn't overwrite my Nix
         imports = modules;
         programs = import ./programs.nix { inherit pkgs; };
       };
