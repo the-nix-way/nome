@@ -10,7 +10,7 @@
   # Neovim plugins
   plugins = with pkgs.vimPlugins; [
     catppuccin-nvim
-    ctrlp
+    ctrlp-vim
     editorconfig-vim
     gruvbox
     nerdtree
