@@ -149,7 +149,7 @@
               fi
 
               echo "> Running darwin-rebuild switch..."
-              sudo darwin-rebuild switch --flake .
+              sudo darwin-rebuild switch --flake ".#${username}-${system}"
               echo "> darwin-rebuild switch was successful ✅"
               echo "> Refreshing zshrc..."
               zsh -c "source ${zshrc}"
