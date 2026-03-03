@@ -69,6 +69,7 @@
         "build-time-fetch-tree"
         "parallel-eval"
         "provenance"
+        "wasm-builtin"
       ];
       system-features = [
         "nixos-test"
