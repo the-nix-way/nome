@@ -104,6 +104,7 @@ in
       };
       "rumdl.configPath" = "\${workspaceFolder}/.rumdl.toml";
       "rumdl.enable" = true;
+      "rumdl.rules.disable" = [ "MD013" ];
       "rumdl.server.path" = pkgs.lib.getExe pkgs.rumdl;
       "terminal.integrated.shellIntegration.enabled" = false;
       "editor.codeActionsOnSave" = {
