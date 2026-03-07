@@ -35,6 +35,10 @@
       url = "https://flakehub.com/f/nix-community/home-manager/0.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    jj-starship = {
+      url = "github:dmmulroy/jj-starship";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     minnows = {
       url = "https://flakehub.com/f/DeterminateSystems/minnows/0";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -212,6 +216,7 @@
         nh = inputs.nh.packages.${system}.default;
         inherit (inputs.nixpkgs.legacyPackages.${system}) jujutsu nushell zed-editor;
         inherit (inputs.minnows.packages.${system}) minnows-cli;
+        inherit (inputs.jj-starship.packages.${system}) jj-starship;
       };
 
       darwinConfigurations."${username}-${system}" = inputs.nix-darwin.lib.darwinSystem {

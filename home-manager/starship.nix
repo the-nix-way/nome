@@ -73,5 +73,12 @@
         disabled = false;
         show_always = true;
       };
+
+      custom.jj = {
+        description = "Show Jujutsu info";
+        when = "jj-starship detect";
+        shell = [ "jj-starship" ];
+        format = "$output ";
+      };
     };
 }

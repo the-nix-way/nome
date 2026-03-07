@@ -70,6 +70,7 @@ let
     httpie
     hyperfine
     jid
+    jj-starship
     jq
     mprocs
     ngrok
