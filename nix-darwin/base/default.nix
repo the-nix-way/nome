@@ -70,6 +70,7 @@
         "parallel-eval"
         "provenance"
         "wasm-builtin"
+        "wasm-derivations"
       ];
       system-features = [
         "nixos-test"
