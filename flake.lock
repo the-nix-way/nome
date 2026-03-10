@@ -746,16 +746,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1757248378,
-        "narHash": "sha256-DvonqSRDrGDZmsRCCBegFWtGvb+7SktKn5Rzxgngw+4=",
-        "rev": "def8fe0e6271c783f75f78b376ea858052543b84",
-        "revCount": 761,
+        "lastModified": 1767773550,
+        "narHash": "sha256-8VCfAbKKj+OHD5Mz5TBB7mE/zWe/5MyFTbXEayI0WG8=",
+        "rev": "5f279c597e6e2af1757e0cd0b071aeb29d3e85a5",
+        "revCount": 945,
         "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/nix-community/nh/4.2.0-beta5/0199253f-b205-7ab4-9dc7-f598346fd032/source.tar.gz"
+        "url": "https://api.flakehub.com/f/pinned/nix-community/nh/4.3.0-beta1/019b998d-507f-71ad-b219-ee54b5cdfb1d/source.tar.gz"
       },
       "original": {
         "type": "tarball",
-        "url": "https://flakehub.com/f/nix-community/nh/4.2.0-beta5"
+        "url": "https://flakehub.com/f/nix-community/nh/4.3.0-beta1"
       }
     },
     "nix": {
