@@ -151,9 +151,6 @@
   # My most-used editor
   vscode = import ./vscode.nix { inherit pkgs; };
 
-  # Zed editor
-  zed-editor = import ./zed.nix { inherit pkgs; };
-
   # Zellij multiplexer
   zellij = import ./zellij.nix { inherit pkgs; };
 
