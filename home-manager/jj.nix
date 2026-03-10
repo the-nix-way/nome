@@ -1,0 +1,70 @@
+{ pkgs }:
+
+{
+  enable = true;
+  package = pkgs.jujutsu;
+  settings = {
+    "$schema" = "https://jj-vcs.github.io/jj/latest/config-schema.json";
+
+    aliases = {
+      bcr = [
+        "bookmark"
+        "create"
+        "--revision"
+      ];
+      bl = [
+        "bookmark"
+        "list"
+      ];
+      bs = [
+        "bookmark"
+        "set"
+        "-r"
+        "@"
+      ];
+      d = [ "diff" ];
+      hop = [
+        "bookmark"
+        "move"
+        "--from"
+        "closest_bookmark(@)"
+        "--to"
+        "closest_pushable(@)"
+      ];
+      l = [ "log" ];
+      n = [ "new" ];
+      ol = [
+        "op"
+        "log"
+      ];
+    };
+
+    git = {
+      sign-on-push = true;
+      write-change-id-header = true;
+    };
+
+    revset-aliases = {
+      "closest_bookmark(to)" = "heads(::to & bookmarks())";
+      "closest_pushable(to)" = ''heads(::to & ~description(exact:" ") & (~empty() | merges()))'';
+    };
+
+    signing = {
+      behavior = "drop";
+      backend = "gpg";
+    };
+
+    ui = {
+      default-command = "log";
+      diff-editor = ":builtin";
+      graph.style = "square";
+      log-synthetic-elided-nodes = true;
+      pager = "less -FRX";
+    };
+
+    user = {
+      name = "Luc Perkins";
+      email = "lucperkins@gmail.com";
+    };
+  };
+}

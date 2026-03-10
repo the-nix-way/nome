@@ -100,11 +100,7 @@
   };
 
   # Shiny new version control
-  jujutsu = {
-    enable = true;
-    package = pkgs.jujutsu;
-    settings = builtins.fromTOML (builtins.readFile ./config/jj/config.toml);
-  };
+  jujutsu = import ./jj.nix { inherit pkgs; };
 
   # is more
   less.enable = true;
