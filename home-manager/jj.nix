@@ -16,6 +16,12 @@
         "bookmark"
         "list"
       ];
+      bm = [
+        "bookmark"
+        "move"
+        "--to"
+        "@"
+      ];
       bs = [
         "bookmark"
         "set"
@@ -23,6 +29,10 @@
         "@"
       ];
       d = [ "diff" ];
+      dm = [
+        "describe"
+        "--message"
+      ];
       hop = [
         "bookmark"
         "move"
