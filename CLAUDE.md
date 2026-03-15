@@ -57,7 +57,7 @@ Packages are categorized into groups like:
 
 Centralized theming system in flake.nix overlays with Catppuccin themes for:
 
-- bat, vscode, zellij, ghostty, spotify-player
+- bat, vscode, ghostty, spotify-player
 
 ### Custom Overlays
 

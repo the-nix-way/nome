@@ -204,7 +204,6 @@
             light = "Catppuccin Latte";
             dark = "Catppuccin Mocha";
           };
-          zellij = "catppuccin-mocha";
         };
 
         # Packages
