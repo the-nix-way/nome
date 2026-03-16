@@ -39,7 +39,6 @@
     szsh = "source ~/.zshrc";
     tf = "terraform";
     tg = "terragrunt";
-    zj = "zellij";
     j = "just";
 
     # kubectl
@@ -57,7 +56,9 @@
     ## Nix stuff. Inspired by: https://alexfedoseev.com/blog/post/nix-time.
 
     # Reload the Home Manager configuration (after git push)
-    xx = "home-manager switch --flake github:the-nix-way/nome && source ${pkgs.lib.homeDirectory}/.zshrc";
+    xx = ''
+      home-manager switch --flake "https://flakehub.com/f/the-nix-way/nome/0.1" && source ${pkgs.lib.homeDirectory}/.zshrc
+    '';
 
     # Run Nix garbage collection
     xgc = "nix store gc -v";
@@ -71,6 +72,8 @@
     nfs = "nix flake show";
     nfu = "nix flake update";
     nsn = "nix search nixpkgs";
+    nflr = "nix flake lock --recreate-lock-file";
+    flake-schemas = "nix run github:DeterminateSystems/nix-src --";
     upstream-nix = "nix run github:NixOS/nix/2.31.1 --";
 
     # processes

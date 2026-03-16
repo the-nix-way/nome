@@ -63,6 +63,7 @@ in
       ++ [
         # Extensions not in Nixpkgs
         (vsce "andrejunges" "Handlebars" "0.4.1" "sha256-Rwhr9X3sjDm6u/KRYE2ucCJSlZwsgUJbH/fdq2WZ034=")
+        (vsce "biomejs" "biome" "2025.11.271431" "sha256-tihEFcDDYr/khLIcJbR5VSC/RujEvp/gcnWlokAqNBc=")
         (vsce "bufbuild" "vscode-buf" "0.7.0" "sha256-B5/Gc+f3xaYpMTXFcQ9LJiAb9LBJX2aR+gh22up3Wi4=")
         (vsce "cuelangorg" "vscode-cue" "0.0.9" "sha256-aq+O0bXc9a5namjqqah+samZCF2xKFlK0HBcA3hmxIg=")
         (vsce "oven" "bun-vscode" "0.0.26" "sha256-klMkKAorWJj2o015FWbQQfpmYe4JM0UOM+WVh+YPtI4=")
@@ -76,6 +77,8 @@ in
           "sha256-UVuYggzeWyQTmQxXdM4sT78FUOtYGKD4SzREntotU5g="
         )
         (vsce "Ph0enixKM" "amber-language" "1.2.8" "sha256-2Fd9cLieuamSp1S0cnj1arCA8YpZ3ce3OxclO8pXYJg=")
+        (vsce "rvben" "rumdl" "0.0.158" "sha256-6HUCt6BQqriIK48+7qK4p9XocnqApLU+l80JLHjpMuc=")
+        (vsce "samuelcolvin" "jinjahtml" "0.20.0" "sha256-wADL3AkLfT2N9io8h6XYgceKyltJCz5ZHZhB14ipqpM=")
       ];
 
     globalSnippets = { };
@@ -99,6 +102,16 @@ in
         "editor.defaultFormatter" = "tamasfe.even-better-toml";
         "editor.formatOnSave" = true;
       };
+      "rumdl.configPath" = "\${workspaceFolder}/.rumdl.toml";
+      "rumdl.enable" = true;
+      "rumdl.rules.disable" = [ "MD013" ];
+      "rumdl.server.path" = pkgs.lib.getExe pkgs.rumdl;
+      "terminal.integrated.shellIntegration.enabled" = false;
+      "editor.codeActionsOnSave" = {
+        "source.fixAll.biome" = "explicit";
+        "source.organizeImports.biome" = "explicit";
+      };
+      "editor.formatOnSave" = true;
       "editor.wordWrap" = "wordWrapColumn";
       "editor.wordWrapColumn" = 120;
       "search.exclude" = {
@@ -111,11 +124,15 @@ in
       };
       # "editor.defaultFormatter" = "esbenp.prettier-vscode";
       "rust-analyzer.server.path" = "rust-analyzer";
+      "terminal.integrated.defaultLocation" = "panel";
       "terminal.integrated.fontFamily" = pkgs.fonts.vscode.terminal;
+      "terminal.integrated.showTabs" = true;
       "window.autoDetectColorScheme" = true;
       "workbench.iconTheme" = pkgs.themes.vscode.icon;
+      "workbench.panel.defaultLocation" = "bottom";
       "workbench.preferredLightColorTheme" = pkgs.themes.vscode.light;
       "workbench.preferredDarkColorTheme" = pkgs.themes.vscode.dark;
+      "workbench.sideBar.location" = "left";
     };
   };
 

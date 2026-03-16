@@ -1,0 +1,4 @@
+[global]
+include = ["**/*.md"]
+
+disable = ["MD013"]

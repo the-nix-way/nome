@@ -1,13 +1,14 @@
 {
   overlays,
   pkgs,
+  constants,
   ...
 }:
 
 {
   documentation.enable = true;
 
-  environment.etc.${pkgs.flake-registry-file}.text =
+  environment.etc.${constants.flake-registry-file}.text =
     let
       entry = id: to: {
         from = {
@@ -34,35 +35,50 @@
     builtins.toJSON {
       flakes = [
         (flakehub "dev-templates" "the-nix-way" "dev-templates" "0.1")
+        (flakehub "fenix" "nix-community" "fenix" "0.1")
+        (flakehub "flakehub" "DeterminateSystems" "flakehub" "0.1")
         (flakehub "home-manager" "nix-community" "home-manager" "0")
+        (flakehub "minnows" "DeterminateSystems" "minnows" "0.1")
         (flakehub "nix" "DeterminateSystems" "nix-src" "3")
         (flakehub "nix-darwin" "nix-darwin" "nix-darwin" "0")
         (flakehub "nixos-generators" "nix-community" "nixos-generators" "0.1")
-        (flakehub "nixpkgs" "DeterminateSystems" "secure" "0")
+        (flakehub "nixpkgs" "DeterminateSystems" "nixpkgs-weekly" "0.1")
         (flakehub "nome" "the-nix-way" "nome" "0.1")
+        (flakehub "nuenv" "DeterminateSystems" "nuenv" "0.1")
+        (flakehub "pdfs" "DeterminateSystems" "pdfs" "0.1")
+        (flakehub "secure-packages" "DeterminateSystems" "secure" "0")
+        (flakehub "stable" "NixOS" "nixpkgs" "0")
         (flakehub "templates" "DeterminateSystems" "flake-templates" "0.1")
+        (flakehub "unstable" "DeterminateSystems" "nixpkgs-weekly" "0.1")
       ];
       version = 2;
     };
 
   fonts.packages = pkgs.fonts.packages;
 
-  networking.computerName = "${pkgs.constants.username}-${pkgs.constants.system}";
-
-  # Let Determinate Nix handle Nix configuration
-  nix.enable = false;
+  networking.computerName = "${constants.username}-${constants.system}";
 
   # Custom Nix settings in /etc/nix/nix.custom.conf
-  determinate-nix.customSettings = {
-    flake-registry = "/etc/${pkgs.flake-registry-file}";
-    extra-experimental-features = [
-      "build-time-fetch-tree"
-      "parallel-eval"
+  determinateNix = {
+    # Let Determinate Nix handle Nix configuration
+    enable = true;
 
-      # for use by upstream Nix
-      "nix-command"
-      "flakes"
-    ];
+    customSettings = {
+      flake-registry = "/etc/${constants.flake-registry-file}";
+      extra-experimental-features = [
+        "build-time-fetch-tree"
+        "parallel-eval"
+        "provenance"
+        "wasm-builtin"
+        "wasm-derivations"
+      ];
+      system-features = [
+        "benchmark"
+        "big-parallel"
+        "kvm"
+        "nixos-test"
+      ];
+    };
   };
 
   nixpkgs = {
@@ -91,8 +107,8 @@
 
   system.stateVersion = 1;
 
-  users.users.${pkgs.constants.username} = {
-    name = pkgs.constants.username;
+  users.users.${constants.username} = {
+    name = constants.username;
     home = pkgs.lib.homeDirectory;
     shell = pkgs.zsh;
   };

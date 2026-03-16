@@ -22,72 +22,31 @@ let
     awscli2
     dive
     flyctl
+    k9s
+    kubectx
     kubectl
     minikube
+    skaffold
   ];
 
-  versionControlTools =
-    with pkgs;
-    [
-      difftastic
-      git-crypt
-      gitAndTools.diff-so-fancy
-      gitAndTools.gitflow
-    ]
-    ++ (with gitAndTools; [
-      diff-so-fancy
-      gitflow
-    ]);
+  versionControlTools = with pkgs; [
+    difftastic
+    git-crypt
+    diff-so-fancy
+    gitflow
+  ];
 
   jsTools =
     with pkgs;
     [
       biome
       bun
-      deno
       nodejs
-      oxlint
+
     ]
     ++ (with nodePackages; [ pnpm ]);
 
-  docsTools = with pkgs; [ antora ];
-
-  # Mostly for use with Helix
-  languageServers = with pkgs; [
-    astro-language-server # Astro
-    bash-language-server # Bash
-    beam27Packages.erlang-ls # Erlang
-    cuelsp # Cue
-    docker-compose-language-service # Docker Compose
-    gopls # Go
-    haskellPackages.dhall-lsp-server # Dhall
-    jq-lsp # jq
-    just-lsp # Just
-    lldb_20 # Rust debugging
-    markdown-oxide # Markdown
-    marksman # Markdown
-    mesonlsp # Meson
-    metals # Scala
-    nil # Nix
-    nixd # Nix
-    nls # Nickel
-    nodePackages_latest.vscode-json-languageserver # JSON
-    protols # Protobuf
-    regols # Rego
-    rubyPackages_3_4.ruby-lsp # Ruby
-    ruff # Python
-    starpls # Starlark
-    superhtml # HTML
-    svelte-language-server # Svelte
-    taplo # TOML
-    terraform-ls # Terraform
-    tinymist # Typst
-    typescript-language-server # TypeScript
-    vscode-langservers-extracted # HTML, CSS, JSON, etc.
-    vue-language-server # Vue
-    wasm-language-tools # WebAssembly
-    yaml-language-server # YAML
-  ];
+  docsTools = with pkgs; [ ];
 
   misc = with pkgs; [
     asciinema
@@ -97,6 +56,7 @@ let
     comma
     cue
     curl
+    doctl
     duckdb
     duf
     dust
@@ -108,19 +68,23 @@ let
     gleam
     glow
     httpie
+    hyperfine
     jid
+    jj-starship
     jq
-    lima
     mprocs
     ngrok
     pkg-config
     process-compose
     protobuf
     qemu
+    rumdl
     static-web-server
     typst
     uutils-coreutils
     vhs
+    watchexec
+    worker-build
     wrk
     yq
     yt-dlp
@@ -132,7 +96,8 @@ let
     flake-checker
     flake-iter
     nh
-    nixfmt-rfc-style
+    nixfmt
+    statix
   ];
 
   pythonTools = with pkgs; [
@@ -144,9 +109,9 @@ let
     rustToolchain
     bacon
     cargo-edit
+    cargo-generate
     cargo-machete
     cargo-watch
-    rust-analyzer
   ];
 
   scripts = with pkgs; [
@@ -175,7 +140,6 @@ basic
 ++ databaseTools
 ++ devOpsTools
 ++ docsTools
-++ languageServers
 ++ jsTools
 ++ misc
 ++ nixTools
@@ -184,4 +148,3 @@ basic
 ++ scripts
 ++ security
 ++ versionControlTools
-++ pkgs.unstable

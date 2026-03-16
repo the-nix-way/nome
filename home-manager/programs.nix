@@ -82,9 +82,6 @@
   # GPG config
   gpg.enable = true;
 
-  # Helix editor
-  helix = import ./helix.nix { inherit pkgs; };
-
   # Configure HM itself
   home-manager.enable = true;
 
@@ -103,11 +100,7 @@
   };
 
   # Shiny new version control
-  jujutsu = {
-    enable = true;
-    package = pkgs.jujutsu;
-    settings = builtins.fromTOML (builtins.readFile ./config/jj/config.toml);
-  };
+  jujutsu = import ./jj.nix { inherit pkgs; };
 
   # is more
   less.enable = true;
@@ -144,6 +137,7 @@
   # SSH
   ssh = {
     enable = true;
+    enableDefaultConfig = false;
     package = pkgs.openssh;
   };
 
@@ -152,12 +146,6 @@
 
   # My most-used editor
   vscode = import ./vscode.nix { inherit pkgs; };
-
-  # Zed editor
-  zed-editor = import ./zed.nix { inherit pkgs; };
-
-  # Zellij multiplexer
-  zellij = import ./zellij.nix { inherit pkgs; };
 
   # My fav shell
   zsh = import ./zsh.nix { inherit pkgs; };

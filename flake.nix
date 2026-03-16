@@ -3,10 +3,7 @@
   description = "Nome: my Nix home";
 
   inputs = {
-    determinate = {
-      url = "https://flakehub.com/f/DeterminateSystems/determinate/3";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/3";
     dev-templates = {
       url = "https://flakehub.com/f/the-nix-way/dev-templates/0.1";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -34,24 +31,27 @@
       url = "https://flakehub.com/f/cachix/git-hooks.nix/0.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    helix = {
-      url = "https://flakehub.com/f/helix-editor/helix/0.1";
+    home-manager = {
+      url = "https://flakehub.com/f/nix-community/home-manager/0.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    home-manager = {
-      url = "https://flakehub.com/f/nix-community/home-manager/0";
+    jj-starship = {
+      url = "github:dmmulroy/jj-starship";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    minnows = {
+      url = "https://flakehub.com/f/DeterminateSystems/minnows/0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nh = {
-      url = "https://flakehub.com/f/nix-community/nh/4.2.0-beta2";
+      url = "https://flakehub.com/f/nix-community/nh/4.3.0-beta1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-darwin = {
-      url = "https://flakehub.com/f/nix-darwin/nix-darwin/0";
+      url = "https://flakehub.com/f/nix-darwin/nix-darwin/0.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0";
-    nixpkgs-unstable.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1";
+    nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1";
     nuenv = {
       url = "https://flakehub.com/f/DeterminateSystems/nuenv/0.1";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -78,9 +78,15 @@
       stateVersion = "25.05";
       system = "aarch64-darwin";
       username = "lucperkins";
+
+      # Constant values to pass around
+      constants = {
+        inherit username system;
+        flake-registry-file = "nix/flake-registry.json";
+      };
     in
     {
-      formatter = forEachSupportedSystem ({ pkgs, ... }: pkgs.nixfmt-rfc-style);
+      formatter = forEachSupportedSystem ({ pkgs, ... }: pkgs.nixfmt);
 
       checks = forEachSupportedSystem (
         { pkgs, ... }:
@@ -100,6 +106,7 @@
             packages =
               (with pkgs; [
                 reload
+                rumdl
               ])
               ++ self.checks.${system}.pre-commit-checks.enabledPackages;
             inherit (self.checks.${system}.pre-commit-checks) shellHook;
@@ -110,6 +117,10 @@
       overlays.default = final: prev: {
         inherit (prev.stdenv.hostPlatform) system;
 
+        lib = prev.lib // {
+          homeDirectory = if prev.stdenv.isDarwin then "/Users/${username}" else "/home/${username}";
+        };
+
         pre-commit-checks = inputs.git-hooks.lib.${system}.run {
           src = builtins.path {
             name = "root";
@@ -117,7 +128,7 @@
           };
           hooks = {
             editorconfig-checker.enable = true;
-            nixfmt-rfc-style.enable = true;
+            nixfmt.enable = true;
             statix.enable = true;
           };
         };
@@ -146,12 +157,16 @@
               fi
 
               echo "> Running darwin-rebuild switch..."
-              sudo darwin-rebuild switch --flake ".#${username}-${system}"
-              echo "> darwin-rebuild switch was successful ✅"
-              echo "> Refreshing zshrc..."
-              zsh -c "source ${zshrc}"
-              echo "> zshrc was refreshed successfully ✅"
-              echo "> macOS config was successfully applied 🚀"
+              if sudo darwin-rebuild switch --flake ".#${username}-${system}"; then
+                echo "> darwin-rebuild switch was successful ✅"
+                echo "> Refreshing zshrc..."
+                zsh -c "source ${zshrc}"
+                echo "> zshrc was refreshed successfully ✅"
+                echo "> macOS config was successfully applied 🚀"
+              else
+                echo "> home-manager switch failed ❌"
+                exit 1
+              fi
             '';
           };
 
@@ -166,16 +181,9 @@
               rustfmt
               rust-src
               rust-std
+              rust-analyzer
             ]
           );
-
-        # Constant values to pass around
-        constants = { inherit username system; };
-
-        # Extra lib functions
-        lib = prev.lib // {
-          homeDirectory = if prev.stdenv.isDarwin then "/Users/${username}" else "/home/${username}";
-        };
 
         # Centralize theme stuff here
         fonts = {
@@ -187,38 +195,27 @@
           };
         };
 
-        flake-registry-file = "nix/flake-registry.json";
-
         themes = {
           bat = "Catppuccin Mocha";
           ghostty = "Catppuccin Mocha";
-          helix = "catppuccin_mocha";
           spotify-player = "catppuccin-mocha";
           vscode = {
             icon = "catppuccin-mocha";
             light = "Catppuccin Latte";
             dark = "Catppuccin Mocha";
           };
-          zellij = "catppuccin-mocha";
         };
 
         # Packages
-
         inherit (inputs.dev-templates.packages.${system}) dvt;
         easy-template = inputs.easy-template.packages.${system}.default;
         fh = inputs.fh.packages.${system}.default;
         flake-checker = inputs.flake-checker.packages.${system}.default;
         flake-iter = inputs.flake-iter.packages.${system}.default;
-        helix = inputs.helix.packages.${system}.default;
-        inherit (inputs.nixpkgs-unstable.legacyPackages.${system}) jujutsu;
         nh = inputs.nh.packages.${system}.default;
-        inherit (inputs.nixpkgs-unstable.legacyPackages.${system}) nushell;
-        inherit (inputs.nixpkgs-unstable.legacyPackages.${system}) zed-editor;
-
-        unstable = with inputs.nixpkgs-unstable.legacyPackages.${system}; [
-          hugo
-          jjui
-        ];
+        inherit (inputs.nixpkgs.legacyPackages.${system}) jujutsu nushell zed-editor;
+        inherit (inputs.minnows.packages.${system}) minnows-cli;
+        inherit (inputs.jj-starship.packages.${system}) jj-starship;
       };
 
       darwinConfigurations."${username}-${system}" = inputs.nix-darwin.lib.darwinSystem {
@@ -235,14 +232,19 @@
         base =
           { pkgs, ... }:
           import ./nix-darwin/base {
-            inherit pkgs;
+            inherit constants pkgs;
             overlays = [
               inputs.nuenv.overlays.default
               self.overlays.default
             ];
           };
 
-        home-manager = { pkgs, ... }: import ./home-manager { inherit pkgs stateVersion username; };
+        home-manager =
+          { pkgs, ... }:
+          import ./home-manager {
+            inherit pkgs stateVersion username;
+            modules = [ ];
+          };
       };
 
       templates = import ./templates;
