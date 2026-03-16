@@ -147,9 +147,6 @@
   # My most-used editor
   vscode = import ./vscode.nix { inherit pkgs; };
 
-  # Zellij multiplexer
-  zellij = import ./zellij.nix { inherit pkgs; };
-
   # My fav shell
   zsh = import ./zsh.nix { inherit pkgs; };
 }

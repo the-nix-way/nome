@@ -73,10 +73,10 @@
         "wasm-derivations"
       ];
       system-features = [
-        "nixos-test"
         "benchmark"
         "big-parallel"
         "kvm"
+        "nixos-test"
       ];
     };
   };

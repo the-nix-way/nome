@@ -39,7 +39,6 @@
     szsh = "source ~/.zshrc";
     tf = "terraform";
     tg = "terragrunt";
-    zj = "zellij";
     j = "just";
 
     # kubectl
