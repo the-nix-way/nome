@@ -95,6 +95,7 @@ let
     fh
     flake-checker
     flake-iter
+    minnows-cli
     nh
     nixfmt
     statix
