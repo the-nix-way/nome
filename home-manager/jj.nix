@@ -47,6 +47,11 @@
         "op"
         "log"
       ];
+      up = [
+        "git"
+        "init"
+        "--colocate"
+      ];
     };
 
     git = {
