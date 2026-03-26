@@ -124,6 +124,15 @@
   # ripgrep
   ripgrep = {
     enable = true;
+    arguments = [
+      "--hidden"
+      "--glob=!{.direnv,.git,target}/**"
+    ];
+  };
+
+  # ripgrep-all (for binaries and such)
+  ripgrep-all = {
+    enable = true;
   };
 
   # Spotify on the CLI
