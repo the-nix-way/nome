@@ -9,7 +9,6 @@ let
   cargoBin = "$HOME/.cargo/bin";
 in
 {
-  EDITOR = "nvim";
   LANG = "en_US.UTF-8";
   PATH = "${nixProfile}:${swBin}:${cargoBin}:$PATH";
 }

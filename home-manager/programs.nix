@@ -82,6 +82,24 @@
   # GPG config
   gpg.enable = true;
 
+  # Helix editor
+  helix = {
+    enable = true;
+
+    defaultEditor = true;
+
+    languages = {
+      language = [
+        {
+          name = "rust";
+          auto-format = true;
+        }
+      ];
+    };
+
+    settings.theme = "catppuccin_mocha";
+  };
+
   # Configure HM itself
   home-manager.enable = true;
 
@@ -116,24 +134,13 @@
   };
 
   # Nushell
-  nushell = {
-    enable = true;
-    package = pkgs.nushell;
-  };
+  nushell.enable = true;
 
   # ripgrep
-  ripgrep = {
-    enable = true;
-    arguments = [
-      "--hidden"
-      "--glob=!{.direnv,.git,target}/**"
-    ];
-  };
+  ripgrep.enable = true;
 
   # ripgrep-all (for binaries and such)
-  ripgrep-all = {
-    enable = true;
-  };
+  ripgrep-all.enable = true;
 
   # Spotify on the CLI
   spotify-player = {
