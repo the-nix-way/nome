@@ -147,21 +147,21 @@
             ];
             text = ''
               if [[ -f "/etc/nix/nix.custom.conf" ]]; then
-                echo "> Making backup of custom Nix config"
-                sudo cp /etc/nix/nix.custom.conf /etc/nix/nix.custom.conf.before-nix-darwin
+                echo "> Renaming custom Nix config"
+                sudo mv /etc/nix/nix.custom.conf /etc/nix/nix.custom.conf.before-nix-darwin
               fi
 
               if [[ -f "/etc/nix/flake-registry.json" ]]; then
-                echo "> Making backup of custom Nix flake registry"
-                sudo cp /etc/nix/flake-registry.json /etc/nix/flake-registry.json.before-nix-darwin
+                echo "> Renaming custom Nix flake registry"
+                sudo mv /etc/nix/flake-registry.json /etc/nix/flake-registry.json.before-nix-darwin
               fi
 
               echo "> Running darwin-rebuild switch..."
               if sudo darwin-rebuild switch --flake ".#${username}-${system}"; then
                 echo "> darwin-rebuild switch was successful ✅"
-                echo "> Refreshing zshrc..."
-                zsh -c "source ${zshrc}"
-                echo "> zshrc was refreshed successfully ✅"
+                echo "> Restarting zsh..."
+                exec zsh -l
+                echo "> zsh was restarted successfully ✅"
                 echo "> macOS config was successfully applied 🚀"
               else
                 echo "> home-manager switch failed ❌"
