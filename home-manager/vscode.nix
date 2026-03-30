@@ -79,6 +79,7 @@ in
         (vsce "Ph0enixKM" "amber-language" "1.2.8" "sha256-2Fd9cLieuamSp1S0cnj1arCA8YpZ3ce3OxclO8pXYJg=")
         (vsce "rvben" "rumdl" "0.0.158" "sha256-6HUCt6BQqriIK48+7qK4p9XocnqApLU+l80JLHjpMuc=")
         (vsce "samuelcolvin" "jinjahtml" "0.20.0" "sha256-wADL3AkLfT2N9io8h6XYgceKyltJCz5ZHZhB14ipqpM=")
+        (vsce "sqlfluff" "vscode-sqlfluff" "4.0.1" "sha256-F58hZPHxho124PRGRdcT4jGHkVyZZDpBajgeHUU/vck=")
       ];
 
     globalSnippets = { };

@@ -11,4 +11,5 @@ in
 {
   LANG = "en_US.UTF-8";
   PATH = "${nixProfile}:${swBin}:${cargoBin}:$PATH";
+  XDG_CONFIG_HOME = "${pkgs.lib.homeDirectory}/.config";
 }

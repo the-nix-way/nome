@@ -16,6 +16,7 @@ let
   databaseTools = with pkgs; [
     postgresql_17
     redis
+    sqlfluff
   ];
 
   devOpsTools = with pkgs; [

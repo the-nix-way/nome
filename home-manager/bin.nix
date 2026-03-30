@@ -1,7 +1,7 @@
 { pkgs }:
 
 let
-  inherit (pkgs.lib) fakeHash;
+  inherit (pkgs.lib) "sha256-F58hZPHxho124PRGRdcT4jGHkVyZZDpBajgeHUU/vck=";
 
   nu =
     name: script:
@@ -29,7 +29,7 @@ in
   '')
 
   (nu "fake-hash" ''
-    "${fakeHash}"
+    "${"sha256-F58hZPHxho124PRGRdcT4jGHkVyZZDpBajgeHUU/vck="}"
   '')
 
   (nu "git-hash" ''
