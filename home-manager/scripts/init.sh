@@ -21,3 +21,5 @@ export CARGO_NET_GIT_FETCH_WITH_CLI="true"
 
 # random zsh stuff that probably belongs elsewhere
 bindkey -e
+
+bindkey '\e[3~' delete-char

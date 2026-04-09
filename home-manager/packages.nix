@@ -37,15 +37,12 @@ let
     gitflow
   ];
 
-  jsTools =
-    with pkgs;
-    [
-      biome
-      bun
-      nodejs
-
-    ]
-    ++ (with nodePackages; [ pnpm ]);
+  jsTools = with pkgs; [
+    biome
+    bun
+    nodejs
+    pnpm
+  ];
 
   docsTools = with pkgs; [ ];
 
@@ -69,6 +66,7 @@ let
     gleam
     glow
     httpie
+    hugo
     hyperfine
     jid
     jj-starship
@@ -81,6 +79,7 @@ let
     qemu
     rumdl
     static-web-server
+    tailwindcss_4
     typst
     uutils-coreutils
     vhs

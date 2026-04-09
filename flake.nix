@@ -75,7 +75,7 @@
           }
         );
 
-      stateVersion = "25.05";
+      stateVersion = "26.05";
       system = "aarch64-darwin";
       username = "lucperkins";
 

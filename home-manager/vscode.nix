@@ -129,6 +129,7 @@ in
       # "editor.defaultFormatter" = "esbenp.prettier-vscode";
       "rust-analyzer.server.path" = "rust-analyzer";
       "terminal.integrated.defaultLocation" = "panel";
+      "terminal.integrated.defaultProfile.osx" = "zsh";
       "terminal.integrated.fontFamily" = pkgs.fonts.vscode.terminal;
       "terminal.integrated.showTabs" = true;
       "window.autoDetectColorScheme" = true;

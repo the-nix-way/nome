@@ -71,9 +71,6 @@
   # GitHub CLI
   gh = import ./gh.nix { inherit pkgs; };
 
-  # Ghostty terminal
-  #ghostty = import ./ghostty.nix { inherit pkgs; };
-
   # But of course
   git = import ./git.nix { inherit pkgs; };
 

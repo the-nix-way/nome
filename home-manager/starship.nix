@@ -29,9 +29,6 @@
       erlang = {
         format = "via [e $version](bold red) ";
       };
-      git_branch = {
-        symbol = "🌱 ";
-      };
       git_commit = {
         commit_hash_length = 4;
         tag_symbol = "🔖 ";

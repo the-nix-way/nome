@@ -47,7 +47,7 @@
         (flakehub "nuenv" "DeterminateSystems" "nuenv" "0.1")
         (flakehub "pdfs" "DeterminateSystems" "pdfs" "0.1")
         (flakehub "schemas" "DeterminateSystems" "flake-schemas" "0")
-        (flakehub "secure-packages" "DeterminateSystems" "secure" "0")
+        (flakehub "secure-packages" "DeterminateSystems" "secure-packages-rolling" "0.1")
         (flakehub "stable" "NixOS" "nixpkgs" "0")
         (flakehub "templates" "DeterminateSystems" "flake-templates" "0.1")
         (flakehub "unstable" "DeterminateSystems" "nixpkgs-weekly" "0.1")
