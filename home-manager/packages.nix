@@ -41,6 +41,7 @@ let
     biome
     bun
     nodejs
+    oxlint
     pnpm
   ];
 

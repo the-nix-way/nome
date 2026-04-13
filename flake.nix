@@ -106,7 +106,6 @@
             packages =
               (with pkgs; [
                 reload
-                rumdl
               ])
               ++ self.checks.${system}.pre-commit-checks.enabledPackages;
             inherit (self.checks.${system}.pre-commit-checks) shellHook;
