@@ -24,6 +24,7 @@
 
   ignores = [
     ".cache/"
+    ".claude/"
     ".DS_Store"
     ".direnv"
     ".idea/"
