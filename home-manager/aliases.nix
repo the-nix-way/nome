@@ -73,8 +73,7 @@
     nfu = "nix flake update";
     nsn = "nix search nixpkgs";
     nflr = "nix flake lock --recreate-lock-file";
-    flake-schemas = "nix run github:DeterminateSystems/nix-src --";
-    upstream-nix = "nix run github:NixOS/nix/2.31.1 --";
+    upstream-nix = "nix run github:NixOS/nix/2.34.6 --";
 
     # processes
     pf = "pgrep -f";
