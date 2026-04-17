@@ -133,6 +133,11 @@
   # Nushell
   nushell.enable = true;
 
+  obsidian = {
+    enable = true;
+    cli.enable = true;
+  };
+
   # ripgrep
   ripgrep.enable = true;
 
