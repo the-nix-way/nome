@@ -34,6 +34,16 @@
     in
     builtins.toJSON {
       flakes = [
+        {
+          from = {
+            id = "fips";
+            type = "indirect";
+          };
+          to = {
+            type = "tarball";
+            url = "https://fipspkgs.com";
+          };
+        }
         (flakehub "dev-templates" "the-nix-way" "dev-templates" "0.1")
         (flakehub "fenix" "nix-community" "fenix" "0.1")
         (flakehub "flakehub" "DeterminateSystems" "flakehub" "0.1")

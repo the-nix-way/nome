@@ -133,6 +133,7 @@
   # Nushell
   nushell.enable = true;
 
+  # Obsidian
   obsidian = {
     enable = true;
     cli.enable = true;
