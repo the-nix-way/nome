@@ -104,7 +104,7 @@ let
   ];
 
   pythonTools = with pkgs; [
-    python314
+    python315
     uv
   ];
 
