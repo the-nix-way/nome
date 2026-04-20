@@ -80,6 +80,7 @@ in
         (vsce "rvben" "rumdl" "0.0.158" "sha256-6HUCt6BQqriIK48+7qK4p9XocnqApLU+l80JLHjpMuc=")
         (vsce "samuelcolvin" "jinjahtml" "0.20.0" "sha256-wADL3AkLfT2N9io8h6XYgceKyltJCz5ZHZhB14ipqpM=")
         (vsce "sqlfluff" "vscode-sqlfluff" "4.0.1" "sha256-F58hZPHxho124PRGRdcT4jGHkVyZZDpBajgeHUU/vck=")
+        (vsce "terrastruct" "d2" "0.8.8" "sha256-nnljLG2VL7r8bu+xFOTBx5J2UBsdjOwtAzDDXKtK0os=")
       ];
 
     globalSnippets = { };

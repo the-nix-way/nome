@@ -8,3 +8,5 @@ result*
 /.pre-commit-config.yaml
 
 /.rumdl_cache/
+
+templates/nix/flake-lock

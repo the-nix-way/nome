@@ -45,7 +45,7 @@ let
     pnpm
   ];
 
-  docsTools = with pkgs; [ ];
+  docsTools = with pkgs; [ d2 ];
 
   misc = with pkgs; [
     asciinema
@@ -99,6 +99,7 @@ let
     minnows-cli
     nh
     nixfmt
+    nvd
     statix
   ];
 
