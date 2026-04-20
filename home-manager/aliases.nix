@@ -66,8 +66,10 @@
 
     # Nix flake helpers
     ndc = "nix develop --command";
+    nfa = "nix flake archive";
     nfc = "nix flake check";
     nfca = "nix flake check --all-systems";
+    nfl = "nix flake lock";
     nfm = "nix flake metadata";
     nfs = "nix flake show";
     nfu = "nix flake update";
