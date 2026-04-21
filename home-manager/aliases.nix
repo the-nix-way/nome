@@ -41,6 +41,11 @@
     tg = "terragrunt";
     j = "just";
 
+    # Git
+    gfoma = "git fetch origin; git merge origina/main";
+    gfuma = "git fetch upstream; git merge upstream /main";
+    gfums = "git fetch upstream; git merge upstream/master";
+
     # kubectl
     k = "kubectl";
     kx = "kubectx";
