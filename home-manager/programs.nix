@@ -123,13 +123,6 @@
   # For Git rebases and such
   neovim = import ./neovim.nix { inherit pkgs; };
 
-  # Mostly for use with comma
-  nix-index = {
-    enable = true;
-    enableZshIntegration = true;
-    package = pkgs.nix-index;
-  };
-
   # Nushell
   nushell.enable = true;
 

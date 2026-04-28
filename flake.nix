@@ -44,9 +44,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nh = {
-      url = "https://flakehub.com/f/nix-community/nh/4.3.0-beta1";
+      url = "https://flakehub.com/f/nix-community/nh/4.3.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix.url = "https://flakehub.com/f/DeterminateSystems/nix-src/3";
     nix-darwin = {
       url = "https://flakehub.com/f/nix-darwin/nix-darwin/0.1";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -204,6 +205,8 @@
             dark = "Catppuccin Mocha";
           };
         };
+
+        determinateNixCli = inputs.nix.packages.${system}.default;
 
         # Packages
         inherit (inputs.dev-templates.packages.${system}) dvt;

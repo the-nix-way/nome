@@ -52,7 +52,6 @@ let
     bottom
     btop
     buf
-    comma
     cue
     curl
     doctl

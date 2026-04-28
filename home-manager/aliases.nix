@@ -89,7 +89,8 @@
     rnh = "random-nix-hash";
     rsh = "random-sha256-hash";
 
+    # misc
+    we = "watchexec";
     yt = "yt-dlp --cookies-from-browser firefox";
-    zed = "zeditor";
   };
 }
