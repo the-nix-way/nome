@@ -94,7 +94,7 @@
       ];
     };
 
-    settings.theme = "catppuccin_mocha";
+    settings.theme = pkgs.themes.helix;
   };
 
   # Configure HM itself

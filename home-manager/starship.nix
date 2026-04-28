@@ -19,7 +19,7 @@
     ))
     // {
       "$schema" = "https://starship.rs/config-schema.json";
-      palette = "catppuccin_mocha";
+      palette = pkgs.themes.starship;
       add_newline = false;
       battery = {
         full_symbol = "🔋 ";

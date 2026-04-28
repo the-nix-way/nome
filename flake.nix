@@ -198,7 +198,9 @@
         themes = {
           bat = "Catppuccin Mocha";
           ghostty = "Catppuccin Mocha";
+          helix = "catppuccin_mocha";
           spotify-player = "catppuccin-mocha";
+          starship = "catppuccin_mocha";
           vscode = {
             icon = "catppuccin-mocha";
             light = "Catppuccin Latte";
@@ -215,7 +217,7 @@
         flake-checker = inputs.flake-checker.packages.${system}.default;
         flake-iter = inputs.flake-iter.packages.${system}.default;
         nh = inputs.nh.packages.${system}.default;
-        inherit (inputs.nixpkgs.legacyPackages.${system}) jujutsu nushell zed-editor;
+        inherit (inputs.nixpkgs.legacyPackages.${system}) jujutsu nushell;
         inherit (inputs.minnows.packages.${system}) minnows-cli;
         inherit (inputs.jj-starship.packages.${system}) jj-starship;
       };
