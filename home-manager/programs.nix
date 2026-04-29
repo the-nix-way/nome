@@ -62,6 +62,11 @@
     enableZshIntegration = true;
   };
 
+  frolic = {
+    enable = true;
+    enableDaemon = true;
+  };
+
   # Fuzzy finder
   fzf = {
     enable = true;

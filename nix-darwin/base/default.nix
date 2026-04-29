@@ -116,7 +116,10 @@
 
   security.pam.services.sudo_local.touchIdAuth = true;
 
-  system.stateVersion = 1;
+  system = {
+    primaryUser = constants.username;
+    stateVersion = 1;
+  };
 
   users.users.${constants.username} = {
     name = constants.username;

@@ -27,6 +27,10 @@
       url = "https://flakehub.com/f/DeterminateSystems/flake-iter/0.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    frolic = {
+      url = "path:/Users/lucperkins/dts/frolic";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     git-hooks = {
       url = "https://flakehub.com/f/cachix/git-hooks.nix/0.1";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -247,7 +251,7 @@
           { pkgs, ... }:
           import ./home-manager {
             inherit pkgs stateVersion username;
-            modules = [ ];
+            imports = [ inputs.frolic.homeModules.frolic ];
           };
       };
 

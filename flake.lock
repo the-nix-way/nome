@@ -635,6 +635,22 @@
         "type": "github"
       }
     },
+    "frolic": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "narHash": "sha256-LOxZaeBpHGpGe9EoGfJ5I1naQo7ODSSOMl+wQj2lwjE=",
+        "path": "/Users/lucperkins/dts/frolic",
+        "type": "path"
+      },
+      "original": {
+        "path": "/Users/lucperkins/dts/frolic",
+        "type": "path"
+      }
+    },
     "git-hooks": {
       "inputs": {
         "flake-compat": "flake-compat_2",
@@ -1127,6 +1143,7 @@
         "fh": "fh",
         "flake-checker": "flake-checker",
         "flake-iter": "flake-iter",
+        "frolic": "frolic",
         "git-hooks": "git-hooks",
         "home-manager": "home-manager",
         "jj-starship": "jj-starship",

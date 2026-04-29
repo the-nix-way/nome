@@ -2,7 +2,7 @@
   pkgs,
   stateVersion,
   username,
-  modules,
+  imports,
 }:
 
 {
@@ -62,7 +62,7 @@
           };
         };
         nix.package = null; # Make sure Home Manager doesn't overwrite my Nix
-        imports = modules;
+        inherit imports;
         programs = import ./programs.nix { inherit pkgs; };
       };
   };
