@@ -45,7 +45,10 @@ let
     pnpm
   ];
 
-  docsTools = with pkgs; [ d2 ];
+  docsTools = with pkgs; [
+    d2
+    zensical
+  ];
 
   misc = with pkgs; [
     asciinema
