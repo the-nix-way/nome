@@ -63,7 +63,8 @@ in
       ++ [
         # Extensions not in Nixpkgs
         (vsce "andrejunges" "Handlebars" "0.4.1" "sha256-Rwhr9X3sjDm6u/KRYE2ucCJSlZwsgUJbH/fdq2WZ034=")
-        (vsce "biomejs" "biome" "2025.11.271431" "sha256-tihEFcDDYr/khLIcJbR5VSC/RujEvp/gcnWlokAqNBc=")
+        (vsce "anthropic" "claude-code" "2.1.126" "sha256-mYw1fMwT/dGbwMS+x3jxX1c/H1RQzmIckKfU7e+8lS8=")
+        (vsce "biomejs" "biome" "2026.3.311859" "sha256-HH+KJYY4J6nuHwQ/+DhEFsJ7P5S97UsNuoc+y7GnE00=")
         (vsce "bufbuild" "vscode-buf" "0.7.0" "sha256-B5/Gc+f3xaYpMTXFcQ9LJiAb9LBJX2aR+gh22up3Wi4=")
         (vsce "cuelangorg" "vscode-cue" "0.0.9" "sha256-aq+O0bXc9a5namjqqah+samZCF2xKFlK0HBcA3hmxIg=")
         (vsce "oven" "bun-vscode" "0.0.26" "sha256-klMkKAorWJj2o015FWbQQfpmYe4JM0UOM+WVh+YPtI4=")

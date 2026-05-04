@@ -92,5 +92,7 @@
     # misc
     we = "watchexec";
     yt = "yt-dlp --cookies-from-browser firefox";
+    zd = "zeditor";
+    zed = "zeditor";
   };
 }

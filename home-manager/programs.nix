@@ -62,6 +62,7 @@
     enableZshIntegration = true;
   };
 
+  # `use flake` replacement
   frolic = {
     enable = true;
     enableDaemon = true;
@@ -163,6 +164,22 @@
 
   # My most-used editor
   vscode = import ./vscode.nix { inherit pkgs; };
+
+  # Zed
+  zed-editor = {
+    enable = true;
+    enableMcpIntegration = true;
+    extensions = [
+      "catppuccin"
+      "catppuccin-icons"
+      "nix"
+      "postgres-language-server"
+      "sql"
+    ];
+    userSettings = {
+      theme = "Catppuccin Mocha";
+    };
+  };
 
   # My fav shell
   zsh = import ./zsh.nix { inherit pkgs; };
