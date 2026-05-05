@@ -251,7 +251,9 @@
           { pkgs, ... }:
           import ./home-manager {
             inherit pkgs stateVersion username;
-            imports = [ inputs.frolic.homeModules.frolic ];
+            imports = [
+              #inputs.frolic.homeModules.frolic
+            ];
           };
       };
 

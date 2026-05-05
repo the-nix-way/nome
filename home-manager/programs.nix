@@ -63,10 +63,10 @@
   };
 
   # `use flake` replacement
-  frolic = {
-    enable = true;
-    enableDaemon = true;
-  };
+  #frolic = {
+  #  enable = true;
+  #  enableDaemon = true;
+  #};
 
   # Fuzzy finder
   fzf = {
