@@ -96,6 +96,7 @@ let
   nixTools = with pkgs; [
     dvt
     fh
+    flakebom
     flake-checker
     flake-iter
     minnows-cli

@@ -17,7 +17,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     fh = {
-      url = "https://flakehub.com/f/DeterminateSystems/fh/0.1";
+      url = "path:/Users/lucperkins/dts/fh";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     flake-checker = {
       url = "https://flakehub.com/f/DeterminateSystems/flake-checker/0";
@@ -59,6 +60,10 @@
     nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1";
     nuenv = {
       url = "https://flakehub.com/f/DeterminateSystems/nuenv/0.1";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    secure-build = {
+      url = "https://flakehub.com/f/DeterminateSystems/secure-build/0.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -224,6 +229,7 @@
         inherit (inputs.nixpkgs.legacyPackages.${system}) jujutsu nushell;
         inherit (inputs.minnows.packages.${system}) minnows-cli;
         inherit (inputs.jj-starship.packages.${system}) jj-starship;
+        inherit (inputs.secure-build.packages.${system}) flakebom;
       };
 
       darwinConfigurations."${username}-${system}" = inputs.nix-darwin.lib.darwinSystem {

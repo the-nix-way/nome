@@ -75,6 +75,7 @@
     enable = true;
 
     customSettings = {
+      trusted-users = [ constants.username ];
       flake-registry = "/etc/${constants.flake-registry-file}";
       extra-experimental-features = [
         "build-time-fetch-tree"
