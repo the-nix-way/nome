@@ -14,7 +14,7 @@ let
   buildTools = with pkgs; [ cmake ];
 
   databaseTools = with pkgs; [
-    postgresql_17
+    postgresql_18
     redis
     sqlfluff
   ];
