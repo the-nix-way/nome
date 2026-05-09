@@ -80,7 +80,7 @@
     nfu = "nix flake update";
     nsn = "nix search nixpkgs";
     nflr = "nix flake lock --recreate-lock-file";
-    upstream-nix = "nix run github:NixOS/nix/2.34.6 --";
+    upstream-nix = "nix run github:NixOS/nix/2.34.7 --";
 
     # processes
     pf = "pgrep -f";
@@ -90,6 +90,7 @@
     rsh = "random-sha256-hash";
 
     # misc
+    uuidv7 = "python3 -c 'import uuid; print(uuid.uuid7())'";
     we = "watchexec";
     yt = "yt-dlp --cookies-from-browser firefox";
     zd = "zeditor";
