@@ -56,6 +56,7 @@ in
         tamasfe.even-better-toml
         teabyii.ayu
         thenuprojectcontributors.vscode-nushell-lang
+        tsandall.opa
         unifiedjs.vscode-mdx
         vue.volar
         yzhang.markdown-all-in-one
