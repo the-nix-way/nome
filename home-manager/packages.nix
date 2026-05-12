@@ -73,6 +73,7 @@ let
     jq
     mprocs
     ngrok
+    pinact
     pkg-config
     process-compose
     protobuf
@@ -88,6 +89,7 @@ let
     wrk
     yq
     yt-dlp
+    zizmor
   ];
 
   nixTools = with pkgs; [

@@ -139,6 +139,7 @@ in
       "workbench.panel.defaultLocation" = "bottom";
       "workbench.preferredLightColorTheme" = pkgs.themes.vscode.light;
       "workbench.preferredDarkColorTheme" = pkgs.themes.vscode.dark;
+      "workbench.settings.openDefaultSettings" = false;
       "workbench.sideBar.location" = "left";
     };
   };

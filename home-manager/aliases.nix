@@ -91,7 +91,7 @@
 
     # misc
     uuidv7 = "python3 -c 'import uuid; print(uuid.uuid7())'";
-    we = "watchexec";
+    wx = "watchexec";
     yt = "yt-dlp --cookies-from-browser firefox";
     zd = "zeditor";
     zed = "zeditor";
