@@ -785,13 +785,16 @@
         ]
       },
       "locked": {
-        "narHash": "sha256-MTfT2os0vOHGuF/ZmnYObeFv70dv4X3t98tkLPH8oEU=",
-        "path": "/Users/lucperkins/dts/frolic",
-        "type": "path"
+        "lastModified": 1779407444,
+        "narHash": "sha256-vNcUrb8uDYqFwR5FEIe+D68U5wUMSV29NevgIBjiKrM=",
+        "rev": "31d2adc420e8b046373d3ef408a7e8605b0675f1",
+        "revCount": 65,
+        "type": "tarball",
+        "url": "https://api.flakehub.com/f/pinned/DeterminateSystems/frolic/0.1.65%2Brev-31d2adc420e8b046373d3ef408a7e8605b0675f1/019e4cf3-df2d-7203-a3fb-a1dfc680d817/source.tar.gz"
       },
       "original": {
-        "path": "/Users/lucperkins/dts/frolic",
-        "type": "path"
+        "type": "tarball",
+        "url": "https://flakehub.com/f/DeterminateSystems/frolic/0.1"
       }
     },
     "git-hooks": {

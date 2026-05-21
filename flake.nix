@@ -29,7 +29,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     frolic = {
-      url = "path:/Users/lucperkins/dts/frolic";
+      url = "https://flakehub.com/f/DeterminateSystems/frolic/0.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     git-hooks = {
