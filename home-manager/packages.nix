@@ -73,6 +73,7 @@ let
     jq
     mprocs
     ngrok
+    opa
     pinact
     pkg-config
     process-compose
@@ -95,7 +96,7 @@ let
   nixTools = with pkgs; [
     dvt
     fh
-    flakebom
+    #flakebom
     flake-checker
     flake-iter
     minnows-cli
