@@ -79,6 +79,7 @@
       flake-registry = "/etc/${constants.flake-registry-file}";
       extra-experimental-features = [
         "build-time-fetch-tree"
+        "cnsa"
         "parallel-eval"
         "provenance"
         "wasm-builtin"
