@@ -32,7 +32,6 @@ in
         denoland.vscode-deno
         disneystreaming.smithy
         editorconfig.editorconfig
-        elixir-lsp.vscode-elixir-ls
         enkia.tokyo-night
         esbenp.prettier-vscode
         github.vscode-github-actions

@@ -59,8 +59,6 @@ let
     duf
     dust
     easy-template
-    elixir
-    elixir-ls
     fastfetch
     ffmpeg
     gleam
