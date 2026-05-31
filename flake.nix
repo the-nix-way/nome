@@ -227,7 +227,7 @@
         inherit (inputs.nixpkgs.legacyPackages.${system}) jujutsu nushell;
         inherit (inputs.minnows.packages.${system}) minnows-cli;
         inherit (inputs.jj-starship.packages.${system}) jj-starship;
-        #inherit (inputs.secure-build.packages.${system}) flakebom;
+        inherit (inputs.secure-build.packages.${system}) flakebom;
 
         # In-tree packages (so I can remove tests and stuff)
         opa = final.callPackage ./nix/opa.nix { };
