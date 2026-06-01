@@ -62,9 +62,6 @@
     enableZshIntegration = true;
   };
 
-  # `use flake` replacement
-  frolic.enable = true;
-
   # Fuzzy finder
   fzf = {
     enable = true;

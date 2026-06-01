@@ -28,10 +28,6 @@
       url = "https://flakehub.com/f/DeterminateSystems/flake-iter/0.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    frolic = {
-      url = "https://flakehub.com/f/DeterminateSystems/frolic/0.1";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     git-hooks = {
       url = "https://flakehub.com/f/cachix/git-hooks.nix/0.1";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -62,10 +58,7 @@
       url = "https://flakehub.com/f/DeterminateSystems/nuenv/0.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    secure-build = {
-      url = "https://flakehub.com/f/DeterminateSystems/secure-build/0.1";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    secure-build.url = "https://flakehub.com/f/DeterminateSystems/secure-build/0.1";
   };
 
   outputs =
@@ -258,9 +251,7 @@
           { pkgs, ... }:
           import ./home-manager {
             inherit pkgs stateVersion username;
-            imports = [
-              inputs.frolic.homeModules.frolic
-            ];
+            imports = [ ];
           };
       };
 
