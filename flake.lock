@@ -1715,12 +1715,12 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1781144530,
-        "narHash": "sha256-wxfAYdmiaLlOC4YwSAHp+8tkLfFBlmMOMwF4ZPnEGG8=",
-        "rev": "ddf295523ac7ec93a729d524af2227361b2c6834",
-        "revCount": 813,
+        "lastModified": 1781230471,
+        "narHash": "sha256-wmC/WlbWXYdIjwDw0/7S4bsM+usMtNUs8h8LRLBRhX4=",
+        "rev": "4241c34f50282720e80253ec22c8dff8da548eaf",
+        "revCount": 814,
         "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/DeterminateSystems/secure-build/0.1.813%2Brev-ddf295523ac7ec93a729d524af2227361b2c6834/019eb484-1ca8-77b1-b751-6a4613585290/source.tar.gz"
+        "url": "https://api.flakehub.com/f/pinned/DeterminateSystems/secure-build/0.1.814%2Brev-4241c34f50282720e80253ec22c8dff8da548eaf/019eb9a3-2bda-7ed3-9a9e-45e5426405d2/source.tar.gz"
       },
       "original": {
         "type": "tarball",
