@@ -132,6 +132,20 @@
     cli.enable = true;
   };
 
+  # Local agents
+  opencode = {
+    enable = true;
+    enableMcpIntegration = true;
+    agents = { };
+    commands = { };
+    context = "";
+    extraPackages = with pkgs; [ ];
+    settings = { };
+    skills = { };
+    tools = { };
+    tui.theme = "catppuccin-macchiato";
+  };
+
   # ripgrep
   ripgrep.enable = true;
 

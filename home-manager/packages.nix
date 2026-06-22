@@ -1,6 +1,8 @@
 { pkgs }:
 
 let
+  ai = with pkgs; [ ];
+
   basic = with pkgs; [
     findutils
     tree
@@ -138,7 +140,8 @@ let
     syft
   ];
 in
-basic
+ai
+++ basic
 ++ bin
 ++ buildTools
 ++ databaseTools
