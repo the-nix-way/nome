@@ -175,7 +175,7 @@
 
   # Zed
   zed-editor = {
-    enable = true;
+    enable = false; # try again later
     enableMcpIntegration = true;
     extensions = [
       "catppuccin"
