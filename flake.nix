@@ -33,7 +33,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
-      url = "https://flakehub.com/f/nix-community/home-manager/0.2605";
+      url = "https://flakehub.com/f/nix-community/home-manager/0.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     jj-starship = {
@@ -50,10 +50,10 @@
     };
     nix.url = "https://flakehub.com/f/DeterminateSystems/nix-src/3";
     nix-darwin = {
-      url = "https://flakehub.com/f/nix-darwin/nix-darwin/0.2605";
+      url = "https://flakehub.com/f/nix-darwin/nix-darwin/0.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.2605";
+    nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1";
     nuenv = {
       url = "https://flakehub.com/f/DeterminateSystems/nuenv/0.1";
       inputs.nixpkgs.follows = "nixpkgs";
