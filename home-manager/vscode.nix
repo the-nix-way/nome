@@ -39,7 +39,6 @@ in
         gleam.gleam
         golang.go
         hashicorp.hcl
-        hashicorp.terraform
         lucperkins.vrl-vscode
         matthewpi.caddyfile-support
         mesonbuild.mesonbuild
@@ -67,6 +66,7 @@ in
         (vsce "biomejs" "biome" "2026.3.311859" "sha256-HH+KJYY4J6nuHwQ/+DhEFsJ7P5S97UsNuoc+y7GnE00=")
         (vsce "bufbuild" "vscode-buf" "0.7.0" "sha256-B5/Gc+f3xaYpMTXFcQ9LJiAb9LBJX2aR+gh22up3Wi4=")
         (vsce "cuelangorg" "vscode-cue" "0.0.9" "sha256-aq+O0bXc9a5namjqqah+samZCF2xKFlK0HBcA3hmxIg=")
+        (vsce "hashicorp" "terraform" "2.40.0" "sha256-UsyKO7zTSDovproPUaIWfqmJxIjZfNTwhaQuH2xIzyE=")
         (vsce "oven" "bun-vscode" "0.0.26" "sha256-klMkKAorWJj2o015FWbQQfpmYe4JM0UOM+WVh+YPtI4=")
         (vsce "Guyutongxue" "lalrpop-syntax-highlight" "0.0.5"
           "sha256-VJBvR9pM0NPYi/RUoVQcL1tt2PZCKohwX8Dd1nz0UGY="

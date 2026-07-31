@@ -22,14 +22,8 @@ let
   ];
 
   devOpsTools = with pkgs; [
-    awscli2
     dive
     flyctl
-    k9s
-    kubectx
-    kubectl
-    minikube
-    skaffold
   ];
 
   versionControlTools = with pkgs; [
@@ -95,6 +89,7 @@ let
   nixTools = with pkgs; [
     dvt
     fh
+    flakeaudit
     flakebom
     flake-checker
     flake-iter
