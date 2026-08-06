@@ -58,7 +58,6 @@ let
     ffmpeg
     gleam
     glow
-    httpie
     hugo
     hyperfine
     jid
@@ -81,6 +80,7 @@ let
     watchexec
     worker-build
     wrk
+    xh
     yq
     yt-dlp
     zizmor

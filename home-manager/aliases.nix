@@ -91,6 +91,7 @@
     rsh = "random-sha256-hash";
 
     # misc
+    http = "xh";
     uuidv7 = "python3 -c 'import uuid; print(uuid.uuid7())'";
     wx = "watchexec";
     yt = "yt-dlp --cookies-from-browser firefox";
