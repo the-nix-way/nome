@@ -73,6 +73,44 @@ in
     }
   '')
 
+  (pkgs.writeShellApplication {
+    name = "heavy-cleanup";
+    runtimeInputs = with pkgs; [
+      findutils
+      nh
+    ];
+    text = ''
+      echo "> Cleaning up Nix with nh..."
+      nh clean all
+
+      if docker info > /dev/null 2>&1; then
+        images="$(docker image ls --all --quiet)"
+        if [[ -n "$images" ]]; then
+          echo "> Deleting all Docker images..."
+          # shellcheck disable=SC2086
+          docker image rm --force $images
+        else
+          echo "> No Docker images to delete"
+        fi
+      else
+        echo "> Docker isn't running; skipping Docker images"
+      fi
+
+      echo "> Deleting Rust target directories under $HOME..."
+      find "$HOME" \
+        \( -path "$HOME/Library" -o -path "$HOME/.Trash" -o -name node_modules -o -name .git \) -prune -o \
+        -type d -name target -print0 -prune \
+      | while IFS= read -r -d "" dir; do
+          if [[ -f "$(dirname "$dir")/Cargo.toml" ]]; then
+            echo "  removing $dir"
+            rm -rf "$dir"
+          fi
+        done
+
+      echo "> Heavy cleanup complete 🧹"
+    '';
+  })
+
   (nu "docker-cleanup" ''
     docker system prune -af
     docker volume prune -f
