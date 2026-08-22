@@ -73,43 +73,46 @@ in
     }
   '')
 
-  (pkgs.writeShellApplication {
-    name = "heavy-cleanup";
-    runtimeInputs = with pkgs; [
-      findutils
-      nh
-    ];
-    text = ''
-      echo "> Cleaning up Nix with nh..."
-      nh clean all
+  (nu "heavy-cleanup" ''
+    # Reclaim disk space: Nix generations, Docker images, and Rust target directories
+    def main [] {
+      print "> Cleaning up Nix with nh..."
+      ${pkgs.nh}/bin/nh clean all
 
-      if docker info > /dev/null 2>&1; then
-        images="$(docker image ls --all --quiet)"
-        if [[ -n "$images" ]]; then
-          echo "> Deleting all Docker images..."
-          # shellcheck disable=SC2086
-          docker image rm --force $images
-        else
-          echo "> No Docker images to delete"
-        fi
-      else
-        echo "> Docker isn't running; skipping Docker images"
-      fi
+      if (docker-running) {
+        let images = (docker image ls --all --quiet | lines)
+        if ($images | is-empty) {
+          print "> No Docker images to delete"
+        } else {
+          print "> Deleting all Docker images..."
+          docker image rm --force ...$images
+        }
+      } else {
+        print "> Docker isn't running; skipping Docker images"
+      }
 
-      echo "> Deleting Rust target directories under $HOME..."
-      find "$HOME" \
-        \( -path "$HOME/Library" -o -path "$HOME/.Trash" -o -name node_modules -o -name .git \) -prune -o \
-        -type d -name target -print0 -prune \
-      | while IFS= read -r -d "" dir; do
-          if [[ -f "$(dirname "$dir")/Cargo.toml" ]]; then
-            echo "  removing $dir"
-            rm -rf "$dir"
-          fi
-        done
+      print $"> Deleting Rust target directories under ($env.HOME)..."
+      glob $"($env.HOME)/**/target" --no-file --exclude [
+        $"($env.HOME)/Library/**"
+        $"($env.HOME)/.Trash/**"
+        "**/node_modules/**"
+        "**/.git/**"
+      ]
+      | where {|dir| ($dir | path dirname | path join "Cargo.toml" | path exists) }
+      | each {|dir|
+          print $"  removing ($dir)"
+          rm --recursive --force $dir
+        }
+      | ignore
 
-      echo "> Heavy cleanup complete 🧹"
-    '';
-  })
+      print "> Heavy cleanup complete 🧹"
+    }
+
+    # Is the Docker daemon up and reachable?
+    def docker-running []: nothing -> bool {
+      (which docker | is-not-empty) and ((docker info | complete | get exit_code) == 0)
+    }
+  '')
 
   (nu "docker-cleanup" ''
     docker system prune -af
