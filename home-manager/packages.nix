@@ -35,6 +35,7 @@ let
 
   jsTools = with pkgs; [
     biome
+    bun
     nodejs
     oxlint
     pnpm
