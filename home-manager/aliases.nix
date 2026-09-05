@@ -58,6 +58,8 @@
 
     # Misc
     ff = "fastfetch";
+    # Show how much disk space is left (the home directory's volume)
+    disk-space = "df -h ${pkgs.lib.homeDirectory}";
 
     ## Nix stuff. Inspired by: https://alexfedoseev.com/blog/post/nix-time.
 
