@@ -24,6 +24,7 @@ in
     extensions =
       (with pkgs.vscode-extensions; [
         astro-build.astro-vscode
+        bazelbuild.vscode-bazel
         bbenoist.nix
         brettm12345.nixfmt-vscode
         bradlc.vscode-tailwindcss
