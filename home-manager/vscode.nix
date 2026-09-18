@@ -48,6 +48,7 @@ in
         ms-python.vscode-pylance
         myriad-dreamin.tinymist
         nefrob.vscode-just-syntax
+        oxc.oxc-vscode
         pkief.material-icon-theme
         prisma.prisma
         phoenixframework.phoenix
