@@ -11,7 +11,6 @@
   plugins = with pkgs.vimPlugins; [
     catppuccin-nvim
     ctrlp-vim
-    editorconfig-vim
     gruvbox
     nerdtree
     tabular
