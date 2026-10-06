@@ -62,8 +62,10 @@
   };
 
   outputs =
-    { self, ... }@inputs:
+    inputs:
     let
+      inherit (inputs.nixpkgs) lib;
+
       supportedSystems = [ "aarch64-darwin" ];
       forEachSupportedSystem =
         f:
@@ -72,7 +74,7 @@
           f {
             pkgs = import inputs.nixpkgs {
               inherit system;
-              overlays = [ self.overlays.default ];
+              overlays = [ inputs.self.overlays.default ];
             };
             inherit system;
           }
@@ -110,8 +112,8 @@
               (with pkgs; [
                 reload
               ])
-              ++ self.checks.${system}.pre-commit-checks.enabledPackages;
-            inherit (self.checks.${system}.pre-commit-checks) shellHook;
+              ++ inputs.self.checks.${system}.pre-commit-checks.enabledPackages;
+            inherit (inputs.self.checks.${system}.pre-commit-checks) shellHook;
           };
         }
       );
@@ -138,7 +140,7 @@
         reload =
           let
             darwin-rebuild = inputs.nixpkgs.lib.getExe inputs.nix-darwin.packages.${system}.darwin-rebuild;
-            zsh = inputs.nixpkgs.lib.getExe final.zsh;
+            zsh = lib.getExe final.zsh;
             zshrc = "${final.lib.homeDirectory}/.zshrc";
           in
           final.writeShellApplication {
@@ -158,8 +160,13 @@
                 sudo mv /etc/nix/flake-registry.json /etc/nix/flake-registry.json.before-nix-darwin
               fi
 
+              if [[ -f "/etc/zshenv" ]]; then
+                echo "> Renaming zshenv"
+                sudo mv /etc/zshenv /etc/zshenv.before-nix-darwin
+              fi
+
               echo "> Running darwin-rebuild switch..."
-              if sudo darwin-rebuild switch --flake ".#${username}-${system}"; then
+              if sudo ${darwin-rebuild} switch --flake ".#${username}-${system}"; then
                 echo "> darwin-rebuild switch was successful ✅"
                 echo "> Restarting zsh..."
                 exec zsh -l
@@ -229,10 +236,10 @@
       darwinConfigurations."${username}-${system}" = inputs.nix-darwin.lib.darwinSystem {
         inherit system;
         modules = [
-          self.darwinModules.base
+          inputs.self.darwinModules.base
           inputs.determinate.darwinModules.default
           inputs.home-manager.darwinModules.home-manager
-          self.darwinModules.home-manager
+          inputs.self.darwinModules.home-manager
         ];
       };
 
@@ -243,7 +250,7 @@
             inherit constants pkgs;
             overlays = [
               inputs.nuenv.overlays.default
-              self.overlays.default
+              inputs.self.overlays.default
             ];
           };
 
