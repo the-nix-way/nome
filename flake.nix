@@ -122,7 +122,8 @@
         inherit (prev.stdenv.hostPlatform) system;
 
         lib = prev.lib // {
-          homeDirectory = if prev.stdenv.isDarwin then "/Users/${username}" else "/home/${username}";
+          homeDirectory =
+            if prev.stdenv.hostPlatform.isDarwin then "/Users/${username}" else "/home/${username}";
         };
 
         pre-commit-checks = inputs.git-hooks.lib.${system}.run {
