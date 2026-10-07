@@ -78,6 +78,7 @@
       trusted-users = [ constants.username ];
       flake-registry = "/etc/${constants.flake-registry-file}";
       extra-experimental-features = [
+        "baked-derivations"
         "build-time-fetch-tree"
         "cnsa"
         "parallel-eval"

@@ -4,7 +4,18 @@
   # Fancy replacement for cat
   bat = {
     enable = true;
-    config.theme = pkgs.themes.bat;
+    config = {
+      theme = pkgs.themes.bat;
+      # Highlight Starlark build files (Bazel, Buck) as Python
+      map-syntax = [
+        "BUCK:Python"
+        "BUILD:Python"
+        "PACKAGE:Python"
+        "TARGETS:Python"
+        "WORKSPACE:Python"
+        "*.star:Python"
+      ];
+    };
     extraPackages = with pkgs.bat-extras; [
       batdiff
       batman
