@@ -206,16 +206,18 @@
         };
 
         themes = {
-          bat = "Catppuccin Mocha";
-          ghostty = "Catppuccin Mocha";
-          helix = "catppuccin_mocha";
-          spotify-player = "catppuccin-mocha";
-          starship = "catppuccin_mocha";
+          bat = "tokyonight_night";
+          ghostty = "TokyoNight Night";
+          helix = "tokyonight";
+          opencode = "tokyonight";
+          spotify-player = "Tokyo Night";
+          starship = "tokyo_night";
           vscode = {
             icon = "catppuccin-mocha";
-            light = "Catppuccin Latte";
-            dark = "Catppuccin Mocha";
+            light = "Tokyo Night Light";
+            dark = "Tokyo Night";
           };
+          zed = "Tokyo Night";
         };
 
         # Packages

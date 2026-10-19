@@ -80,6 +80,7 @@
       extra-experimental-features = [
         "baked-derivations"
         "build-time-fetch-tree"
+        "ca-derivations"
         "cnsa"
         "parallel-eval"
         "provenance"
@@ -120,6 +121,8 @@
   security.pam.services.sudo_local.touchIdAuth = true;
 
   system = {
+    # Disable font smoothing (stem darkening) for thinner, crisper text; apps must be relaunched to pick it up
+    defaults.NSGlobalDomain.AppleFontSmoothing = 0;
     primaryUser = constants.username;
     stateVersion = 1;
   };

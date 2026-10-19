@@ -25,32 +25,19 @@
     syntaxes = { };
     themes.${pkgs.themes.bat} = {
       src = pkgs.fetchFromGitHub {
-        owner = "catppuccin";
-        repo = "bat";
-        rev = "699f60fc8ec434574ca7451b444b880430319941";
-        sha256 = "sha256-6fWoCH90IGumAMc4buLRWL0N61op+AuMNN9CAR9/OdI=";
+        owner = "folke";
+        repo = "tokyonight.nvim";
+        rev = "cdc07ac78467a233fd62c493de29a17e0cf2b2b6";
+        sha256 = "sha256-a9iRWue7DB7s/wNdxqqB51Jya5P9X6sDftqhdmKggU0=";
       };
-      file = "themes/${pkgs.themes.bat}.tmTheme";
+      file = "extras/sublime/${pkgs.themes.bat}.tmTheme";
     };
   };
 
-  bottom =
-    let
-      themes =
-        let
-          repo = pkgs.fetchFromGitHub {
-            owner = "catppuccin";
-            repo = "bottom";
-            rev = "eadd75acd0ecad4a58ade9a1d6daa3b97ccec07c";
-            sha256 = "sha256-dfukdk70ug1lRGADKBnvMhkl+3tsY7F+UAwTS2Qyapk=";
-          };
-        in
-        builtins.path { path = "${repo}/themes/mocha.toml"; };
-    in
-    {
-      enable = true;
-      settings = builtins.fromTOML (builtins.readFile themes);
-    };
+  bottom = {
+    enable = true;
+    settings = builtins.fromTOML (builtins.readFile ./config/bottom/tokyonight_night.toml);
+  };
 
   # Navigate directory trees
   broot = {
@@ -154,7 +141,7 @@
     settings = { };
     skills = { };
     tools = { };
-    tui.theme = "catppuccin-macchiato";
+    tui.theme = pkgs.themes.opencode;
   };
 
   # ripgrep
@@ -169,6 +156,17 @@
     settings = {
       theme = pkgs.themes.spotify-player;
     };
+    themes =
+      let
+        repo = pkgs.fetchFromGitHub {
+          owner = "folke";
+          repo = "tokyonight.nvim";
+          rev = "cdc07ac78467a233fd62c493de29a17e0cf2b2b6";
+          sha256 = "sha256-a9iRWue7DB7s/wNdxqqB51Jya5P9X6sDftqhdmKggU0=";
+        };
+      in
+      (builtins.fromTOML (builtins.readFile "${repo}/extras/spotify_player/tokyonight_night.toml"))
+      .themes;
   };
 
   # SSH
@@ -189,14 +187,14 @@
     enable = false; # try again later
     enableMcpIntegration = true;
     extensions = [
-      "catppuccin"
       "catppuccin-icons"
       "nix"
       "postgres-language-server"
       "sql"
+      "tokyo-night"
     ];
     userSettings = {
-      theme = "Catppuccin Mocha";
+      theme = pkgs.themes.zed;
     };
   };
 

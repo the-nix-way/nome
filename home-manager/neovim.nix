@@ -9,11 +9,11 @@
 
   # Neovim plugins
   plugins = with pkgs.vimPlugins; [
-    catppuccin-nvim
     ctrlp-vim
     gruvbox
     nerdtree
     tabular
+    tokyonight-nvim
     vim-cpp-enhanced-highlight
     vim-nix
   ];
