@@ -118,7 +118,16 @@
     zsh.enable = true;
   };
 
-  security.pam.services.sudo_local.touchIdAuth = true;
+  security = {
+    pam.services.sudo_local.touchIdAuth = true;
+
+    # Distrust the roots behind the compromised eMudhra intermediates until Nixpkgs ships NSS >= 3.131.1
+    # https://emudhra.we-have-a-problem.com
+    pki.caCertificateBlacklist = [
+      "Comodo AAA Services root"
+      "emSign ECC Root CA - G3"
+    ];
+  };
 
   system = {
     # Disable font smoothing (stem darkening) for thinner, crisper text; apps must be relaunched to pick it up
