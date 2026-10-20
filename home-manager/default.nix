@@ -45,7 +45,11 @@
           inherit (pkgs.lib) homeDirectory;
           packages = import ./packages.nix { inherit pkgs; };
           sessionPath = [
+            "$HOME/go/bin"
             "${pkgs.uutils-coreutils}/bin" # Use Rust coreutils
+            "/etc/profiles/per-user/${username}/bin"
+            "/run/current-system/sw/bin"
+            "$HOME/.cargo/bin"
           ];
           sessionVariables = import ./env.nix { inherit pkgs username; };
           shellAliases = (import ./aliases.nix { inherit pkgs; }).shell;
@@ -64,6 +68,7 @@
         nix.package = null; # Make sure Home Manager doesn't overwrite my Nix
         inherit imports;
         programs = import ./programs.nix { inherit pkgs; };
+        services.ssh-agent.enable = true;
       };
   };
 }

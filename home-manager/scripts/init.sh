@@ -5,25 +5,11 @@ if [ -e ~/.env.sh ]; then
   . ~/.env.sh
 fi
 
-eval "$(ssh-agent -s)"
-
 # Shell completion for various tools
 eval "$(determinate-nixd completion zsh)"
-
-# Go settings
-eval "$(go env)"
-export PATH="${GOPATH}/bin:${PATH}"
 
 if [ -n "${REX_BIN_DIR:-}" ]; then
   export PATH="$REX_BIN_DIR:$PATH"
 fi
-
-# Specific to FlakeHub dev
-export ENVRC_USE_FLAKE="1"
-
-export CARGO_NET_GIT_FETCH_WITH_CLI="true"
-
-# random zsh stuff that probably belongs elsewhere
-bindkey -e
 
 bindkey '\e[3~' delete-char
