@@ -14,6 +14,10 @@ eval "$(determinate-nixd completion zsh)"
 eval "$(go env)"
 export PATH="${GOPATH}/bin:${PATH}"
 
+if [ -n "${REX_BIN_DIR:-}" ]; then
+  export PATH="$REX_BIN_DIR:$PATH"
+fi
+
 # Specific to FlakeHub dev
 export ENVRC_USE_FLAKE="1"
 
