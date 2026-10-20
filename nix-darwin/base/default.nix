@@ -74,6 +74,8 @@
     # Let Determinate Nix handle Nix configuration
     enable = true;
 
+    shellCompletions.enable = true;
+
     customSettings = {
       trusted-users = [ constants.username ];
       flake-registry = "/etc/${constants.flake-registry-file}";

@@ -5,9 +5,6 @@ if [ -e ~/.env.sh ]; then
   . ~/.env.sh
 fi
 
-# Shell completion for various tools
-eval "$(determinate-nixd completion zsh)"
-
 if [ -n "${REX_BIN_DIR:-}" ]; then
   export PATH="$REX_BIN_DIR:$PATH"
 fi

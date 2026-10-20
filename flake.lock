@@ -200,16 +200,18 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1792199853,
-        "narHash": "sha256-XUYVhEyY9AvkRj6T+LgSz88PdXrvY/5VXtgGQXA4sTk=",
-        "rev": "5f516660eb6faa93f5cb83ef493345967ca719ef",
-        "revCount": 444,
-        "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/DeterminateSystems/determinate/3.23.3/01a14772-d2d9-7030-899c-f1e2c8b9ba1b/source.tar.gz"
+        "lastModified": 1792526940,
+        "narHash": "sha256-GQH4JsS1O8AnNqtS/jbHGV1u9xxzR57sqT8TBbWKbas=",
+        "owner": "DeterminateSystems",
+        "repo": "determinate",
+        "rev": "23a71b36343ae6132c71cde3678b4e119d870279",
+        "type": "github"
       },
       "original": {
-        "type": "tarball",
-        "url": "https://flakehub.com/f/DeterminateSystems/determinate/3"
+        "owner": "DeterminateSystems",
+        "ref": "lucperkins/determinate-nixd-shell-completions",
+        "repo": "determinate",
+        "type": "github"
       }
     },
     "determinate-nix-cli": {

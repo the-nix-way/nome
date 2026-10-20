@@ -3,7 +3,7 @@
   description = "Nome: my Nix home";
 
   inputs = {
-    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/3";
+    determinate.url = "github:DeterminateSystems/determinate/lucperkins/determinate-nixd-shell-completions";
     dev-templates = {
       url = "https://flakehub.com/f/the-nix-way/dev-templates/0.1";
       inputs.nixpkgs.follows = "nixpkgs";
