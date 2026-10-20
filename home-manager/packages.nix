@@ -49,7 +49,7 @@ let
     btop
     buf
     cue
-    curl
+    #curl
     doctl
     duckdb
     duf
