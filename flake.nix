@@ -151,17 +151,18 @@
               zsh
             ];
             text = ''
-              if [[ -f "/etc/nix/nix.custom.conf" ]]; then
+              # Only move aside real files; symlinks into /etc/static are already managed by nix-darwin
+              if [[ -f "/etc/nix/nix.custom.conf" && ! -L "/etc/nix/nix.custom.conf" ]]; then
                 echo "> Renaming custom Nix config"
                 sudo mv /etc/nix/nix.custom.conf /etc/nix/nix.custom.conf.before-nix-darwin
               fi
 
-              if [[ -f "/etc/nix/flake-registry.json" ]]; then
+              if [[ -f "/etc/nix/flake-registry.json" && ! -L "/etc/nix/flake-registry.json" ]]; then
                 echo "> Renaming custom Nix flake registry"
                 sudo mv /etc/nix/flake-registry.json /etc/nix/flake-registry.json.before-nix-darwin
               fi
 
-              if [[ -f "/etc/zshenv" ]]; then
+              if [[ -f "/etc/zshenv" && ! -L "/etc/zshenv" ]]; then
                 echo "> Renaming zshenv"
                 sudo mv /etc/zshenv /etc/zshenv.before-nix-darwin
               fi
