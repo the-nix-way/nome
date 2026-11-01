@@ -65,6 +65,7 @@ let
     jj-starship
     jq
     mprocs
+    netlify-cli
     ngrok
     opa
     pinact
