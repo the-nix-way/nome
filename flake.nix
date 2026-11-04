@@ -10,7 +10,10 @@
     };
     easy-template = {
       url = "https://flakehub.com/f/DeterminateSystems/easy-template/0.1";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        fenix.follows = "fenix";
+        nixpkgs.follows = "nixpkgs";
+      };
     };
     fenix = {
       url = "https://flakehub.com/f/nix-community/fenix/0.1";
@@ -18,15 +21,24 @@
     };
     fh = {
       url = "path:/Users/lucperkins/dts/fh";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        fenix.follows = "fenix";
+        nixpkgs.follows = "nixpkgs";
+      };
     };
     flake-checker = {
       url = "https://flakehub.com/f/DeterminateSystems/flake-checker/0";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        fenix.follows = "fenix";
+        nixpkgs.follows = "nixpkgs";
+      };
     };
     flake-iter = {
       url = "https://flakehub.com/f/DeterminateSystems/flake-iter/0.1";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        fenix.follows = "fenix";
+        nixpkgs.follows = "nixpkgs";
+      };
     };
     git-hooks = {
       url = "https://flakehub.com/f/cachix/git-hooks.nix/0.1";
@@ -42,7 +54,10 @@
     };
     minnows = {
       url = "https://flakehub.com/f/DeterminateSystems/minnows/0";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        fenix.follows = "fenix";
+        nixpkgs.follows = "nixpkgs";
+      };
     };
     nh = {
       url = "https://flakehub.com/f/nix-community/nh/4.3.1";

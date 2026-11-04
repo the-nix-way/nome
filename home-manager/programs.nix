@@ -122,7 +122,10 @@
   neovim = import ./neovim.nix { inherit pkgs; };
 
   # Nushell
-  nushell.enable = true;
+  nushell = {
+    enable = true;
+    loadSessionVariables = false;
+  };
 
   # Obsidian
   obsidian = {
@@ -141,7 +144,7 @@
     settings = { };
     skills = { };
     tools = { };
-    tui.theme = pkgs.themes.opencode;
+    cli.theme.name = pkgs.themes.opencode;
   };
 
   # ripgrep
