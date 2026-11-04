@@ -72,8 +72,6 @@
   outputs =
     inputs:
     let
-      inherit (inputs.nixpkgs) lib;
-
       supportedSystems = [ "aarch64-darwin" ];
       forEachSupportedSystem =
         f:
@@ -146,48 +144,10 @@
           };
         };
 
-        reload =
-          let
-            darwin-rebuild = inputs.nixpkgs.lib.getExe inputs.nix-darwin.packages.${system}.darwin-rebuild;
-            zsh = lib.getExe final.zsh;
-            zshrc = "${final.lib.homeDirectory}/.zshrc";
-          in
-          final.writeShellApplication {
-            name = "reload";
-            runtimeInputs = with final; [
-              darwin-rebuild
-              zsh
-            ];
-            text = ''
-              # Only move aside real files; symlinks into /etc/static are already managed by nix-darwin
-              if [[ -f "/etc/nix/nix.custom.conf" && ! -L "/etc/nix/nix.custom.conf" ]]; then
-                echo "> Renaming custom Nix config"
-                sudo mv /etc/nix/nix.custom.conf /etc/nix/nix.custom.conf.before-nix-darwin
-              fi
-
-              if [[ -f "/etc/nix/flake-registry.json" && ! -L "/etc/nix/flake-registry.json" ]]; then
-                echo "> Renaming custom Nix flake registry"
-                sudo mv /etc/nix/flake-registry.json /etc/nix/flake-registry.json.before-nix-darwin
-              fi
-
-              if [[ -f "/etc/zshenv" && ! -L "/etc/zshenv" ]]; then
-                echo "> Renaming zshenv"
-                sudo mv /etc/zshenv /etc/zshenv.before-nix-darwin
-              fi
-
-              echo "> Running darwin-rebuild switch..."
-              if sudo ${darwin-rebuild} switch --flake ".#${username}-${system}"; then
-                echo "> darwin-rebuild switch was successful ✅"
-                echo "> Restarting zsh..."
-                exec zsh -l
-                echo "> zsh was restarted successfully ✅"
-                echo "> macOS config was successfully applied 🚀"
-              else
-                echo "> home-manager switch failed ❌"
-                exit 1
-              fi
-            '';
-          };
+        reload = final.callPackage ./nix/reload.nix {
+          inherit (inputs.nix-darwin.packages.${system}) darwin-rebuild;
+          config = "${username}-${system}";
+        };
 
         rustToolchain =
           with inputs.fenix.packages.${system};
