@@ -123,8 +123,7 @@
   security.pam.services.sudo_local.touchIdAuth = true;
 
   system = {
-    # Disable font smoothing (stem darkening) for thinner, crisper text; apps must be relaunched to pick it up
-    defaults.NSGlobalDomain.AppleFontSmoothing = 0;
+    defaults = import ./defaults.nix { inherit pkgs; };
     primaryUser = constants.username;
     stateVersion = 1;
   };

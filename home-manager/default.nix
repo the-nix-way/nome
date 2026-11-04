@@ -16,6 +16,10 @@
         home = {
           # macOS reverts wallpapers that live in the Nix store after a few seconds, so use a copy.
           # The store hash in the filename gives new content a new path, which macOS needs to reload it.
+          activation.createScreenshotsDir = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+            run mkdir -p "$HOME/Pictures/Screenshots"
+          '';
+
           activation.setWallpaper =
             let
               name = baseNameOf "${pkgs.wallpaper}";
