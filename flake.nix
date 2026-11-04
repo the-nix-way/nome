@@ -218,6 +218,15 @@
             light = "Tokyo Night Light";
             dark = "Tokyo Night";
           };
+          wallpaper = {
+            accents = [
+              "#7aa2f7"
+              "#7dcfff"
+              "#bb9af7"
+            ];
+            bg = "#1a1b26";
+            muted = "#565f89";
+          };
           zed = "Tokyo Night";
         };
 
@@ -235,6 +244,11 @@
 
         # In-tree packages (so I can remove tests and stuff)
         opa = final.callPackage ./nix/opa.nix { };
+
+        # Generated from the flake revision, so every commit gets its own wallpaper
+        wallpaper = final.callPackage ./nix/wallpaper.nix {
+          rev = inputs.self.shortRev or inputs.self.dirtyShortRev or "unknown";
+        };
       };
 
       darwinConfigurations."${username}-${system}" = inputs.nix-darwin.lib.darwinSystem {

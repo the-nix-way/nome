@@ -11,9 +11,24 @@
     useGlobalPkgs = true;
     useUserPackages = true;
     users.${username} =
-      { pkgs, ... }:
+      { lib, pkgs, ... }:
       {
         home = {
+          # macOS reverts wallpapers that live in the Nix store after a few seconds, so use a copy.
+          # The store hash in the filename gives new content a new path, which macOS needs to reload it.
+          activation.setWallpaper =
+            let
+              name = baseNameOf "${pkgs.wallpaper}";
+            in
+            lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+              wallpaper_dir="$HOME/Pictures/nome-wallpaper"
+              run mkdir -p "$wallpaper_dir"
+              run install -m 644 ${pkgs.wallpaper} "$wallpaper_dir/${name}"
+              run ${pkgs.desktoppr}/bin/desktoppr "$wallpaper_dir/${name}" \
+                || echo "Couldn't set the wallpaper; continuing"
+              run find "$wallpaper_dir" -type f ! -name "${name}" -delete
+            '';
+
           # For repos like Nixpkgs
           file.".config/starship-no-jj.toml".text = ''
             "$schema" = 'https://starship.rs/config-schema.json'
