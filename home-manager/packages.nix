@@ -95,7 +95,6 @@ let
     flakebom
     flake-checker
     flake-iter
-    minnows-cli
     nh
     nixfmt
     nvd
