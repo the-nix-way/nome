@@ -84,6 +84,19 @@
             };
           };
         };
+        launchd.agents.clean-rust-targets = {
+          enable = true;
+          config = {
+            LowPriorityIO = true;
+            ProcessType = "Background";
+            ProgramArguments = [
+              (pkgs.lib.getExe (pkgs.callPackage ../nix/clean-rust-targets.nix { }))
+            ];
+            StandardErrorPath = "/tmp/clean-rust-targets.log";
+            StandardOutPath = "/tmp/clean-rust-targets.log";
+            StartInterval = 3600;
+          };
+        };
         nix.package = null; # Make sure Home Manager doesn't overwrite my Nix
         inherit imports;
         programs = import ./programs.nix { inherit pkgs; };
