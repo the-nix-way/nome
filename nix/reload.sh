@@ -39,8 +39,16 @@ move_aside /etc/nix/nix.custom.conf
 move_aside /etc/nix/flake-registry.json
 move_aside /etc/zshenv
 
+# Resolve this now, since the switch repoints the symlink
+previous=$(readlink -f /run/current-system || true)
+
 step "Rebuilding and switching"
 if sudo "$DARWIN_REBUILD" switch --flake ".#$DARWIN_CONFIG"; then
+  if [[ -e "$previous" ]]; then
+    step "What changed"
+    nvd diff "$previous" /run/current-system || note "Couldn't compare with the previous generation"
+  fi
+
   success "macOS config applied in $(elapsed)"
   note "Restarting zsh"
   exec zsh -l
