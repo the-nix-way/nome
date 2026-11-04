@@ -218,7 +218,6 @@
           bat = "tokyonight_night";
           ghostty = "TokyoNight Night";
           helix = "tokyonight";
-          opencode = "tokyonight";
           spotify-player = "Tokyo Night";
           starship = "tokyo_night";
           vscode = {
