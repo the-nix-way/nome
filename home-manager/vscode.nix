@@ -20,6 +20,7 @@ in
 
   profiles.default = {
     enableExtensionUpdateCheck = true;
+    enableUpdateCheck = false;
 
     extensions =
       (with pkgs.vscode-extensions; [

@@ -3,7 +3,7 @@
   description = "Nome: my Nix home";
 
   inputs = {
-    determinate.url = "github:DeterminateSystems/determinate/lucperkins/determinate-nixd-shell-completions";
+    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/3";
     dev-templates = {
       url = "https://flakehub.com/f/the-nix-way/dev-templates/0.1";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -213,6 +213,14 @@
 
         # In-tree packages (so I can remove tests and stuff)
         opa = final.callPackage ./nix/opa.nix { };
+
+        # VS Code's self-updater overwrote the 1.144.0 store path, which breaks the rsync
+        # in Home Manager's copyApps, and `nix build --repair` doesn't rebuild it. This
+        # no-op change forces a clean store path. Remove it when nixpkgs bumps vscode.
+        vscode = prev.vscode.overrideAttrs (old: {
+          postInstall =
+            (old.postInstall or "") + "\n# Rebuilt to replace a store path modified by the updater\n";
+        });
 
         # Generated from the flake revision, so every commit gets its own wallpaper
         wallpaper = final.callPackage ./nix/wallpaper.nix {
