@@ -108,6 +108,8 @@
   };
 
   programs = {
+    bash.completion.enable = true;
+
     ssh = {
       knownHosts = {
         nixbuild = {
