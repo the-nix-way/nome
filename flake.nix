@@ -184,14 +184,18 @@
             light = "Tokyo Night Light";
             dark = "Tokyo Night";
           };
+          # Determinate design system tokens. The accents are in gradient order, matching the logo.
           wallpaper = {
             accents = [
-              "#7aa2f7"
-              "#7dcfff"
-              "#bb9af7"
+              "#faa61a" # ds-gold
+              "#ec2c5b" # ds-red
+              "#cd1e8b" # ds-magenta
+              "#8b2cbf" # ds-violet
+              "#086bb5" # ds-ocean-blue
+              "#1e9fd9" # ds-sky-blue
             ];
-            bg = "#1a1b26";
-            muted = "#565f89";
+            bg = "#0b0b10"; # ds-bg
+            muted = "#b3b3b3"; # ds-gray-light
           };
           zed = "Tokyo Night";
         };

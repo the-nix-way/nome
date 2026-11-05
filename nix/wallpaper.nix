@@ -16,6 +16,10 @@ runCommand "nome-wallpaper-${rev}.png"
     nativeBuildInputs = [ typst ];
   }
   ''
+    # Typst only reads images from alongside the document
+    cp ${./wallpaper.typ} wallpaper.typ
+    cp ${./detsys-logo.svg} detsys-logo.svg
+
     typst compile \
       --font-path ${jetbrains-mono}/share/fonts \
       --ignore-system-fonts \
@@ -28,6 +32,6 @@ runCommand "nome-wallpaper-${rev}.png"
       --input "bg=${bg}" \
       --input "muted=${muted}" \
       --input "accents=${builtins.concatStringsSep "," accents}" \
-      ${./wallpaper.typ} \
+      wallpaper.typ \
       $out
   ''

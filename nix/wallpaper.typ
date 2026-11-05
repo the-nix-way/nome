@@ -1,4 +1,4 @@
-// A hexagonal lattice grown from a hash of the flake revision: every commit gets its own wallpaper.
+// A Determinate-branded hexagonal lattice grown from a hash of the flake revision: every commit gets its own wallpaper.
 
 #let seed-hex = sys.inputs.seed
 #let label = sys.inputs.label
@@ -30,18 +30,42 @@
 #let cols = int(w / 1pt / dx) + 3
 #let rows = int(h / 1pt / dy) + 3
 
-// Three attractors placed by the seed; cells light up with proximity to them
+// The logo sits in the middle of the screen, inside a zone that the lattice fades out around
+#let logo-width = 760.0
+#let logo-height = logo-width * 70 / 260
+#let centre-x = w / 1pt / 2
+#let centre-y = h / 1pt / 2
+#let logo-distance(x, y) = {
+  let over-x = calc.max(0.0, calc.abs(x - centre-x) - logo-width / 2)
+  let over-y = calc.max(0.0, calc.abs(y - centre-y) - logo-height / 2)
+  calc.sqrt(over-x * over-x + over-y * over-y)
+}
+#let clear-radius = 60.0
+#let fade-radius = 300.0
+
+// Colour follows the logo's own diagonal: first accent at the top right, last at the bottom left
+#let ramp(x, y) = {
+  let diagonal = ((w / 1pt - x) / (w / 1pt) + y / (h / 1pt)) / 2
+  // Attractors never reach the corners, so pull the ends of the ramp inward
+  let t = calc.clamp((diagonal - 0.2) / 0.6, 0.0, 1.0)
+  let position = t * (accents.len() - 1)
+  let i = calc.min(calc.floor(position), accents.len() - 2)
+  let f = position - i
+  color.mix((accents.at(i), (1 - f) * 100%), (accents.at(i + 1), f * 100%))
+}
+
+// One attractor per quadrant, placed by the seed, so that the whole ramp always shows up
 #let attractors = {
   let state = seed
   let out = ()
-  for i in range(3) {
+  for (qx, qy) in ((1, 0), (0, 0), (1, 1), (0, 1)) {
     state = step(step(state))
-    let x = (0.12 + to-unit(state) * 0.76) * w / 1pt
+    let x = (qx + 0.15 + to-unit(state) * 0.7) / 2 * w / 1pt
     state = step(step(state))
-    let y = (0.15 + to-unit(state) * 0.7) * h / 1pt
+    let y = (qy + 0.15 + to-unit(state) * 0.7) / 2 * h / 1pt
     state = step(step(state))
-    let reach = 240 + to-unit(state) * 420
-    out.push((x: x, y: y, reach: reach, colour: accents.at(calc.rem(i, accents.len()))))
+    let reach = 700 + to-unit(state) * 500
+    out.push((x: x, y: y, reach: reach))
   }
   out
 }
@@ -60,17 +84,18 @@
       let cx = col * dx + (if calc.rem(calc.abs(row), 2) == 1 { dx / 2 } else { 0 })
       let cy = row * dy
 
-      // Strongest attractor wins this cell
-      let best = 0.0
-      let colour = muted
+      // Keep clear of the logo
+      let clearance = logo-distance(cx, cy)
+      if clearance < clear-radius { continue }
+      let calm = calc.min(1.0, (clearance - clear-radius) / fade-radius)
+
+      // Attractors combine into one field, so their pools run into each other
+      let dark = 1.0
       for at in attractors {
         let d = calc.sqrt(calc.pow(cx - at.x, 2) + calc.pow(cy - at.y, 2))
-        let v = calc.max(0.0, 1.0 - d / at.reach)
-        if v > best {
-          best = v
-          colour = at.colour
-        }
+        dark = dark * (1.0 - calc.max(0.0, 1.0 - d / at.reach))
       }
+      let best = (1.0 - dark) * calm
 
       // Faint outline everywhere, filled cells only where the field and noise agree
       let lit = best * best * 0.75 + best * noise * 0.25
@@ -82,7 +107,7 @@
         dx: cx * 1pt,
         dy: cy * 1pt,
         polygon(
-          fill: if show-fill { colour.transparentize(100% - fill-opacity * 100%) } else { none },
+          fill: if show-fill { ramp(cx, cy).transparentize(100% - fill-opacity * 100%) } else { none },
           stroke: 0.5pt + muted.transparentize(if show-fill { 70% } else { 88% }),
           ..hex-points(inset),
         ),
@@ -92,6 +117,14 @@
 }
 
 #for c in cells { c }
+
+// The logo, set flat
+#place(
+  top + left,
+  dx: (centre-x - logo-width / 2) * 1pt,
+  dy: (centre-y - logo-height / 2) * 1pt,
+  image("detsys-logo.svg", width: logo-width * 1pt),
+)
 
 // The stamp
 #place(bottom + right, dx: -36pt, dy: -30pt, text(tracking: 0.04em)[#label])
