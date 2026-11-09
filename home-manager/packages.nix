@@ -75,6 +75,7 @@ let
     qemu
     rumdl
     static-web-server
+    swiftbar
     tailwindcss_4
     typst
     uutils-coreutils

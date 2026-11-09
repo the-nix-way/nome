@@ -82,6 +82,15 @@
               '';
               executable = false;
             };
+
+            # SwiftBar plugin: free disk space in the menu bar, refreshed every 5 minutes
+            "SwiftBar/disk.5m.sh" = {
+              text = ''
+                #!/bin/sh
+                echo "$(/bin/df -H / | /usr/bin/awk 'NR==2 {print $4}') free"
+              '';
+              executable = true;
+            };
           };
         };
         launchd.agents.clean-rust-targets = {
