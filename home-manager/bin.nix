@@ -18,6 +18,29 @@ in
     echo -n "$(head -c 32 /dev/urandom)" | openssl dgst -sha256 -binary | openssl base64 | awk '{print "sha256-" $1}'
   '')
 
+  # Build a package across all active DSP distributions and supported systems.
+  # Extra args are passed to nix build, e.g. `dsp-all p11-kit --rebuild`.
+  (pkgs.writeShellApplication {
+    name = "dsp-all";
+    text = ''
+      if [ $# -lt 1 ]; then
+        echo "usage: dsp-all <package> [nix build args...]" >&2
+        exit 1
+      fi
+      pkg="$1"
+      shift
+
+      for dist in 25.11 26.05 rolling; do
+        for sys in x86_64-linux aarch64-linux aarch64-darwin; do
+          echo "=== secure-packages-$dist / $sys ==="
+          nix build -L --no-link --print-out-paths "$@" \
+            "https://flakehub.com/f/DeterminateSystems/secure-packages-$dist/*#legacyPackages.$sys.$pkg" \
+            || echo "FAILED: $dist $sys"
+        done
+      done
+    '';
+  })
+
   (nu "crate-hash" ''
     # Display the hash for a cargo crate
     def main [
