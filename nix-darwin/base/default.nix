@@ -124,8 +124,6 @@
 
   security.pam.services.sudo_local.touchIdAuth = true;
 
-  services = import ./services.nix;
-
   system = {
     defaults = import ./defaults.nix { inherit pkgs; };
     primaryUser = constants.username;

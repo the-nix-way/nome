@@ -10,3 +10,5 @@ result*
 /.rumdl_cache/
 
 templates/nix/flake-lock
+
+result*
