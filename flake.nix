@@ -206,7 +206,16 @@
         fh = inputs.fh.packages.${system}.default;
         flake-checker = inputs.flake-checker.packages.${system}.default;
         flake-iter = inputs.flake-iter.packages.${system}.default;
-        nh = inputs.nh.packages.${system}.default;
+        # Nixpkgs' cargo setup hook now makes -sys crates (aws-lc, zstd, sqlite) link
+        # against system libraries instead of vendored ones; nh's package.nix doesn't provide them
+        nh = inputs.nh.packages.${system}.default.overrideAttrs (old: {
+          nativeBuildInputs = (old.nativeBuildInputs or [ ]) ++ [ final.pkg-config ];
+          buildInputs = (old.buildInputs or [ ]) ++ [
+            final.aws-lc
+            final.sqlite
+            final.zstd
+          ];
+        });
         inherit (inputs.nixpkgs.legacyPackages.${system}) jujutsu nushell;
         inherit (inputs.jj-starship.packages.${system}) jj-starship;
         inherit (inputs.secure-build.packages.${system}) flakeaudit flakebom;
@@ -220,6 +229,12 @@
         vscode = prev.vscode.overrideAttrs (old: {
           postInstall =
             (old.postInstall or "") + "\n# Rebuilt to replace a store path modified by the updater\n";
+        });
+
+        # Same system-library problem as nh above. Remove once nixpkgs fixes worker-build
+        worker-build = prev.worker-build.overrideAttrs (old: {
+          nativeBuildInputs = (old.nativeBuildInputs or [ ]) ++ [ final.pkg-config ];
+          buildInputs = (old.buildInputs or [ ]) ++ [ final.zstd ];
         });
 
         # Generated from the flake revision, so every commit gets its own wallpaper
