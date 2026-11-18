@@ -83,6 +83,9 @@
               executable = false;
             };
 
+            # Rex config
+            ".config/rex/init.lua".source = ./config/rex/init.lua;
+
             # SwiftBar plugin: free disk space in the menu bar, refreshed every 5 minutes
             "SwiftBar/disk.5m.sh" = {
               text = ''
