@@ -97,7 +97,7 @@ in
   '')
 
   (nu "heavy-cleanup" ''
-    # Reclaim disk space: Nix generations, Docker images, and Rust target directories
+    # Reclaim disk space: Nix generations, Docker images, the npm cache, and Rust target directories
     def main [] {
       print "> Cleaning up Nix with nh..."
       ${pkgs.nh}/bin/nh clean all
@@ -113,6 +113,18 @@ in
       } else {
         print "> Docker isn't running; skipping Docker images"
       }
+
+      print "> Deleting the npm cache and npx packages..."
+      [
+        $"($env.HOME)/.npm/_cacache"
+        $"($env.HOME)/.npm/_npx"
+      ]
+      | where {|dir| $dir | path exists }
+      | each {|dir|
+          print $"  removing ($dir)"
+          rm --recursive --force $dir
+        }
+      | ignore
 
       print $"> Deleting Rust target directories under ($env.HOME)..."
       glob $"($env.HOME)/**/target" --no-file --exclude [
