@@ -30,17 +30,12 @@
 
   shell = {
     # General
-    "," = "comma";
     cat = "bat";
-    conf = "code ~/.config/nixpkgs";
     dc = "docker compose";
     diff = "diff --color=auto";
     grep = "grep --color=auto";
     hp = "history -p";
     szsh = "source ~/.zshrc";
-    tf = "terraform";
-    tg = "terragrunt";
-    j = "just";
 
     # Git
     gfoma = "git fetch origin; git merge origin/main";
@@ -49,7 +44,6 @@
 
     # kubectl
     k = "kubectl";
-    kx = "kubectx";
 
     # Direnv helpers
     da = "direnv allow";
@@ -84,11 +78,6 @@
 
     ## Nix stuff. Inspired by: https://alexfedoseev.com/blog/post/nix-time.
 
-    # Reload the Home Manager configuration (after git push)
-    xx = ''
-      home-manager switch --flake "https://flakehub.com/f/the-nix-way/nome/0.1" && source ${pkgs.lib.homeDirectory}/.zshrc
-    '';
-
     # Run Nix garbage collection
     xgc = "nix store gc -v";
     xrd = "sudo launchctl unload /Library/LaunchDaemons/systems.determinate.nix-daemon.plist && sudo launchctl load /Library/LaunchDaemons/systems.determinate.nix-daemon.plist";
@@ -118,7 +107,5 @@
     uuidv7 = "python3 -c 'import uuid; print(uuid.uuid7())'";
     wx = "watchexec";
     yt = "yt-dlp --cookies-from-browser firefox";
-    zd = "zeditor";
-    zed = "zeditor";
   };
 }
