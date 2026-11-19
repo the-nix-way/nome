@@ -43,8 +43,8 @@
     j = "just";
 
     # Git
-    gfoma = "git fetch origin; git merge origina/main";
-    gfuma = "git fetch upstream; git merge upstream /main";
+    gfoma = "git fetch origin; git merge origin/main";
+    gfuma = "git fetch upstream; git merge upstream/main";
     gfums = "git fetch upstream; git merge upstream/master";
 
     # kubectl
@@ -60,6 +60,27 @@
     ff = "fastfetch";
     # Show how much disk space is left (the home directory's volume)
     disk-space = "df -h ${pkgs.lib.homeDirectory}";
+
+    # Network
+    dns-servers = "scutil --dns | grep nameserver | sort -u";
+    flush-dns = "sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder";
+    # Show everything listening on a TCP port
+    listening = "sudo lsof -iTCP -sTCP:LISTEN -n -P";
+    local-ip = "ipconfig getifaddr en0";
+    public-ip = "curl -s https://icanhazip.com";
+    # Renew the DHCP lease on en0 (Wi-Fi)
+    renew-lease = "sudo ipconfig set en0 DHCP";
+    wifi-cycle = "networksetup -setairportpower en0 off; networksetup -setairportpower en0 on";
+
+    # macOS admin
+    # Keep the machine awake until Ctrl-C
+    awake = "caffeinate -dims";
+    battery = "pmset -g batt";
+    # Rebuild the Spotlight index
+    reindex = "sudo mdutil -E /";
+    restart-dock = "killall Dock";
+    # Remove the quarantine attribute from a path
+    unquarantine = "xattr -dr com.apple.quarantine";
 
     ## Nix stuff. Inspired by: https://alexfedoseev.com/blog/post/nix-time.
 
