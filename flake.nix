@@ -65,6 +65,10 @@
       url = "https://flakehub.com/f/DeterminateSystems/nuenv/0.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    rex = {
+      url = "https://pkgs.superlogical.com/rex/nix/preview.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     secure-build.url = "https://flakehub.com/f/DeterminateSystems/secure-build/0.1";
   };
 
@@ -91,8 +95,14 @@
 
       # Constant values to pass around
       constants = {
-        inherit username system;
+        inherit stateVersion username system;
         flake-registry-file = "nix/flake-registry.json";
+
+        # The cloud dev VM
+        dev-vm = {
+          hostName = "dev-vm";
+          system = "aarch64-linux";
+        };
       };
     in
     {
@@ -270,6 +280,17 @@
             inherit pkgs stateVersion username;
             imports = [ ];
           };
+      };
+
+      nixosConfigurations.${constants.dev-vm.hostName} = inputs.nixpkgs.lib.nixosSystem {
+        inherit (constants.dev-vm) system;
+        modules = [
+          ./nixos/dev-vm
+          inputs.determinate.nixosModules.default
+          inputs.home-manager.nixosModules.home-manager
+          { home-manager.sharedModules = [ inputs.rex.homeManagerModules.default ]; }
+        ];
+        specialArgs = { inherit constants; };
       };
 
       templates = import ./templates;

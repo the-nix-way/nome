@@ -26,6 +26,11 @@
     whoops = "reset --hard";
     wipe = "commit -s";
     fix = "rebase --exec 'git commit --amend --no-edit -S' -i origin/develop";
+
+    # Worktrees
+    wa = "worktree add";
+    wl = "worktree list";
+    wp = "worktree prune";
   };
 
   shell = {
