@@ -16,5 +16,16 @@
     tokyonight-nvim
     vim-cpp-enhanced-highlight
     vim-nix
+    {
+      # Tree-sitter parsers and queries; highlighting is enabled per filetype
+      plugin = nvim-treesitter.withPlugins (p: [ p.meson ]);
+      type = "lua";
+      config = ''
+        vim.api.nvim_create_autocmd("FileType", {
+          pattern = { "meson" },
+          callback = function() vim.treesitter.start() end,
+        })
+      '';
+    }
   ];
 }
