@@ -1,7 +1,7 @@
 { pkgs }:
 
 let
-  ai = with pkgs; [ ];
+  ai = with pkgs; [ gemini-cli ];
 
   basic = with pkgs; [
     findutils
