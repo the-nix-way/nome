@@ -2,6 +2,7 @@
 
 {
   gh = {
+    plw = "pr list --web";
     pvw = "pr view --web";
     rvw = "repo view --web";
   };
