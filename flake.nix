@@ -288,6 +288,9 @@
           ./nixos/dev-vm
           inputs.determinate.nixosModules.default
           inputs.home-manager.nixosModules.home-manager
+          # Adds the system-level services.rex options. The Rex server itself runs as a user
+          # service from the Home Manager module, so the system service stays off.
+          inputs.rex.nixosModules.default
           { home-manager.sharedModules = [ inputs.rex.homeManagerModules.default ]; }
         ];
         specialArgs = { inherit constants; };
