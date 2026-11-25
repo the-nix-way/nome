@@ -97,55 +97,165 @@ in
   '')
 
   (nu "heavy-cleanup" ''
-    # Reclaim disk space: Nix generations, Docker images, the npm cache, and Rust target directories
-    def main [] {
+    # Reclaim disk space from dev tooling: Nix, Docker, language caches, and build output in idle projects.
+    # Everything removed is a cache or build output that gets re-downloaded or rebuilt on next use.
+    def main [
+      --days: int = 30, # Only clean projects idle for at least this many days (0 cleans every project)
+    ] {
+      let before = (free-bytes)
+
       print "> Cleaning up Nix with nh..."
       ${pkgs.nh}/bin/nh clean all
 
-      if (docker-running) {
-        let images = (docker image ls --all --quiet | lines)
-        if ($images | is-empty) {
-          print "> No Docker images to delete"
-        } else {
-          print "> Deleting all Docker images..."
-          docker image rm --force ...$images
-        }
-      } else {
-        print "> Docker isn't running; skipping Docker images"
+      docker-cleanup
+      rust-cleanup
+      js-cleanup
+      misc-cleanup
+      project-cleanup $days
+
+      let freed = ((free-bytes) - $before)
+      print $"> Heavy cleanup complete, freed ($freed | into filesize) 🧹"
+    }
+
+    def docker-cleanup [] {
+      if not (docker-running) {
+        print "> Docker isn't running; skipping Docker"
+        return
       }
 
+      let images = (docker image ls --all --quiet | lines)
+      if ($images | is-empty) {
+        print "> No Docker images to delete"
+      } else {
+        print "> Deleting all Docker images..."
+        docker image rm --force ...$images
+      }
+
+      print "> Pruning the Docker build cache..."
+      docker builder prune --all --force
+    }
+
+    # Unpacked crate sources and git checkouts; Cargo re-extracts them from its .crate cache
+    def rust-cleanup [] {
+      if ($env.HOME | path join ".cargo" | path exists) {
+        print "> Cleaning the Cargo registry and git caches..."
+        ${pkgs.cargo-cache}/bin/cargo-cache --autoclean
+      }
+    }
+
+    def js-cleanup [] {
       print "> Deleting the npm cache and npx packages..."
+      [".npm/_cacache" ".npm/_npx"] | home-paths | remove-all
+
+      # pnpm keeps one store per store version and never deletes the old ones
+      if (installed pnpm) {
+        let current = (do { cd $env.HOME; ^pnpm store path } | str trim | path expand)
+        print "> Deleting old pnpm stores..."
+        ["Library/pnpm/store" ".local/share/pnpm/store"]
+        | home-paths
+        | where {|root| $root | path exists }
+        | each {|root| ls $root | where type == dir | get name }
+        | flatten
+        | where {|store| ($store | path expand) != $current }
+        | remove-all
+
+        print "> Pruning the pnpm store..."
+        do { cd $env.HOME; ^pnpm store prune }
+      }
+
+      print "> Deleting the Yarn and Bun caches..."
+      ["Library/Caches/Yarn" ".yarn/berry/cache" ".bun/install/cache"] | home-paths | remove-all
+
+      # Keep only the newest download of each browser
+      let puppeteer = ($env.HOME | path join ".cache/puppeteer")
+      if ($puppeteer | path exists) {
+        print "> Deleting old Puppeteer browsers..."
+        ls $puppeteer
+        | where type == dir
+        | each {|browser| ls $browser.name | where type == dir | sort-by modified | drop 1 | get name }
+        | flatten
+        | remove-all
+      }
+    }
+
+    def misc-cleanup [] {
+      if (installed uv) {
+        print "> Pruning the uv cache..."
+        ^uv cache prune
+      }
+
+      if (installed go) {
+        print "> Cleaning the Go build cache..."
+        ^go clean -cache
+      }
+    }
+
+    # Rust target/, node_modules, and .next directories in projects idle for at least $days days
+    def project-cleanup [days: int] {
+      print $"> Deleting build output in projects idle for ($days)+ days under ($env.HOME)..."
+      let home = $env.HOME
+      let cutoff = ((date now) - ($days * 1day))
+
+      (^${pkgs.findutils}/bin/find $home
+        "(" -path $"($home)/.*" -o -path $"($home)/Library" -o -path $"($home)/Applications" -o -name .git -o -name .direnv ")" -prune
+        -o -type d "(" -name target -o -name node_modules -o -name .next ")" -print -prune)
+      | complete # find exits non-zero on unreadable directories; keep what it found
+      | get stdout
+      | lines
+      | where {|dir|
+          let project = ($dir | path dirname)
+          let manifest = if (($dir | path basename) == "target") { "Cargo.toml" } else { "package.json" }
+          ($project | path join $manifest | path exists) and ((last-active $project) < $cutoff)
+        }
+      | remove-all
+    }
+
+    # When a project was last worked on: its latest commit or Git index update, else the directory's mtime
+    def last-active [dir: path]: nothing -> datetime {
+      let root = (do { ^git -C $dir rev-parse --show-toplevel } | complete)
+      if $root.exit_code != 0 {
+        return (ls --directory $dir | get modified.0)
+      }
+
+      let root = ($root.stdout | str trim)
+      let commit = (do { ^git -C $root log -1 --format=%cI } | complete | get stdout | str trim)
+      let index = ($root | path join ".git/index")
       [
-        $"($env.HOME)/.npm/_cacache"
-        $"($env.HOME)/.npm/_npx"
+        (if ($commit | is-empty) { null } else { $commit | into datetime })
+        (if ($index | path exists) { ls $index | get modified.0 } else { null })
+        (ls --directory $root | get modified.0)
       ]
-      | where {|dir| $dir | path exists }
-      | each {|dir|
-          print $"  removing ($dir)"
-          rm --recursive --force $dir
+      | compact
+      | sort
+      | last
+    }
+
+    # Expand paths relative to the home directory
+    def home-paths []: list<string> -> list<string> {
+      each {|p| $env.HOME | path join $p }
+    }
+
+    def remove-all []: list<string> -> nothing {
+      where {|p| $p | path exists }
+      | each {|p|
+          print $"  removing ($p)"
+          rm --recursive --force $p
         }
       | ignore
+    }
 
-      print $"> Deleting Rust target directories under ($env.HOME)..."
-      glob $"($env.HOME)/**/target" --no-file --exclude [
-        $"($env.HOME)/Library/**"
-        $"($env.HOME)/.Trash/**"
-        "**/node_modules/**"
-        "**/.git/**"
-      ]
-      | where {|dir| ($dir | path dirname | path join "Cargo.toml" | path exists) }
-      | each {|dir|
-          print $"  removing ($dir)"
-          rm --recursive --force $dir
-        }
-      | ignore
+    def installed [name: string]: nothing -> bool {
+      which $name | is-not-empty
+    }
 
-      print "> Heavy cleanup complete 🧹"
+    # Available bytes on the volume that holds the home directory
+    def free-bytes []: nothing -> int {
+      (^df -k $env.HOME | lines | last | split row --regex '\s+' | get 3 | into int) * 1024
     }
 
     # Is the Docker daemon up and reachable?
     def docker-running []: nothing -> bool {
-      (which docker | is-not-empty) and ((docker info | complete | get exit_code) == 0)
+      (installed docker) and ((docker info | complete | get exit_code) == 0)
     }
   '')
 

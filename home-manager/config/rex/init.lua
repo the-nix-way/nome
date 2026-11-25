@@ -5,12 +5,12 @@ local terminal = "com.superlogical.terminal"
 -- The working directory of a block's foreground process, or nil if Rex can't tell
 local function block_cwd(block_id)
   if block_id == nil then return nil end
-  local process = rex.block.call(terminal, "process", { block_id = block_id })
-  return process and process.foreground and process.foreground.cwd
+  local ok, process = pcall(rex.block.call, terminal, "process", { block_id = block_id })
+  return ok and process and process.foreground and process.foreground.cwd or nil
 end
 
 -- Open a tab in the focused terminal's directory, then offer to name it.
--- Submitting an empty name or pressing Escape leaves the tab unnamed.
+-- Submitting an empty name or pressing Escape leaves it to the automatic name.
 rex.action{
   name = "new_tab",
   title = "New Named Tab…",
@@ -29,7 +29,7 @@ rex.action{
 
     local name = rex.ui.input{
       title = "Name this tab",
-      placeholder = "Return or Escape to leave it unnamed",
+      placeholder = "Return or Escape to name it after its directory",
       confirm = "Name tab",
     }
     name = name and name:match("^%s*(.-)%s*$")
@@ -51,7 +51,7 @@ local function prompt_label(title)
   if rex.ui == nil then return nil end
   local name = rex.ui.input{
     title = title,
-    placeholder = "Leave empty to reset",
+    placeholder = "Leave empty to name it after its directory",
     confirm = "Rename",
   }
   return name and name:match("^%s*(.-)%s*$")
@@ -103,3 +103,4 @@ rex.action{
 
 rex.bind("cmd+shift+r", "rename_tab")
 rex.bind("cmd+r", "rename_pane")
+
